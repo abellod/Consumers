@@ -1,9 +1,10 @@
-# Preface {.unnumbered}
+# Datos {.unnumbered}
 
 This is a Quarto book.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
 
 ```{r}
-1 + 1
+data<-read.csv("shopping_behavior_updated.csv")
+str(data)
 ```

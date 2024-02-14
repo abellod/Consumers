@@ -4,7 +4,7 @@ project:
 
 book:
   title: "Consumers"
-  author: "Norah Jones"
+  author: "Ander Cristancho & Sofia Bello"
   date: "14/2/2024"
   chapters:
     - index.qmd
@@ -17,8 +17,10 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
+    toc: true
   pdf:
     documentclass: scrreprt
 
 editor: visual
 
+lang: es
