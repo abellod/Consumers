@@ -8,7 +8,7 @@
 
 <meta name="author" content="Ander Cristancho &amp; Sofia Bello">
 
-<title>Consumers</title>
+<title>Análisis descriptivo de los resultados SaberPro 2022-2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./univariado.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Datos</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Presentación</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Consumers</a> 
+      <a href="./">Análisis descriptivo de los resultados SaberPro 2022-2</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -136,13 +136,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Datos</span></a>
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  <a href="./univariado.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Análisis univariado</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Referencias</span></a>
   </div>
 </li>
     </ul>
@@ -167,7 +167,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#datos" id="toc-datos" class="nav-link active" data-scroll-target="#datos">Datos</a></li>
+  <li><a href="#presentación" id="toc-presentación" class="nav-link active" data-scroll-target="#presentación">Presentación</a>
+  <ul class="collapse">
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">Introducción</a>
+  <ul class="collapse">
+  <li><a href="#que-es" id="toc-que-es" class="nav-link" data-scroll-target="#que-es">Que es</a></li>
+  <li><a href="#que-se-ha-hecho-de-eso" id="toc-que-se-ha-hecho-de-eso" class="nav-link" data-scroll-target="#que-se-ha-hecho-de-eso">Que se ha hecho de eso</a></li>
+  <li><a href="#justificación" id="toc-justificación" class="nav-link" data-scroll-target="#justificación">Justificación</a></li>
+  </ul></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#descripción-de-la-tabla-de-datos" id="toc-descripción-de-la-tabla-de-datos" class="nav-link" data-scroll-target="#descripción-de-la-tabla-de-datos">Descripción de la tabla de datos</a></li>
+  <li><a href="#recodificación-de-variables" id="toc-recodificación-de-variables" class="nav-link" data-scroll-target="#recodificación-de-variables">Recodificación de variables</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -176,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Consumers</h1>
+<h1 class="title">Análisis descriptivo de los resultados SaberPro 2022-2</h1>
 </div>
 
 
@@ -203,37 +214,267 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="datos" class="level1 unnumbered">
-<h1 class="unnumbered">Datos</h1>
-<p>This is a Quarto book.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<section id="presentación" class="level1 unnumbered">
+<h1 class="unnumbered">Presentación</h1>
+<p>El presente proyecto realiza un análisis descriptivo de los resultados obtenidos en el examen SaberPro del segundo periodo académico del 2022.</p>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>El SaberPro es un examen estandarizado realizado por Colombia que busca evaluar la calidad de la educación superior. En su construcción han trabajo muchas comunidades académicas y redes de facultades y programas. Este examen lo presentan estudiantes activos de institucione de educación superior y egresados que ya están desvinculados de la institución.</p>
+<section id="que-es" class="level3">
+<h3 class="anchored" data-anchor-id="que-es">Que es</h3>
+</section>
+<section id="que-se-ha-hecho-de-eso" class="level3">
+<h3 class="anchored" data-anchor-id="que-se-ha-hecho-de-eso">Que se ha hecho de eso</h3>
+</section>
+<section id="justificación" class="level3">
+<h3 class="anchored" data-anchor-id="justificación">Justificación</h3>
+</section>
+</section>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+</section>
+<section id="descripción-de-la-tabla-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-de-la-tabla-de-datos">Descripción de la tabla de datos</h2>
+<p>La base de datos original cuenta con 127342 observaciones de 109 variables, de las cuales 29 son cuantitativas y hacen referencia a puntajes totales y parciales del examen, las otras 80 variables muestran información personal, académica y socioeconómica entre otras referentes a los individuos que presentaron la prueba. MEJORAR REDACCIÓN.</p>
+<p>Dados los objetivos de este proyecto, se redujo la base de datos a un conjunto con 127342 observaciones de — variables que ayudan acumplir dichos objetivos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"shopping_behavior_updated.csv"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"DATA_ICFES_SABERPROPROFESIONAL_2022-2.TXT"</span>, <span class="at">delim =</span> <span class="st">"¬"</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 127342 Columns: 109
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "¬"
+chr (78): ESTU_TIPODOCUMENTO, ESTU_NACIONALIDAD, ESTU_GENERO, ESTU_FECHANACI...
+dbl (29): PERIODO, ESTU_PLANTELEDUCATIVO, INST_COD_INSTITUCION, ESTU_SNIES_P...
+lgl  (2): ESTU_PREGRADOEXAMENSP, ESTU_UNPOSTGRADO
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   3900 obs. of  18 variables:
- $ Customer.ID           : int  1 2 3 4 5 6 7 8 9 10 ...
- $ Age                   : int  55 19 50 21 45 46 63 27 26 57 ...
- $ Gender                : chr  "Male" "Male" "Male" "Male" ...
- $ Item.Purchased        : chr  "Blouse" "Sweater" "Jeans" "Sandals" ...
- $ Category              : chr  "Clothing" "Clothing" "Clothing" "Footwear" ...
- $ Purchase.Amount..USD. : int  53 64 73 90 49 20 85 34 97 31 ...
- $ Location              : chr  "Kentucky" "Maine" "Massachusetts" "Rhode Island" ...
- $ Size                  : chr  "L" "L" "S" "M" ...
- $ Color                 : chr  "Gray" "Maroon" "Maroon" "Maroon" ...
- $ Season                : chr  "Winter" "Winter" "Spring" "Spring" ...
- $ Review.Rating         : num  3.1 3.1 3.1 3.5 2.7 2.9 3.2 3.2 2.6 4.8 ...
- $ Subscription.Status   : chr  "Yes" "Yes" "Yes" "Yes" ...
- $ Shipping.Type         : chr  "Express" "Express" "Free Shipping" "Next Day Air" ...
- $ Discount.Applied      : chr  "Yes" "Yes" "Yes" "Yes" ...
- $ Promo.Code.Used       : chr  "Yes" "Yes" "Yes" "Yes" ...
- $ Previous.Purchases    : int  14 2 23 49 31 14 49 19 8 4 ...
- $ Payment.Method        : chr  "Venmo" "Cash" "Credit Card" "PayPal" ...
- $ Frequency.of.Purchases: chr  "Fortnightly" "Fortnightly" "Weekly" "Weekly" ...</code></pre>
+<pre><code>spc_tbl_ [127,342 × 109] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ESTU_TIPODOCUMENTO            : chr [1:127342] "CE" "CC" "CC" "CC" ...
+ $ ESTU_NACIONALIDAD             : chr [1:127342] "ECUADOR" "COLOMBIA" "COLOMBIA" "COLOMBIA" ...
+ $ ESTU_GENERO                   : chr [1:127342] "M" "F" "M" "F" ...
+ $ ESTU_FECHANACIMIENTO          : chr [1:127342] "24/12/1998" "11/09/2001" "10/09/2001" "16/03/1993" ...
+ $ ESTU_EXTERIOR                 : chr [1:127342] "NO" "NO" "NO" "NO" ...
+ $ PERIODO                       : num [1:127342] 20225 20225 20225 20225 20225 ...
+ $ ESTU_CONSECUTIVO              : chr [1:127342] "EK202250120952" "EK202250088428" "EK202250166006" "EK202250101378" ...
+ $ ESTU_ESTUDIANTE               : chr [1:127342] "ESTUDIANTE" "ESTUDIANTE" "ESTUDIANTE" "ESTUDIANTE" ...
+ $ ESTU_PAIS_RESIDE              : chr [1:127342] "ECUADOR" "COLOMBIA" "COLOMBIA" "COLOMBIA" ...
+ $ ESTU_TIENEETNIA               : chr [1:127342] "No" "No" "No" "No" ...
+ $ ESTU_DEPTO_RESIDE             : chr [1:127342] "BOGOTÁ" "SUCRE" "CUNDINAMARCA" "PUTUMAYO" ...
+ $ ESTU_COD_RESIDE_DEPTO         : chr [1:127342] "11" "70" "25" "86" ...
+ $ ESTU_MCPIO_RESIDE             : chr [1:127342] "BOGOTÁ D.C." "SAN JUAN DE BETULIA" "SOACHA" "PUERTO CAICEDO" ...
+ $ ESTU_COD_RESIDE_MCPIO         : chr [1:127342] "11001" "70702" "25754" "86569" ...
+ $ ESTU_AREARESIDE               : chr [1:127342] "Cabecera Municipal" "Cabecera Municipal" "Cabecera Municipal" "Cabecera Municipal" ...
+ $ ESTU_ESTADOCIVIL              : chr [1:127342] "Soltero" "Soltero" "Soltero" "Unión libre" ...
+ $ ESTU_COLE_TERMINO             : chr [1:127342] NA "INST EDUC CONCENTRACION ESCOLAR SAN JUAN" NA NA ...
+ $ ESTU_CODDANE_COLE_TERMINO     : chr [1:127342] NA "170702002128" NA NA ...
+ $ ESTU_COD_COLE_MCPIO_TERMINO   : chr [1:127342] NA "70702" NA NA ...
+ $ ESTU_OTROCOLE_TERMINO         : chr [1:127342] NA NA "INSTITUCIÓN EDUCATIVA BUENOS AIRES" NA ...
+ $ ESTU_TITULOOBTENIDOBACHILLER  : chr [1:127342] "Bachiller académico" "Bachiller académico" "Bachiller académico" "Bachiller técnico" ...
+ $ ESTU_VALORMATRICULAUNIVERSIDAD: chr [1:127342] "Entre 1 millón y menos de 2.5 millones" "Entre 2.5 millones y menos de 4 millones" "Entre 1 millón y menos de 2.5 millones" "Entre 500 mil y menos de 1 millón" ...
+ $ ESTU_PAGOMATRICULABECA        : chr [1:127342] "No" "No" "No" "No" ...
+ $ ESTU_PAGOMATRICULACREDITO     : chr [1:127342] "No" "Si" "No" "No" ...
+ $ ESTU_PAGOMATRICULAPADRES      : chr [1:127342] "Si" "No" "No" "No" ...
+ $ ESTU_PAGOMATRICULAPROPIO      : chr [1:127342] "No" "No" "Si" "Si" ...
+ $ ESTU_COMOCAPACITOEXAMENSB11   : chr [1:127342] "Repasó por cuenta propia" "Tomó un curso de preparación" "Repasó por cuenta propia" "Tomó un curso de preparación" ...
+ $ ESTU_CURSODOCENTESIES         : chr [1:127342] NA "Menos de 20 horas" NA "Entre 20 y 30 horas" ...
+ $ ESTU_CURSOIESAPOYOEXTERNO     : chr [1:127342] NA "Más de 30 horas" NA "Menos de 20 horas" ...
+ $ ESTU_CURSOIESEXTERNA          : chr [1:127342] NA "Menos de 20 horas" NA "Menos de 20 horas" ...
+ $ ESTU_SIMULACROTIPOICFES       : chr [1:127342] NA "Si" NA "Si" ...
+ $ ESTU_ACTIVIDADREFUERZOAREAS   : chr [1:127342] NA "No" NA "Si" ...
+ $ ESTU_ACTIVIDADREFUERZOGENERIC : chr [1:127342] NA "Si" NA "Si" ...
+ $ ESTU_TIPODOCUMENTOSB11        : chr [1:127342] NA "TI" "TI" "CC" ...
+ $ ESTU_SEMESTRECURSA            : chr [1:127342] "08" "08" "08" "11" ...
+ $ FAMI_EDUCACIONPADRE           : chr [1:127342] "Secundaria (Bachillerato) completa" "Secundaria (Bachillerato) completa" "Primaria incompleta" "Ninguno" ...
+ $ FAMI_EDUCACIONMADRE           : chr [1:127342] "Educación profesional completa" "Técnica o tecnológica completa" "Secundaria (Bachillerato) incompleta" "Ninguno" ...
+ $ FAMI_OCUPACIONPADRE           : chr [1:127342] "Empresario" "Trabajador por cuenta propia" "Empleado obrero u operario" "Trabajador por cuenta propia" ...
+ $ FAMI_OCUPACIONMADRE           : chr [1:127342] "Hogar" "Empleado de nivel auxiliar o administrativo" "Hogar" "Hogar" ...
+ $ FAMI_ESTRATOVIVIENDA          : chr [1:127342] "Estrato 3" "Estrato 1" "Estrato 1" "Estrato 1" ...
+ $ FAMI_TIENEINTERNET            : chr [1:127342] "Si" "Si" "Si" "Si" ...
+ $ FAMI_TIENECOMPUTADOR          : chr [1:127342] "Si" "No" "Si" "No" ...
+ $ FAMI_TIENELAVADORA            : chr [1:127342] "Si" "Si" "Si" "Si" ...
+ $ FAMI_TIENEHORNOMICROOGAS      : chr [1:127342] "Si" "No" "No" "No" ...
+ $ FAMI_TIENESERVICIOTV          : chr [1:127342] "No" "No" "Si" "No" ...
+ $ FAMI_TIENEAUTOMOVIL           : chr [1:127342] "No" "No" "No" "No" ...
+ $ FAMI_TIENEMOTOCICLETA         : chr [1:127342] "No" "No" "No" "No" ...
+ $ FAMI_TIENECONSOLAVIDEOJUEGOS  : chr [1:127342] "No" "No" "No" "No" ...
+ $ FAMI_TRABAJOLABORPADRE        : chr [1:127342] "Tiene un trabajo de tipo auxiliar administrativo (por ejemplo, secretario o asistente)" "Trabaja como personal de limpieza, mantenimiento, seguridad o construcción" "Trabaja como personal de limpieza, mantenimiento, seguridad o construcción" "Trabaja en el hogar, no trabaja o estudia" ...
+ $ FAMI_TRABAJOLABORMADRE        : chr [1:127342] "Trabaja en el hogar, no trabaja o estudia" "Tiene un trabajo de tipo auxiliar administrativo (por ejemplo, secretario o asistente)" "Trabaja en el hogar, no trabaja o estudia" "Trabaja en el hogar, no trabaja o estudia" ...
+ $ ESTU_PLANTELEDUCATIVO         : num [1:127342] NA 24532 NA 0 3284 ...
+ $ ESTU_OTROPLANTEL              : chr [1:127342] NA NA "INSTITUCIÓN EDUCATIVA BUENOS AIRES" NA ...
+ $ ESTU_PREGRADOEXAMENSP         : logi [1:127342] NA NA NA NA NA NA ...
+ $ ESTU_UNPOSTGRADO              : logi [1:127342] NA NA NA NA NA NA ...
+ $ ESTU_HORASSEMANATRABAJA       : chr [1:127342] NA "Menos de 10 horas" "Más de 30 horas" "Entre 11 y 20 horas" ...
+ $ FAMI_CUANTOSCOMPARTEBAÑO      : chr [1:127342] "2" "3 o 4" "2" "3 o 4" ...
+ $ ESTU_PAGOMATRICULA            : chr [1:127342] "Familiares" "Creditos" "Propios" "Propios" ...
+ $ ESTU_VLRULTIMOSEMESCURSADO    : chr [1:127342] "Entre un millon y 3 millones de pesose" "Entre un millon y 3 millones de pesose" "Entre un millon y 3 millones de pesose" "Entre 500 mil y un millon de pesos" ...
+ $ ESTU_PRESENTACIONCASA         : chr [1:127342] "Si" "No" "Si" "Si" ...
+ $ ESTU_PAISDOCUMENTOS11         : chr [1:127342] "ECUADOR" "COLOMBIA" "COLOMBIA" "COLOMBIA" ...
+ $ ESTU_PRESENTACIONSABADO       : chr [1:127342] "No" "No" "No" "No" ...
+ $ INST_COD_INSTITUCION          : num [1:127342] 1101 2823 2728 1710 1201 ...
+ $ INST_NOMBRE_INSTITUCION       : chr [1:127342] "UNIVERSIDAD NACIONAL DE COLOMBIA-BOGOTÁ D.C." "CORPORACION UNIVERSITARIA DEL CARIBE - CECAR-SINCELEJO" "FUNDACION UNIVERSITARIA DEL AREA ANDINA-BOGOTÁ D.C." "UNIVERSIDAD PONTIFICIA BOLIVARIANA-MEDELLIN" ...
+ $ ESTU_PRGM_ACADEMICO           : chr [1:127342] "ARQUITECTURA" "TRABAJO SOCIAL" "ADMINISTRACIÓN DE EMPRESAS" "TRABAJO SOCIAL" ...
+ $ ESTU_SNIES_PRGMACADEMICO      : num [1:127342] 30 4247 103186 102545 450 ...
+ $ GRUPOREFERENCIA               : chr [1:127342] "ARQUITECTURA Y URBANISMO" "CIENCIAS SOCIALES" "ADMINISTRACIÓN Y AFINES" "CIENCIAS SOCIALES" ...
+ $ ESTU_PRGM_CODMUNICIPIO        : chr [1:127342] "11001" "70001" "11001" "86749" ...
+ $ ESTU_PRGM_MUNICIPIO           : chr [1:127342] "BOGOTÁ D.C." "SINCELEJO" "BOGOTÁ D.C." "SIBUNDOY" ...
+ $ ESTU_PRGM_DEPARTAMENTO        : chr [1:127342] "BOGOTÁ" "SUCRE" "BOGOTÁ" "PUTUMAYO" ...
+ $ ESTU_NIVEL_PRGM_ACADEMICO     : chr [1:127342] "UNIVERSITARIO" "UNIVERSITARIO" "UNIVERSITARIO" "UNIVERSITARIO" ...
+ $ ESTU_METODO_PRGM              : chr [1:127342] "PRESENCIAL" "PRESENCIAL" "DISTANCIA VITUAL" "DISTANCIA" ...
+ $ ESTU_NUCLEO_PREGRADO          : chr [1:127342] "ARQUITECTURA" "SOCIOLOGÍA, TRABAJO SOCIAL Y AFINES" "ADMINISTRACIÓN" "SOCIOLOGÍA, TRABAJO SOCIAL Y AFINES" ...
+ $ ESTU_INST_CODMUNICIPIO        : chr [1:127342] "11001" "70001" "11001" "05001" ...
+ $ ESTU_INST_MUNICIPIO           : chr [1:127342] "BOGOTÁ D.C." "SINCELEJO" "BOGOTÁ D.C." "MEDELLÍN" ...
+ $ ESTU_INST_DEPARTAMENTO        : chr [1:127342] "BOGOTÁ" "SUCRE" "BOGOTÁ" "ANTIOQUIA" ...
+ $ INST_CARACTER_ACADEMICO       : chr [1:127342] "UNIVERSIDAD" "INSTITUCIÓN UNIVERSITARIA" "INSTITUCIÓN UNIVERSITARIA" "UNIVERSIDAD" ...
+ $ INST_ORIGEN                   : chr [1:127342] "OFICIAL NACIONAL" "NO OFICIAL - CORPORACIÓN" "NO OFICIAL - FUNDACIÓN" "NO OFICIAL - FUNDACIÓN" ...
+ $ ESTU_PRIVADO_LIBERTAD         : chr [1:127342] "N" "N" "N" "N" ...
+ $ ESTU_COD_MCPIO_PRESENTACION   : chr [1:127342] "11001" "70001" "11001" "11001" ...
+ $ ESTU_MCPIO_PRESENTACION       : chr [1:127342] "BOGOTÁ D.C." "SINCELEJO" "BOGOTÁ D.C." "BOGOTÁ D.C." ...
+ $ ESTU_DEPTO_PRESENTACION       : chr [1:127342] "BOGOTÁ" "SUCRE" "BOGOTÁ" "BOGOTÁ" ...
+ $ ESTU_COD_DEPTO_PRESENTACION   : chr [1:127342] "11" "70" "11" "11" ...
+ $ MOD_RAZONA_CUANTITAT_PUNT     : num [1:127342] 200 135 161 102 158 173 145 146 163 153 ...
+ $ MOD_RAZONA_CUANTITAT_DESEM    : num [1:127342] 3 2 3 1 3 3 2 2 3 2 ...
+ $ MOD_RAZONA_CUANTITATIVO_PNAL  : num [1:127342] 95 38 67 9 65 79 50 51 70 58 ...
+ $ MOD_RAZONA_CUANTITATIVO_PNBC  : num [1:127342] 96 67 78 20 30 76 35 58 33 68 ...
+ $ MOD_LECTURA_CRITICA_PUNT      : num [1:127342] 189 144 168 128 157 181 155 155 160 143 ...
+ $ MOD_LECTURA_CRITICA_DESEM     : num [1:127342] 3 2 3 2 2 3 2 2 3 2 ...
+ $ MOD_LECTURA_CRITICA_PNAL      : num [1:127342] 88 41 69 25 57 82 54 54 60 41 ...
+ $ MOD_LECTURA_CRITICA_PNBC      : num [1:127342] 90 51 81 32 39 82 53 56 54 54 ...
+ $ MOD_COMPETEN_CIUDADA_PUNT     : num [1:127342] 126 154 88 143 96 184 162 161 145 152 ...
+ $ MOD_COMPETEN_CIUDADA_DESEM    : num [1:127342] 2 2 1 2 1 3 3 3 2 2 ...
+ $ MOD_COMPETEN_CIUDADA_PNAL     : num [1:127342] 33 62 6 50 9 88 70 69 53 60 ...
+ $ MOD_COMPETEN_CIUDADA_PNBC     : num [1:127342] 34 72 7 62 5 91 68 75 46 71 ...
+ $ MOD_INGLES_PUNT               : num [1:127342] 187 163 176 114 145 192 143 173 143 0 ...
+ $ MOD_INGLES_DESEM              : chr [1:127342] "B1" "A2" "B1" "A1" ...
+ $ MOD_INGLES_PNAL               : num [1:127342] 83 60 74 7 38 86 35 71 36 1 ...
+ $ MOD_INGLES_PNBC               : num [1:127342] 78 80 82 15 16 83 26 76 26 1 ...
+ $ MOD_COMUNI_ESCRITA_PUNT       : num [1:127342] 167 162 164 124 115 166 170 178 0 122 ...
+  [list output truncated]
+ - attr(*, "spec")=
+  .. cols(
+  ..   ESTU_TIPODOCUMENTO = col_character(),
+  ..   ESTU_NACIONALIDAD = col_character(),
+  ..   ESTU_GENERO = col_character(),
+  ..   ESTU_FECHANACIMIENTO = col_character(),
+  ..   ESTU_EXTERIOR = col_character(),
+  ..   PERIODO = col_double(),
+  ..   ESTU_CONSECUTIVO = col_character(),
+  ..   ESTU_ESTUDIANTE = col_character(),
+  ..   ESTU_PAIS_RESIDE = col_character(),
+  ..   ESTU_TIENEETNIA = col_character(),
+  ..   ESTU_DEPTO_RESIDE = col_character(),
+  ..   ESTU_COD_RESIDE_DEPTO = col_character(),
+  ..   ESTU_MCPIO_RESIDE = col_character(),
+  ..   ESTU_COD_RESIDE_MCPIO = col_character(),
+  ..   ESTU_AREARESIDE = col_character(),
+  ..   ESTU_ESTADOCIVIL = col_character(),
+  ..   ESTU_COLE_TERMINO = col_character(),
+  ..   ESTU_CODDANE_COLE_TERMINO = col_character(),
+  ..   ESTU_COD_COLE_MCPIO_TERMINO = col_character(),
+  ..   ESTU_OTROCOLE_TERMINO = col_character(),
+  ..   ESTU_TITULOOBTENIDOBACHILLER = col_character(),
+  ..   ESTU_VALORMATRICULAUNIVERSIDAD = col_character(),
+  ..   ESTU_PAGOMATRICULABECA = col_character(),
+  ..   ESTU_PAGOMATRICULACREDITO = col_character(),
+  ..   ESTU_PAGOMATRICULAPADRES = col_character(),
+  ..   ESTU_PAGOMATRICULAPROPIO = col_character(),
+  ..   ESTU_COMOCAPACITOEXAMENSB11 = col_character(),
+  ..   ESTU_CURSODOCENTESIES = col_character(),
+  ..   ESTU_CURSOIESAPOYOEXTERNO = col_character(),
+  ..   ESTU_CURSOIESEXTERNA = col_character(),
+  ..   ESTU_SIMULACROTIPOICFES = col_character(),
+  ..   ESTU_ACTIVIDADREFUERZOAREAS = col_character(),
+  ..   ESTU_ACTIVIDADREFUERZOGENERIC = col_character(),
+  ..   ESTU_TIPODOCUMENTOSB11 = col_character(),
+  ..   ESTU_SEMESTRECURSA = col_character(),
+  ..   FAMI_EDUCACIONPADRE = col_character(),
+  ..   FAMI_EDUCACIONMADRE = col_character(),
+  ..   FAMI_OCUPACIONPADRE = col_character(),
+  ..   FAMI_OCUPACIONMADRE = col_character(),
+  ..   FAMI_ESTRATOVIVIENDA = col_character(),
+  ..   FAMI_TIENEINTERNET = col_character(),
+  ..   FAMI_TIENECOMPUTADOR = col_character(),
+  ..   FAMI_TIENELAVADORA = col_character(),
+  ..   FAMI_TIENEHORNOMICROOGAS = col_character(),
+  ..   FAMI_TIENESERVICIOTV = col_character(),
+  ..   FAMI_TIENEAUTOMOVIL = col_character(),
+  ..   FAMI_TIENEMOTOCICLETA = col_character(),
+  ..   FAMI_TIENECONSOLAVIDEOJUEGOS = col_character(),
+  ..   FAMI_TRABAJOLABORPADRE = col_character(),
+  ..   FAMI_TRABAJOLABORMADRE = col_character(),
+  ..   ESTU_PLANTELEDUCATIVO = col_double(),
+  ..   ESTU_OTROPLANTEL = col_character(),
+  ..   ESTU_PREGRADOEXAMENSP = col_logical(),
+  ..   ESTU_UNPOSTGRADO = col_logical(),
+  ..   ESTU_HORASSEMANATRABAJA = col_character(),
+  ..   FAMI_CUANTOSCOMPARTEBAÑO = col_character(),
+  ..   ESTU_PAGOMATRICULA = col_character(),
+  ..   ESTU_VLRULTIMOSEMESCURSADO = col_character(),
+  ..   ESTU_PRESENTACIONCASA = col_character(),
+  ..   ESTU_PAISDOCUMENTOS11 = col_character(),
+  ..   ESTU_PRESENTACIONSABADO = col_character(),
+  ..   INST_COD_INSTITUCION = col_double(),
+  ..   INST_NOMBRE_INSTITUCION = col_character(),
+  ..   ESTU_PRGM_ACADEMICO = col_character(),
+  ..   ESTU_SNIES_PRGMACADEMICO = col_double(),
+  ..   GRUPOREFERENCIA = col_character(),
+  ..   ESTU_PRGM_CODMUNICIPIO = col_character(),
+  ..   ESTU_PRGM_MUNICIPIO = col_character(),
+  ..   ESTU_PRGM_DEPARTAMENTO = col_character(),
+  ..   ESTU_NIVEL_PRGM_ACADEMICO = col_character(),
+  ..   ESTU_METODO_PRGM = col_character(),
+  ..   ESTU_NUCLEO_PREGRADO = col_character(),
+  ..   ESTU_INST_CODMUNICIPIO = col_character(),
+  ..   ESTU_INST_MUNICIPIO = col_character(),
+  ..   ESTU_INST_DEPARTAMENTO = col_character(),
+  ..   INST_CARACTER_ACADEMICO = col_character(),
+  ..   INST_ORIGEN = col_character(),
+  ..   ESTU_PRIVADO_LIBERTAD = col_character(),
+  ..   ESTU_COD_MCPIO_PRESENTACION = col_character(),
+  ..   ESTU_MCPIO_PRESENTACION = col_character(),
+  ..   ESTU_DEPTO_PRESENTACION = col_character(),
+  ..   ESTU_COD_DEPTO_PRESENTACION = col_character(),
+  ..   MOD_RAZONA_CUANTITAT_PUNT = col_double(),
+  ..   MOD_RAZONA_CUANTITAT_DESEM = col_double(),
+  ..   MOD_RAZONA_CUANTITATIVO_PNAL = col_double(),
+  ..   MOD_RAZONA_CUANTITATIVO_PNBC = col_double(),
+  ..   MOD_LECTURA_CRITICA_PUNT = col_double(),
+  ..   MOD_LECTURA_CRITICA_DESEM = col_double(),
+  ..   MOD_LECTURA_CRITICA_PNAL = col_double(),
+  ..   MOD_LECTURA_CRITICA_PNBC = col_double(),
+  ..   MOD_COMPETEN_CIUDADA_PUNT = col_double(),
+  ..   MOD_COMPETEN_CIUDADA_DESEM = col_double(),
+  ..   MOD_COMPETEN_CIUDADA_PNAL = col_double(),
+  ..   MOD_COMPETEN_CIUDADA_PNBC = col_double(),
+  ..   MOD_INGLES_PUNT = col_double(),
+  ..   MOD_INGLES_DESEM = col_character(),
+  ..   MOD_INGLES_PNAL = col_double(),
+  ..   MOD_INGLES_PNBC = col_double(),
+  ..   MOD_COMUNI_ESCRITA_PUNT = col_double(),
+  ..   MOD_COMUNI_ESCRITA_DESEM = col_double(),
+  ..   MOD_COMUNI_ESCRITA_PNAL = col_double(),
+  ..   MOD_COMUNI_ESCRITA_PNBC = col_double(),
+  ..   PUNT_GLOBAL = col_double(),
+  ..   PERCENTIL_GLOBAL = col_double(),
+  ..   PERCENTIL_NBC = col_double(),
+  ..   ESTU_INSE_INDIVIDUAL = col_double(),
+  ..   ESTU_NSE_INDIVIDUAL = col_double(),
+  ..   ESTU_NSE_IES = col_double(),
+  ..   ESTU_ESTADOINVESTIGACION = col_character()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
 </div>
 </div>
+</section>
+<section id="recodificación-de-variables" class="level2">
+<h2 class="anchored" data-anchor-id="recodificación-de-variables">Recodificación de variables</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -474,8 +715,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./univariado.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Análisis univariado</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
