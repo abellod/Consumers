@@ -21,12 +21,17 @@ Dados los objetivos de este proyecto, se redujo la base de datos a un conjunto c
 
 ```{r}
 library(readr)
-data <- read_delim("DATA_ICFES_SABERPROPROFESIONAL_2022-2.TXT", delim = "¬", escape_double = FALSE, trim_ws = TRUE)
+saberpro <- read_delim("DATA_ICFES_SABERPROPROFESIONAL_2022-2.TXT", delim = "¬", escape_double = FALSE, trim_ws = TRUE)
+str(saberpro)
+
+data <- saberpro[,-c(1,4:9,13:15,17:21,28:34,49:54,56:62,65,67:70,72:75,77:82,84:86,88:90,92:94,96:98,100:102,105:109)]
 str(data)
-
-
-
 # quitar la 4 a 9
 ```
+
+```{r}
+
+```
+
 
 ## Recodificación de variables
