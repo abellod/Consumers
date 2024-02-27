@@ -1,37 +1,52 @@
-# Presentación {.unnumbered}
-
-El presente proyecto realiza un análisis descriptivo de los resultados obtenidos en el examen SaberPro del segundo periodo académico del 2022.
-
-## Introducción
+# Introducción {.unnumbered}
 
 El SaberPro es un examen estandarizado realizado por Colombia que busca evaluar la calidad de la educación superior. En su construcción han trabajo muchas comunidades académicas y redes de facultades y programas. Este examen lo presentan estudiantes activos de instituciones de educación superior y egresados que ya están desvinculados de la institución. 
 
 ### Que se ha hecho de eso
 ### Justificación
 
-## Objetivos
+# Objetivos
 
+## Objetivo general
 
+Identificar patrones y relaciones entre variables socioeconómicas, personales y académicas que influyen en los puntajes obtenidos en las pruebas SaberPro, con el fin de identificar grupos de individuos con características similares.
 
-## Descripción de la tabla de datos
+## Objetivos Específicos
+
+1.    Recodificar las variables socioeconómicas, personales y académicas obtenidas de los participantes en las pruebas SaberPro para facilitar su análisis.
+2.    Realizar un análisis descriptivo y exploratorio de las variables socioeconómicas, personales y académicas para comprender su distribución y características en la población.
+3.    Explorar y analizar la posible relación entre las variables socioeconómicas, personales y académicas con los puntajes obtenidos en las pruebas SaberPro.
+4.    Identificar y caracterizar grupos de individuos que comparten características similares en cuanto a variables socioeconómicas, personales y académicas, y que obtuvieron puntajes similares en las pruebas SaberPro.
+
+# Descripción de la tabla de datos
+
+## Muestreo
+FALTA
 
 La base de datos original cuenta con 127342 observaciones de 109 variables, de las cuales 29 son cuantitativas y hacen referencia a puntajes totales y parciales del examen, las otras 80 variables muestran información personal, académica y socioeconómica entre otras referentes a los individuos que presentaron la prueba. MEJORAR REDACCIÓN.
+
+```{r}
+#| message: false
+#| warning: false
+
+# Librerías
+library(FactoClass)
+library(plotly)
+library(knitr)
+library(readr)
+
+# Carga de datos originales
+saberpro <- read_delim("DATA_ICFES_SABERPROPROFESIONAL_2022-2.TXT", delim = "¬", escape_double = FALSE, trim_ws = TRUE)
+kable(head(saberpro), digits=2) 
+```
+
+
+# Recodificación de variables
 
 Dados los objetivos de este proyecto, se redujo la base de datos a un conjunto con 127342 observaciones de --- variables que ayudan acumplir dichos objetivos.
 
 ```{r}
-library(readr)
-saberpro <- read_delim("DATA_ICFES_SABERPROPROFESIONAL_2022-2.TXT", delim = "¬", escape_double = FALSE, trim_ws = TRUE)
-str(saberpro)
-
-data <- saberpro[,-c(1,4:9,13:15,17:21,28:34,49:54,56:62,65,67:70,72:75,77:82,84:86,88:90,92:94,96:98,100:102,105:109)]
-str(data)
-# quitar la 4 a 9
+# Datos con las variables necesarias para el estudio
+data <- saberpro[,-c(1,2,4:9,13:15,17:21,28:34,49:54,56:62,65,67:70,72:75,77:82,84:86,88:90,92:94,96:98,100:102,105:109)]
+kable(head(data), digits=2) 
 ```
-
-```{r}
-
-```
-
-
-## Recodificación de variables
