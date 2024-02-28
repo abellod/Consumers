@@ -13,10 +13,11 @@ Identificar patrones y relaciones entre variables socioeconómicas, personales y
 
 ## Objetivos Específicos
 
-1.    Recodificar las variables socioeconómicas, personales y académicas obtenidas de los participantes en las pruebas SaberPro para facilitar su análisis.
-2.    Realizar un análisis descriptivo y exploratorio de las variables socioeconómicas, personales y académicas para comprender su distribución y características en la población.
-3.    Explorar y analizar la posible relación entre las variables socioeconómicas, personales y académicas con los puntajes obtenidos en las pruebas SaberPro.
-4.    Identificar y caracterizar grupos de individuos que comparten características similares en cuanto a variables socioeconómicas, personales y académicas, y que obtuvieron puntajes similares en las pruebas SaberPro.
+1.    Analizar y comparar los puntajes obtenidos en cada área de conocimiento y el puntaje general, diferenciando entre el carácter académico de cada institución, grupos de referencia, costo de matrícula, estrato, edad y género.
+
+2.    Explorar y analizar la posible relación entre las variables socioeconómicas, personales y académicas con los puntajes obtenidos en las pruebas SaberPro.
+
+3.     Buscar patrones que sugieran una posible relación espacial entre los puntajes de las pruebas y el lugar donde reside el individuo, comparándolo con las regiones geográficas de Colombia.
 
 # Descripción de la tabla de datos
 
@@ -47,6 +48,154 @@ Dados los objetivos de este proyecto, se redujo la base de datos a un conjunto c
 
 ```{r}
 # Datos con las variables necesarias para el estudio
-data <- saberpro[,-c(1,2,4:9,13:15,17:21,28:34,49:54,56:62,65,67:70,72:75,77:82,84:86,88:90,92:94,96:98,100:102,105:109)]
+data <- saberpro[,-c(1,2,5:9,13:15,17:21,23:26,28:34,49:54,56:62,65,67:70,72:75,77:82,84:86,88:90,92:94,96:98,100:102,104:109)]
 kable(head(data), digits=2) 
+
+# genero
+table(data$ESTU_GENERO)
+sum(is.na(data$ESTU_GENERO)) # hay 5 NA'S
+
+
+# edad
+library(stringr)
+edad <- str_sub(data$ESTU_FECHANACIMIENTO,7,10)
+edad<-as.numeric(edad)
+edades<-2023-edad
+
+# etnia
+table(data$ESTU_TIENEETNIA)
+sum(is.na(data$ESTU_TIENEETNIA)) # 775 na's
+
+# depto
+data$ESTU_DEPTO_RESIDE<-ifelse(data$ESTU_DEPTO_RESIDE %in% c("BARCELONA","BUENOS AIRES","FRANKFURT","HOUSTON","LIMA","MIAMI","NUEVA YORK","PARIS","QUEBEC","ROMA","SACRAMENTO","SANTIAGO DE CHILE","SAO PAULO","SEUL","TRENTON"),"EXTRANJERO",data$ESTU_DEPTO_RESIDE)
+sum(is.na(data$ESTU_DEPTO_RESIDE))
+length(unique(data$ESTU_DEPTO_RESIDE)) # hay 35 pq son mas los extranjeros y los NA's que son 10, preguntar si los podemos mochar
+
+# estado civil
+table(data$ESTU_ESTADOCIVIL)
+sum(is.na(data$ESTU_ESTADOCIVIL)) # 580 na's
+
+# valor matricula
+## recodificamos para que quede como factor
+data$ESTU_VALORMATRICULAUNIVERSIDAD <- factor(data$ESTU_VALORMATRICULAUNIVERSIDAD, levels = c("Menos de 500 mil","Entre 500 mil y menos de 1 millón", "Entre 1 millón y menos de 2.5 millones", "Entre 2.5 millones y menos de 4 millones","Entre 4 millones y menos de 5.5 millones","Entre 5.5 millones y menos de 7 millones","Más de 7 millones","No pagó matrícula"))
+sum(is.na(data$ESTU_VALORMATRICULAUNIVERSIDAD)) # 2194 na's
+
+
+# capacitacion del examen
+table(data$ESTU_COMOCAPACITOEXAMENSB11)
+sum(is.na(data$ESTU_COMOCAPACITOEXAMENSB11)) # 2069
+
+# semestre que cursa
+table(data$ESTU_SEMESTRECURSA)
+sum(is.na(data$ESTU_SEMESTRECURSA)) 
+data$ESTU_SEMESTRECURSA<-ifelse(data$ESTU_SEMESTRECURSA %in% c("01","02","03","04","05","06"),"06 o menos",data$ESTU_SEMESTRECURSA)
+data$ESTU_SEMESTRECURSA<-as.factor(data$ESTU_SEMESTRECURSA)
+
+# educacion papa
+table(data$FAMI_EDUCACIONPADRE)
+sum(is.na(data$FAMI_EDUCACIONPADRE)) # 4738
+data$FAMI_EDUCACIONPADRE <- ifelse(is.na(data$FAMI_EDUCACIONPADRE), "DESCONOCIDO", data$FAMI_EDUCACIONPADRE)
+data$FAMI_EDUCACIONPADRE <- as.factor(data$FAMI_EDUCACIONPADRE)
+
+# educacion mama
+table(data$FAMI_EDUCACIONMADRE)
+sum(is.na(data$FAMI_EDUCACIONMADRE)) # 4886
+data$FAMI_EDUCACIONMADRE <- ifelse(is.na(data$FAMI_EDUCACIONMADRE), "DESCONOCIDO", data$FAMI_EDUCACIONMADRE)
+data$FAMI_EDUCACIONMADRE <- as.factor(data$FAMI_EDUCACIONMADRE)
+
+# ocupacion papa
+table(data$FAMI_OCUPACIONPADRE)
+sum(is.na(data$FAMI_OCUPACIONPADRE)) # 2060
+data$FAMI_OCUPACIONPADRE <- ifelse(is.na(data$FAMI_OCUPACIONPADRE), "DESCONOCIDO", data$FAMI_OCUPACIONPADRE)
+data$FAMI_OCUPACIONPADRE<- as.factor(data$FAMI_OCUPACIONPADRE)
+
+# ocupacion mama
+table(data$FAMI_OCUPACIONMADRE)
+sum(is.na(data$FAMI_OCUPACIONMADRE)) # 2060
+data$FAMI_OCUPACIONMADRE <- ifelse(is.na(data$FAMI_OCUPACIONMADRE), "DESCONOCIDO", data$FAMI_OCUPACIONMADRE)
+data$FAMI_OCUPACIONMADRE<- as.factor(data$FAMI_OCUPACIONMADRE)
+
+# estrato
+table(data$FAMI_ESTRATOVIVIENDA)
+sum(is.na(data$FAMI_ESTRATOVIVIENDA)) # 5531
+data$FAMI_ESTRATOVIVIENDA <- ifelse(is.na(data$FAMI_ESTRATOVIVIENDA), "DESCONOCIDO", data$FAMI_ESTRATOVIVIENDA)
+data$FAMI_ESTRATOVIVIENDA<- as.factor(data$FAMI_ESTRATOVIVIENDA)
+
+# internet
+table(data$FAMI_TIENEINTERNET)
+sum(is.na(data$FAMI_TIENEINTERNET)) # 5697
+data$FAMI_TIENEINTERNET <- ifelse(is.na(data$FAMI_TIENEINTERNET), "DESCONOCIDO", data$FAMI_TIENEINTERNET)
+data$FAMI_TIENEINTERNET<- as.factor(data$FAMI_TIENEINTERNET)
+
+# computador
+table(data$FAMI_TIENECOMPUTADOR)
+sum(is.na(data$FAMI_TIENECOMPUTADOR)) # 6163
+data$FAMI_TIENECOMPUTADOR <- ifelse(is.na(data$FAMI_TIENECOMPUTADOR), "DESCONOCIDO", data$FAMI_TIENECOMPUTADOR)
+data$FAMI_TIENECOMPUTADOR<- as.factor(data$FAMI_TIENECOMPUTADOR)
+
+# lavadora
+table(data$FAMI_TIENELAVADORA)
+sum(is.na(data$FAMI_TIENELAVADORA)) # 6354
+data$FAMI_TIENELAVADORA <- ifelse(is.na(data$FAMI_TIENELAVADORA), "DESCONOCIDO", data$FAMI_TIENELAVADORA)
+data$FAMI_TIENELAVADORA<- as.factor(data$FAMI_TIENELAVADORA)
+
+# microogas
+table(data$FAMI_TIENEHORNOMICROOGAS)
+sum(is.na(data$FAMI_TIENEHORNOMICROOGAS)) # 7019
+data$FAMI_TIENEHORNOMICROOGAS <- ifelse(is.na(data$FAMI_TIENEHORNOMICROOGAS), "DESCONOCIDO", data$FAMI_TIENEHORNOMICROOGAS)
+data$FAMI_TIENEHORNOMICROOGAS<- as.factor(data$FAMI_TIENEHORNOMICROOGAS)
+
+# tv
+table(data$FAMI_TIENESERVICIOTV)
+sum(is.na(data$FAMI_TIENESERVICIOTV)) # 5801
+data$FAMI_TIENESERVICIOTV <- ifelse(is.na(data$FAMI_TIENESERVICIOTV), "DESCONOCIDO", data$FAMI_TIENESERVICIOTV)
+data$FAMI_TIENESERVICIOTV<- as.factor(data$FAMI_TIENESERVICIOTV)
+
+# auto
+table(data$FAMI_TIENEAUTOMOVIL)
+sum(is.na(data$FAMI_TIENEAUTOMOVIL)) # 7187
+data$FAMI_TIENEAUTOMOVIL <- ifelse(is.na(data$FAMI_TIENEAUTOMOVIL), "DESCONOCIDO", data$FAMI_TIENEAUTOMOVIL)
+data$FAMI_TIENEAUTOMOVIL<- as.factor(data$FAMI_TIENEAUTOMOVIL)
+
+# moto
+table(data$FAMI_TIENEMOTOCICLETA)
+sum(is.na(data$FAMI_TIENEMOTOCICLETA)) # 7525
+data$FAMI_TIENEMOTOCICLETA <- ifelse(is.na(data$FAMI_TIENEMOTOCICLETA), "DESCONOCIDO", data$FAMI_TIENEMOTOCICLETA)
+data$FAMI_TIENEMOTOCICLETA<- as.factor(data$FAMI_TIENEMOTOCICLETA)
+
+# consola
+sum(is.na(data$FAMI_TIENECONSOLAVIDEOJUEGOS)) # 7993
+data$FAMI_TIENECONSOLAVIDEOJUEGOS <- ifelse(is.na(data$FAMI_TIENECONSOLAVIDEOJUEGOS), "DESCONOCIDO", data$FAMI_TIENECONSOLAVIDEOJUEGOS)
+data$FAMI_TIENECONSOLAVIDEOJUEGOS<- as.factor(data$FAMI_TIENECONSOLAVIDEOJUEGOS)
+table(data$FAMI_TIENECONSOLAVIDEOJUEGOS)
+
+# horas trabaja
+data$ESTU_HORASSEMANATRABAJA <- ifelse(is.na(data$ESTU_HORASSEMANATRABAJA), "DESCONOCIDO", data$ESTU_HORASSEMANATRABAJA)
+data$ESTU_HORASSEMANATRABAJA <- factor(data$ESTU_HORASSEMANATRABAJA, levels = c("0", "Menos de 10 horas", "Entre 11 y 20 horas", "Entre 21 y 30 horas", "Más de 30 horas", "DESCONOCIDO"))
+table(data$ESTU_HORASSEMANATRABAJA)
+
+# grupo de referencia
+sum(is.na(data$GRUPOREFERENCIA)) # 0 na's
+data$GRUPOREFERENCIA<- as.factor(data$GRUPOREFERENCIA)
+table(data$GRUPOREFERENCIA)
+str(data$GRUPOREFERENCIA) # 22 niveles
+
+# metodo
+sum(is.na(data$ESTU_METODO_PRGM)) # 0 na's
+data$ESTU_METODO_PRGM<- as.factor(data$ESTU_METODO_PRGM)
+table(data$ESTU_METODO_PRGM)
+
+# caracter academico institucion
+sum(is.na(data$INST_CARACTER_ACADEMICO)) # 0 na's
+data$INST_CARACTER_ACADEMICO<- as.factor(data$INST_CARACTER_ACADEMICO)
+table(data$INST_CARACTER_ACADEMICO)
 ```
+*   hola
+*   adios
+
+
+```{r}
+hist(edades,xlim=c(0,100),breaks = "Scott")
+boxplot(edades,ylim=c(0,40))
+```
+
