@@ -1,8 +1,11 @@
 # Introducción {.unnumbered}
 
-El SaberPro es un examen estandarizado realizado por Colombia que busca evaluar la calidad de la educación superior. En su construcción han trabajo muchas comunidades académicas y redes de facultades y programas. Este examen lo presentan estudiantes activos de instituciones de educación superior y egresados que ya están desvinculados de la institución. 
+El SaberPro es un instrumento de evaluación estandarizada para la medición externa de la calidad de la educación superior que evalúa las competencias de los estudiantes que están próximos a culminar los distintos programas profesionales universitarios. Está diseñada para medir tanto habilidades genéricas como conociemientos específicos relacionados con la formación académica de cada estudiante. Los módulos genéricos son Lectura Crítica, Razonamiento Cuantitativo, Competencias Ciudadanas, Comunicación Escrita e Inglés.[^index-1]
 
-### Que se ha hecho de eso
+[^index-1]: Para más información consulte <https://www.icfes.gov.co/acerca-del-examen-saber-pro>.
+
+La prueba es de carácter obligatorio, va dirigida a estudiantes con un avance del 75% en su plan de estudios y su propósito es evaluar la calidad de la educación superior del país.
+
 ### Justificación
 
 # Objetivos
@@ -13,15 +16,16 @@ Identificar patrones y relaciones entre variables socioeconómicas, personales y
 
 ## Objetivos Específicos
 
-1.    Analizar y comparar los puntajes obtenidos en cada área de conocimiento y el puntaje general, diferenciando entre el carácter académico de cada institución, grupos de referencia, costo de matrícula, estrato, edad y género.
+1.  Analizar y comparar los puntajes obtenidos en cada área de conocimiento y el puntaje general, diferenciando entre el carácter académico de cada institución, grupos de referencia, costo de matrícula, estrato, edad y género.
 
-2.    Explorar y analizar la posible relación entre las variables socioeconómicas, personales y académicas con los puntajes obtenidos en las pruebas SaberPro.
+2.  Explorar y analizar la posible relación entre las variables socioeconómicas, personales y académicas con los puntajes obtenidos en las pruebas SaberPro.
 
-3.     Buscar patrones que sugieran una posible relación espacial entre los puntajes de las pruebas y el lugar donde reside el individuo, comparándolo con las regiones geográficas de Colombia.
+3.  Buscar patrones que sugieran una relación espacial entre los puntajes de las pruebas y el lugar donde reside el individuo, comparándolo con las regiones geográficas de Colombia (Caribe, Pacífico, Orinoquía, Amazonía, Andina e Insular).
 
 # Descripción de la tabla de datos
 
 ## Muestreo
+
 FALTA
 
 La base de datos original cuenta con 127342 observaciones de 109 variables, de las cuales 29 son cuantitativas y hacen referencia a puntajes totales y parciales del examen, las otras 80 variables muestran información personal, académica y socioeconómica entre otras referentes a los individuos que presentaron la prueba. MEJORAR REDACCIÓN.
@@ -41,10 +45,15 @@ saberpro <- read_delim("DATA_ICFES_SABERPROPROFESIONAL_2022-2.TXT", delim = "¬"
 kable(head(saberpro), digits=2) 
 ```
 
-
 # Recodificación de variables
 
-Dados los objetivos de este proyecto, se redujo la base de datos a un conjunto con 127342 observaciones de --- variables que ayudan acumplir dichos objetivos.
+Dados los objetivos de este proyecto, se redujo la base de datos a un conjunto con 127342 observaciones de — variables que ayudan acumplir dichos objetivos. Para la mayoría de variables cualitativas, algunos individuos tenían como valor "NA", por lo que se creo una categoría extra en cada variable llamada "Desconocido".
+
+Para la variable que hace referencia al departamento de residencia (ESTU_DEPTO_RESIDE), todos los valores que hacían referencia a lugares fuera de Colombia, como lo son "Nueva York", "Sao Paulo", "Trenton", entre otras, fueron recodificados como "Extranjero", la cual es una categoría que ya existía en la variable.
+
+Para la variable que hace referencia al semestre que cursa el estudiante (ESTU_SEMESTRECURSA), se creo una categoría en la que se agrupan los valores menores o iguales a 6 semestres llamada "06 o menos".
+
+El resto de variables no fueron alteradas. Para ver más información de cada variable y los valores que puede tomar, consultar el \[diccionario de variables SaberPro\](<https://html5zombo.com>).
 
 ```{r}
 # Datos con las variables necesarias para el estudio
@@ -52,9 +61,10 @@ data <- saberpro[,-c(1,2,5:9,13:15,17:21,23:26,28:34,49:54,56:62,65,67:70,72:75,
 kable(head(data), digits=2) 
 
 # genero
-table(data$ESTU_GENERO)
 sum(is.na(data$ESTU_GENERO)) # hay 5 NA'S
-
+data$ESTU_GENERO <- ifelse(is.na(data$ESTU_GENERO), "Desconocido", data$ESTU_GENERO)
+data$ESTU_GENERO <- as.factor(data$ESTU_GENERO)
+table(data$ESTU_GENERO)
 
 # edad
 library(stringr)
@@ -63,115 +73,131 @@ edad<-as.numeric(edad)
 edades<-2023-edad
 
 # etnia
-table(data$ESTU_TIENEETNIA)
 sum(is.na(data$ESTU_TIENEETNIA)) # 775 na's
+data$ESTU_TIENEETNIA <- ifelse(is.na(data$ESTU_TIENEETNIA), "Desconocido", data$ESTU_TIENEETNIA)
+data$ESTU_TIENEETNIA <- as.factor(data$ESTU_TIENEETNIA)
+table(data$ESTU_TIENEETNIA)
+
 
 # depto
 data$ESTU_DEPTO_RESIDE<-ifelse(data$ESTU_DEPTO_RESIDE %in% c("BARCELONA","BUENOS AIRES","FRANKFURT","HOUSTON","LIMA","MIAMI","NUEVA YORK","PARIS","QUEBEC","ROMA","SACRAMENTO","SANTIAGO DE CHILE","SAO PAULO","SEUL","TRENTON"),"EXTRANJERO",data$ESTU_DEPTO_RESIDE)
 sum(is.na(data$ESTU_DEPTO_RESIDE))
-length(unique(data$ESTU_DEPTO_RESIDE)) # hay 35 pq son mas los extranjeros y los NA's que son 10, preguntar si los podemos mochar
+length(unique(data$ESTU_DEPTO_RESIDE)) # hay 35 pq son mas los extranjeros y NAs
+data$ESTU_DEPTO_RESIDE <- ifelse(is.na(data$ESTU_DEPTO_RESIDE), "Desconocido", data$ESTU_DEPTO_RESIDE)
+data$ESTU_DEPTO_RESIDE <- as.factor(data$ESTU_DEPTO_RESIDE)
+table(data$ESTU_DEPTO_RESIDE)
+
 
 # estado civil
-table(data$ESTU_ESTADOCIVIL)
 sum(is.na(data$ESTU_ESTADOCIVIL)) # 580 na's
+data$ESTU_ESTADOCIVIL <- ifelse(is.na(data$ESTU_ESTADOCIVIL), "Desconocido", data$ESTU_ESTADOCIVIL)
+data$ESTU_ESTADOCIVIL <- as.factor(data$ESTU_ESTADOCIVIL)
+table(data$ESTU_ESTADOCIVIL)
 
 # valor matricula
 ## recodificamos para que quede como factor
-data$ESTU_VALORMATRICULAUNIVERSIDAD <- factor(data$ESTU_VALORMATRICULAUNIVERSIDAD, levels = c("Menos de 500 mil","Entre 500 mil y menos de 1 millón", "Entre 1 millón y menos de 2.5 millones", "Entre 2.5 millones y menos de 4 millones","Entre 4 millones y menos de 5.5 millones","Entre 5.5 millones y menos de 7 millones","Más de 7 millones","No pagó matrícula"))
 sum(is.na(data$ESTU_VALORMATRICULAUNIVERSIDAD)) # 2194 na's
-
+data$ESTU_VALORMATRICULAUNIVERSIDAD <- ifelse(is.na(data$ESTU_VALORMATRICULAUNIVERSIDAD), "Desconocido", data$ESTU_VALORMATRICULAUNIVERSIDAD)
+data$ESTU_VALORMATRICULAUNIVERSIDAD <- factor(data$ESTU_VALORMATRICULAUNIVERSIDAD, levels = c("Menos de 500 mil","Entre 500 mil y menos de 1 millón", "Entre 1 millón y menos de 2.5 millones", "Entre 2.5 millones y menos de 4 millones","Entre 4 millones y menos de 5.5 millones","Entre 5.5 millones y menos de 7 millones","Más de 7 millones","No pagó matrícula","Desconocido"))
+table(data$ESTU_VALORMATRICULAUNIVERSIDAD)
 
 # capacitacion del examen
+sum(is.na(data$ESTU_COMOCAPACITOEXAMENSB11)) # 2069 na's
+data$ESTU_COMOCAPACITOEXAMENSB11 <- ifelse(is.na(data$ESTU_COMOCAPACITOEXAMENSB11), "Desconocido", data$ESTU_COMOCAPACITOEXAMENSB11)
+data$ESTU_COMOCAPACITOEXAMENSB11 <- as.factor(data$ESTU_COMOCAPACITOEXAMENSB11)
 table(data$ESTU_COMOCAPACITOEXAMENSB11)
-sum(is.na(data$ESTU_COMOCAPACITOEXAMENSB11)) # 2069
+
 
 # semestre que cursa
-table(data$ESTU_SEMESTRECURSA)
-sum(is.na(data$ESTU_SEMESTRECURSA)) 
+sum(is.na(data$ESTU_SEMESTRECURSA)) # 2194 na's
 data$ESTU_SEMESTRECURSA<-ifelse(data$ESTU_SEMESTRECURSA %in% c("01","02","03","04","05","06"),"06 o menos",data$ESTU_SEMESTRECURSA)
-data$ESTU_SEMESTRECURSA<-as.factor(data$ESTU_SEMESTRECURSA)
+data$ESTU_SEMESTRECURSA <- ifelse(is.na(data$ESTU_SEMESTRECURSA), "Desconocido", data$ESTU_SEMESTRECURSA)
+data$ESTU_SEMESTRECURSA <- as.factor(data$ESTU_SEMESTRECURSA)
+table(data$ESTU_SEMESTRECURSA)
 
 # educacion papa
-table(data$FAMI_EDUCACIONPADRE)
-sum(is.na(data$FAMI_EDUCACIONPADRE)) # 4738
-data$FAMI_EDUCACIONPADRE <- ifelse(is.na(data$FAMI_EDUCACIONPADRE), "DESCONOCIDO", data$FAMI_EDUCACIONPADRE)
+sum(is.na(data$FAMI_EDUCACIONPADRE)) # 4738 na's
+data$FAMI_EDUCACIONPADRE <- ifelse(is.na(data$FAMI_EDUCACIONPADRE), "Desconocido", data$FAMI_EDUCACIONPADRE)
 data$FAMI_EDUCACIONPADRE <- as.factor(data$FAMI_EDUCACIONPADRE)
+table(data$FAMI_EDUCACIONPADRE)
 
 # educacion mama
-table(data$FAMI_EDUCACIONMADRE)
-sum(is.na(data$FAMI_EDUCACIONMADRE)) # 4886
-data$FAMI_EDUCACIONMADRE <- ifelse(is.na(data$FAMI_EDUCACIONMADRE), "DESCONOCIDO", data$FAMI_EDUCACIONMADRE)
+sum(is.na(data$FAMI_EDUCACIONMADRE)) # 4886 na's
+data$FAMI_EDUCACIONMADRE <- ifelse(is.na(data$FAMI_EDUCACIONMADRE), "Desconocido", data$FAMI_EDUCACIONMADRE)
 data$FAMI_EDUCACIONMADRE <- as.factor(data$FAMI_EDUCACIONMADRE)
+table(data$FAMI_EDUCACIONMADRE)
 
 # ocupacion papa
+sum(is.na(data$FAMI_OCUPACIONPADRE)) # 2060 na's
+data$FAMI_OCUPACIONPADRE <- ifelse(is.na(data$FAMI_OCUPACIONPADRE), "Desconocido", data$FAMI_OCUPACIONPADRE)
+data$FAMI_OCUPACIONPADRE <- as.factor(data$FAMI_OCUPACIONPADRE)
 table(data$FAMI_OCUPACIONPADRE)
-sum(is.na(data$FAMI_OCUPACIONPADRE)) # 2060
-data$FAMI_OCUPACIONPADRE <- ifelse(is.na(data$FAMI_OCUPACIONPADRE), "DESCONOCIDO", data$FAMI_OCUPACIONPADRE)
-data$FAMI_OCUPACIONPADRE<- as.factor(data$FAMI_OCUPACIONPADRE)
 
 # ocupacion mama
+sum(is.na(data$FAMI_OCUPACIONMADRE)) # 2060 na's
+data$FAMI_OCUPACIONMADRE <- ifelse(is.na(data$FAMI_OCUPACIONMADRE), "Desconocido", data$FAMI_OCUPACIONMADRE)
+data$FAMI_OCUPACIONMADRE <- as.factor(data$FAMI_OCUPACIONMADRE)
 table(data$FAMI_OCUPACIONMADRE)
-sum(is.na(data$FAMI_OCUPACIONMADRE)) # 2060
-data$FAMI_OCUPACIONMADRE <- ifelse(is.na(data$FAMI_OCUPACIONMADRE), "DESCONOCIDO", data$FAMI_OCUPACIONMADRE)
-data$FAMI_OCUPACIONMADRE<- as.factor(data$FAMI_OCUPACIONMADRE)
 
 # estrato
+sum(is.na(data$FAMI_ESTRATOVIVIENDA)) # 5531 na's
+data$FAMI_ESTRATOVIVIENDA <- ifelse(is.na(data$FAMI_ESTRATOVIVIENDA), "Desconocido", data$FAMI_ESTRATOVIVIENDA)
+data$FAMI_ESTRATOVIVIENDA <- as.factor(data$FAMI_ESTRATOVIVIENDA)
 table(data$FAMI_ESTRATOVIVIENDA)
-sum(is.na(data$FAMI_ESTRATOVIVIENDA)) # 5531
-data$FAMI_ESTRATOVIVIENDA <- ifelse(is.na(data$FAMI_ESTRATOVIVIENDA), "DESCONOCIDO", data$FAMI_ESTRATOVIVIENDA)
-data$FAMI_ESTRATOVIVIENDA<- as.factor(data$FAMI_ESTRATOVIVIENDA)
+
 
 # internet
+sum(is.na(data$FAMI_TIENEINTERNET)) # 5697 na's
+data$FAMI_TIENEINTERNET <- ifelse(is.na(data$FAMI_TIENEINTERNET), "Desconocido", data$FAMI_TIENEINTERNET)
+data$FAMI_TIENEINTERNET <- as.factor(data$FAMI_TIENEINTERNET)
 table(data$FAMI_TIENEINTERNET)
-sum(is.na(data$FAMI_TIENEINTERNET)) # 5697
-data$FAMI_TIENEINTERNET <- ifelse(is.na(data$FAMI_TIENEINTERNET), "DESCONOCIDO", data$FAMI_TIENEINTERNET)
-data$FAMI_TIENEINTERNET<- as.factor(data$FAMI_TIENEINTERNET)
 
 # computador
+sum(is.na(data$FAMI_TIENECOMPUTADOR)) # 6163 na's
+data$FAMI_TIENECOMPUTADOR <- ifelse(is.na(data$FAMI_TIENECOMPUTADOR), "Desconocido", data$FAMI_TIENECOMPUTADOR)
+data$FAMI_TIENECOMPUTADOR <- as.factor(data$FAMI_TIENECOMPUTADOR)
 table(data$FAMI_TIENECOMPUTADOR)
-sum(is.na(data$FAMI_TIENECOMPUTADOR)) # 6163
-data$FAMI_TIENECOMPUTADOR <- ifelse(is.na(data$FAMI_TIENECOMPUTADOR), "DESCONOCIDO", data$FAMI_TIENECOMPUTADOR)
-data$FAMI_TIENECOMPUTADOR<- as.factor(data$FAMI_TIENECOMPUTADOR)
 
 # lavadora
+sum(is.na(data$FAMI_TIENELAVADORA)) # 6354 na's
+data$FAMI_TIENELAVADORA <- ifelse(is.na(data$FAMI_TIENELAVADORA), "Desconocido", data$FAMI_TIENELAVADORA)
+data$FAMI_TIENELAVADORA <- as.factor(data$FAMI_TIENELAVADORA)
 table(data$FAMI_TIENELAVADORA)
-sum(is.na(data$FAMI_TIENELAVADORA)) # 6354
-data$FAMI_TIENELAVADORA <- ifelse(is.na(data$FAMI_TIENELAVADORA), "DESCONOCIDO", data$FAMI_TIENELAVADORA)
-data$FAMI_TIENELAVADORA<- as.factor(data$FAMI_TIENELAVADORA)
 
 # microogas
+sum(is.na(data$FAMI_TIENEHORNOMICROOGAS)) # 7019 na's
+data$FAMI_TIENEHORNOMICROOGAS <- ifelse(is.na(data$FAMI_TIENEHORNOMICROOGAS), "Desconocido", data$FAMI_TIENEHORNOMICROOGAS)
+data$FAMI_TIENEHORNOMICROOGAS <- as.factor(data$FAMI_TIENEHORNOMICROOGAS)
 table(data$FAMI_TIENEHORNOMICROOGAS)
-sum(is.na(data$FAMI_TIENEHORNOMICROOGAS)) # 7019
-data$FAMI_TIENEHORNOMICROOGAS <- ifelse(is.na(data$FAMI_TIENEHORNOMICROOGAS), "DESCONOCIDO", data$FAMI_TIENEHORNOMICROOGAS)
-data$FAMI_TIENEHORNOMICROOGAS<- as.factor(data$FAMI_TIENEHORNOMICROOGAS)
 
 # tv
+sum(is.na(data$FAMI_TIENESERVICIOTV)) # 5801 na's
+data$FAMI_TIENESERVICIOTV <- ifelse(is.na(data$FAMI_TIENESERVICIOTV), "Desconocido", data$FAMI_TIENESERVICIOTV)
+data$FAMI_TIENESERVICIOTV <- as.factor(data$FAMI_TIENESERVICIOTV)
 table(data$FAMI_TIENESERVICIOTV)
-sum(is.na(data$FAMI_TIENESERVICIOTV)) # 5801
-data$FAMI_TIENESERVICIOTV <- ifelse(is.na(data$FAMI_TIENESERVICIOTV), "DESCONOCIDO", data$FAMI_TIENESERVICIOTV)
-data$FAMI_TIENESERVICIOTV<- as.factor(data$FAMI_TIENESERVICIOTV)
 
 # auto
+sum(is.na(data$FAMI_TIENEAUTOMOVIL)) # 7187 na's
+data$FAMI_TIENEAUTOMOVIL <- ifelse(is.na(data$FAMI_TIENEAUTOMOVIL), "Desconocido", data$FAMI_TIENEAUTOMOVIL)
+data$FAMI_TIENEAUTOMOVIL <- as.factor(data$FAMI_TIENEAUTOMOVIL)
 table(data$FAMI_TIENEAUTOMOVIL)
-sum(is.na(data$FAMI_TIENEAUTOMOVIL)) # 7187
-data$FAMI_TIENEAUTOMOVIL <- ifelse(is.na(data$FAMI_TIENEAUTOMOVIL), "DESCONOCIDO", data$FAMI_TIENEAUTOMOVIL)
-data$FAMI_TIENEAUTOMOVIL<- as.factor(data$FAMI_TIENEAUTOMOVIL)
 
 # moto
+sum(is.na(data$FAMI_TIENEMOTOCICLETA)) # 7525 na's
+data$FAMI_TIENEMOTOCICLETA <- ifelse(is.na(data$FAMI_TIENEMOTOCICLETA), "Desconocido", data$FAMI_TIENEMOTOCICLETA)
+data$FAMI_TIENEMOTOCICLETA <- as.factor(data$FAMI_TIENEMOTOCICLETA)
 table(data$FAMI_TIENEMOTOCICLETA)
-sum(is.na(data$FAMI_TIENEMOTOCICLETA)) # 7525
-data$FAMI_TIENEMOTOCICLETA <- ifelse(is.na(data$FAMI_TIENEMOTOCICLETA), "DESCONOCIDO", data$FAMI_TIENEMOTOCICLETA)
-data$FAMI_TIENEMOTOCICLETA<- as.factor(data$FAMI_TIENEMOTOCICLETA)
 
 # consola
-sum(is.na(data$FAMI_TIENECONSOLAVIDEOJUEGOS)) # 7993
-data$FAMI_TIENECONSOLAVIDEOJUEGOS <- ifelse(is.na(data$FAMI_TIENECONSOLAVIDEOJUEGOS), "DESCONOCIDO", data$FAMI_TIENECONSOLAVIDEOJUEGOS)
-data$FAMI_TIENECONSOLAVIDEOJUEGOS<- as.factor(data$FAMI_TIENECONSOLAVIDEOJUEGOS)
+sum(is.na(data$FAMI_TIENECONSOLAVIDEOJUEGOS)) # 7993 na's
+data$FAMI_TIENECONSOLAVIDEOJUEGOS <- ifelse(is.na(data$FAMI_TIENECONSOLAVIDEOJUEGOS), "Desconocido", data$FAMI_TIENECONSOLAVIDEOJUEGOS)
+data$FAMI_TIENECONSOLAVIDEOJUEGOS <- as.factor(data$FAMI_TIENECONSOLAVIDEOJUEGOS)
 table(data$FAMI_TIENECONSOLAVIDEOJUEGOS)
 
 # horas trabaja
-data$ESTU_HORASSEMANATRABAJA <- ifelse(is.na(data$ESTU_HORASSEMANATRABAJA), "DESCONOCIDO", data$ESTU_HORASSEMANATRABAJA)
-data$ESTU_HORASSEMANATRABAJA <- factor(data$ESTU_HORASSEMANATRABAJA, levels = c("0", "Menos de 10 horas", "Entre 11 y 20 horas", "Entre 21 y 30 horas", "Más de 30 horas", "DESCONOCIDO"))
+sum(is.na(data$ESTU_HORASSEMANATRABAJA)) # 6867 na's
+data$ESTU_HORASSEMANATRABAJA <- ifelse(is.na(data$ESTU_HORASSEMANATRABAJA), "Desconocido", data$ESTU_HORASSEMANATRABAJA)
+data$ESTU_HORASSEMANATRABAJA <- factor(data$ESTU_HORASSEMANATRABAJA, levels = c("0", "Menos de 10 horas", "Entre 11 y 20 horas", "Entre 21 y 30 horas", "Más de 30 horas", "Desconocido"))
 table(data$ESTU_HORASSEMANATRABAJA)
 
 # grupo de referencia
@@ -190,12 +216,10 @@ sum(is.na(data$INST_CARACTER_ACADEMICO)) # 0 na's
 data$INST_CARACTER_ACADEMICO<- as.factor(data$INST_CARACTER_ACADEMICO)
 table(data$INST_CARACTER_ACADEMICO)
 ```
-*   hola
-*   adios
-
 
 ```{r}
 hist(edades,xlim=c(0,100),breaks = "Scott")
 boxplot(edades,ylim=c(0,40))
 ```
 
+### Referencias
