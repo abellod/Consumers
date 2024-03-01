@@ -181,7 +181,19 @@ table(data$INST_CARACTER_ACADEMICO)
 #| message: false
 
 library(plotly)
+```
 
+
+## Variables cualitativas
+
+### Variables relacionadas con la información personal
+
+::: {.panel-tabset}
+
+#### Sexo
+```{r}
+#| warning: false
+#| message: false
 # Sexo
 i=1
 #cat <- attributes(data[,i])$levels
@@ -194,6 +206,13 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
+
+#### Etnia
+
+```{r}
+#| warning: false
+#| message: false
 
 # Etnia
 i=3
@@ -207,7 +226,13 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
 
+#### Estado civil
+
+```{r}
+#| warning: false
+#| message: false
 # Estado civil
 i=6
 #cat <- attributes(data[,i])$levels
@@ -220,46 +245,13 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
 
-# Valor matrícula
-i=7
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
+#### Educación padre
 
-# Capacitación examen
-i=8
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
-
-# Semestre cursa
-i=9
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
-
+```{r}
+#| warning: false
+#| message: false
 # Educación padre
 i=10
 #cat <- attributes(data[,i])$levels
@@ -272,7 +264,13 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
 
+#### Educación madre
+
+```{r}
+#| warning: false
+#| message: false
 # Educación madre
 i=11
 #cat <- attributes(data[,i])$levels
@@ -285,7 +283,13 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
 
+#### Ocupación padre
+
+```{r}
+#| warning: false
+#| message: false
 # Ocupación padre
 i=12
 #cat <- attributes(data[,i])$levels
@@ -298,7 +302,13 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
 
+#### Ocupación madre
+
+```{r}
+#| warning: false
+#| message: false
 # Ocupación madre
 i=13
 #cat <- attributes(data[,i])$levels
@@ -311,125 +321,13 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
 
-# Estrato
-i=14
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
+#### Horas trabaja
 
-
-# Internet
-i=15
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
-
-# Computador
-i=16
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
-
-# Lavadora
-i=17
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
-
-# Horno microogas
-i=18
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
-
-# TV
-i=19
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
-
-# Automovil
-i=20
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
-
-# Motocicleta
-i=21
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
-
-# Consola videojuegos
-i=22
-#cat <- attributes(data[,i])$levels
-frecuencias <- table(data[,i])
-per <- round(table(data[,i])/nrow(data)*100,3)
-plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
-                   orientation="h", color=names(frecuencias),
-                   text=per) %>%
-layout(title = "Gráfico de Barras",
-       yaxis = list(title = colnames(data)[i] ),
-       xaxis = list(title = "Frecuencia"),
-       showlegend = FALSE)
-
+```{r}
+#| warning: false
+#| message: false
 # Horas trabaja
 i=23
 #cat <- attributes(data[,i])$levels
@@ -442,7 +340,55 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
 
+:::
+
+### Variables relacionadas con la información académica
+
+::: {.panel-tabset}
+#### Capacitación examen
+```{r}
+#| warning: false
+#| message: false
+# Capacitación examen
+i=8
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### Semestre que cursa
+
+```{r}
+#| warning: false
+#| message: false
+# Semestre cursa
+i=9
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### Grupo referencia
+
+```{r}
+#| warning: false
+#| message: false
 # Grupo referencia
 i=26
 #cat <- attributes(data[,i])$levels
@@ -455,7 +401,13 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
 
+#### Modalidad
+
+```{r}
+#| warning: false
+#| message: false
 # Modalidad
 i=27
 #cat <- attributes(data[,i])$levels
@@ -468,7 +420,13 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
 
+#### Carácter académico
+
+```{r}
+#| warning: false
+#| message: false
 # Caracter academico
 i=28
 #cat <- attributes(data[,i])$levels
@@ -483,3 +441,201 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+::: 
+
+### Variables relacionadas con la información socioeconómica
+
+::: {.panel-tabset}
+#### Valor matricula
+```{r}
+#| warning: false
+#| message: false
+# Valor matrícula
+i=7
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### Estrato
+
+```{r}
+#| warning: false
+#| message: false
+# Estrato
+i=14
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### Internet
+
+```{r}
+#| warning: false
+#| message: false
+# Internet
+i=15
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### Computador
+
+```{r}
+#| warning: false
+#| message: false
+# Computador
+i=16
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### Lavadora
+
+```{r}
+#| warning: false
+#| message: false
+# Lavadora
+i=17
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### Horno microogas
+
+```{r}
+#| warning: false
+#| message: false
+# Horno microogas
+i=18
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### TV
+
+```{r}
+#| warning: false
+#| message: false
+# TV
+i=19
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### Automóvil
+
+```{r}
+#| warning: false
+#| message: false
+# Automovil
+i=20
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### Motocicleta
+
+```{r}
+#| warning: false
+#| message: false
+# Motocicleta
+i=21
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+#### Consola de videojuegos
+
+```{r}
+#| warning: false
+#| message: false
+# Consola videojuegos
+i=22
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
+                   orientation="h", color=names(frecuencias),
+                   text=per) %>%
+layout(title = "Gráfico de Barras",
+       yaxis = list(title = colnames(data)[i] ),
+       xaxis = list(title = "Frecuencia"),
+       showlegend = FALSE)
+```
+
+
+:::
+
+## Variables cuantitativas
