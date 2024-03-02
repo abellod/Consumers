@@ -222,10 +222,7 @@ data$INST_CARACTER_ACADEMICO<- as.factor(data$INST_CARACTER_ACADEMICO)
 table(data$INST_CARACTER_ACADEMICO)
 ```
 
-```{r}
-hist(edades,xlim=c(0,100),breaks = "Scott")
-boxplot(edades,ylim=c(0,40))
-```
+
 
 ```{r}
 #kable(head(data), digits=2) 

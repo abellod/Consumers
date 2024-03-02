@@ -191,6 +191,8 @@ library(plotly)
 #### Sexo
 
 ```{r}
+#| eval: false
+#| echo: false
 #| warning: false
 #| message: false
 # Sexo
@@ -207,9 +209,22 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+```{r}
+#| warning: false
+#| message: false
+# Sexo
+i=1
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 #### Etnia
 
 ```{r}
+#| eval: false
+#| echo: false
 #| warning: false
 #| message: false
 
@@ -227,9 +242,22 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+```{r}
+#| warning: false
+#| message: false
+# Etnia
+i=3
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 #### Estado civil
 
 ```{r}
+#| eval: false
+#| echo: false
 #| warning: false
 #| message: false
 # Estado civil
@@ -244,6 +272,17 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
+
+```{r}
+#| warning: false
+#| message: false
+# Estado civil
+i=6
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
 #### Educación padre
@@ -350,6 +389,8 @@ layout(title = "Gráfico de Barras",
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # Capacitación examen
 i=8
 #cat <- attributes(data[,i])$levels
@@ -362,6 +403,17 @@ layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
+```
+
+```{r}
+#| warning: false
+#| message: false
+# Capacitacón examen
+i=8
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
 #### Semestre que cursa
@@ -407,6 +459,8 @@ layout(title = "Gráfico de Barras",
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # Modalidad
 i=27
 #cat <- attributes(data[,i])$levels
@@ -421,11 +475,24 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+```{r}
+#| warning: false
+#| message: false
+# Modalidad
+i=27
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 #### Carácter académico
 
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # Caracter academico
 i=28
 #cat <- attributes(data[,i])$levels
@@ -439,6 +506,18 @@ layout(title = "Gráfico de Barras",
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
+
+```{r}
+#| warning: false
+#| message: false
+# Caracter académico
+i=28
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 :::
 
 ### Variables relacionadas con la información socioeconómica
@@ -487,6 +566,8 @@ layout(title = "Gráfico de Barras",
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # Internet
 i=15
 #cat <- attributes(data[,i])$levels
@@ -501,11 +582,24 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+```{r}
+#| warning: false
+#| message: false
+# Internet
+i=15
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 #### Computador
 
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # Computador
 i=16
 #cat <- attributes(data[,i])$levels
@@ -520,11 +614,24 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+```{r}
+#| warning: false
+#| message: false
+# Computador
+i=16
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 #### Lavadora
 
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # Lavadora
 i=17
 #cat <- attributes(data[,i])$levels
@@ -539,11 +646,24 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+```{r}
+#| warning: false
+#| message: false
+# Lavadora
+i=17
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 #### Horno microogas
 
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # Horno microogas
 i=18
 #cat <- attributes(data[,i])$levels
@@ -558,11 +678,24 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+```{r}
+#| warning: false
+#| message: false
+# Horno Microogas
+i=18
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 #### TV
 
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # TV
 i=19
 #cat <- attributes(data[,i])$levels
@@ -577,11 +710,24 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+```{r}
+#| warning: false
+#| message: false
+# TV
+i=19
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 #### Automóvil
 
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # Automovil
 i=20
 #cat <- attributes(data[,i])$levels
@@ -596,11 +742,24 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+```{r}
+#| warning: false
+#| message: false
+# Automovil
+i=20
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 #### Motocicleta
 
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # Motocicleta
 i=21
 #cat <- attributes(data[,i])$levels
@@ -615,11 +774,24 @@ layout(title = "Gráfico de Barras",
        showlegend = FALSE)
 ```
 
+```{r}
+#| warning: false
+#| message: false
+# Motocicleta
+i=21
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
+
 #### Consola de videojuegos
 
 ```{r}
 #| warning: false
 #| message: false
+#| eval: false
+#| echo: false
 # Consola videojuegos
 i=22
 #cat <- attributes(data[,i])$levels
@@ -633,6 +805,17 @@ layout(title = "Gráfico de Barras",
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
+
+```{r}
+#| warning: false
+#| message: false
+# Consola videojuegos
+i=22
+#cat <- attributes(data[,i])$levels
+frecuencias <- table(data[,i])
+per <- round(table(data[,i])/nrow(data)*100,3)
+plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
+```
 :::
 
 ## Variables cuantitativas
@@ -640,7 +823,7 @@ layout(title = "Gráfico de Barras",
 ```{r}
 histpuntajes <- function(puntajes) {
   h <- hist(puntajes, plot = FALSE)
-  plot_ly(x = ~puntajes, type = "histogram", nbinsx = 2*length(h$counts), marker = list(line = list(color = "black", width = 2)))
+  plot_ly(x = ~puntajes, type = "histogram", nbinsx = 2*length(h$counts), marker = list(color="lightblue1",line = list(color = "white", width = 1)))
 }
 ```
 
