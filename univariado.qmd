@@ -166,6 +166,7 @@ str(data$GRUPOREFERENCIA) # 22 niveles
 
 # metodo
 sum(is.na(data$ESTU_METODO_PRGM)) # 0 na's
+data$ESTU_METODO_PRGM <- ifelse(data$ESTU_METODO_PRGM == "DISTANCIA VITUAL", "DISTANCIA VIRTUAL", data$ESTU_METODO_PRGM)
 data$ESTU_METODO_PRGM<- as.factor(data$ESTU_METODO_PRGM)
 table(data$ESTU_METODO_PRGM)
 
@@ -175,7 +176,6 @@ data$INST_CARACTER_ACADEMICO<- as.factor(data$INST_CARACTER_ACADEMICO)
 table(data$INST_CARACTER_ACADEMICO)
 ```
 
-
 ```{r}
 #| warning: false
 #| message: false
@@ -183,14 +183,13 @@ table(data$INST_CARACTER_ACADEMICO)
 library(plotly)
 ```
 
-
 ## Variables cualitativas
 
 ### Variables relacionadas con la información personal
 
-::: {.panel-tabset}
-
+::: panel-tabset
 #### Sexo
+
 ```{r}
 #| warning: false
 #| message: false
@@ -201,7 +200,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -221,7 +220,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -240,7 +239,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -259,7 +258,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -278,7 +277,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -297,7 +296,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -316,7 +315,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -335,19 +334,19 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
-
 :::
 
 ### Variables relacionadas con la información académica
 
-::: {.panel-tabset}
+::: panel-tabset
 #### Capacitación examen
+
 ```{r}
 #| warning: false
 #| message: false
@@ -358,7 +357,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -377,7 +376,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -396,7 +395,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -415,7 +414,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -434,19 +433,19 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
-
-::: 
+:::
 
 ### Variables relacionadas con la información socioeconómica
 
-::: {.panel-tabset}
+::: panel-tabset
 #### Valor matricula
+
 ```{r}
 #| warning: false
 #| message: false
@@ -457,7 +456,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -476,7 +475,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -495,7 +494,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -514,7 +513,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -533,7 +532,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -552,7 +551,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -571,7 +570,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -590,7 +589,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -609,7 +608,7 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
@@ -628,14 +627,30 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(x = frecuencias, y = names(frecuencias), type = "bar",
                    orientation="h", color=names(frecuencias),
-                   text=per) %>%
+                   text=per, textfont = list(color = "black")) %>%
 layout(title = "Gráfico de Barras",
        yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
-
-
 :::
 
 ## Variables cuantitativas
+
+```{r}
+histpuntajes <- function(puntajes) {
+  h <- hist(puntajes, plot = FALSE)
+  plot_ly(x = ~puntajes, type = "histogram", nbinsx = 2*length(h$counts), marker = list(line = list(color = "black", width = 2)))
+}
+```
+
+::: panel-tabset
+
+#### Módulo razonamiento cuantitativo
+```{r}
+# Módulo razonamiento cuantitativo
+i=29
+puntajes <- unlist(data[,i])
+histpuntajes(puntajes)
+```
+:::

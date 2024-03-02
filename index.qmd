@@ -37,10 +37,13 @@ library(FactoClass)
 library(plotly)
 library(knitr)
 library(readr)
+library(DT)
 
 # Carga de datos originales
 saberpro <- read_delim("DATA_ICFES_SABERPROPROFESIONAL_2022-2.TXT", delim = "¬", escape_double = FALSE, trim_ws = TRUE)
-kable(head(saberpro), digits=2) 
+#kable(head(saberpro), digits=2) 
+datatable(head(saberpro, 60), style = "bootstrap4",
+          options = list(pageLength = 6))
 ```
 
 # Recodificación de variables
@@ -209,6 +212,7 @@ str(data$GRUPOREFERENCIA) # 22 niveles
 
 # metodo
 sum(is.na(data$ESTU_METODO_PRGM)) # 0 na's
+data$ESTU_METODO_PRGM <- ifelse(data$ESTU_METODO_PRGM == "DISTANCIA VITUAL", "DISTANCIA VIRTUAL", data$ESTU_METODO_PRGM)
 data$ESTU_METODO_PRGM<- as.factor(data$ESTU_METODO_PRGM)
 table(data$ESTU_METODO_PRGM)
 
@@ -224,7 +228,9 @@ boxplot(edades,ylim=c(0,40))
 ```
 
 ```{r}
-kable(head(data), digits=2) 
+#kable(head(data), digits=2) 
+datatable(head(data, 60), style = "bootstrap4",
+          options = list(pageLength = 6))
 ```
 
 
