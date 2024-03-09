@@ -1,12 +1,20 @@
 # Introducción {.unnumbered}
 
-El SaberPro es un instrumento de evaluación estandarizada para la medición externa de la calidad de la educación superior que evalúa las competencias de los estudiantes que están próximos a culminar los distintos programas profesionales universitarios. Está diseñada para medir tanto habilidades genéricas como conociemientos específicos relacionados con la formación académica de cada estudiante. Los módulos genéricos son Lectura Crítica, Razonamiento Cuantitativo, Competencias Ciudadanas, Comunicación Escrita e Inglés.[^index-1]
+El Saber-Pro es un instrumento de evaluación estandarizada para la medición externa de la calidad de la educación superior que evalúa las competencias de los estudiantes que están próximos a culminar los distintos programas profesionales universitarios. Está diseñada para medir tanto habilidades genéricas como conociemientos específicos relacionados con la formación académica de cada estudiante. Los módulos genéricos son Lectura Crítica, Razonamiento Cuantitativo, Competencias Ciudadanas, Comunicación Escrita e Inglés.[^index-1]
 
 [^index-1]: Para más información consulte <https://www.icfes.gov.co/acerca-del-examen-saber-pro>.
 
 La prueba es de carácter obligatorio, va dirigida a estudiantes con un avance del 75% en su plan de estudios y su propósito es evaluar la calidad de la educación superior del país.
 
+### Marco conceptual
+
+Por otro lado, @RodriguezGomezAriza2014, analizaron los resultados de la prueba Saber-Pro aplicada en el año 2010, allí observaron una diferencia en el desempeño académico entre estudiantes en modalidades presenciales y a distancia, con mejores resultados para los primeros, así como también que la institución tiene un impacto significativo en el rendimiento académico universitario, aunque este efecto disminuye en la educación a distancia; adicionalmente evidenciaron una disparidad de género a favor de los hombres, y una asociación positiva entre el nivel socioeconómico y el rendimiento académico. Esto último también fue evidenciado por @JehangirGlassBerg2015 en su investigación con los resultados de las pruebas PISA (Programa para la Evaluación Internacional de los Estudiantes).
+
+Para completar, @OviedoJimenez2019, en su estudio sobre los resultados obtenidos en las pruebas Saber-Pro del 2016 de estudiantes de ingenierpia en Antioquia, destacaron una distinción evidente entre los estudiantes que lograron un desempeño sobresaliente en inglés, quienes generalmente pertenecen a un nivel socioeconómico más alto. Por otro lado, aquellos estudiantes que obtuvieron buenos resultados en lectura crítica suelen provenir de estratos socioeconómicos bajos y enfrentan costos de matrícula más económicos. Además, en el análisis de selección de factores se identificaron variables relevantes, como el número de dependientes, el enfoque pedagógico, la estabilidad del hogar, la naturaleza académica de la institución y aspectos económicos como la disponibilidad de electrodomésticos como microondas a gas y posesión de motocicleta.
+
 ### Justificación
+
+Este estudio es realizado dada la necesidad de comprender y abordar las disparidades en el desempeño académico entre diferentes grupos de individuos, identificando los factores socioeconómicos, personales y académicos que influyen en los resultados de las pruebas Saber-Pro. Estos exámenes son críticos para evaluar la calidad de la educación superior en Colombia y, por lo tanto, entender las variables que afectan los puntajes puede ayudar a informar políticas educativas más efectivas y equitativas. Además, al explorar la posible relación espacial entre los puntajes de las pruebas y la ubicación geográfica de los individuos, se podría obtener información relevante sobre las disparidades regionales en el acceso a la educación y sus efectos en los resultados académicos.
 
 # Objetivos
 
@@ -18,7 +26,7 @@ Identificar patrones y relaciones entre variables socioeconómicas, personales y
 
 1.  Analizar y comparar los puntajes obtenidos en cada área de conocimiento y el puntaje general, diferenciando entre el carácter académico de cada institución, grupos de referencia, costo de matrícula, estrato, edad y género.
 
-2.  Explorar y analizar la posible relación entre las variables socioeconómicas, personales y académicas con los puntajes obtenidos en las pruebas SaberPro.
+2.  Explorar y analizar la posible relación entre las variables socio-económicas, personales y académicas con los puntajes obtenidos en las pruebas SaberPro.
 
 3.  Buscar patrones que sugieran una relación espacial entre los puntajes de las pruebas y el lugar donde reside el individuo, comparándolo con las regiones geográficas de Colombia (Caribe, Pacífico, Orinoquía, Amazonía, Andina e Insular).
 

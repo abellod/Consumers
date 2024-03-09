@@ -1,4 +1,9 @@
 # Referencias {.unnumbered}
 
 ::: {#refs}
+@RodriguezGomezAriza2014
+
+@JehangirGlassBerg2015
+
+@OviedoJimenez2019
 :::
