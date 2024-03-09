@@ -180,7 +180,6 @@ table(data$INST_CARACTER_ACADEMICO)
 
 ## Variables cuantitativas
 
-
 ```{r}
 #| eval: false
 #| echo: false
@@ -193,7 +192,7 @@ plotpairs(as.matrix(data[,29:34]))
 kable(cor(data[,29:34]), digits = 2)
 ```
 
-## Variables continua y cualitativa 
+## Variables continua y cualitativa
 
 ```{r}
 par(bty="n")
@@ -236,7 +235,6 @@ par(bty="n")
 sorted_modalidad <- with(data, reorder(ESTU_METODO_PRGM, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_modalidad, las = 1, col = 4, horizontal = T)
 ```
-
 
 ```{r}
 par(bty="n")

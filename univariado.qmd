@@ -220,6 +220,8 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
+Se puede observar que en el periodo en el que fue realizada la prueba, había una notoria diferencia en cuanto a la distribución de géneros, ya que hay una mayor cantidad de mujeres, y no una distribución 50/50, que sería lo esperado en este tipo de pruebas.
+
 #### Etnia
 
 ```{r}
@@ -254,6 +256,8 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
+Se evidencia una clara mayoría en cuanto a estudiantes sin etnia, sin embargo hay una porción aceptable de estudiantes con esta característica.
+
 #### Estado civil
 
 ```{r}
@@ -287,6 +291,8 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
+El estado civil de la mayoría de estudiantes que presentaron la prueba es soltero, aunque hay una buena porción de estudiantes cuyo estado civil es casado y otros cuyo estado civil es unión libre.
+
 #### Educación padre
 
 ```{r}
@@ -305,6 +311,8 @@ layout(yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
+
+Todas las categorías tienen un número notable de individuos. Se destaca la secundaria completa y la primaria incompleta como los niveles educativos más comunes en los padres de los estudiantes que realizaron la prueba en este periodo, aunque también destaca una cantidad considerable de padres con educación profesional completa.
 
 #### Educación madre
 
@@ -325,6 +333,8 @@ layout(yaxis = list(title = colnames(data)[i] ),
        showlegend = FALSE)
 ```
 
+Como en el caso anterior, el nivel de educación más común es la secundaria completa, aunque en este caso, una buena cantidad de madres tienen como nivel educativo un técnico o tecnológico completo.
+
 #### Ocupación padre
 
 ```{r}
@@ -343,6 +353,8 @@ layout(yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
+
+Se observa un grupo significativo de padres cuya ocupación es trabajar por cuenta propia, concretamente, un 30.82% de los padres están en esta categoría. De ahí, las demás categorías no resultan muy destacables.
 
 #### Ocupación madre
 
@@ -363,6 +375,8 @@ layout(yaxis = list(title = colnames(data)[i] ),
        showlegend = FALSE)
 ```
 
+En el caso de las madres, resalta el hecho de que casi el 40% trabajan como amas de casa o realizando tareas en el hogar.
+
 #### Horas trabaja
 
 ```{r}
@@ -381,6 +395,9 @@ layout(yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
+
+Se observa que un grupo grande de estudiantes trabaja menos de 10 horas. También resalta el hecho de que hay una cantidad considerable de estudiantes que no respondieron a esta pregunta en el cuestionario, por lo que entran en la categoría desconocido.
+
 :::
 
 ### Variables relacionadas con la información académica
@@ -418,6 +435,8 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
+Hay una clara mayoría de estudiantes que repasaron por cuenta propia, seguido de una cantidad considerable de estudiantes que no se prepararon de ninguna manera. 
+
 #### Semestre que cursa
 
 ```{r}
@@ -437,6 +456,8 @@ layout(yaxis = list(title = colnames(data)[i] ),
        showlegend = FALSE)
 ```
 
+Se espera que la mayoría de estudiantes estén cursando semestres avanzandos como séptimo u octavo, sin embargo hay algunos estudiantes que cursan primeros semestres, lo que resulta interesante ya que se supone que se necesita un avance del 75% en el programa académico que se esté cursando para presentar esta prueba.
+
 #### Grupo referencia
 
 ```{r}
@@ -455,6 +476,8 @@ layout(yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
+
+Resalta la cantidad de estudiantes cuyo grupo de referencia es ingeniería y administración y afines, aunque no es raro debido a la cantidad de ingenierías diferentes que se ofertan en las universidades de todo el país. 
 
 #### Modalidad
 
@@ -488,6 +511,8 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
+La gran mayoría de estudiantes están en un programa cuya modalidad es presencial, siendo este un 81.5% de todos los estudiantes de la base de datos.
+
 #### Carácter académico
 
 ```{r}
@@ -509,6 +534,7 @@ layout(
        showlegend = FALSE)
 ```
 
+
 ```{r}
 #| warning: false
 #| message: false
@@ -521,6 +547,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
+De la misma manera que con la modalidad del programa, la mayoría de estudiantes estudian en una universidad. Por otra parte hay una pequeña porción de estudiantes que estudian en una institución tecnológica.
 :::
 
 ### Variables relacionadas con la información socioeconómica
@@ -859,6 +886,8 @@ subplot(hist[[1]], boxplot[[1]], nrows = 2, shareX = T) %>%
 
 ```
 
+El histograma muestra una distribución muy parecida a la normal, resaltando que hay muy pocas pero existentes puntuaciones con puntaje o bien perfecto, o bien con ninguna respuesta correcta.
+
 #### Lectura crítica
 
 ```{r}
@@ -876,6 +905,8 @@ subplot(hist[[1]], boxplot[[1]], nrows = 2, shareX = T) %>%
          yaxis = list(title = "Frecuencia"))
 
 ```
+
+De la misma manera que con razonamiento cuantitativo, el histograma resulta casi simétrico con algunos datos atípicos representando los peores puntajes y los mejores, siendo estos, de nuevo, el mínimo puntaje posible y el puntaje perfecto en esta área, respectivamente.
 
 #### Competencias ciudadanas
 
@@ -895,6 +926,8 @@ subplot(hist[[1]], boxplot[[1]], nrows = 2, shareX = T) %>%
 
 ```
 
+Es muy parecido a los componentes anteriores, aunque resalta una barra en los puntajes más bajos, que aunque resulta pequeña, da a entender que en este componente hay una cantidad visible de puntajes que rondan de 0 a 20 puntos.
+
 #### Inglés
 
 ```{r}
@@ -912,6 +945,8 @@ subplot(hist[[1]], boxplot[[1]], nrows = 2, shareX = T) %>%
          yaxis = list(title = "Frecuencia"))
 
 ```
+
+El histograma ya no presenta una simetria tan marcada, y resaltan las barras más alejadas de la media, mostrando que hay una cantidad visible de personas tanto con puntajes mínimos como con puntajes perfectos.
 
 #### Comunicación escrita
 
@@ -931,6 +966,8 @@ subplot(hist[[1]], boxplot[[1]], nrows = 2, shareX = T) %>%
 
 ```
 
+El histograma resalta respecto a las otras variables debido a un mayor número de puntajes por debajo de 150, que se espera sería la media. Además resalta que hay una cantidad considerable de personas con el puntaje más bajo. En el boxplot también se puede apreciar como en este caso, la mediana no está tan cerca a 150, que sería lo esperado. 
+
 #### Puntaje global
 
 ```{r}
@@ -948,6 +985,8 @@ subplot(hist[[1]], boxplot[[1]], nrows = 2, shareX = T) %>%
          yaxis = list(title = "Frecuencia"))
 
 ```
+
+La distribución de los puntajes totales, en este caso, también parece asemejarse a una curva normal, lo cual tiene sentido debido al como se diseñan estas pruebas, intentando que tengan una distribución normal con una media teórica de 150 y una desviación estándar de 30 puntos. Cabe resaltar que el mayor puntaje de esta prueba fue 278, mientras que el menor fue 0.
 
 :::
 
