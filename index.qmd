@@ -72,7 +72,7 @@ Para la variable que hace referencia al departamento de residencia (ESTU_DEPTO_R
 
 Para la variable que hace referencia al semestre que cursa el estudiante (ESTU_SEMESTRECURSA), se creo una categoría en la que se agrupan los valores menores o iguales a 6 semestres llamada "06 o menos".
 
-El resto de variables no fueron alteradas. Para ver más información de cada variable y los valores que puede tomar, consultar el [diccionario de variables SaberPro](https://html5zombo.com).
+El resto de variables no fueron alteradas. Para ver más información de cada variable y los valores que puede tomar, consultar el diccionario de variables.
 
 ```{r}
 # Datos con las variables necesarias para el estudio
