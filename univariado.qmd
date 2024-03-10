@@ -553,7 +553,7 @@ De la misma manera que con la modalidad del programa, la mayoría de estudiantes
 ### Variables relacionadas con la información socioeconómica
 
 ::: panel-tabset
-#### Valor matricula
+#### Valor matrícula
 
 ```{r}
 #| warning: false
@@ -571,6 +571,8 @@ layout(yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
+
+Se observa que hay una repartición equitativa de la cantidad de estudiantes en cada uno de los diferentes valores del costo de matrícula. El valor de la matrícula que más resalta es "Entre 2.5 millones  y menos de 4 millones" con un $22.575\%$, seguido por "Entre 4 millones  y menos de 5.5 millones" con $15.988\%$ y el tercer lugar es para quienes pagan "Menos de 500 mil" con $14.085\%$.
 
 #### Estrato
 
@@ -590,6 +592,8 @@ layout(yaxis = list(title = colnames(data)[i] ),
        xaxis = list(title = "Frecuencia"),
        showlegend = FALSE)
 ```
+
+La mayoría de los individuos que presentaron el examen Saber Pro pertenecen a los estratos 2 y 3, un muy bajo porcentaje pertenecen a estratos 5 y 6.
 
 #### Internet
 
@@ -622,6 +626,8 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
+
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí cuentan con servicio o conexión a intenet, aproximadamente el ($84.4\%$).
 
 #### Computador
 
@@ -656,6 +662,8 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí poseen computador, aproximadamente el ($83.6\%$).
+
 #### Lavadora
 
 ```{r}
@@ -688,6 +696,8 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
+
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí poseen lavadora, aproximadamente el ($80.6\%$).
 
 #### Horno microogas
 
@@ -722,6 +732,9 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
+
+Se observa que la cantidad de hogares que cuentan con horno microogas es muy similar a la cantidad de hogares que no cuentan con este, ya que los primeros representan el $44.9\%$ de la población, mientras que los segundos el $49.6\%$.
+
 #### TV
 
 ```{r}
@@ -754,6 +767,8 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
+
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí cuentan con servicio cerrado de televisión, aproximadamente el ($69.8\%$); mientras que el ($25.6\%$) no cuenta con este servicio.   
 
 #### Automóvil
 
@@ -788,6 +803,8 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen automóvil particular, aproximadamente el ($61.4\%$); mientras que el ($32.9\%$) sí posee.   
+
 #### Motocicleta
 
 ```{r}
@@ -821,6 +838,8 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen automóvil particular, aproximadamente el ($60.9\%$); mientras que el ($33.2\%$) sí posee. 
+
 #### Consola de videojuegos
 
 ```{r}
@@ -853,6 +872,9 @@ frecuencias <- table(data[,i])
 per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
+
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen consola para videojuegos electrónicos, aproximadamente el ($75.4\%$); mientras que el ($18.4\%$) sí posee. 
+
 :::
 
 ## Variables cuantitativas

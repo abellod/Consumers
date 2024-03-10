@@ -1,6 +1,6 @@
 # Introducción {.unnumbered}
 
-El Saber-Pro es un instrumento de evaluación estandarizada para la medición externa de la calidad de la educación superior que evalúa las competencias de los estudiantes que están próximos a culminar los distintos programas profesionales universitarios. Está diseñada para medir tanto habilidades genéricas como conociemientos específicos relacionados con la formación académica de cada estudiante. Los módulos genéricos son Lectura Crítica, Razonamiento Cuantitativo, Competencias Ciudadanas, Comunicación Escrita e Inglés.[^index-1]
+El Saber Pro es un instrumento de evaluación estandarizada para la medición externa de la calidad de la educación superior que evalúa las competencias de los estudiantes que están próximos a culminar los distintos programas profesionales universitarios. Está diseñada para medir tanto habilidades genéricas como conociemientos específicos relacionados con la formación académica de cada estudiante. Los módulos genéricos son Lectura Crítica, Razonamiento Cuantitativo, Competencias Ciudadanas, Comunicación Escrita e Inglés.[^index-1]
 
 [^index-1]: Para más información consulte <https://www.icfes.gov.co/acerca-del-examen-saber-pro>.
 
@@ -8,11 +8,11 @@ La prueba es de carácter obligatorio, va dirigida a estudiantes con un avance d
 
 ### Marco conceptual
 
-Anteriormente ya se han hecho estudios utilizando los datos públicos del Saber Pro con el fin de caracterizar distintos grupos con respecto a sus puntajes. @ZambranoPortilla2022 realizaron un análisis descriptivo para caracterizar a los estudiantes de una universidad de frontera, diferenciando entre sus puntajes y facultades. Los resultados evidenciaban que los programas de la Facultad de Ciencias Básicas destacaban teniendo los promedios más altos en cada componente, junto a las carreras de la Facultad de la Salud, que presentaban promedios superiores a la media de la Universidad. 
+Anteriormente ya se han hecho estudios utilizando los datos públicos del Saber Pro con el fin de caracterizar distintos grupos con respecto a sus puntajes. @ZambranoPortilla2022 realizaron un análisis descriptivo para caracterizar a los estudiantes de una universidad de frontera, diferenciando entre sus puntajes y facultades. Los resultados evidenciaban que los programas de la Facultad de Ciencias Básicas destacaban teniendo los promedios más altos en cada componente, junto a las carreras de la Facultad de la Salud, que presentaban promedios superiores a la media de la Universidad.
 
-Por otro lado, @RodriguezGomezAriza2014, analizaron los resultados de la prueba Saber-Pro aplicada en el año 2010, allí observaron una diferencia en el desempeño académico entre estudiantes en modalidades presenciales y a distancia, con mejores resultados para los primeros, así como también que la institución tiene un impacto significativo en el rendimiento académico universitario, aunque este efecto disminuye en la educación a distancia; adicionalmente evidenciaron una disparidad de género a favor de los hombres, y una asociación positiva entre el nivel socioeconómico y el rendimiento académico. Esto último también fue evidenciado por @JehangirGlassBerg2015 en su investigación con los resultados de las pruebas PISA (Programa para la Evaluación Internacional de los Estudiantes).
+Por otro lado, @RodriguezGomezAriza2014, analizaron los resultados de la prueba Saber Pro aplicada en el año 2010, allí observaron una diferencia en el desempeño académico entre estudiantes en modalidades presenciales y a distancia, con mejores resultados para los primeros, así como también que la institución tiene un impacto significativo en el rendimiento académico universitario, aunque este efecto disminuye en la educación a distancia; adicionalmente evidenciaron una disparidad de género a favor de los hombres, y una asociación positiva entre el nivel socioeconómico y el rendimiento académico. Esto último también fue evidenciado por @JehangirGlassBerg2015 en su investigación con los resultados de las pruebas PISA (Programa para la Evaluación Internacional de los Estudiantes).
 
-Para completar, @OviedoJimenez2019, en su estudio sobre los resultados obtenidos en las pruebas Saber-Pro del 2016 de estudiantes de ingeniería en Antioquia, destacaron una distinción evidente entre los estudiantes que lograron un desempeño sobresaliente en inglés, quienes generalmente pertenecen a un nivel socioeconómico más alto. Por otro lado, aquellos estudiantes que obtuvieron buenos resultados en lectura crítica suelen provenir de estratos socioeconómicos bajos y enfrentan costos de matrícula más económicos. Además, en el análisis de selección de factores se identificaron variables relevantes, como el número de dependientes, el enfoque pedagógico, la estabilidad del hogar, la naturaleza académica de la institución y aspectos económicos como la disponibilidad de electrodomésticos como microondas a gas y posesión de motocicleta.
+Para completar, @OviedoJimenez2019, en su estudio sobre los resultados obtenidos en las pruebas Saber Pro del 2016 de estudiantes de ingeniería en Antioquia, destacaron una distinción evidente entre los estudiantes que lograron un desempeño sobresaliente en inglés, quienes generalmente pertenecen a un nivel socioeconómico más alto. Por otro lado, aquellos estudiantes que obtuvieron buenos resultados en lectura crítica suelen provenir de estratos socioeconómicos bajos y enfrentan costos de matrícula más económicos. Además, en el análisis de selección de factores se identificaron variables relevantes, como el número de dependientes, el enfoque pedagógico, la estabilidad del hogar, la naturaleza académica de la institución y aspectos económicos como la disponibilidad de electrodomésticos como microondas a gas y posesión de motocicleta.
 
 Además de esto, @CuéllarGuerrero2016 propusieron un índice del nivel socioeconómico basado en los resultados de las pruebas Saber Pro, con el fin de que sea usado en estudios dónde la construcción de un índice sea necesario, y particularmente, en estudios acerca del desempeño académico en la educación superior. El índice fue construido en base a tres dimensiones, y para cada dimensión se utilizaron distintas variables, entre las cuales está el ingreso mensual de la familia, el puntaje SISBEN, la educación y ocupación de los padres, entre otras. Se concluyó que entre mayor era el nivel socioeconómico, los puntajes obtenidos eran más altos.
 
@@ -20,27 +20,29 @@ En la literatura revisada se han hecho diversos estudios tanto para caracterizar
 
 ### Justificación
 
-Este estudio es realizado dada la necesidad de comprender y abordar las disparidades en el desempeño académico entre diferentes grupos de individuos, identificando los factores socioeconómicos, personales y académicos que influyen en los resultados de las pruebas Saber-Pro. Estos exámenes son críticos para evaluar la calidad de la educación superior en Colombia y, por lo tanto, entender las variables que afectan los puntajes puede ayudar a informar políticas educativas más efectivas y equitativas. Además, al explorar la posible relación espacial entre los puntajes de las pruebas y la ubicación geográfica de los individuos, se podría obtener información relevante sobre las disparidades regionales en el acceso a la educación y sus efectos en los resultados académicos.
+Este estudio es realizado dada la necesidad de comprender y abordar las disparidades en el desempeño académico entre diferentes grupos de individuos, identificando los factores socioeconómicos, personales y académicos que influyen en los resultados de las pruebas Saber Pro. Estos exámenes son críticos para evaluar la calidad de la educación superior en Colombia y, por lo tanto, entender las variables que afectan los puntajes puede ayudar a informar políticas educativas más efectivas y equitativas. Además, al explorar la posible relación espacial entre los puntajes de las pruebas y la ubicación geográfica de los individuos, se podría obtener información relevante sobre las disparidades regionales en el acceso a la educación y sus efectos en los resultados académicos.
 
 # Objetivos
 
 ## Objetivo general
 
-Identificar patrones y relaciones entre variables socioeconómicas, personales y académicas que influyen en los puntajes obtenidos en las pruebas SaberPro, con el fin de identificar grupos de individuos con características similares.
+Identificar patrones y relaciones entre variables socioeconómicas, personales y académicas que influyen en los puntajes obtenidos en las pruebas Saber Pro, con el fin de identificar grupos de individuos con características similares.
 
 ## Objetivos Específicos
 
 1.  Analizar y comparar los puntajes obtenidos en cada área de conocimiento y el puntaje general, diferenciando entre el carácter académico de cada institución, grupos de referencia, costo de matrícula, estrato, edad y género.
 
-2.  Explorar y analizar la posible relación entre las variables socio-económicas, personales y académicas con los puntajes obtenidos en las pruebas SaberPro.
+2.  Explorar y analizar la posible relación entre las variables socioeconómicas, personales y académicas con los puntajes obtenidos en las pruebas Saber Pro.
 
 3.  Buscar patrones que sugieran una relación espacial entre los puntajes de las pruebas y el lugar donde reside el individuo, comparándolo con las regiones geográficas de Colombia (Caribe, Pacífico, Orinoquía, Amazonía, Andina e Insular).
 
 # Descripción de la tabla de datos
 
-Los datos fueron tomados del cuestionario
+El conjunto de datos que se trabajarán para cumplir con los objetivos de este estudio son los resultados del examen Saber Pro del 2022-2, proporcionados por el Instituto Colombiano para la Evaluación de la Educación (ICFES). 
 
-La base de datos original cuenta con 127342 observaciones de 109 variables, de las cuales 29 son cuantitativas y hacen referencia a puntajes totales y parciales del examen, las otras 80 variables muestran información personal, académica y socioeconómica entre otras referentes a los individuos que presentaron la prueba. MEJORAR REDACCIÓN.
+Los datos fueron tomados del cuestionario sociodemográfico que hace parte del formulario de inscripción al exámen Saber Pro, este cuestionario busca indagar por tres aspectos: información personal, académica y de citación, y socioeconómica.
+
+La base de datos original cuenta con 127342 observaciones de 109 variables, de las cuales 29 son cuantitativas y hacen referencia a puntajes totales y parciales del examen, las otras 80 variables muestran información personal, académica y socioeconómica entre otras referentes a quienes presentaron la prueba.
 
 ```{r}
 #| message: false
@@ -59,6 +61,8 @@ saberpro <- read_delim("DATA_ICFES_SABERPROPROFESIONAL_2022-2.TXT", delim = "¬"
 datatable(head(saberpro, 60), style = "bootstrap4",
           options = list(pageLength = 6))
 ```
+
+Puede encontrar la documentación de estos datos [aquí]() y el diccionario de datos [aquí]()
 
 # Recodificación de variables
 
@@ -236,13 +240,10 @@ data$INST_CARACTER_ACADEMICO<- as.factor(data$INST_CARACTER_ACADEMICO)
 table(data$INST_CARACTER_ACADEMICO)
 ```
 
-
-
 ```{r}
 #kable(head(data), digits=2) 
 datatable(head(data, 60), style = "bootstrap4",
           options = list(pageLength = 6))
 ```
-
 
 ### Referencias
