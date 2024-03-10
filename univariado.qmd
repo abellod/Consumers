@@ -220,7 +220,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se puede observar que en el periodo en el que fue realizada la prueba, había una notoria diferencia en cuanto a la distribución de géneros, ya que hay una mayor cantidad de mujeres, y no una distribución 50/50, que sería lo esperado en este tipo de pruebas.
+Se puede observar que en el periodo en el que fue realizada la prueba, había una notoria diferencia en cuanto a la distribución de géneros, ya que hay una mayor cantidad de mujeres, y no una distribución de $50\%$ hombres y $50\%$ mujeres, que sería lo esperado en este tipo de pruebas.
 
 #### Etnia
 
@@ -256,7 +256,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se evidencia una clara mayoría en cuanto a estudiantes sin etnia, sin embargo hay una porción aceptable de estudiantes con esta característica.
+Se evidencia una clara mayoría en cuanto a estudiantes sin etnia con un $91.2\%$, sin embargo hay una porción aceptable de estudiantes con esta característica.
 
 #### Estado civil
 
@@ -291,7 +291,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-El estado civil de la mayoría de estudiantes que presentaron la prueba es soltero, aunque hay una buena porción de estudiantes cuyo estado civil es casado y otros cuyo estado civil es unión libre.
+El estado civil del $83.9\%$ de los estudiantes que presentaron la prueba es soltero, aunque hay una buena porción de estudiantes cuyo estado civil es casado y otros cuyo estado civil es unión libre.
 
 #### Educación padre
 
@@ -354,7 +354,7 @@ layout(yaxis = list(title = colnames(data)[i] ),
        showlegend = FALSE)
 ```
 
-Se observa un grupo significativo de padres cuya ocupación es trabajar por cuenta propia, concretamente, un 30.82% de los padres están en esta categoría. De ahí, las demás categorías no resultan muy destacables.
+Se observa un grupo significativo de padres cuya ocupación es trabajar por cuenta propia, concretamente, un $30.82\%$ de los padres están en esta categoría. De ahí, las demás categorías no resultan muy destacables.
 
 #### Ocupación madre
 
@@ -375,7 +375,7 @@ layout(yaxis = list(title = colnames(data)[i] ),
        showlegend = FALSE)
 ```
 
-En el caso de las madres, resalta el hecho de que casi el 40% trabajan como amas de casa o realizando tareas en el hogar.
+En el caso de las madres, resalta el hecho de que casi el $40\%$ trabajan como amas de casa o realizando tareas en el hogar.
 
 #### Horas trabaja
 
@@ -396,7 +396,7 @@ layout(yaxis = list(title = colnames(data)[i] ),
        showlegend = FALSE)
 ```
 
-Se observa que un grupo grande de estudiantes trabaja menos de 10 horas. También resalta el hecho de que hay una cantidad considerable de estudiantes que no respondieron a esta pregunta en el cuestionario, por lo que entran en la categoría desconocido.
+Se observa que un grupo grande de estudiantes conformado por el $35.044\%$ del total de individuos trabaja menos de 10 horas. También resalta el hecho de que hay una cantidad considerable de estudiantes que no respondieron a esta pregunta en el cuestionario, por lo que entran en la categoría desconocido.
 
 :::
 
@@ -435,7 +435,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Hay una clara mayoría de estudiantes que repasaron por cuenta propia, seguido de una cantidad considerable de estudiantes que no se prepararon de ninguna manera. 
+Hay una clara mayoría de estudiantes que repasaron por cuenta propia, siendo el $61.7\%$, seguido de una cantidad considerable de estudiantes que no se prepararon de ninguna manera. 
 
 #### Semestre que cursa
 
@@ -511,7 +511,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-La gran mayoría de estudiantes están en un programa cuya modalidad es presencial, siendo este un 81.5% de todos los estudiantes de la base de datos.
+La gran mayoría de estudiantes están en un programa cuya modalidad es presencial, siendo este un $81.5\%$ de todos los estudiantes de la base de datos.
 
 #### Carácter académico
 
@@ -547,7 +547,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-De la misma manera que con la modalidad del programa, la mayoría de estudiantes estudian en una universidad. Por otra parte hay una pequeña porción de estudiantes que estudian en una institución tecnológica.
+De la misma manera que con la modalidad del programa, la mayoría de estudiantes estudian en una universidad, aproximadamente un $64.2\%$, seguido de un $31.1\%$ de individuos que estudian en una institución universitaria. Por otra parte hay una pequeña porción de estudiantes que estudian en una institución tecnológica y en una institución técnica profesional.
 :::
 
 ### Variables relacionadas con la información socioeconómica
@@ -627,7 +627,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí cuentan con servicio o conexión a intenet, aproximadamente el ($84.4\%$).
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí cuentan con servicio o conexión a intenet, aproximadamente el $84.4\%$.
 
 #### Computador
 
@@ -662,7 +662,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí poseen computador, aproximadamente el ($83.6\%$).
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí poseen computador, aproximadamente el $83.6\%$.
 
 #### Lavadora
 
@@ -697,7 +697,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí poseen lavadora, aproximadamente el ($80.6\%$).
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí poseen lavadora, aproximadamente el $80.6\%$.
 
 #### Horno microogas
 
@@ -768,7 +768,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí cuentan con servicio cerrado de televisión, aproximadamente el ($69.8\%$); mientras que el ($25.6\%$) no cuenta con este servicio.   
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí cuentan con servicio cerrado de televisión, aproximadamente el $69.8\%$; mientras que el $25.6\%$ no cuenta con este servicio.   
 
 #### Automóvil
 
@@ -803,7 +803,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen automóvil particular, aproximadamente el ($61.4\%$); mientras que el ($32.9\%$) sí posee.   
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen automóvil particular, aproximadamente el $61.4\%$; mientras que el $32.9\%$ sí posee.   
 
 #### Motocicleta
 
@@ -838,7 +838,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen automóvil particular, aproximadamente el ($60.9\%$); mientras que el ($33.2\%$) sí posee. 
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen automóvil particular, aproximadamente el $60.9\%$; mientras que el $33.2\%$ sí posee. 
 
 #### Consola de videojuegos
 
@@ -873,7 +873,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen consola para videojuegos electrónicos, aproximadamente el ($75.4\%$); mientras que el ($18.4\%$) sí posee. 
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen consola para videojuegos electrónicos, aproximadamente el $75.4\%$; mientras que el $18.4\%$ sí posee. 
 
 :::
 

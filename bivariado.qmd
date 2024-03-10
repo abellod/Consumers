@@ -197,7 +197,6 @@ kable(cor(data[,29:34]), digits = 2)
 ### Puntaje global vs cualitativas
 
 ::: panel-tabset
-
 ### Sexo
 
 ```{r}
@@ -205,7 +204,8 @@ sorted_sexo <- with(data, reorder(ESTU_GENERO, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_sexo, las = 1, col = 4, horizontal = T)
 ```
 
-###  Estado civil
+### Estado civil
+
 ```{r}
 par(bty="n")
 sorted_civil <- with(data, reorder(ESTU_ESTADOCIVIL, PUNT_GLOBAL, median, na.rm = T))
@@ -276,7 +276,6 @@ sorted_estrato <- with(data, reorder(FAMI_ESTRATOVIVIENDA, PUNT_GLOBAL, median, 
 boxplot(data$PUNT_GLOBAL ~ sorted_estrato, las = 1, col = 4, horizontal = T)
 ```
 :::
-
 
 ## Variables cualitativas
 

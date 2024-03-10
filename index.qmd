@@ -245,5 +245,3 @@ table(data$INST_CARACTER_ACADEMICO)
 datatable(head(data, 60), style = "bootstrap4",
           options = list(pageLength = 6))
 ```
-
-### Referencias

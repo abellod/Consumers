@@ -5,7 +5,7 @@ project:
 book:
   title: "Análisis descriptivo de los resultados SaberPro 2022-2"
   author: "Ander Cristancho & Sofia Bello"
-  date: "03/03/2024"
+  date: "03/10/2024"
   chapters:
     - index.qmd
     - univariado.qmd
