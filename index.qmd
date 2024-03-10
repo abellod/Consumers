@@ -62,7 +62,7 @@ datatable(head(saberpro, 60), style = "bootstrap4",
           options = list(pageLength = 6))
 ```
 
-Puede encontrar la documentación de estos datos [aquí]() y el diccionario de datos [aquí]()
+Puede encontrar la documentación de estos datos [aquí](https://github.com/SofiaBello27/Consumers/blob/main/1.%20Documentaci%C3%B3n_Saber_Pro.pdf) y el diccionario de datos [aquí](https://github.com/SofiaBello27/Consumers/blob/main/Gen%C3%A9ricas_SaberPro_2012_2020.pdf)
 
 # Recodificación de variables
 

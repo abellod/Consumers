@@ -1,6 +1,6 @@
 # Análisis bivariado
 
-A continuación se muestran los reusltados del análisis bivariado de ciertas variables de la base de datos a trabajar.
+A continuación se muestra un adelanto de los resultados del análisis bivariado de ciertas variables de la base de datos a trabajar.
 
 ```{r}
 #| echo: false
@@ -194,17 +194,25 @@ kable(cor(data[,29:34]), digits = 2)
 
 ## Variables continua y cualitativa
 
+### Puntaje global vs cualitativas
+
+::: panel-tabset
+
+### Sexo
+
 ```{r}
-par(bty="n")
 sorted_sexo <- with(data, reorder(ESTU_GENERO, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_sexo, las = 1, col = 4, horizontal = T)
 ```
 
+###  Estado civil
 ```{r}
 par(bty="n")
 sorted_civil <- with(data, reorder(ESTU_ESTADOCIVIL, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_civil, las = 1, col = 4, horizontal = T)
 ```
+
+### Horas trabaja
 
 ```{r}
 par(bty="n")
@@ -212,11 +220,15 @@ sorted_horas <- with(data, reorder(ESTU_HORASSEMANATRABAJA, PUNT_GLOBAL, median,
 boxplot(data$PUNT_GLOBAL ~ sorted_horas, las = 1, col = 4, horizontal = T)
 ```
 
+### Capacitación examen
+
 ```{r}
 par(bty="n")
 sorted_cap <- with(data, reorder(ESTU_COMOCAPACITOEXAMENSB11, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_cap, las = 1, col = 4, horizontal = T)
 ```
+
+### Semestre que cursa
 
 ```{r}
 par(bty="n")
@@ -224,11 +236,15 @@ sorted_semestre <- with(data, reorder(ESTU_SEMESTRECURSA, PUNT_GLOBAL, median, n
 boxplot(data$PUNT_GLOBAL ~ sorted_semestre, las = 1, col = 4, horizontal = T)
 ```
 
+### Grupo referencia
+
 ```{r}
 par(bty="n")
 sorted_grupo <- with(data, reorder(GRUPOREFERENCIA, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_grupo, las = 1, col = 4, horizontal = T)
 ```
+
+### Modalidad
 
 ```{r}
 par(bty="n")
@@ -236,11 +252,15 @@ sorted_modalidad <- with(data, reorder(ESTU_METODO_PRGM, PUNT_GLOBAL, median, na
 boxplot(data$PUNT_GLOBAL ~ sorted_modalidad, las = 1, col = 4, horizontal = T)
 ```
 
+### Carácter académico
+
 ```{r}
 par(bty="n")
 sorted_car <- with(data, reorder(INST_CARACTER_ACADEMICO, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_car, las = 1, col = 4, horizontal = T)
 ```
+
+### Valor matrícula
 
 ```{r}
 par(bty="n")
@@ -248,8 +268,36 @@ sorted_valor <- with(data, reorder(ESTU_VALORMATRICULAUNIVERSIDAD, PUNT_GLOBAL, 
 boxplot(data$PUNT_GLOBAL ~ sorted_valor, las = 1, col = 4, horizontal = T)
 ```
 
+### Estrato
+
 ```{r}
 par(bty="n")
 sorted_estrato <- with(data, reorder(FAMI_ESTRATOVIVIENDA, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_estrato, las = 1, col = 4, horizontal = T)
+```
+:::
+
+
+## Variables cualitativas
+
+```{r}
+tc <- table(data$ESTU_GENERO, data$FAMI_ESTRATOVIVIENDA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+```{r}
+tc <- table(data$ESTU_VALORMATRICULAUNIVERSIDAD, data$FAMI_ESTRATOVIVIENDA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:11)
+plotct(tc, "row", col=2:10)
 ```
