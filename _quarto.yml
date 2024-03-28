@@ -10,6 +10,7 @@ book:
     - index.qmd
     - univariado.qmd
     - bivariado.qmd
+    - ACP.qmd
     - references.qmd
 
 bibliography: references.bib
