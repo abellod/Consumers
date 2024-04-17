@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -96,6 +62,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -173,7 +141,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#si-ponemos-tres-ejes" id="toc-si-ponemos-tres-ejes" class="nav-link active" data-scroll-target="#si-ponemos-tres-ejes"><span class="header-section-number">3.0.1</span> Si ponemos tres ejes</a></li>
+  <li><a href="#acp-tres-ejes" id="toc-acp-tres-ejes" class="nav-link active" data-scroll-target="#acp-tres-ejes"><span class="header-section-number">3.0.1</span> ACP tres ejes</a></li>
+  <li><a href="#variables-relacionadas-con-la-información-personal" id="toc-variables-relacionadas-con-la-información-personal" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-personal"><span class="header-section-number">3.1</span> Variables relacionadas con la información personal</a></li>
+  <li><a href="#variables-relacionadas-con-la-información-académica" id="toc-variables-relacionadas-con-la-información-académica" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-académica"><span class="header-section-number">3.2</span> Variables relacionadas con la información académica</a></li>
+  <li><a href="#variables-relacionadas-con-la-información-socioeconómica" id="toc-variables-relacionadas-con-la-información-socioeconómica" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-socioeconómica"><span class="header-section-number">3.3</span> Variables relacionadas con la información socioeconómica</a></li>
   </ul>
 </nav>
     </div>
@@ -199,32 +170,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Miremos la correlación de las variables cuantitativas</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> data[, <span class="dv">29</span><span class="sc">:</span><span class="dv">33</span>] <span class="co"># Puntaje global va a ser ilustrativa</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Y)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"R.CUANTITATIVO"</span>,<span class="st">"L.CRITICA"</span>,<span class="st">"C.CIUDADANA"</span>,<span class="st">"INGLES"</span>,<span class="st">"C.ESCRITA"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">cor</span>(Y), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 21%">
-<col style="width: 21%">
-<col style="width: 14%">
-<col style="width: 17%">
-<col style="width: 10%">
-<col style="width: 14%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">R.CUANTITATIVO</th>
-<th style="text-align: right;">L.CRITICA</th>
-<th style="text-align: right;">C.CIUDADANA</th>
-<th style="text-align: right;">INGLES</th>
-<th style="text-align: right;">C.ESCRITA</th>
+<th style="text-align: right;">cuanti</th>
+<th style="text-align: right;">lec</th>
+<th style="text-align: right;">ciu</th>
+<th style="text-align: right;">ing</th>
+<th style="text-align: right;">esc</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">R.CUANTITATIVO</td>
+<td style="text-align: left;">cuanti</td>
 <td style="text-align: right;">1.000</td>
 <td style="text-align: right;">0.613</td>
 <td style="text-align: right;">0.556</td>
@@ -232,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">0.252</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">L.CRITICA</td>
+<td style="text-align: left;">lec</td>
 <td style="text-align: right;">0.613</td>
 <td style="text-align: right;">1.000</td>
 <td style="text-align: right;">0.721</td>
@@ -240,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">0.290</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">C.CIUDADANA</td>
+<td style="text-align: left;">ciu</td>
 <td style="text-align: right;">0.556</td>
 <td style="text-align: right;">0.721</td>
 <td style="text-align: right;">1.000</td>
@@ -248,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">0.260</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">INGLES</td>
+<td style="text-align: left;">ing</td>
 <td style="text-align: right;">0.470</td>
 <td style="text-align: right;">0.502</td>
 <td style="text-align: right;">0.556</td>
@@ -256,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">0.204</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">C.ESCRITA</td>
+<td style="text-align: left;">esc</td>
 <td style="text-align: right;">0.252</td>
 <td style="text-align: right;">0.290</td>
 <td style="text-align: right;">0.260</td>
@@ -266,16 +226,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap</span>(<span class="fu">cor</span>(Y), <span class="cn">NA</span>, <span class="cn">NA</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ACP_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Ahora si el acp</p>
+<p>Luego de realizar el ACP usando la función <span class="math inline">\(\texttt{dudi.pca}\)</span> de la librería <span class="math inline">\(\texttt{ade4}\)</span>, la inercia (o los valores propios de los nuevos ejes) son</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>acp <span class="ot">&lt;-</span> <span class="fu">dudi.pca</span>(Y, <span class="at">scannf =</span> <span class="cn">FALSE</span>, <span class="at">nf =</span> <span class="dv">2</span>) <span class="co"># nf indica cuantos ejes voy a conservar</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>valp <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">inertia</span>(acp)<span class="sc">$</span>tot.inertia) <span class="co"># valores propios</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(valp, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -316,16 +272,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(acp<span class="sc">$</span>eig, <span class="at">horiz =</span> <span class="cn">TRUE</span>) <span class="co"># histograma de valores propios</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ACP_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Nos vamos a quedar con los dos primeros ejes porque el primero tiene un valor propio mayor a 1 y el segundo es cercano a 1, además, con esos dos ejes se tiene casi el 74.41% de la inercia. Ese primer eje explica muchísimo</p>
-<p>Las nuevas coordenadas son</p>
+<p>Para el análisis, se conservan los dos primeros ejes porque el primero tiene un valor propio mayor a 1 y el segundo es cercano a 1, además, con esos dos ejes se tiene casi el 74.41% de la inercia. Cabe mencionarse que como el valor propio del primer eje es casi 3, se puede decir que este eje “explica mucho”.</p>
+<p>Con los nuevos ejes las nuevas coordenadas son:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(acp<span class="sc">$</span>co, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -337,40 +290,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">R.CUANTITATIVO</td>
+<td style="text-align: left;">cuanti</td>
 <td style="text-align: right;">-0.791</td>
 <td style="text-align: right;">0.091</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">L.CRITICA</td>
+<td style="text-align: left;">lec</td>
 <td style="text-align: right;">-0.865</td>
 <td style="text-align: right;">0.079</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">C.CIUDADANA</td>
+<td style="text-align: left;">ciu</td>
 <td style="text-align: right;">-0.858</td>
 <td style="text-align: right;">0.133</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">INGLES</td>
+<td style="text-align: left;">ing</td>
 <td style="text-align: right;">-0.741</td>
 <td style="text-align: right;">0.192</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">C.ESCRITA</td>
+<td style="text-align: left;">esc</td>
 <td style="text-align: right;">-0.444</td>
 <td style="text-align: right;">-0.893</td>
 </tr>
 </tbody>
 </table>
 </div>
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>Puntaje global es ilustrativa</p>
+</div>
+<p>Usaremos la variable de “Puntaje global” como ilustrativa y sus nuevas coordenadas son:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># exam como ilustrativa</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>GGlob <span class="ot">&lt;-</span> <span class="fu">cor</span>(data<span class="sc">$</span>PUNT_GLOBAL, acp<span class="sc">$</span>li)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(GGlob)<span class="ot">&lt;-</span><span class="st">"Global"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(GGlob, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -391,50 +343,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">s.corcircle</span>(acp<span class="sc">$</span>co)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">s.arrow</span>(GGlob, <span class="at">add.plot =</span> <span class="cn">TRUE</span>, <span class="at">boxes =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ACP_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Parece que el Puntaje Global y la mayoría de las varibles excepto “Puntaje de Comunicación Escrita” están muy correlacionadas con el primer eje.</p>
-<section id="si-ponemos-tres-ejes" class="level3" data-number="3.0.1">
-<h3 data-number="3.0.1" class="anchored" data-anchor-id="si-ponemos-tres-ejes"><span class="header-section-number">3.0.1</span> Si ponemos tres ejes</h3>
+<section id="acp-tres-ejes" class="level3" data-number="3.0.1">
+<h3 data-number="3.0.1" class="anchored" data-anchor-id="acp-tres-ejes"><span class="header-section-number">3.0.1</span> ACP tres ejes</h3>
+<p>Solo para observar, se hace un ACP conservando tres ejes, el segundo plano nos permite ver que el tercer eje separa los puntajes de comprensión escrita, ingles y global, con los puntajes de razonamiento cuantitativo, lectura crítica y competencias ciudadanas. Además, este tercer eje no parece tener mucha correlación con la mayoría de los puntajes a excepción del puntaje de inglés.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>acp1 <span class="ot">&lt;-</span> <span class="fu">dudi.pca</span>(Y, <span class="at">scannf =</span> <span class="cn">FALSE</span>, <span class="at">nf =</span> <span class="dv">3</span>) </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>GGlob1 <span class="ot">&lt;-</span> <span class="fu">cor</span>(data<span class="sc">$</span>PUNT_GLOBAL, acp1<span class="sc">$</span>li)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(GGlob1)<span class="ot">&lt;-</span><span class="st">"Global"</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">s.corcircle</span>(acp1<span class="sc">$</span>co)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">s.arrow</span>(GGlob1, <span class="at">add.plot =</span> <span class="cn">TRUE</span>, <span class="at">boxes =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ACP_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plano con los ejes 2 y 3</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">s.corcircle</span>(acp1<span class="sc">$</span>co, <span class="at">xax =</span> <span class="dv">2</span>, <span class="at">yax =</span> <span class="dv">3</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">s.arrow</span>(GGlob1, <span class="at">xax =</span> <span class="dv">2</span>, <span class="at">yax =</span> <span class="dv">3</span>, </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">add.plot =</span> <span class="cn">TRUE</span>, <span class="at">boxes =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="ACP_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
 </div>
 </div>
-<p>Ahoraa miramos todo lo que no es cuantitativo</p>
-<p>Toca quitar variables, dejar solo las que sean factor y que nos interesen</p>
-<p>mochar INST_NOMBRE_INSTITUCION, ESTU_PRGM_ACADEMICO, ESTU_COD_RESIDE_DEPTO y ESTU_FECHANACIMIENTO</p>
+<div class="callout-body-container callout-body">
+<p>ESTO DEBERÍAMOS PONERLO DE OTRA FORMA Y EN OTRO LADO. Se quitaron las variables INST_NOMBRE_INSTITUCION, ESTU_PRGM_ACADEMICO, ESTU_COD_RESIDE_DEPTO y ESTU_FECHANACIMIENTO</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note que para el análisis del ACP se continuó teniendo en cuenta únicamente dos ejes.</p>
+</div>
+</div>
+</section>
+<section id="variables-relacionadas-con-la-información-personal" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-personal"><span class="header-section-number">3.1</span> Variables relacionadas con la información personal</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Sexo</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Etnia</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Departamento</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Estado civil</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Educación padre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">Educación madre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">Ocupación padre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-8" role="tab" aria-controls="tabset-1-8" aria-selected="false">Ocupación madre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-9" role="tab" aria-controls="tabset-1-9" aria-selected="false">Horas trabaja</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Ysupcat <span class="ot">&lt;-</span> data[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">6</span><span class="sc">:</span><span class="dv">23</span>,<span class="dv">26</span><span class="sc">:</span><span class="dv">28</span>)]</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Ysupcat<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(Ysupcat)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>sup <span class="ot">&lt;-</span> <span class="fu">supqual</span>(acp, Ysupcat)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">cbind</span>(<span class="at">wcat =</span> sup<span class="sc">$</span>wcat, <span class="at">d2 =</span> sup<span class="sc">$</span>dis2, sup<span class="sc">$</span>coor), </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 70%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 7%">
-<col style="width: 7%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -466,131 +424,171 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">-0.192</td>
 <td style="text-align: right;">0.057</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">-2.727</td>
+<td style="text-align: right;">0.203</td>
+<td style="text-align: right;">0.975</td>
+<td style="text-align: right;">0.002</td>
+</tr>
 <tr class="even">
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">34.096</td>
+<td style="text-align: right;">-18.393</td>
+<td style="text-align: right;">0.469</td>
+<td style="text-align: right;">0.041</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-34.062</td>
+<td style="text-align: right;">18.390</td>
+<td style="text-align: right;">0.469</td>
+<td style="text-align: right;">0.041</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td style="text-align: left;">Desconocido</td>
 <td style="text-align: right;">0.006</td>
 <td style="text-align: right;">0.056</td>
 <td style="text-align: right;">0.203</td>
 <td style="text-align: right;">0.029</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">No</td>
 <td style="text-align: right;">0.912</td>
 <td style="text-align: right;">0.006</td>
 <td style="text-align: right;">-0.074</td>
 <td style="text-align: right;">0.005</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Si</td>
 <td style="text-align: right;">0.082</td>
 <td style="text-align: right;">0.677</td>
 <td style="text-align: right;">0.805</td>
 <td style="text-align: right;">-0.058</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td style="text-align: left;">AMAZONAS</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.950</td>
-<td style="text-align: right;">0.929</td>
-<td style="text-align: right;">-0.239</td>
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">3.357</td>
+<td style="text-align: right;">0.868</td>
+<td style="text-align: right;">0.742</td>
+<td style="text-align: right;">0.015</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ANTIOQUIA</td>
-<td style="text-align: right;">0.109</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">-0.216</td>
-<td style="text-align: right;">0.009</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">-50.143</td>
+<td style="text-align: right;">6.246</td>
+<td style="text-align: right;">0.958</td>
+<td style="text-align: right;">0.005</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">ARAUCA</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.721</td>
-<td style="text-align: right;">0.837</td>
-<td style="text-align: right;">0.121</td>
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">50.846</td>
+<td style="text-align: right;">-6.698</td>
+<td style="text-align: right;">0.958</td>
+<td style="text-align: right;">0.005</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">ATLANTICO</td>
-<td style="text-align: right;">0.063</td>
-<td style="text-align: right;">0.032</td>
-<td style="text-align: right;">-0.075</td>
-<td style="text-align: right;">0.040</td>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
 </tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td style="text-align: left;">BOGOTÁ</td>
 <td style="text-align: right;">0.255</td>
 <td style="text-align: right;">0.229</td>
 <td style="text-align: right;">-0.468</td>
 <td style="text-align: right;">0.004</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BOLIVAR</td>
-<td style="text-align: right;">0.039</td>
-<td style="text-align: right;">0.160</td>
-<td style="text-align: right;">0.384</td>
-<td style="text-align: right;">-0.006</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BOYACA</td>
-<td style="text-align: right;">0.032</td>
-<td style="text-align: right;">0.069</td>
-<td style="text-align: right;">-0.197</td>
-<td style="text-align: right;">0.020</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CALDAS</td>
-<td style="text-align: right;">0.016</td>
-<td style="text-align: right;">0.016</td>
-<td style="text-align: right;">-0.079</td>
-<td style="text-align: right;">0.069</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CAQUETA</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.682</td>
-<td style="text-align: right;">0.810</td>
-<td style="text-align: right;">-0.062</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CASANARE</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">0.286</td>
-<td style="text-align: right;">0.497</td>
-<td style="text-align: right;">-0.111</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CAUCA</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">0.138</td>
-<td style="text-align: right;">0.308</td>
-<td style="text-align: right;">-0.080</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CESAR</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.416</td>
-<td style="text-align: right;">0.635</td>
-<td style="text-align: right;">-0.027</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CHOCO</td>
-<td style="text-align: right;">0.011</td>
-<td style="text-align: right;">3.244</td>
-<td style="text-align: right;">1.789</td>
-<td style="text-align: right;">-0.024</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CORDOBA</td>
-<td style="text-align: right;">0.028</td>
-<td style="text-align: right;">0.349</td>
-<td style="text-align: right;">0.578</td>
-<td style="text-align: right;">0.013</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CUNDINAMARCA</td>
-<td style="text-align: right;">0.067</td>
-<td style="text-align: right;">0.013</td>
-<td style="text-align: right;">0.054</td>
-<td style="text-align: right;">-0.058</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Desconocido</td>
@@ -600,411 +598,380 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">0.050</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">EXTRANJERO</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.521</td>
-<td style="text-align: right;">-0.497</td>
-<td style="text-align: right;">0.325</td>
+<td style="text-align: left;">OTRO</td>
+<td style="text-align: right;">0.745</td>
+<td style="text-align: right;">0.027</td>
+<td style="text-align: right;">0.160</td>
+<td style="text-align: right;">-0.001</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">GUAINIA</td>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BOGOTÁ</td>
+<td style="text-align: right;">-57.800</td>
+<td style="text-align: right;">0.882</td>
+<td style="text-align: right;">0.954</td>
 <td style="text-align: right;">0.000</td>
-<td style="text-align: right;">1.487</td>
-<td style="text-align: right;">1.107</td>
-<td style="text-align: right;">-0.420</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">GUAVIARE</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">1.346</td>
-<td style="text-align: right;">1.127</td>
-<td style="text-align: right;">-0.222</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">HUILA</td>
-<td style="text-align: right;">0.019</td>
-<td style="text-align: right;">0.319</td>
-<td style="text-align: right;">0.552</td>
-<td style="text-align: right;">-0.048</td>
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.492</td>
+<td style="text-align: right;">0.171</td>
+<td style="text-align: right;">0.061</td>
+<td style="text-align: right;">0.002</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">LA.GUAJIRA</td>
-<td style="text-align: right;">0.013</td>
-<td style="text-align: right;">1.004</td>
-<td style="text-align: right;">0.973</td>
-<td style="text-align: right;">-0.149</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MAGDALENA</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.131</td>
-<td style="text-align: right;">0.332</td>
-<td style="text-align: right;">-0.055</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">META</td>
-<td style="text-align: right;">0.020</td>
-<td style="text-align: right;">0.211</td>
-<td style="text-align: right;">0.449</td>
-<td style="text-align: right;">0.040</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NARIÑO</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.136</td>
-<td style="text-align: right;">0.307</td>
-<td style="text-align: right;">-0.106</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NORTE.SANTANDER</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">0.114</td>
-<td style="text-align: right;">0.309</td>
-<td style="text-align: right;">0.089</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">PUTUMAYO</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">1.333</td>
-<td style="text-align: right;">1.141</td>
-<td style="text-align: right;">-0.084</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">QUINDIO</td>
-<td style="text-align: right;">0.010</td>
-<td style="text-align: right;">0.012</td>
-<td style="text-align: right;">-0.042</td>
-<td style="text-align: right;">0.071</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">RISARALDA</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.026</td>
-<td style="text-align: right;">0.124</td>
-<td style="text-align: right;">-0.024</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SAN.ANDRES</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.921</td>
-<td style="text-align: right;">0.878</td>
-<td style="text-align: right;">0.099</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SANTANDER</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">0.031</td>
-<td style="text-align: right;">-0.110</td>
-<td style="text-align: right;">0.096</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SUCRE</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.339</td>
-<td style="text-align: right;">0.520</td>
-<td style="text-align: right;">-0.171</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">TOLIMA</td>
-<td style="text-align: right;">0.026</td>
-<td style="text-align: right;">0.172</td>
-<td style="text-align: right;">0.400</td>
-<td style="text-align: right;">-0.038</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">VALLE</td>
-<td style="text-align: right;">0.079</td>
-<td style="text-align: right;">0.005</td>
-<td style="text-align: right;">-0.037</td>
-<td style="text-align: right;">0.056</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">VAUPES</td>
+<td style="text-align: left;">OTRO</td>
+<td style="text-align: right;">57.784</td>
+<td style="text-align: right;">-0.886</td>
+<td style="text-align: right;">0.954</td>
 <td style="text-align: right;">0.000</td>
-<td style="text-align: right;">2.740</td>
-<td style="text-align: right;">1.573</td>
-<td style="text-align: right;">-0.438</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td style="text-align: left;">VICHADA</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">1.750</td>
-<td style="text-align: right;">1.253</td>
-<td style="text-align: right;">-0.311</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Casado</td>
 <td style="text-align: right;">0.064</td>
 <td style="text-align: right;">0.494</td>
 <td style="text-align: right;">0.670</td>
 <td style="text-align: right;">-0.073</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Desconocido</td>
 <td style="text-align: right;">0.005</td>
 <td style="text-align: right;">0.009</td>
 <td style="text-align: right;">0.022</td>
 <td style="text-align: right;">0.012</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Separado.y.o.Viudo</td>
 <td style="text-align: right;">0.008</td>
 <td style="text-align: right;">0.473</td>
 <td style="text-align: right;">0.655</td>
 <td style="text-align: right;">-0.044</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Soltero</td>
 <td style="text-align: right;">0.839</td>
 <td style="text-align: right;">0.021</td>
 <td style="text-align: right;">-0.140</td>
 <td style="text-align: right;">0.012</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Unión.libre</td>
 <td style="text-align: right;">0.085</td>
 <td style="text-align: right;">0.704</td>
 <td style="text-align: right;">0.819</td>
 <td style="text-align: right;">-0.058</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td style="text-align: left;">Menos.de.500.mil</td>
-<td style="text-align: right;">0.104</td>
-<td style="text-align: right;">0.032</td>
-<td style="text-align: right;">-0.057</td>
-<td style="text-align: right;">0.013</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Entre.500.mil.y.menos.de.1.millón</td>
-<td style="text-align: right;">0.065</td>
-<td style="text-align: right;">0.028</td>
-<td style="text-align: right;">0.053</td>
-<td style="text-align: right;">0.016</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Entre.1.millón.y.menos.de.2.5.millones</td>
-<td style="text-align: right;">0.226</td>
-<td style="text-align: right;">0.327</td>
-<td style="text-align: right;">0.564</td>
-<td style="text-align: right;">-0.046</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Entre.2.5.millones.y.menos.de.4.millones</td>
-<td style="text-align: right;">0.160</td>
-<td style="text-align: right;">0.175</td>
-<td style="text-align: right;">0.414</td>
-<td style="text-align: right;">-0.027</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Entre.4.millones.y.menos.de.5.5.millones</td>
-<td style="text-align: right;">0.114</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.050</td>
-<td style="text-align: right;">0.012</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Entre.5.5.millones.y.menos.de.7.millones</td>
-<td style="text-align: right;">0.066</td>
-<td style="text-align: right;">0.090</td>
-<td style="text-align: right;">-0.266</td>
-<td style="text-align: right;">0.025</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Más.de.7.millones</td>
-<td style="text-align: right;">0.141</td>
-<td style="text-align: right;">1.693</td>
-<td style="text-align: right;">-1.264</td>
-<td style="text-align: right;">0.071</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No.pagó.matrícula</td>
-<td style="text-align: right;">0.108</td>
-<td style="text-align: right;">0.038</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">-0.043</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.249</td>
-<td style="text-align: right;">-0.349</td>
-<td style="text-align: right;">0.240</td>
+<td style="text-align: left;">Casado</td>
+<td style="text-align: right;">36.922</td>
+<td style="text-align: right;">-7.304</td>
+<td style="text-align: right;">0.909</td>
+<td style="text-align: right;">0.011</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.314</td>
+<td style="text-align: right;">0.309</td>
+<td style="text-align: right;">0.054</td>
 <td style="text-align: right;">0.016</td>
-<td style="text-align: right;">0.276</td>
-<td style="text-align: right;">-0.366</td>
-<td style="text-align: right;">0.256</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">No.realizó.ninguna.prueba.de.preparación</td>
-<td style="text-align: right;">0.218</td>
-<td style="text-align: right;">0.102</td>
-<td style="text-align: right;">-0.314</td>
-<td style="text-align: right;">0.018</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Repasó.por.cuenta.propia</td>
-<td style="text-align: right;">0.671</td>
-<td style="text-align: right;">0.009</td>
-<td style="text-align: right;">0.090</td>
-<td style="text-align: right;">-0.004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Tomó.un.curso.de.preparación</td>
-<td style="text-align: right;">0.095</td>
-<td style="text-align: right;">0.033</td>
-<td style="text-align: right;">0.149</td>
-<td style="text-align: right;">-0.059</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">X06.o.menos</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.071</td>
-<td style="text-align: right;">0.264</td>
-<td style="text-align: right;">-0.013</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">X07</td>
-<td style="text-align: right;">0.076</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">0.103</td>
-<td style="text-align: right;">-0.062</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">X08</td>
-<td style="text-align: right;">0.248</td>
-<td style="text-align: right;">0.018</td>
-<td style="text-align: right;">0.122</td>
-<td style="text-align: right;">-0.036</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">X09</td>
-<td style="text-align: right;">0.326</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.077</td>
-<td style="text-align: right;">-0.006</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">X10</td>
-<td style="text-align: right;">0.235</td>
+<td style="text-align: left;">Separado y/o Viudo</td>
+<td style="text-align: right;">12.288</td>
+<td style="text-align: right;">-1.486</td>
+<td style="text-align: right;">0.906</td>
 <td style="text-align: right;">0.004</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">0.014</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">X11</td>
-<td style="text-align: right;">0.043</td>
-<td style="text-align: right;">0.644</td>
-<td style="text-align: right;">-0.790</td>
-<td style="text-align: right;">0.104</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">X12.o.más</td>
-<td style="text-align: right;">0.038</td>
-<td style="text-align: right;">1.054</td>
-<td style="text-align: right;">-1.015</td>
-<td style="text-align: right;">0.105</td>
+<td style="text-align: left;">Soltero</td>
+<td style="text-align: right;">-67.456</td>
+<td style="text-align: right;">10.268</td>
+<td style="text-align: right;">0.936</td>
+<td style="text-align: right;">0.007</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.249</td>
-<td style="text-align: right;">-0.349</td>
-<td style="text-align: right;">0.240</td>
+<td style="text-align: left;">Unión libre</td>
+<td style="text-align: right;">52.636</td>
+<td style="text-align: right;">-6.744</td>
+<td style="text-align: right;">0.952</td>
+<td style="text-align: right;">0.005</td>
 </tr>
-<tr class="even">
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td style="text-align: left;">Desconocido</td>
 <td style="text-align: right;">0.038</td>
 <td style="text-align: right;">2.431</td>
 <td style="text-align: right;">0.852</td>
 <td style="text-align: right;">-0.426</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Educación.profesional.completa</td>
 <td style="text-align: right;">0.129</td>
 <td style="text-align: right;">0.437</td>
 <td style="text-align: right;">-0.618</td>
 <td style="text-align: right;">0.071</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Educación.profesional.incompleta</td>
 <td style="text-align: right;">0.045</td>
 <td style="text-align: right;">0.185</td>
 <td style="text-align: right;">-0.414</td>
 <td style="text-align: right;">0.062</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Ninguno</td>
 <td style="text-align: right;">0.022</td>
 <td style="text-align: right;">0.986</td>
 <td style="text-align: right;">0.982</td>
 <td style="text-align: right;">-0.039</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">No.Aplica</td>
 <td style="text-align: right;">0.011</td>
 <td style="text-align: right;">0.002</td>
 <td style="text-align: right;">0.009</td>
 <td style="text-align: right;">0.012</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">No.sabe</td>
 <td style="text-align: right;">0.027</td>
 <td style="text-align: right;">0.099</td>
 <td style="text-align: right;">-0.306</td>
 <td style="text-align: right;">0.026</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Postgrado</td>
 <td style="text-align: right;">0.072</td>
 <td style="text-align: right;">1.431</td>
 <td style="text-align: right;">-1.140</td>
 <td style="text-align: right;">0.108</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Primaria.completa</td>
 <td style="text-align: right;">0.075</td>
 <td style="text-align: right;">0.248</td>
 <td style="text-align: right;">0.490</td>
 <td style="text-align: right;">-0.035</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Primaria.incompleta</td>
 <td style="text-align: right;">0.173</td>
 <td style="text-align: right;">0.304</td>
 <td style="text-align: right;">0.536</td>
 <td style="text-align: right;">-0.047</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Secundaria..Bachillerato..completa</td>
 <td style="text-align: right;">0.192</td>
 <td style="text-align: right;">0.001</td>
 <td style="text-align: right;">0.016</td>
 <td style="text-align: right;">0.022</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Secundaria..Bachillerato..incompleta</td>
 <td style="text-align: right;">0.088</td>
 <td style="text-align: right;">0.053</td>
 <td style="text-align: right;">0.227</td>
 <td style="text-align: right;">-0.008</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Técnica.o.tecnológica.completa</td>
 <td style="text-align: right;">0.098</td>
 <td style="text-align: right;">0.044</td>
 <td style="text-align: right;">-0.186</td>
 <td style="text-align: right;">0.034</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Técnica.o.tecnológica.incompleta</td>
 <td style="text-align: right;">0.029</td>
 <td style="text-align: right;">0.004</td>
 <td style="text-align: right;">0.031</td>
 <td style="text-align: right;">0.014</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">35.530</td>
+<td style="text-align: right;">-32.287</td>
+<td style="text-align: right;">0.298</td>
+<td style="text-align: right;">0.075</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Educación profesional completa</td>
+<td style="text-align: right;">-50.250</td>
+<td style="text-align: right;">10.417</td>
+<td style="text-align: right;">0.873</td>
+<td style="text-align: right;">0.011</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Educación profesional incompleta</td>
+<td style="text-align: right;">-18.926</td>
+<td style="text-align: right;">5.140</td>
+<td style="text-align: right;">0.922</td>
+<td style="text-align: right;">0.021</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ninguno</td>
+<td style="text-align: right;">31.204</td>
+<td style="text-align: right;">-2.237</td>
+<td style="text-align: right;">0.977</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No Aplica</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.494</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.074</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No sabe</td>
+<td style="text-align: right;">-10.785</td>
+<td style="text-align: right;">1.658</td>
+<td style="text-align: right;">0.948</td>
+<td style="text-align: right;">0.007</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td style="text-align: left;">Desconocido</td>
 <td style="text-align: right;">0.038</td>
@@ -1096,97 +1063,298 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">0.039</td>
 <td style="text-align: right;">0.039</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">33.555</td>
+<td style="text-align: right;">-32.213</td>
+<td style="text-align: right;">0.275</td>
+<td style="text-align: right;">0.077</td>
+</tr>
 <tr class="even">
+<td style="text-align: left;">Educación profesional completa</td>
+<td style="text-align: right;">-53.817</td>
+<td style="text-align: right;">13.585</td>
+<td style="text-align: right;">0.853</td>
+<td style="text-align: right;">0.016</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Educación profesional incompleta</td>
+<td style="text-align: right;">-19.659</td>
+<td style="text-align: right;">6.891</td>
+<td style="text-align: right;">0.885</td>
+<td style="text-align: right;">0.033</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ninguno</td>
+<td style="text-align: right;">28.508</td>
+<td style="text-align: right;">-3.847</td>
+<td style="text-align: right;">0.973</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No Aplica</td>
+<td style="text-align: right;">5.065</td>
+<td style="text-align: right;">0.990</td>
+<td style="text-align: right;">0.971</td>
+<td style="text-align: right;">0.011</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No sabe</td>
+<td style="text-align: right;">0.884</td>
+<td style="text-align: right;">2.141</td>
+<td style="text-align: right;">0.173</td>
+<td style="text-align: right;">0.308</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 66%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td style="text-align: left;">Desconocido</td>
 <td style="text-align: right;">0.016</td>
 <td style="text-align: right;">0.278</td>
 <td style="text-align: right;">-0.367</td>
 <td style="text-align: right;">0.256</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Empleado.con.cargo.como.director.o.gerente.general</td>
 <td style="text-align: right;">0.021</td>
 <td style="text-align: right;">0.923</td>
 <td style="text-align: right;">-0.876</td>
 <td style="text-align: right;">0.071</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Empleado.de.nivel.auxiliar.o.administrativo</td>
 <td style="text-align: right;">0.020</td>
 <td style="text-align: right;">0.053</td>
 <td style="text-align: right;">-0.221</td>
 <td style="text-align: right;">-0.009</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Empleado.de.nivel.directivo</td>
 <td style="text-align: right;">0.014</td>
 <td style="text-align: right;">0.572</td>
 <td style="text-align: right;">-0.718</td>
 <td style="text-align: right;">0.009</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Empleado.de.nivel.técnico.o.profesional</td>
 <td style="text-align: right;">0.104</td>
 <td style="text-align: right;">0.287</td>
 <td style="text-align: right;">-0.521</td>
 <td style="text-align: right;">0.061</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Empleado.obrero.u.operario</td>
 <td style="text-align: right;">0.130</td>
 <td style="text-align: right;">0.042</td>
 <td style="text-align: right;">0.179</td>
 <td style="text-align: right;">-0.035</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Empresario</td>
 <td style="text-align: right;">0.031</td>
 <td style="text-align: right;">0.282</td>
 <td style="text-align: right;">-0.372</td>
 <td style="text-align: right;">0.083</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Hogar</td>
 <td style="text-align: right;">0.024</td>
 <td style="text-align: right;">0.282</td>
 <td style="text-align: right;">0.520</td>
 <td style="text-align: right;">-0.030</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Otra.actividad.u.ocupación</td>
 <td style="text-align: right;">0.149</td>
 <td style="text-align: right;">0.055</td>
 <td style="text-align: right;">0.215</td>
 <td style="text-align: right;">-0.041</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Pensionado</td>
 <td style="text-align: right;">0.101</td>
 <td style="text-align: right;">0.011</td>
 <td style="text-align: right;">-0.092</td>
 <td style="text-align: right;">0.012</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Pequeño.empresario</td>
 <td style="text-align: right;">0.040</td>
 <td style="text-align: right;">0.051</td>
 <td style="text-align: right;">-0.207</td>
 <td style="text-align: right;">0.021</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Profesional.independiente</td>
 <td style="text-align: right;">0.043</td>
 <td style="text-align: right;">0.486</td>
 <td style="text-align: right;">-0.659</td>
 <td style="text-align: right;">0.069</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Trabajador.por.cuenta.propia</td>
 <td style="text-align: right;">0.308</td>
 <td style="text-align: right;">0.079</td>
 <td style="text-align: right;">0.266</td>
 <td style="text-align: right;">-0.026</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 65%">
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">-9.940</td>
+<td style="text-align: right;">12.580</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.236</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Empleado con cargo como director o gerente general</td>
+<td style="text-align: right;">-27.293</td>
+<td style="text-align: right;">4.008</td>
+<td style="text-align: right;">0.832</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Empleado de nivel auxiliar o administrativo</td>
+<td style="text-align: right;">-6.634</td>
+<td style="text-align: right;">-0.466</td>
+<td style="text-align: right;">0.917</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Empleado de nivel directivo</td>
+<td style="text-align: right;">-17.778</td>
+<td style="text-align: right;">0.393</td>
+<td style="text-align: right;">0.900</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Empleado de nivel técnico o profesional</td>
+<td style="text-align: right;">-37.509</td>
+<td style="text-align: right;">7.923</td>
+<td style="text-align: right;">0.944</td>
+<td style="text-align: right;">0.013</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Empleado obrero u operario</td>
+<td style="text-align: right;">14.571</td>
+<td style="text-align: right;">-5.124</td>
+<td style="text-align: right;">0.764</td>
+<td style="text-align: right;">0.029</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-8-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 66%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td style="text-align: left;">Desconocido</td>
 <td style="text-align: right;">0.016</td>
@@ -1278,489 +1446,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">0.152</td>
 <td style="text-align: right;">-0.005</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.043</td>
-<td style="text-align: right;">1.775</td>
-<td style="text-align: right;">0.629</td>
-<td style="text-align: right;">-0.374</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Estrato.1</td>
-<td style="text-align: right;">0.203</td>
-<td style="text-align: right;">0.361</td>
-<td style="text-align: right;">0.583</td>
-<td style="text-align: right;">-0.059</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Estrato.2</td>
-<td style="text-align: right;">0.329</td>
-<td style="text-align: right;">0.026</td>
-<td style="text-align: right;">0.153</td>
-<td style="text-align: right;">-0.006</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Estrato.3</td>
-<td style="text-align: right;">0.279</td>
-<td style="text-align: right;">0.056</td>
-<td style="text-align: right;">-0.212</td>
-<td style="text-align: right;">0.046</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Estrato.4</td>
-<td style="text-align: right;">0.089</td>
-<td style="text-align: right;">0.763</td>
-<td style="text-align: right;">-0.804</td>
-<td style="text-align: right;">0.118</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Estrato.5</td>
-<td style="text-align: right;">0.034</td>
-<td style="text-align: right;">1.671</td>
-<td style="text-align: right;">-1.184</td>
-<td style="text-align: right;">0.118</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Estrato.6</td>
-<td style="text-align: right;">0.019</td>
-<td style="text-align: right;">2.870</td>
-<td style="text-align: right;">-1.513</td>
-<td style="text-align: right;">0.143</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Sin.Estrato</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">0.446</td>
-<td style="text-align: right;">0.663</td>
-<td style="text-align: right;">-0.010</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.045</td>
-<td style="text-align: right;">1.698</td>
-<td style="text-align: right;">0.615</td>
-<td style="text-align: right;">-0.365</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">0.111</td>
-<td style="text-align: right;">0.563</td>
-<td style="text-align: right;">0.726</td>
-<td style="text-align: right;">-0.107</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">0.844</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">-0.128</td>
-<td style="text-align: right;">0.033</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">1.511</td>
-<td style="text-align: right;">0.592</td>
-<td style="text-align: right;">-0.335</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">0.115</td>
-<td style="text-align: right;">0.549</td>
-<td style="text-align: right;">0.723</td>
-<td style="text-align: right;">-0.096</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">0.836</td>
-<td style="text-align: right;">0.024</td>
-<td style="text-align: right;">-0.134</td>
-<td style="text-align: right;">0.033</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.050</td>
-<td style="text-align: right;">1.452</td>
-<td style="text-align: right;">0.583</td>
-<td style="text-align: right;">-0.334</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">0.144</td>
-<td style="text-align: right;">0.254</td>
-<td style="text-align: right;">0.495</td>
-<td style="text-align: right;">-0.029</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">0.806</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">-0.125</td>
-<td style="text-align: right;">0.026</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.055</td>
-<td style="text-align: right;">1.304</td>
-<td style="text-align: right;">0.625</td>
-<td style="text-align: right;">-0.301</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">0.496</td>
-<td style="text-align: right;">0.102</td>
-<td style="text-align: right;">0.311</td>
-<td style="text-align: right;">-0.021</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">0.449</td>
-<td style="text-align: right;">0.210</td>
-<td style="text-align: right;">-0.420</td>
-<td style="text-align: right;">0.060</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">1.638</td>
-<td style="text-align: right;">0.596</td>
-<td style="text-align: right;">-0.361</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">0.256</td>
-<td style="text-align: right;">0.033</td>
-<td style="text-align: right;">0.165</td>
-<td style="text-align: right;">-0.012</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">0.698</td>
-<td style="text-align: right;">0.020</td>
-<td style="text-align: right;">-0.099</td>
-<td style="text-align: right;">0.028</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.056</td>
-<td style="text-align: right;">1.267</td>
-<td style="text-align: right;">0.619</td>
-<td style="text-align: right;">-0.300</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">0.614</td>
-<td style="text-align: right;">0.039</td>
-<td style="text-align: right;">0.191</td>
-<td style="text-align: right;">-0.011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">0.329</td>
-<td style="text-align: right;">0.260</td>
-<td style="text-align: right;">-0.462</td>
-<td style="text-align: right;">0.072</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.059</td>
-<td style="text-align: right;">1.120</td>
-<td style="text-align: right;">0.573</td>
-<td style="text-align: right;">-0.274</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">0.609</td>
-<td style="text-align: right;">0.050</td>
-<td style="text-align: right;">-0.199</td>
-<td style="text-align: right;">0.022</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">0.332</td>
-<td style="text-align: right;">0.072</td>
-<td style="text-align: right;">0.263</td>
-<td style="text-align: right;">0.008</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.063</td>
-<td style="text-align: right;">1.054</td>
-<td style="text-align: right;">0.591</td>
-<td style="text-align: right;">-0.254</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">0.754</td>
-<td style="text-align: right;">0.010</td>
-<td style="text-align: right;">0.094</td>
-<td style="text-align: right;">0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">0.184</td>
-<td style="text-align: right;">0.412</td>
-<td style="text-align: right;">-0.587</td>
-<td style="text-align: right;">0.084</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">X0</td>
-<td style="text-align: right;">0.158</td>
-<td style="text-align: right;">0.420</td>
-<td style="text-align: right;">-0.627</td>
-<td style="text-align: right;">0.043</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Menos.de.10.horas</td>
-<td style="text-align: right;">0.145</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.047</td>
-<td style="text-align: right;">-0.002</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Entre.11.y.20.horas</td>
-<td style="text-align: right;">0.168</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.071</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Entre.21.y.30.horas</td>
-<td style="text-align: right;">0.124</td>
-<td style="text-align: right;">0.011</td>
-<td style="text-align: right;">0.089</td>
-<td style="text-align: right;">0.003</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Más.de.30.horas</td>
-<td style="text-align: right;">0.350</td>
-<td style="text-align: right;">0.021</td>
-<td style="text-align: right;">0.130</td>
-<td style="text-align: right;">0.025</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.054</td>
-<td style="text-align: right;">1.158</td>
-<td style="text-align: right;">0.441</td>
-<td style="text-align: right;">-0.306</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ADMINISTRACIÓN.Y.AFINES</td>
-<td style="text-align: right;">0.180</td>
-<td style="text-align: right;">0.224</td>
-<td style="text-align: right;">0.470</td>
-<td style="text-align: right;">-0.014</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ARQUITECTURA.Y.URBANISMO</td>
-<td style="text-align: right;">0.042</td>
-<td style="text-align: right;">0.100</td>
-<td style="text-align: right;">-0.211</td>
-<td style="text-align: right;">0.064</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BELLAS.ARTES.Y.DISEÑO</td>
-<td style="text-align: right;">0.027</td>
-<td style="text-align: right;">0.208</td>
-<td style="text-align: right;">-0.282</td>
-<td style="text-align: right;">0.053</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CIENCIAS.AGROPECUARIAS</td>
-<td style="text-align: right;">0.021</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CIENCIAS.MILITARES.Y.NAVALES</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">0.138</td>
-<td style="text-align: right;">0.275</td>
-<td style="text-align: right;">-0.103</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CIENCIAS.NATURALES.Y.EXACTAS</td>
-<td style="text-align: right;">0.018</td>
-<td style="text-align: right;">1.939</td>
-<td style="text-align: right;">-1.351</td>
-<td style="text-align: right;">0.157</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CIENCIAS.SOCIALES</td>
-<td style="text-align: right;">0.034</td>
-<td style="text-align: right;">0.222</td>
-<td style="text-align: right;">0.166</td>
-<td style="text-align: right;">-0.164</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">COMUNICACIÓN..PERIODISMO.Y.PUBLICIDAD</td>
-<td style="text-align: right;">0.028</td>
-<td style="text-align: right;">0.170</td>
-<td style="text-align: right;">-0.074</td>
-<td style="text-align: right;">-0.077</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CONTADURÍA.Y.AFINES</td>
-<td style="text-align: right;">0.064</td>
-<td style="text-align: right;">0.323</td>
-<td style="text-align: right;">0.521</td>
-<td style="text-align: right;">0.063</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DERECHO</td>
-<td style="text-align: right;">0.067</td>
-<td style="text-align: right;">0.272</td>
-<td style="text-align: right;">-0.204</td>
-<td style="text-align: right;">-0.057</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ECONOMÍA</td>
-<td style="text-align: right;">0.014</td>
-<td style="text-align: right;">1.361</td>
-<td style="text-align: right;">-1.151</td>
-<td style="text-align: right;">-0.007</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ECONOMÍA..ADMINISTRACIÓN..CONTADURÍA.Y.AFINES…UNIVERSITARIA</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">3.449</td>
-<td style="text-align: right;">-1.708</td>
-<td style="text-align: right;">0.087</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">EDUCACIÓN</td>
-<td style="text-align: right;">0.069</td>
-<td style="text-align: right;">0.303</td>
-<td style="text-align: right;">0.485</td>
-<td style="text-align: right;">-0.142</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ENFERMERÍA</td>
-<td style="text-align: right;">0.025</td>
-<td style="text-align: right;">0.093</td>
-<td style="text-align: right;">0.281</td>
-<td style="text-align: right;">-0.027</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">GRUPO.REFERENCIA.NACIONAL</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.880</td>
-<td style="text-align: right;">0.914</td>
-<td style="text-align: right;">-0.133</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">GRUPO.REFERENCIA.NACIONAL.UNIVERSITARIO</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.242</td>
-<td style="text-align: right;">0.487</td>
-<td style="text-align: right;">0.018</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">HUMANIDADES</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">1.177</td>
-<td style="text-align: right;">-0.934</td>
-<td style="text-align: right;">-0.124</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">INGENIERÍA</td>
-<td style="text-align: right;">0.187</td>
-<td style="text-align: right;">0.403</td>
-<td style="text-align: right;">-0.477</td>
-<td style="text-align: right;">0.113</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MEDICINA</td>
-<td style="text-align: right;">0.045</td>
-<td style="text-align: right;">1.635</td>
-<td style="text-align: right;">-1.260</td>
-<td style="text-align: right;">0.170</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">PSICOLOGÍA</td>
-<td style="text-align: right;">0.070</td>
-<td style="text-align: right;">0.295</td>
-<td style="text-align: right;">0.369</td>
-<td style="text-align: right;">-0.165</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">RECREACIÓN.Y.DEPORTES</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">0.596</td>
-<td style="text-align: right;">0.761</td>
-<td style="text-align: right;">-0.011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SALUD</td>
-<td style="text-align: right;">0.059</td>
-<td style="text-align: right;">0.069</td>
-<td style="text-align: right;">0.252</td>
-<td style="text-align: right;">-0.045</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DISTANCIA</td>
-<td style="text-align: right;">0.115</td>
-<td style="text-align: right;">0.930</td>
-<td style="text-align: right;">0.946</td>
-<td style="text-align: right;">-0.076</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DISTANCIA.VIRTUAL</td>
-<td style="text-align: right;">0.070</td>
-<td style="text-align: right;">0.549</td>
-<td style="text-align: right;">0.735</td>
-<td style="text-align: right;">-0.047</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">PRESENCIAL</td>
-<td style="text-align: right;">0.815</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">-0.197</td>
-<td style="text-align: right;">0.015</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">INSTITUCIÓN.TECNOLÓGICA</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.859</td>
-<td style="text-align: right;">0.913</td>
-<td style="text-align: right;">0.039</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">INSTITUCIÓN.UNIVERSITARIA</td>
-<td style="text-align: right;">0.311</td>
-<td style="text-align: right;">0.350</td>
-<td style="text-align: right;">0.586</td>
-<td style="text-align: right;">-0.040</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">TÉCNICA.PROFESIONAL</td>
-<td style="text-align: right;">0.018</td>
-<td style="text-align: right;">0.861</td>
-<td style="text-align: right;">0.924</td>
-<td style="text-align: right;">0.034</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">UNIVERSIDAD</td>
-<td style="text-align: right;">0.642</td>
-<td style="text-align: right;">0.125</td>
-<td style="text-align: right;">-0.351</td>
-<td style="text-align: right;">0.017</td>
-</tr>
 </tbody>
 </table>
 </div>
 </div>
+<p>Los valores test y los cosenos cuadrados son:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">cbind</span>(sup<span class="sc">$</span>tv, sup<span class="sc">$</span>cos2), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 68%">
-<col style="width: 9%">
+<col style="width: 65%">
+<col style="width: 10%">
 <col style="width: 8%">
-<col style="width: 6%">
-<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1772,748 +1471,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">-2.727</td>
-<td style="text-align: right;">0.203</td>
-<td style="text-align: right;">0.975</td>
-<td style="text-align: right;">0.002</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">F</td>
-<td style="text-align: right;">34.096</td>
-<td style="text-align: right;">-18.393</td>
-<td style="text-align: right;">0.469</td>
-<td style="text-align: right;">0.041</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">-34.062</td>
-<td style="text-align: right;">18.390</td>
-<td style="text-align: right;">0.469</td>
-<td style="text-align: right;">0.041</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">3.357</td>
-<td style="text-align: right;">0.868</td>
-<td style="text-align: right;">0.742</td>
-<td style="text-align: right;">0.015</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">-50.143</td>
-<td style="text-align: right;">6.246</td>
-<td style="text-align: right;">0.958</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">50.846</td>
-<td style="text-align: right;">-6.698</td>
-<td style="text-align: right;">0.958</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">AMAZONAS</td>
-<td style="text-align: right;">3.254</td>
-<td style="text-align: right;">-1.522</td>
-<td style="text-align: right;">0.909</td>
-<td style="text-align: right;">0.060</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ANTIOQUIA</td>
-<td style="text-align: right;">-15.975</td>
-<td style="text-align: right;">1.142</td>
-<td style="text-align: right;">0.975</td>
-<td style="text-align: right;">0.002</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ARAUCA</td>
-<td style="text-align: right;">8.181</td>
-<td style="text-align: right;">2.141</td>
-<td style="text-align: right;">0.972</td>
-<td style="text-align: right;">0.020</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ATLANTICO</td>
-<td style="text-align: right;">-4.098</td>
-<td style="text-align: right;">3.967</td>
-<td style="text-align: right;">0.175</td>
-<td style="text-align: right;">0.050</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BOGOTÁ</td>
-<td style="text-align: right;">-57.800</td>
-<td style="text-align: right;">0.882</td>
-<td style="text-align: right;">0.954</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BOLIVAR</td>
-<td style="text-align: right;">16.437</td>
-<td style="text-align: right;">-0.458</td>
-<td style="text-align: right;">0.919</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BOYACA</td>
-<td style="text-align: right;">-7.558</td>
-<td style="text-align: right;">1.414</td>
-<td style="text-align: right;">0.563</td>
-<td style="text-align: right;">0.006</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CALDAS</td>
-<td style="text-align: right;">-2.135</td>
-<td style="text-align: right;">3.420</td>
-<td style="text-align: right;">0.398</td>
-<td style="text-align: right;">0.310</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CAQUETA</td>
-<td style="text-align: right;">14.682</td>
-<td style="text-align: right;">-2.032</td>
-<td style="text-align: right;">0.962</td>
-<td style="text-align: right;">0.006</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CASANARE</td>
-<td style="text-align: right;">8.272</td>
-<td style="text-align: right;">-3.367</td>
-<td style="text-align: right;">0.864</td>
-<td style="text-align: right;">0.043</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CAUCA</td>
-<td style="text-align: right;">9.738</td>
-<td style="text-align: right;">-4.567</td>
-<td style="text-align: right;">0.690</td>
-<td style="text-align: right;">0.046</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CESAR</td>
-<td style="text-align: right;">17.470</td>
-<td style="text-align: right;">-1.371</td>
-<td style="text-align: right;">0.971</td>
-<td style="text-align: right;">0.002</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CHOCO</td>
-<td style="text-align: right;">39.175</td>
-<td style="text-align: right;">-0.969</td>
-<td style="text-align: right;">0.986</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CORDOBA</td>
-<td style="text-align: right;">20.528</td>
-<td style="text-align: right;">0.853</td>
-<td style="text-align: right;">0.956</td>
-<td style="text-align: right;">0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CUNDINAMARCA</td>
-<td style="text-align: right;">3.045</td>
-<td style="text-align: right;">-5.928</td>
-<td style="text-align: right;">0.217</td>
-<td style="text-align: right;">0.250</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.492</td>
-<td style="text-align: right;">0.171</td>
-<td style="text-align: right;">0.061</td>
-<td style="text-align: right;">0.002</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">EXTRANJERO</td>
-<td style="text-align: right;">-2.900</td>
-<td style="text-align: right;">3.443</td>
-<td style="text-align: right;">0.474</td>
-<td style="text-align: right;">0.203</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">GUAINIA</td>
-<td style="text-align: right;">2.779</td>
-<td style="text-align: right;">-1.914</td>
-<td style="text-align: right;">0.823</td>
-<td style="text-align: right;">0.119</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">GUAVIARE</td>
-<td style="text-align: right;">5.855</td>
-<td style="text-align: right;">-2.092</td>
-<td style="text-align: right;">0.943</td>
-<td style="text-align: right;">0.037</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">HUILA</td>
-<td style="text-align: right;">16.133</td>
-<td style="text-align: right;">-2.542</td>
-<td style="text-align: right;">0.953</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">LA GUAJIRA</td>
-<td style="text-align: right;">23.186</td>
-<td style="text-align: right;">-6.450</td>
-<td style="text-align: right;">0.944</td>
-<td style="text-align: right;">0.022</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MAGDALENA</td>
-<td style="text-align: right;">9.260</td>
-<td style="text-align: right;">-2.807</td>
-<td style="text-align: right;">0.837</td>
-<td style="text-align: right;">0.023</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">META</td>
-<td style="text-align: right;">13.678</td>
-<td style="text-align: right;">2.223</td>
-<td style="text-align: right;">0.957</td>
-<td style="text-align: right;">0.008</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NARIÑO</td>
-<td style="text-align: right;">11.487</td>
-<td style="text-align: right;">-7.160</td>
-<td style="text-align: right;">0.695</td>
-<td style="text-align: right;">0.082</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NORTE SANTANDER</td>
-<td style="text-align: right;">9.884</td>
-<td style="text-align: right;">5.175</td>
-<td style="text-align: right;">0.838</td>
-<td style="text-align: right;">0.070</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">PUTUMAYO</td>
-<td style="text-align: right;">15.854</td>
-<td style="text-align: right;">-2.125</td>
-<td style="text-align: right;">0.976</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">QUINDIO</td>
-<td style="text-align: right;">-0.912</td>
-<td style="text-align: right;">2.790</td>
-<td style="text-align: right;">0.149</td>
-<td style="text-align: right;">0.421</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">RISARALDA</td>
-<td style="text-align: right;">3.421</td>
-<td style="text-align: right;">-1.176</td>
-<td style="text-align: right;">0.606</td>
-<td style="text-align: right;">0.022</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SAN ANDRES</td>
-<td style="text-align: right;">4.904</td>
-<td style="text-align: right;">1.003</td>
-<td style="text-align: right;">0.837</td>
-<td style="text-align: right;">0.011</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SANTANDER</td>
-<td style="text-align: right;">-5.233</td>
-<td style="text-align: right;">8.283</td>
-<td style="text-align: right;">0.390</td>
-<td style="text-align: right;">0.297</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SUCRE</td>
-<td style="text-align: right;">14.300</td>
-<td style="text-align: right;">-8.563</td>
-<td style="text-align: right;">0.796</td>
-<td style="text-align: right;">0.087</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">TOLIMA</td>
-<td style="text-align: right;">13.766</td>
-<td style="text-align: right;">-2.367</td>
-<td style="text-align: right;">0.931</td>
-<td style="text-align: right;">0.008</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">VALLE</td>
-<td style="text-align: right;">-2.287</td>
-<td style="text-align: right;">6.243</td>
-<td style="text-align: right;">0.253</td>
-<td style="text-align: right;">0.571</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">VAUPES</td>
-<td style="text-align: right;">6.178</td>
-<td style="text-align: right;">-3.125</td>
-<td style="text-align: right;">0.903</td>
-<td style="text-align: right;">0.070</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">VICHADA</td>
-<td style="text-align: right;">4.690</td>
-<td style="text-align: right;">-2.112</td>
-<td style="text-align: right;">0.897</td>
-<td style="text-align: right;">0.055</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Casado</td>
-<td style="text-align: right;">36.922</td>
-<td style="text-align: right;">-7.304</td>
-<td style="text-align: right;">0.909</td>
-<td style="text-align: right;">0.011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">0.314</td>
-<td style="text-align: right;">0.309</td>
-<td style="text-align: right;">0.054</td>
-<td style="text-align: right;">0.016</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Separado y/o Viudo</td>
-<td style="text-align: right;">12.288</td>
-<td style="text-align: right;">-1.486</td>
-<td style="text-align: right;">0.906</td>
-<td style="text-align: right;">0.004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Soltero</td>
-<td style="text-align: right;">-67.456</td>
-<td style="text-align: right;">10.268</td>
-<td style="text-align: right;">0.936</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Unión libre</td>
-<td style="text-align: right;">52.636</td>
-<td style="text-align: right;">-6.744</td>
-<td style="text-align: right;">0.952</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Menos de 500 mil</td>
-<td style="text-align: right;">-4.090</td>
-<td style="text-align: right;">1.672</td>
-<td style="text-align: right;">0.100</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Entre 500 mil y menos de 1 millón</td>
-<td style="text-align: right;">2.954</td>
-<td style="text-align: right;">1.563</td>
-<td style="text-align: right;">0.100</td>
-<td style="text-align: right;">0.009</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Entre 1 millón y menos de 2.5 millones</td>
-<td style="text-align: right;">64.353</td>
-<td style="text-align: right;">-9.549</td>
-<td style="text-align: right;">0.975</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Entre 2.5 millones y menos de 4 millones</td>
-<td style="text-align: right;">38.104</td>
-<td style="text-align: right;">-4.551</td>
-<td style="text-align: right;">0.979</td>
-<td style="text-align: right;">0.004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Entre 4 millones y menos de 5.5 millones</td>
-<td style="text-align: right;">3.768</td>
-<td style="text-align: right;">1.598</td>
-<td style="text-align: right;">0.368</td>
-<td style="text-align: right;">0.020</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Entre 5.5 millones y menos de 7 millones</td>
-<td style="text-align: right;">-14.863</td>
-<td style="text-align: right;">2.582</td>
-<td style="text-align: right;">0.783</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Más de 7 millones</td>
-<td style="text-align: right;">-108.085</td>
-<td style="text-align: right;">11.015</td>
-<td style="text-align: right;">0.944</td>
-<td style="text-align: right;">0.003</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No pagó matrícula</td>
-<td style="text-align: right;">3.259</td>
-<td style="text-align: right;">-5.795</td>
-<td style="text-align: right;">0.052</td>
-<td style="text-align: right;">0.050</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">-9.770</td>
-<td style="text-align: right;">12.174</td>
-<td style="text-align: right;">0.490</td>
-<td style="text-align: right;">0.231</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">-9.941</td>
-<td style="text-align: right;">12.605</td>
-<td style="text-align: right;">0.486</td>
-<td style="text-align: right;">0.237</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No realizó ninguna prueba de preparación</td>
-<td style="text-align: right;">-35.046</td>
-<td style="text-align: right;">3.639</td>
-<td style="text-align: right;">0.970</td>
-<td style="text-align: right;">0.003</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Repasó por cuenta propia</td>
-<td style="text-align: right;">27.119</td>
-<td style="text-align: right;">-2.020</td>
-<td style="text-align: right;">0.925</td>
-<td style="text-align: right;">0.002</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Tomó un curso de preparación</td>
-<td style="text-align: right;">10.170</td>
-<td style="text-align: right;">-7.324</td>
-<td style="text-align: right;">0.668</td>
-<td style="text-align: right;">0.105</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">06 o menos</td>
-<td style="text-align: right;">7.333</td>
-<td style="text-align: right;">-0.671</td>
-<td style="text-align: right;">0.978</td>
-<td style="text-align: right;">0.002</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">07</td>
-<td style="text-align: right;">6.244</td>
-<td style="text-align: right;">-6.820</td>
-<td style="text-align: right;">0.486</td>
-<td style="text-align: right;">0.176</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">08</td>
-<td style="text-align: right;">14.802</td>
-<td style="text-align: right;">-7.964</td>
-<td style="text-align: right;">0.830</td>
-<td style="text-align: right;">0.073</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">09</td>
-<td style="text-align: right;">11.342</td>
-<td style="text-align: right;">-1.697</td>
-<td style="text-align: right;">0.873</td>
-<td style="text-align: right;">0.006</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">10</td>
-<td style="text-align: right;">5.604</td>
-<td style="text-align: right;">3.027</td>
-<td style="text-align: right;">0.638</td>
-<td style="text-align: right;">0.056</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">11</td>
-<td style="text-align: right;">-35.464</td>
-<td style="text-align: right;">8.449</td>
-<td style="text-align: right;">0.970</td>
-<td style="text-align: right;">0.017</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">12 o más</td>
-<td style="text-align: right;">-42.746</td>
-<td style="text-align: right;">8.025</td>
-<td style="text-align: right;">0.976</td>
-<td style="text-align: right;">0.010</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">-9.770</td>
-<td style="text-align: right;">12.174</td>
-<td style="text-align: right;">0.490</td>
-<td style="text-align: right;">0.231</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">35.530</td>
-<td style="text-align: right;">-32.287</td>
-<td style="text-align: right;">0.298</td>
-<td style="text-align: right;">0.075</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Educación profesional completa</td>
-<td style="text-align: right;">-50.250</td>
-<td style="text-align: right;">10.417</td>
-<td style="text-align: right;">0.873</td>
-<td style="text-align: right;">0.011</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Educación profesional incompleta</td>
-<td style="text-align: right;">-18.926</td>
-<td style="text-align: right;">5.140</td>
-<td style="text-align: right;">0.922</td>
-<td style="text-align: right;">0.021</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ninguno</td>
-<td style="text-align: right;">31.204</td>
-<td style="text-align: right;">-2.237</td>
-<td style="text-align: right;">0.977</td>
-<td style="text-align: right;">0.002</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No Aplica</td>
-<td style="text-align: right;">0.200</td>
-<td style="text-align: right;">0.494</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">0.074</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No sabe</td>
-<td style="text-align: right;">-10.785</td>
-<td style="text-align: right;">1.658</td>
-<td style="text-align: right;">0.948</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Postgrado</td>
-<td style="text-align: right;">-67.250</td>
-<td style="text-align: right;">11.518</td>
-<td style="text-align: right;">0.909</td>
-<td style="text-align: right;">0.008</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Primaria completa</td>
-<td style="text-align: right;">29.497</td>
-<td style="text-align: right;">-3.858</td>
-<td style="text-align: right;">0.967</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Primaria incompleta</td>
-<td style="text-align: right;">51.808</td>
-<td style="text-align: right;">-8.306</td>
-<td style="text-align: right;">0.944</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Secundaria (Bachillerato) completa</td>
-<td style="text-align: right;">1.640</td>
-<td style="text-align: right;">4.047</td>
-<td style="text-align: right;">0.187</td>
-<td style="text-align: right;">0.346</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Secundaria (Bachillerato) incompleta</td>
-<td style="text-align: right;">14.867</td>
-<td style="text-align: right;">-0.900</td>
-<td style="text-align: right;">0.970</td>
-<td style="text-align: right;">0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Técnica o tecnológica completa</td>
-<td style="text-align: right;">-12.964</td>
-<td style="text-align: right;">4.287</td>
-<td style="text-align: right;">0.788</td>
-<td style="text-align: right;">0.026</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Técnica o tecnológica incompleta</td>
-<td style="text-align: right;">1.132</td>
-<td style="text-align: right;">0.901</td>
-<td style="text-align: right;">0.271</td>
-<td style="text-align: right;">0.052</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">33.555</td>
-<td style="text-align: right;">-32.213</td>
-<td style="text-align: right;">0.275</td>
-<td style="text-align: right;">0.077</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Educación profesional completa</td>
-<td style="text-align: right;">-53.817</td>
-<td style="text-align: right;">13.585</td>
-<td style="text-align: right;">0.853</td>
-<td style="text-align: right;">0.016</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Educación profesional incompleta</td>
-<td style="text-align: right;">-19.659</td>
-<td style="text-align: right;">6.891</td>
-<td style="text-align: right;">0.885</td>
-<td style="text-align: right;">0.033</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ninguno</td>
-<td style="text-align: right;">28.508</td>
-<td style="text-align: right;">-3.847</td>
-<td style="text-align: right;">0.973</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No Aplica</td>
-<td style="text-align: right;">5.065</td>
-<td style="text-align: right;">0.990</td>
-<td style="text-align: right;">0.971</td>
-<td style="text-align: right;">0.011</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No sabe</td>
-<td style="text-align: right;">0.884</td>
-<td style="text-align: right;">2.141</td>
-<td style="text-align: right;">0.173</td>
-<td style="text-align: right;">0.308</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Postgrado</td>
-<td style="text-align: right;">-65.794</td>
-<td style="text-align: right;">11.559</td>
-<td style="text-align: right;">0.914</td>
-<td style="text-align: right;">0.009</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Primaria completa</td>
-<td style="text-align: right;">31.096</td>
-<td style="text-align: right;">-5.467</td>
-<td style="text-align: right;">0.946</td>
-<td style="text-align: right;">0.009</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Primaria incompleta</td>
-<td style="text-align: right;">51.800</td>
-<td style="text-align: right;">-8.149</td>
-<td style="text-align: right;">0.946</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Secundaria (Bachillerato) completa</td>
-<td style="text-align: right;">9.245</td>
-<td style="text-align: right;">1.828</td>
-<td style="text-align: right;">0.950</td>
-<td style="text-align: right;">0.011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Secundaria (Bachillerato) incompleta</td>
-<td style="text-align: right;">18.136</td>
-<td style="text-align: right;">-3.288</td>
-<td style="text-align: right;">0.932</td>
-<td style="text-align: right;">0.009</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Técnica o tecnológica completa</td>
-<td style="text-align: right;">-14.013</td>
-<td style="text-align: right;">3.495</td>
-<td style="text-align: right;">0.791</td>
-<td style="text-align: right;">0.015</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Técnica o tecnológica incompleta</td>
-<td style="text-align: right;">1.616</td>
-<td style="text-align: right;">2.936</td>
-<td style="text-align: right;">0.356</td>
-<td style="text-align: right;">0.357</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">-9.940</td>
-<td style="text-align: right;">12.580</td>
-<td style="text-align: right;">0.485</td>
-<td style="text-align: right;">0.236</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Empleado con cargo como director o gerente general</td>
-<td style="text-align: right;">-27.293</td>
-<td style="text-align: right;">4.008</td>
-<td style="text-align: right;">0.832</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Empleado de nivel auxiliar o administrativo</td>
-<td style="text-align: right;">-6.634</td>
-<td style="text-align: right;">-0.466</td>
-<td style="text-align: right;">0.917</td>
-<td style="text-align: right;">0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Empleado de nivel directivo</td>
-<td style="text-align: right;">-17.778</td>
-<td style="text-align: right;">0.393</td>
-<td style="text-align: right;">0.900</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Empleado de nivel técnico o profesional</td>
-<td style="text-align: right;">-37.509</td>
-<td style="text-align: right;">7.923</td>
-<td style="text-align: right;">0.944</td>
-<td style="text-align: right;">0.013</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Empleado obrero u operario</td>
-<td style="text-align: right;">14.571</td>
-<td style="text-align: right;">-5.124</td>
-<td style="text-align: right;">0.764</td>
-<td style="text-align: right;">0.029</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Empresario</td>
-<td style="text-align: right;">-13.965</td>
-<td style="text-align: right;">5.659</td>
-<td style="text-align: right;">0.491</td>
-<td style="text-align: right;">0.024</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Hogar</td>
-<td style="text-align: right;">17.272</td>
-<td style="text-align: right;">-1.817</td>
-<td style="text-align: right;">0.958</td>
-<td style="text-align: right;">0.003</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Otra actividad u ocupación</td>
-<td style="text-align: right;">19.031</td>
-<td style="text-align: right;">-6.551</td>
-<td style="text-align: right;">0.839</td>
-<td style="text-align: right;">0.030</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Pensionado</td>
-<td style="text-align: right;">-6.477</td>
-<td style="text-align: right;">1.559</td>
-<td style="text-align: right;">0.778</td>
-<td style="text-align: right;">0.014</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Pequeño empresario</td>
-<td style="text-align: right;">-8.904</td>
-<td style="text-align: right;">1.649</td>
-<td style="text-align: right;">0.835</td>
-<td style="text-align: right;">0.009</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Profesional independiente</td>
-<td style="text-align: right;">-29.377</td>
-<td style="text-align: right;">5.573</td>
-<td style="text-align: right;">0.895</td>
-<td style="text-align: right;">0.010</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Trabajador por cuenta propia</td>
-<td style="text-align: right;">37.567</td>
-<td style="text-align: right;">-6.772</td>
-<td style="text-align: right;">0.898</td>
-<td style="text-align: right;">0.009</td>
-</tr>
 <tr class="odd">
 <td style="text-align: left;">Desconocido</td>
 <td style="text-align: right;">-9.940</td>
@@ -2556,496 +1513,827 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">0.003</td>
 <td style="text-align: right;">0.023</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-9-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td style="text-align: left;">Empresario</td>
-<td style="text-align: right;">-8.260</td>
-<td style="text-align: right;">3.769</td>
-<td style="text-align: right;">0.374</td>
-<td style="text-align: right;">0.024</td>
+<td style="text-align: left;">X0</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.420</td>
+<td style="text-align: right;">-0.627</td>
+<td style="text-align: right;">0.043</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Hogar</td>
-<td style="text-align: right;">44.461</td>
-<td style="text-align: right;">-9.932</td>
-<td style="text-align: right;">0.901</td>
-<td style="text-align: right;">0.014</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Otra actividad u ocupación</td>
-<td style="text-align: right;">17.629</td>
-<td style="text-align: right;">-4.433</td>
-<td style="text-align: right;">0.947</td>
-<td style="text-align: right;">0.018</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Pensionado</td>
-<td style="text-align: right;">-7.192</td>
-<td style="text-align: right;">1.429</td>
-<td style="text-align: right;">0.895</td>
-<td style="text-align: right;">0.011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Pequeño empresario</td>
-<td style="text-align: right;">-5.898</td>
-<td style="text-align: right;">3.725</td>
-<td style="text-align: right;">0.723</td>
-<td style="text-align: right;">0.088</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Profesional Independiente</td>
-<td style="text-align: right;">-25.147</td>
-<td style="text-align: right;">4.028</td>
-<td style="text-align: right;">0.845</td>
+<td style="text-align: left;">Menos.de.10.horas</td>
+<td style="text-align: right;">0.145</td>
 <td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;">-0.002</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Trabajador por cuenta propia</td>
-<td style="text-align: right;">11.898</td>
-<td style="text-align: right;">-0.721</td>
-<td style="text-align: right;">0.856</td>
-<td style="text-align: right;">0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">28.311</td>
-<td style="text-align: right;">-30.595</td>
-<td style="text-align: right;">0.223</td>
-<td style="text-align: right;">0.079</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Estrato 1</td>
-<td style="text-align: right;">62.128</td>
-<td style="text-align: right;">-11.352</td>
-<td style="text-align: right;">0.941</td>
-<td style="text-align: right;">0.010</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Estrato 2</td>
-<td style="text-align: right;">22.672</td>
-<td style="text-align: right;">-1.481</td>
-<td style="text-align: right;">0.895</td>
-<td style="text-align: right;">0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Estrato 3</td>
-<td style="text-align: right;">-27.797</td>
-<td style="text-align: right;">10.989</td>
-<td style="text-align: right;">0.799</td>
-<td style="text-align: right;">0.038</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Estrato 4</td>
-<td style="text-align: right;">-53.179</td>
-<td style="text-align: right;">14.184</td>
-<td style="text-align: right;">0.847</td>
-<td style="text-align: right;">0.018</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Estrato 5</td>
-<td style="text-align: right;">-46.602</td>
-<td style="text-align: right;">8.395</td>
-<td style="text-align: right;">0.839</td>
-<td style="text-align: right;">0.008</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Estrato 6</td>
-<td style="text-align: right;">-44.138</td>
-<td style="text-align: right;">7.571</td>
-<td style="text-align: right;">0.798</td>
+<td style="text-align: left;">Entre.11.y.20.horas</td>
+<td style="text-align: right;">0.168</td>
 <td style="text-align: right;">0.007</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Sin Estrato</td>
-<td style="text-align: right;">9.259</td>
-<td style="text-align: right;">-0.249</td>
-<td style="text-align: right;">0.984</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">28.126</td>
-<td style="text-align: right;">-30.254</td>
-<td style="text-align: right;">0.223</td>
-<td style="text-align: right;">0.078</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">54.294</td>
-<td style="text-align: right;">-14.556</td>
-<td style="text-align: right;">0.936</td>
-<td style="text-align: right;">0.020</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">-63.079</td>
-<td style="text-align: right;">29.847</td>
-<td style="text-align: right;">0.711</td>
-<td style="text-align: right;">0.048</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">28.194</td>
-<td style="text-align: right;">-28.951</td>
-<td style="text-align: right;">0.232</td>
-<td style="text-align: right;">0.074</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">55.102</td>
-<td style="text-align: right;">-13.301</td>
-<td style="text-align: right;">0.951</td>
-<td style="text-align: right;">0.017</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">-63.917</td>
-<td style="text-align: right;">28.273</td>
-<td style="text-align: right;">0.739</td>
-<td style="text-align: right;">0.044</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">28.213</td>
-<td style="text-align: right;">-29.389</td>
-<td style="text-align: right;">0.234</td>
-<td style="text-align: right;">0.077</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">42.894</td>
-<td style="text-align: right;">-4.578</td>
-<td style="text-align: right;">0.963</td>
-<td style="text-align: right;">0.003</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">-53.632</td>
-<td style="text-align: right;">20.242</td>
-<td style="text-align: right;">0.712</td>
-<td style="text-align: right;">0.031</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">31.888</td>
-<td style="text-align: right;">-27.900</td>
-<td style="text-align: right;">0.300</td>
-<td style="text-align: right;">0.070</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">65.164</td>
-<td style="text-align: right;">-7.824</td>
-<td style="text-align: right;">0.948</td>
-<td style="text-align: right;">0.004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">-80.132</td>
-<td style="text-align: right;">20.666</td>
-<td style="text-align: right;">0.840</td>
-<td style="text-align: right;">0.017</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">27.520</td>
-<td style="text-align: right;">-30.203</td>
-<td style="text-align: right;">0.217</td>
-<td style="text-align: right;">0.079</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">20.479</td>
-<td style="text-align: right;">-2.715</td>
-<td style="text-align: right;">0.821</td>
-<td style="text-align: right;">0.004</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">-31.978</td>
-<td style="text-align: right;">16.305</td>
-<td style="text-align: right;">0.504</td>
-<td style="text-align: right;">0.040</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">31.996</td>
-<td style="text-align: right;">-28.180</td>
-<td style="text-align: right;">0.303</td>
 <td style="text-align: right;">0.071</td>
+<td style="text-align: right;">0.005</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">50.808</td>
-<td style="text-align: right;">-5.244</td>
-<td style="text-align: right;">0.928</td>
+<td style="text-align: left;">Entre.21.y.30.horas</td>
+<td style="text-align: right;">0.124</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.089</td>
 <td style="text-align: right;">0.003</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">-68.333</td>
-<td style="text-align: right;">19.267</td>
-<td style="text-align: right;">0.818</td>
-<td style="text-align: right;">0.020</td>
+<td style="text-align: left;">Más.de.30.horas</td>
+<td style="text-align: right;">0.350</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: right;">0.130</td>
+<td style="text-align: right;">0.025</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">30.325</td>
-<td style="text-align: right;">-26.336</td>
-<td style="text-align: right;">0.293</td>
-<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.054</td>
+<td style="text-align: right;">1.158</td>
+<td style="text-align: right;">0.441</td>
+<td style="text-align: right;">-0.306</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">-52.518</td>
-<td style="text-align: right;">10.554</td>
-<td style="text-align: right;">0.793</td>
-<td style="text-align: right;">0.010</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">39.236</td>
-<td style="text-align: right;">2.249</td>
-<td style="text-align: right;">0.964</td>
-<td style="text-align: right;">0.001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Desconocido</td>
-<td style="text-align: right;">32.298</td>
-<td style="text-align: right;">-25.192</td>
-<td style="text-align: right;">0.331</td>
-<td style="text-align: right;">0.061</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">34.664</td>
-<td style="text-align: right;">0.515</td>
-<td style="text-align: right;">0.888</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Si</td>
-<td style="text-align: right;">-58.812</td>
-<td style="text-align: right;">15.208</td>
-<td style="text-align: right;">0.836</td>
-<td style="text-align: right;">0.017</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">0</td>
 <td style="text-align: right;">-57.407</td>
 <td style="text-align: right;">7.179</td>
 <td style="text-align: right;">0.934</td>
 <td style="text-align: right;">0.004</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Menos de 10 horas</td>
 <td style="text-align: right;">4.082</td>
 <td style="text-align: right;">-0.328</td>
 <td style="text-align: right;">0.323</td>
 <td style="text-align: right;">0.001</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Entre 11 y 20 horas</td>
 <td style="text-align: right;">6.775</td>
 <td style="text-align: right;">0.872</td>
 <td style="text-align: right;">0.695</td>
 <td style="text-align: right;">0.003</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Entre 21 y 30 horas</td>
 <td style="text-align: right;">7.075</td>
 <td style="text-align: right;">0.475</td>
 <td style="text-align: right;">0.728</td>
 <td style="text-align: right;">0.001</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Más de 30 horas</td>
 <td style="text-align: right;">20.179</td>
 <td style="text-align: right;">6.980</td>
 <td style="text-align: right;">0.804</td>
 <td style="text-align: right;">0.029</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Desconocido</td>
 <td style="text-align: right;">22.262</td>
 <td style="text-align: right;">-27.975</td>
 <td style="text-align: right;">0.168</td>
 <td style="text-align: right;">0.081</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="variables-relacionadas-con-la-información-académica" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-académica"><span class="header-section-number">3.2</span> Variables relacionadas con la información académica</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Capacitación examen</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Semestre que cursa</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Grupo referencia</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Modalidad</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">Carácter académico</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 61%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">0.276</td>
+<td style="text-align: right;">-0.366</td>
+<td style="text-align: right;">0.256</td>
+</tr>
 <tr class="even">
+<td style="text-align: left;">No.realizó.ninguna.prueba.de.preparación</td>
+<td style="text-align: right;">0.218</td>
+<td style="text-align: right;">0.102</td>
+<td style="text-align: right;">-0.314</td>
+<td style="text-align: right;">0.018</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Repasó.por.cuenta.propia</td>
+<td style="text-align: right;">0.671</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.090</td>
+<td style="text-align: right;">-0.004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tomó.un.curso.de.preparación</td>
+<td style="text-align: right;">0.095</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">0.149</td>
+<td style="text-align: right;">-0.059</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 60%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">-9.941</td>
+<td style="text-align: right;">12.605</td>
+<td style="text-align: right;">0.486</td>
+<td style="text-align: right;">0.237</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No realizó ninguna prueba de preparación</td>
+<td style="text-align: right;">-35.046</td>
+<td style="text-align: right;">3.639</td>
+<td style="text-align: right;">0.970</td>
+<td style="text-align: right;">0.003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Repasó por cuenta propia</td>
+<td style="text-align: right;">27.119</td>
+<td style="text-align: right;">-2.020</td>
+<td style="text-align: right;">0.925</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tomó un curso de preparación</td>
+<td style="text-align: right;">10.170</td>
+<td style="text-align: right;">-7.324</td>
+<td style="text-align: right;">0.668</td>
+<td style="text-align: right;">0.105</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">X06.o.menos</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.071</td>
+<td style="text-align: right;">0.264</td>
+<td style="text-align: right;">-0.013</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">X07</td>
+<td style="text-align: right;">0.076</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">0.103</td>
+<td style="text-align: right;">-0.062</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">X08</td>
+<td style="text-align: right;">0.248</td>
+<td style="text-align: right;">0.018</td>
+<td style="text-align: right;">0.122</td>
+<td style="text-align: right;">-0.036</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">X09</td>
+<td style="text-align: right;">0.326</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.077</td>
+<td style="text-align: right;">-0.006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">X10</td>
+<td style="text-align: right;">0.235</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">0.014</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">X11</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">0.644</td>
+<td style="text-align: right;">-0.790</td>
+<td style="text-align: right;">0.104</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">X12.o.más</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">1.054</td>
+<td style="text-align: right;">-1.015</td>
+<td style="text-align: right;">0.105</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.249</td>
+<td style="text-align: right;">-0.349</td>
+<td style="text-align: right;">0.240</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">06 o menos</td>
+<td style="text-align: right;">7.333</td>
+<td style="text-align: right;">-0.671</td>
+<td style="text-align: right;">0.978</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">07</td>
+<td style="text-align: right;">6.244</td>
+<td style="text-align: right;">-6.820</td>
+<td style="text-align: right;">0.486</td>
+<td style="text-align: right;">0.176</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">08</td>
+<td style="text-align: right;">14.802</td>
+<td style="text-align: right;">-7.964</td>
+<td style="text-align: right;">0.830</td>
+<td style="text-align: right;">0.073</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">09</td>
+<td style="text-align: right;">11.342</td>
+<td style="text-align: right;">-1.697</td>
+<td style="text-align: right;">0.873</td>
+<td style="text-align: right;">0.006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10</td>
+<td style="text-align: right;">5.604</td>
+<td style="text-align: right;">3.027</td>
+<td style="text-align: right;">0.638</td>
+<td style="text-align: right;">0.056</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">11</td>
+<td style="text-align: right;">-35.464</td>
+<td style="text-align: right;">8.449</td>
+<td style="text-align: right;">0.970</td>
+<td style="text-align: right;">0.017</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 70%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ADMINISTRACIÓN.Y.AFINES</td>
+<td style="text-align: right;">0.180</td>
+<td style="text-align: right;">0.224</td>
+<td style="text-align: right;">0.470</td>
+<td style="text-align: right;">-0.014</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ARQUITECTURA.Y.URBANISMO</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">0.100</td>
+<td style="text-align: right;">-0.211</td>
+<td style="text-align: right;">0.064</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BELLAS.ARTES.Y.DISEÑO</td>
+<td style="text-align: right;">0.027</td>
+<td style="text-align: right;">0.208</td>
+<td style="text-align: right;">-0.282</td>
+<td style="text-align: right;">0.053</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CIENCIAS.AGROPECUARIAS</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CIENCIAS.MILITARES.Y.NAVALES</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.138</td>
+<td style="text-align: right;">0.275</td>
+<td style="text-align: right;">-0.103</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CIENCIAS.NATURALES.Y.EXACTAS</td>
+<td style="text-align: right;">0.018</td>
+<td style="text-align: right;">1.939</td>
+<td style="text-align: right;">-1.351</td>
+<td style="text-align: right;">0.157</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CIENCIAS.SOCIALES</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">0.222</td>
+<td style="text-align: right;">0.166</td>
+<td style="text-align: right;">-0.164</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">COMUNICACIÓN..PERIODISMO.Y.PUBLICIDAD</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">0.170</td>
+<td style="text-align: right;">-0.074</td>
+<td style="text-align: right;">-0.077</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTADURÍA.Y.AFINES</td>
+<td style="text-align: right;">0.064</td>
+<td style="text-align: right;">0.323</td>
+<td style="text-align: right;">0.521</td>
+<td style="text-align: right;">0.063</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DERECHO</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.272</td>
+<td style="text-align: right;">-0.204</td>
+<td style="text-align: right;">-0.057</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ECONOMÍA</td>
+<td style="text-align: right;">0.014</td>
+<td style="text-align: right;">1.361</td>
+<td style="text-align: right;">-1.151</td>
+<td style="text-align: right;">-0.007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ECONOMÍA..ADMINISTRACIÓN..CONTADURÍA.Y.AFINES…UNIVERSITARIA</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">3.449</td>
+<td style="text-align: right;">-1.708</td>
+<td style="text-align: right;">0.087</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EDUCACIÓN</td>
+<td style="text-align: right;">0.069</td>
+<td style="text-align: right;">0.303</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">-0.142</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENFERMERÍA</td>
+<td style="text-align: right;">0.025</td>
+<td style="text-align: right;">0.093</td>
+<td style="text-align: right;">0.281</td>
+<td style="text-align: right;">-0.027</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GRUPO.REFERENCIA.NACIONAL</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.880</td>
+<td style="text-align: right;">0.914</td>
+<td style="text-align: right;">-0.133</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GRUPO.REFERENCIA.NACIONAL.UNIVERSITARIO</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">0.242</td>
+<td style="text-align: right;">0.487</td>
+<td style="text-align: right;">0.018</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HUMANIDADES</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">1.177</td>
+<td style="text-align: right;">-0.934</td>
+<td style="text-align: right;">-0.124</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INGENIERÍA</td>
+<td style="text-align: right;">0.187</td>
+<td style="text-align: right;">0.403</td>
+<td style="text-align: right;">-0.477</td>
+<td style="text-align: right;">0.113</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MEDICINA</td>
+<td style="text-align: right;">0.045</td>
+<td style="text-align: right;">1.635</td>
+<td style="text-align: right;">-1.260</td>
+<td style="text-align: right;">0.170</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PSICOLOGÍA</td>
+<td style="text-align: right;">0.070</td>
+<td style="text-align: right;">0.295</td>
+<td style="text-align: right;">0.369</td>
+<td style="text-align: right;">-0.165</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RECREACIÓN.Y.DEPORTES</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.596</td>
+<td style="text-align: right;">0.761</td>
+<td style="text-align: right;">-0.011</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SALUD</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">0.069</td>
+<td style="text-align: right;">0.252</td>
+<td style="text-align: right;">-0.045</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td style="text-align: left;">ADMINISTRACIÓN Y AFINES</td>
 <td style="text-align: right;">46.536</td>
 <td style="text-align: right;">-2.537</td>
 <td style="text-align: right;">0.983</td>
 <td style="text-align: right;">0.001</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">ARQUITECTURA Y URBANISMO</td>
 <td style="text-align: right;">-9.290</td>
 <td style="text-align: right;">5.130</td>
 <td style="text-align: right;">0.443</td>
 <td style="text-align: right;">0.041</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">BELLAS ARTES Y DISEÑO</td>
 <td style="text-align: right;">-10.016</td>
 <td style="text-align: right;">3.400</td>
 <td style="text-align: right;">0.382</td>
 <td style="text-align: right;">0.013</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">CIENCIAS AGROPECUARIAS</td>
 <td style="text-align: right;">1.213</td>
 <td style="text-align: right;">0.026</td>
 <td style="text-align: right;">0.054</td>
 <td style="text-align: right;">0.000</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">CIENCIAS MILITARES Y NAVALES</td>
 <td style="text-align: right;">4.580</td>
 <td style="text-align: right;">-3.099</td>
 <td style="text-align: right;">0.550</td>
 <td style="text-align: right;">0.076</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">CIENCIAS NATURALES Y EXACTAS</td>
 <td style="text-align: right;">-38.797</td>
 <td style="text-align: right;">8.163</td>
 <td style="text-align: right;">0.942</td>
 <td style="text-align: right;">0.013</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DISTANCIA</td>
+<td style="text-align: right;">0.115</td>
+<td style="text-align: right;">0.930</td>
+<td style="text-align: right;">0.946</td>
+<td style="text-align: right;">-0.076</td>
+</tr>
 <tr class="even">
-<td style="text-align: left;">CIENCIAS SOCIALES</td>
-<td style="text-align: right;">6.574</td>
-<td style="text-align: right;">-11.792</td>
-<td style="text-align: right;">0.124</td>
-<td style="text-align: right;">0.121</td>
+<td style="text-align: left;">DISTANCIA.VIRTUAL</td>
+<td style="text-align: right;">0.070</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">0.735</td>
+<td style="text-align: right;">-0.047</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">COMUNICACIÓN, PERIODISMO Y PUBLICIDAD</td>
-<td style="text-align: right;">-2.652</td>
-<td style="text-align: right;">-4.981</td>
-<td style="text-align: right;">0.032</td>
-<td style="text-align: right;">0.034</td>
+<td style="text-align: left;">PRESENCIAL</td>
+<td style="text-align: right;">0.815</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">-0.197</td>
+<td style="text-align: right;">0.015</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">CONTADURÍA Y AFINES</td>
-<td style="text-align: right;">28.824</td>
-<td style="text-align: right;">6.306</td>
-<td style="text-align: right;">0.842</td>
-<td style="text-align: right;">0.012</td>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
 </tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td style="text-align: left;">DERECHO</td>
-<td style="text-align: right;">-11.504</td>
-<td style="text-align: right;">-5.799</td>
-<td style="text-align: right;">0.153</td>
-<td style="text-align: right;">0.012</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ECONOMÍA</td>
-<td style="text-align: right;">-28.713</td>
-<td style="text-align: right;">-0.321</td>
-<td style="text-align: right;">0.974</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ECONOMÍA, ADMINISTRACIÓN, CONTADURÍA Y AFINES - UNIVERSITARIA</td>
-<td style="text-align: right;">-10.700</td>
-<td style="text-align: right;">0.991</td>
-<td style="text-align: right;">0.845</td>
-<td style="text-align: right;">0.002</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">EDUCACIÓN</td>
-<td style="text-align: right;">27.930</td>
-<td style="text-align: right;">-14.863</td>
-<td style="text-align: right;">0.777</td>
-<td style="text-align: right;">0.067</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ENFERMERÍA</td>
-<td style="text-align: right;">9.487</td>
-<td style="text-align: right;">-1.632</td>
-<td style="text-align: right;">0.851</td>
-<td style="text-align: right;">0.008</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">GRUPO REFERENCIA NACIONAL</td>
-<td style="text-align: right;">2.163</td>
-<td style="text-align: right;">-0.571</td>
-<td style="text-align: right;">0.949</td>
-<td style="text-align: right;">0.020</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">GRUPO REFERENCIA NACIONAL UNIVERSITARIO</td>
-<td style="text-align: right;">18.084</td>
-<td style="text-align: right;">1.181</td>
-<td style="text-align: right;">0.980</td>
-<td style="text-align: right;">0.001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">HUMANIDADES</td>
-<td style="text-align: right;">-16.704</td>
-<td style="text-align: right;">-4.034</td>
-<td style="text-align: right;">0.741</td>
-<td style="text-align: right;">0.013</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">INGENIERÍA</td>
-<td style="text-align: right;">-48.350</td>
-<td style="text-align: right;">20.809</td>
-<td style="text-align: right;">0.566</td>
-<td style="text-align: right;">0.032</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MEDICINA</td>
-<td style="text-align: right;">-57.758</td>
-<td style="text-align: right;">14.145</td>
-<td style="text-align: right;">0.971</td>
-<td style="text-align: right;">0.018</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">PSICOLOGÍA</td>
-<td style="text-align: right;">21.393</td>
-<td style="text-align: right;">-17.311</td>
-<td style="text-align: right;">0.461</td>
-<td style="text-align: right;">0.092</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">RECREACIÓN Y DEPORTES</td>
-<td style="text-align: right;">12.238</td>
-<td style="text-align: right;">-0.328</td>
-<td style="text-align: right;">0.971</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SALUD</td>
-<td style="text-align: right;">13.309</td>
-<td style="text-align: right;">-4.329</td>
-<td style="text-align: right;">0.921</td>
-<td style="text-align: right;">0.030</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">DISTANCIA</td>
 <td style="text-align: right;">71.978</td>
 <td style="text-align: right;">-10.482</td>
 <td style="text-align: right;">0.962</td>
 <td style="text-align: right;">0.006</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">DISTANCIA VIRTUAL</td>
 <td style="text-align: right;">42.679</td>
 <td style="text-align: right;">-4.965</td>
 <td style="text-align: right;">0.983</td>
 <td style="text-align: right;">0.004</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">PRESENCIAL</td>
 <td style="text-align: right;">-87.179</td>
 <td style="text-align: right;">11.872</td>
 <td style="text-align: right;">0.971</td>
 <td style="text-align: right;">0.005</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">INSTITUCIÓN.TECNOLÓGICA</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.859</td>
+<td style="text-align: right;">0.913</td>
+<td style="text-align: right;">0.039</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INSTITUCIÓN.UNIVERSITARIA</td>
+<td style="text-align: right;">0.311</td>
+<td style="text-align: right;">0.350</td>
+<td style="text-align: right;">0.586</td>
+<td style="text-align: right;">-0.040</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TÉCNICA.PROFESIONAL</td>
+<td style="text-align: right;">0.018</td>
+<td style="text-align: right;">0.861</td>
+<td style="text-align: right;">0.924</td>
+<td style="text-align: right;">0.034</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UNIVERSIDAD</td>
+<td style="text-align: right;">0.642</td>
+<td style="text-align: right;">0.125</td>
+<td style="text-align: right;">-0.351</td>
+<td style="text-align: right;">0.017</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td style="text-align: left;">INSTITUCIÓN TECNOLÓGICA</td>
 <td style="text-align: right;">33.360</td>
@@ -3079,20 +2367,1057 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sup<span class="sc">$</span>coor[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,], <span class="at">col =</span> <span class="dv">6</span>, <span class="at">pch =</span> <span class="dv">16</span>,</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>),</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">bty=</span><span class="st">"n"</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(sup<span class="sc">$</span>coor[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,], <span class="at">labels =</span> <span class="fu">rownames</span>(sup<span class="sc">$</span>coor[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="dv">6</span>, <span class="at">pos =</span> <span class="dv">1</span>, <span class="at">font =</span> <span class="dv">3</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> x<span class="sc">*</span>x), <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1e4</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="sc">-</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> x<span class="sc">*</span>x), <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1e4</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">"grey"</span>); <span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">"grey"</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">s.arrow</span>(acp<span class="sc">$</span>co, <span class="at">add.plot =</span> <span class="cn">TRUE</span>, <span class="at">boxes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">xax =</span> <span class="dv">1</span>, <span class="at">yax =</span> <span class="dv">2</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">s.arrow</span>(GGlob, <span class="at">add.plot =</span> <span class="cn">TRUE</span>, <span class="at">boxes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">xax =</span> <span class="dv">1</span>, <span class="at">yax =</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ACP_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="ACP_files/figure-html/unnamed-chunk-64-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-65-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="variables-relacionadas-con-la-información-socioeconómica" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-socioeconómica"><span class="header-section-number">3.3</span> Variables relacionadas con la información socioeconómica</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Valor matrícula</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Estrato</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Internet</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">Computador</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false">Lavadora</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-6" role="tab" aria-controls="tabset-3-6" aria-selected="false">Horno microogas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-7" role="tab" aria-controls="tabset-3-7" aria-selected="false">TV</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-8" role="tab" aria-controls="tabset-3-8" aria-selected="false">Automóvil</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-9" role="tab" aria-controls="tabset-3-9" aria-selected="false">Motocicleta</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-10" role="tab" aria-controls="tabset-3-10" aria-selected="false">Consola de videojuegos</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 61%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Menos.de.500.mil</td>
+<td style="text-align: right;">0.104</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">-0.057</td>
+<td style="text-align: right;">0.013</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Entre.500.mil.y.menos.de.1.millón</td>
+<td style="text-align: right;">0.065</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">0.053</td>
+<td style="text-align: right;">0.016</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Entre.1.millón.y.menos.de.2.5.millones</td>
+<td style="text-align: right;">0.226</td>
+<td style="text-align: right;">0.327</td>
+<td style="text-align: right;">0.564</td>
+<td style="text-align: right;">-0.046</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Entre.2.5.millones.y.menos.de.4.millones</td>
+<td style="text-align: right;">0.160</td>
+<td style="text-align: right;">0.175</td>
+<td style="text-align: right;">0.414</td>
+<td style="text-align: right;">-0.027</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Entre.4.millones.y.menos.de.5.5.millones</td>
+<td style="text-align: right;">0.114</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.050</td>
+<td style="text-align: right;">0.012</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Entre.5.5.millones.y.menos.de.7.millones</td>
+<td style="text-align: right;">0.066</td>
+<td style="text-align: right;">0.090</td>
+<td style="text-align: right;">-0.266</td>
+<td style="text-align: right;">0.025</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Más.de.7.millones</td>
+<td style="text-align: right;">0.141</td>
+<td style="text-align: right;">1.693</td>
+<td style="text-align: right;">-1.264</td>
+<td style="text-align: right;">0.071</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No.pagó.matrícula</td>
+<td style="text-align: right;">0.108</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">0.044</td>
+<td style="text-align: right;">-0.043</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.249</td>
+<td style="text-align: right;">-0.349</td>
+<td style="text-align: right;">0.240</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 60%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Menos de 500 mil</td>
+<td style="text-align: right;">-4.090</td>
+<td style="text-align: right;">1.672</td>
+<td style="text-align: right;">0.100</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Entre 500 mil y menos de 1 millón</td>
+<td style="text-align: right;">2.954</td>
+<td style="text-align: right;">1.563</td>
+<td style="text-align: right;">0.100</td>
+<td style="text-align: right;">0.009</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Entre 1 millón y menos de 2.5 millones</td>
+<td style="text-align: right;">64.353</td>
+<td style="text-align: right;">-9.549</td>
+<td style="text-align: right;">0.975</td>
+<td style="text-align: right;">0.007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Entre 2.5 millones y menos de 4 millones</td>
+<td style="text-align: right;">38.104</td>
+<td style="text-align: right;">-4.551</td>
+<td style="text-align: right;">0.979</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Entre 4 millones y menos de 5.5 millones</td>
+<td style="text-align: right;">3.768</td>
+<td style="text-align: right;">1.598</td>
+<td style="text-align: right;">0.368</td>
+<td style="text-align: right;">0.020</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Entre 5.5 millones y menos de 7 millones</td>
+<td style="text-align: right;">-14.863</td>
+<td style="text-align: right;">2.582</td>
+<td style="text-align: right;">0.783</td>
+<td style="text-align: right;">0.007</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-68-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-69-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">1.775</td>
+<td style="text-align: right;">0.629</td>
+<td style="text-align: right;">-0.374</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato.1</td>
+<td style="text-align: right;">0.203</td>
+<td style="text-align: right;">0.361</td>
+<td style="text-align: right;">0.583</td>
+<td style="text-align: right;">-0.059</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estrato.2</td>
+<td style="text-align: right;">0.329</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">0.153</td>
+<td style="text-align: right;">-0.006</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato.3</td>
+<td style="text-align: right;">0.279</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">-0.212</td>
+<td style="text-align: right;">0.046</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estrato.4</td>
+<td style="text-align: right;">0.089</td>
+<td style="text-align: right;">0.763</td>
+<td style="text-align: right;">-0.804</td>
+<td style="text-align: right;">0.118</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato.5</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">1.671</td>
+<td style="text-align: right;">-1.184</td>
+<td style="text-align: right;">0.118</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estrato.6</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">2.870</td>
+<td style="text-align: right;">-1.513</td>
+<td style="text-align: right;">0.143</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sin.Estrato</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.446</td>
+<td style="text-align: right;">0.663</td>
+<td style="text-align: right;">-0.010</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">28.311</td>
+<td style="text-align: right;">-30.595</td>
+<td style="text-align: right;">0.223</td>
+<td style="text-align: right;">0.079</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato 1</td>
+<td style="text-align: right;">62.128</td>
+<td style="text-align: right;">-11.352</td>
+<td style="text-align: right;">0.941</td>
+<td style="text-align: right;">0.010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estrato 2</td>
+<td style="text-align: right;">22.672</td>
+<td style="text-align: right;">-1.481</td>
+<td style="text-align: right;">0.895</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato 3</td>
+<td style="text-align: right;">-27.797</td>
+<td style="text-align: right;">10.989</td>
+<td style="text-align: right;">0.799</td>
+<td style="text-align: right;">0.038</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estrato 4</td>
+<td style="text-align: right;">-53.179</td>
+<td style="text-align: right;">14.184</td>
+<td style="text-align: right;">0.847</td>
+<td style="text-align: right;">0.018</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato 5</td>
+<td style="text-align: right;">-46.602</td>
+<td style="text-align: right;">8.395</td>
+<td style="text-align: right;">0.839</td>
+<td style="text-align: right;">0.008</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-72-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-73-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.045</td>
+<td style="text-align: right;">1.698</td>
+<td style="text-align: right;">0.615</td>
+<td style="text-align: right;">-0.365</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">0.111</td>
+<td style="text-align: right;">0.563</td>
+<td style="text-align: right;">0.726</td>
+<td style="text-align: right;">-0.107</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">0.844</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">-0.128</td>
+<td style="text-align: right;">0.033</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">28.126</td>
+<td style="text-align: right;">-30.254</td>
+<td style="text-align: right;">0.223</td>
+<td style="text-align: right;">0.078</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">54.294</td>
+<td style="text-align: right;">-14.556</td>
+<td style="text-align: right;">0.936</td>
+<td style="text-align: right;">0.020</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">-63.079</td>
+<td style="text-align: right;">29.847</td>
+<td style="text-align: right;">0.711</td>
+<td style="text-align: right;">0.048</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-76-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-77-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">1.511</td>
+<td style="text-align: right;">0.592</td>
+<td style="text-align: right;">-0.335</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">0.115</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">0.723</td>
+<td style="text-align: right;">-0.096</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">0.836</td>
+<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">-0.134</td>
+<td style="text-align: right;">0.033</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">28.194</td>
+<td style="text-align: right;">-28.951</td>
+<td style="text-align: right;">0.232</td>
+<td style="text-align: right;">0.074</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">55.102</td>
+<td style="text-align: right;">-13.301</td>
+<td style="text-align: right;">0.951</td>
+<td style="text-align: right;">0.017</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">-63.917</td>
+<td style="text-align: right;">28.273</td>
+<td style="text-align: right;">0.739</td>
+<td style="text-align: right;">0.044</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-80-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-81-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.050</td>
+<td style="text-align: right;">1.452</td>
+<td style="text-align: right;">0.583</td>
+<td style="text-align: right;">-0.334</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">0.144</td>
+<td style="text-align: right;">0.254</td>
+<td style="text-align: right;">0.495</td>
+<td style="text-align: right;">-0.029</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">0.806</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">-0.125</td>
+<td style="text-align: right;">0.026</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">28.213</td>
+<td style="text-align: right;">-29.389</td>
+<td style="text-align: right;">0.234</td>
+<td style="text-align: right;">0.077</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">42.894</td>
+<td style="text-align: right;">-4.578</td>
+<td style="text-align: right;">0.963</td>
+<td style="text-align: right;">0.003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">-53.632</td>
+<td style="text-align: right;">20.242</td>
+<td style="text-align: right;">0.712</td>
+<td style="text-align: right;">0.031</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-84-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-85-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-6-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.055</td>
+<td style="text-align: right;">1.304</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">-0.301</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">0.496</td>
+<td style="text-align: right;">0.102</td>
+<td style="text-align: right;">0.311</td>
+<td style="text-align: right;">-0.021</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">0.210</td>
+<td style="text-align: right;">-0.420</td>
+<td style="text-align: right;">0.060</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">31.888</td>
+<td style="text-align: right;">-27.900</td>
+<td style="text-align: right;">0.300</td>
+<td style="text-align: right;">0.070</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">65.164</td>
+<td style="text-align: right;">-7.824</td>
+<td style="text-align: right;">0.948</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">-80.132</td>
+<td style="text-align: right;">20.666</td>
+<td style="text-align: right;">0.840</td>
+<td style="text-align: right;">0.017</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-88-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-89-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-7-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">1.638</td>
+<td style="text-align: right;">0.596</td>
+<td style="text-align: right;">-0.361</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">0.256</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">0.165</td>
+<td style="text-align: right;">-0.012</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">0.698</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">-0.099</td>
+<td style="text-align: right;">0.028</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">27.520</td>
+<td style="text-align: right;">-30.203</td>
+<td style="text-align: right;">0.217</td>
+<td style="text-align: right;">0.079</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">20.479</td>
+<td style="text-align: right;">-2.715</td>
+<td style="text-align: right;">0.821</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">-31.978</td>
+<td style="text-align: right;">16.305</td>
+<td style="text-align: right;">0.504</td>
+<td style="text-align: right;">0.040</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-92-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-93-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-8-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">1.267</td>
+<td style="text-align: right;">0.619</td>
+<td style="text-align: right;">-0.300</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">0.614</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">0.191</td>
+<td style="text-align: right;">-0.011</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">0.329</td>
+<td style="text-align: right;">0.260</td>
+<td style="text-align: right;">-0.462</td>
+<td style="text-align: right;">0.072</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">31.996</td>
+<td style="text-align: right;">-28.180</td>
+<td style="text-align: right;">0.303</td>
+<td style="text-align: right;">0.071</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">50.808</td>
+<td style="text-align: right;">-5.244</td>
+<td style="text-align: right;">0.928</td>
+<td style="text-align: right;">0.003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">-68.333</td>
+<td style="text-align: right;">19.267</td>
+<td style="text-align: right;">0.818</td>
+<td style="text-align: right;">0.020</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-96-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-97-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-9-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">1.120</td>
+<td style="text-align: right;">0.573</td>
+<td style="text-align: right;">-0.274</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">0.609</td>
+<td style="text-align: right;">0.050</td>
+<td style="text-align: right;">-0.199</td>
+<td style="text-align: right;">0.022</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">0.332</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">0.263</td>
+<td style="text-align: right;">0.008</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">30.325</td>
+<td style="text-align: right;">-26.336</td>
+<td style="text-align: right;">0.293</td>
+<td style="text-align: right;">0.067</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">-52.518</td>
+<td style="text-align: right;">10.554</td>
+<td style="text-align: right;">0.793</td>
+<td style="text-align: right;">0.010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">39.236</td>
+<td style="text-align: right;">2.249</td>
+<td style="text-align: right;">0.964</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-100-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-101-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-10-tab">
+<p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">wcat</th>
+<th style="text-align: right;">d2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">0.063</td>
+<td style="text-align: right;">1.054</td>
+<td style="text-align: right;">0.591</td>
+<td style="text-align: right;">-0.254</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">0.754</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">0.094</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">0.184</td>
+<td style="text-align: right;">0.412</td>
+<td style="text-align: right;">-0.587</td>
+<td style="text-align: right;">0.084</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test y los cosenos cuadrados son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+<th style="text-align: right;">Axis1</th>
+<th style="text-align: right;">Axis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">32.298</td>
+<td style="text-align: right;">-25.192</td>
+<td style="text-align: right;">0.331</td>
+<td style="text-align: right;">0.061</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">34.664</td>
+<td style="text-align: right;">0.515</td>
+<td style="text-align: right;">0.888</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">-58.812</td>
+<td style="text-align: right;">15.208</td>
+<td style="text-align: right;">0.836</td>
+<td style="text-align: right;">0.017</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-104-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACP_files/figure-html/unnamed-chunk-105-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 

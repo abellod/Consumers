@@ -10,6 +10,7 @@ library(FactoClass)
 library(plotly)
 library(knitr)
 library(readr)
+library(dplyr)
 
 # Carga de datos originales
 saberpro <- read_delim("DATA_ICFES_SABERPROPROFESIONAL_2022-2.TXT", delim = "¬", escape_double = FALSE, trim_ws = TRUE)
@@ -42,6 +43,13 @@ data$ESTU_DEPTO_RESIDE<-ifelse(data$ESTU_DEPTO_RESIDE %in% c("BARCELONA","BUENOS
 sum(is.na(data$ESTU_DEPTO_RESIDE))
 length(unique(data$ESTU_DEPTO_RESIDE)) # hay 35 pq son mas los extranjeros y NAs
 data$ESTU_DEPTO_RESIDE <- ifelse(is.na(data$ESTU_DEPTO_RESIDE), "Desconocido", data$ESTU_DEPTO_RESIDE)
+data$ESTU_DEPTO_RESIDE <- as.factor(data$ESTU_DEPTO_RESIDE)
+data <- data %>%
+  mutate(ESTU_DEPTO_RESIDE = case_when(
+    ESTU_DEPTO_RESIDE == "BOGOTÁ" ~ ESTU_DEPTO_RESIDE,
+    ESTU_DEPTO_RESIDE == "Desconocido" ~ "Desconocido",
+    TRUE ~ "OTRO"
+  ))
 data$ESTU_DEPTO_RESIDE <- as.factor(data$ESTU_DEPTO_RESIDE)
 table(data$ESTU_DEPTO_RESIDE)
 
@@ -180,15 +188,17 @@ table(data$INST_CARACTER_ACADEMICO)
 Miremos la correlación de las variables cuantitativas
 
 ```{r}
+#| echo: false
 Y <- data[, 29:33] # Puntaje global va a ser ilustrativa
-colnames(Y)<-c("R.CUANTITATIVO","L.CRITICA","C.CIUDADANA","INGLES","C.ESCRITA")
+colnames(Y)<-c("cuanti","lec","ciu","ing","esc")
 kable(cor(Y), digits = 3)
 heatmap(cor(Y), NA, NA)
 ```
 
-Ahora si el acp
+Luego de realizar el ACP usando la función $\texttt{dudi.pca}$ de la librería $\texttt{ade4}$, la inercia (o los valores propios de los nuevos ejes) son
 
 ```{r}
+#| echo: false
 acp <- dudi.pca(Y, scannf = FALSE, nf = 2) # nf indica cuantos ejes voy a conservar
 valp <- t(inertia(acp)$tot.inertia) # valores propios
 kable(valp, digits = 3)
@@ -197,19 +207,20 @@ barplot(acp$eig, horiz = TRUE) # histograma de valores propios
 abline(v = 1, lty = 3)
 ```
 
-Nos vamos a quedar con los dos primeros ejes porque el primero tiene un valor propio mayor a 1 y el segundo es cercano a 1, además, con esos dos ejes se tiene casi el 74.41% de la inercia.
-Ese primer eje explica muchísimo
+Para el análisis, se conservan los dos primeros ejes porque el primero tiene un valor propio mayor a 1 y el segundo es cercano a 1, además, con esos dos ejes se tiene casi el 74.41% de la inercia. Cabe mencionarse que como el valor propio del primer eje es casi 3, se puede decir que este eje "explica mucho".
 
-
-Las nuevas coordenadas son 
+Con los nuevos ejes las nuevas coordenadas son:
 
 ```{r}
+#| echo: false
 kable(acp$co, digits = 3)
+s.corcircle(acp$co)
 ```
 
-Puntaje global es ilustrativa
+Usaremos la variable de "Puntaje global" como ilustrativa y sus nuevas coordenadas son:
  
 ```{r}
+#| echo: false
 # exam como ilustrativa
 GGlob <- cor(data$PUNT_GLOBAL, acp$li)
 rownames(GGlob)<-"Global"
@@ -217,68 +228,1118 @@ kable(GGlob, digits = 3)
 ```
 
 ```{r}
+#| echo: false
 s.corcircle(acp$co)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 ```
 
 Parece que el Puntaje Global y la mayoría de las varibles excepto "Puntaje de Comunicación Escrita" están muy correlacionadas con el primer eje. 
 
+### ACP tres ejes
 
-
-### Si ponemos tres ejes
+Solo para observar, se hace un ACP conservando tres ejes, el segundo plano nos permite ver que el tercer eje separa los puntajes de comprensión escrita, ingles y global, con los puntajes de razonamiento cuantitativo, lectura crítica y competencias ciudadanas. Además, este tercer eje no parece tener mucha correlación con la mayoría de los puntajes a excepción del puntaje de inglés.
 
 ```{r}
+#| echo: false
 acp1 <- dudi.pca(Y, scannf = FALSE, nf = 3) 
 GGlob1 <- cor(data$PUNT_GLOBAL, acp1$li)
+
+# Plano con los ejes 1 y 2
 rownames(GGlob1)<-"Global"
-s.corcircle(acp1$co)
-s.arrow(GGlob1, add.plot = TRUE, boxes = FALSE)
+#s.corcircle(acp1$co)
+#s.arrow(GGlob1, add.plot = TRUE, boxes = FALSE)
 
 # Plano con los ejes 2 y 3
 s.corcircle(acp1$co, xax = 2, yax = 3)
 s.arrow(GGlob1, xax = 2, yax = 3, 
         add.plot = TRUE, boxes = FALSE)
-
 ```
 
+::: {.callout-important}
+ESTO DEBERÍAMOS PONERLO DE OTRA FORMA Y EN OTRO LADO. Se quitaron las variables INST_NOMBRE_INSTITUCION, ESTU_PRGM_ACADEMICO, ESTU_COD_RESIDE_DEPTO y ESTU_FECHANACIMIENTO
+:::
 
-
-
-
-Ahoraa miramos todo lo que no es cuantitativo
-
-
-
-Toca quitar variables, dejar solo las que sean factor y que nos interesen
-
-mochar INST_NOMBRE_INSTITUCION, ESTU_PRGM_ACADEMICO, ESTU_COD_RESIDE_DEPTO y ESTU_FECHANACIMIENTO
 ```{r}
+#| echo: false
 Ysupcat <- data[,c(1,3:4,6:23,26:28)]
 Ysupcat<-as.data.frame(Ysupcat)
 sup <- supqual(acp, Ysupcat)
+```
+
+```{r}
+#| echo: false
+#| eval: false
 kable(cbind(wcat = sup$wcat, d2 = sup$dis2, sup$coor), 
+      digits = 3)
+kable(cbind(sup$tv, sup$cos2), digits = 3)
+```
+
+::: {.callout-note}
+Note que para el análisis del ACP se continuó teniendo en cuenta únicamente dos ejes.
+:::
+
+## Variables relacionadas con la información personal
+
+::: panel-tabset
+
+## Sexo
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+pes_dist_coor<-cbind(wcat = sup$wcat, d2 = sup$dis2, sup$coor)
+kable(pes_dist_coor[1:3,], 
       digits = 3)
 ```
 
 
+Los valores test y los cosenos cuadrados son:
+
 ```{r}
-kable(cbind(sup$tv, sup$cos2), digits = 3)
+#| echo: false
+test_cos<-cbind(sup$tv, sup$cos2)
+kable(head(test_cos[1:3,]), digits = 3)
 ```
 
-
-
 ```{r}
+#| echo: false
 plot(sup$coor[1:3,], col = 6, pch = 16,
-     xlim = c(-1,1), ylim = c(-1,1),
+     #xlim = c(-1,1), ylim = c(-1,1), # si le ponemos esta linea entonces queda de -1 a 1 pero no se ve Desconocido
+     xlim = c(min(sup$coor[1:3,]-0.2),1), ylim = c(-1,1),
      bty="n", axes = FALSE)
 text(sup$coor[1:3,], labels = rownames(sup$coor[1:3,]),
      col = 6, pos = 1, font = 3)
 curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
 curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
 abline(h=0, col="grey"); abline(v=0, col="grey")
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE,
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
         xax = 1, yax = 2)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
         xax = 1, yax = 2)
 ```
 
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[1:3,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[1:3,], col = 6, pch = 16)
+text(sup$coor[1:3,], labels = rownames(sup$coor[1:3,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+
+## Etnia
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[4:6,], 
+      digits = 3)
+```
+
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[4:6,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[4:6,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[4:6,], labels = rownames(sup$coor[4:6,]),
+     col = 6, pos = 1, font = 3)
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[4:6,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[4:6,], col = 6, pch = 16)
+text(sup$coor[4:6,], labels = rownames(sup$coor[4:6,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Departamento
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[7:9,], 
+      digits = 3)
+```
+
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[7:9,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[7:9,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[7:9,], labels = rownames(sup$coor[7:9,]),
+     col = 6, pos = 1, font = 3)
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[7:9,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[7:9,], col = 6, pch = 16)
+text(sup$coor[7:9,], labels = rownames(sup$coor[7:9,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Estado civil
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[10:14,], 
+      digits = 3)
+```
+
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[10:14,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[10:14,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[10:14,], labels = rownames(sup$coor[10:14,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[10:14,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[10:14,], col = 6, pch = 16)
+text(sup$coor[10:14,], labels = rownames(sup$coor[10:14,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Educación padre
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[36:48,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[36:48,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[36:48,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[36:48,], labels = rownames(sup$coor[36:48,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[36:48,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[36:48,], col = 6, pch = 16)
+text(sup$coor[36:48,], labels = rownames(sup$coor[36:48,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Educación madre
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[49:61,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[49:61,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[49:61,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[49:61,], labels = rownames(sup$coor[49:61,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[49:61,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[49:61,], col = 6, pch = 16)
+text(sup$coor[49:61,], labels = rownames(sup$coor[49:61,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Ocupación padre
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[62:74,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[62:74,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[62:74,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[62:74,], labels = rownames(sup$coor[62:74,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[62:74,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[62:74,], col = 6, pch = 16)
+text(sup$coor[62:74,], labels = rownames(sup$coor[62:74,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Ocupación madre
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[75:87,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[75:87,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[75:87,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[75:87,], labels = rownames(sup$coor[75:87,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[75:87,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[75:87,], col = 6, pch = 16)
+text(sup$coor[75:87,], labels = rownames(sup$coor[75:87,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Horas trabaja
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[120:125,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[120:125,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[120:125,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[120:125,], labels = rownames(sup$coor[120:125,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[120:125,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[120:125,], col = 6, pch = 16)
+text(sup$coor[120:125,], labels = rownames(sup$coor[120:125,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+:::
+
+## Variables relacionadas con la información académica
+
+::: panel-tabset
+
+## Capacitación examen
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[24:27,], 
+      digits = 3)
+```
+
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[24:27,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[24:27,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[24:27,], labels = rownames(sup$coor[24:27,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[24:27,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[24:27,], col = 6, pch = 16)
+text(sup$coor[24:27,], labels = rownames(sup$coor[24:27,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Semestre que cursa
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[28:35,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[28:35,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[28:35,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[28:35,], labels = rownames(sup$coor[28:35,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[28:35,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[28:35,], col = 6, pch = 16)
+text(sup$coor[28:35,], labels = rownames(sup$coor[28:35,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Grupo referencia
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[126:147,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[126:147,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[126:147,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[126:147,], labels = rownames(sup$coor[126:147,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[126:147,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[126:147,], col = 6, pch = 16)
+text(sup$coor[126:147,], labels = rownames(sup$coor[126:147,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Modalidad
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[148:150,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[148:150,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[148:150,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[148:150,], labels = rownames(sup$coor[148:150,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[148:150,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[148:150,], col = 6, pch = 16)
+text(sup$coor[148:150,], labels = rownames(sup$coor[148:150,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Carácter académico
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[151:154,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[151:154,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[151:154,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[151:154,], labels = rownames(sup$coor[151:154,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[151:154,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[151:154,], col = 6, pch = 16)
+text(sup$coor[151:154,], labels = rownames(sup$coor[151:154,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+:::
+
+## Variables relacionadas con la información socioeconómica
+
+::: panel-tabset
+
+## Valor matrícula
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[15:23,], 
+      digits = 3)
+```
+
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[15:23,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[15:23,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[15:23,], labels = rownames(sup$coor[15:23,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[15:23,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[15:23,], col = 6, pch = 16)
+text(sup$coor[15:23,], labels = rownames(sup$coor[15:23,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Estrato
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[88:95,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[88:95,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[88:95,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[88:95,], labels = rownames(sup$coor[88:95,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[88:95,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[88:95,], col = 6, pch = 16)
+text(sup$coor[88:95,], labels = rownames(sup$coor[88:95,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Internet
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[96:98,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[96:98,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[96:98,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[96:98,], labels = rownames(sup$coor[96:98,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[96:98,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[96:98,], col = 6, pch = 16)
+text(sup$coor[96:98,], labels = rownames(sup$coor[96:98,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Computador
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[99:101,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[99:101,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[99:101,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[99:101,], labels = rownames(sup$coor[99:101,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[99:101,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[99:101,], col = 6, pch = 16)
+text(sup$coor[99:101,], labels = rownames(sup$coor[99:101,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Lavadora
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[102:104,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[102:104,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[102:104,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[102:104,], labels = rownames(sup$coor[102:104,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[102:104,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[102:104,], col = 6, pch = 16)
+text(sup$coor[102:104,], labels = rownames(sup$coor[102:104,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Horno microogas
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[105:107,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[105:107,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[105:107,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[105:107,], labels = rownames(sup$coor[105:107,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[105:107,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[105:107,], col = 6, pch = 16)
+text(sup$coor[105:107,], labels = rownames(sup$coor[105:107,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## TV
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[108:110,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[108:110,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[108:110,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[108:110,], labels = rownames(sup$coor[108:110,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[108:110,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[108:110,], col = 6, pch = 16)
+text(sup$coor[108:110,], labels = rownames(sup$coor[108:110,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Automóvil
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[111:113,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[111:113,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[111:113,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[111:113,], labels = rownames(sup$coor[111:113,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[111:113,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[111:113,], col = 6, pch = 16)
+text(sup$coor[111:113,], labels = rownames(sup$coor[111:113,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Motocicleta
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[114:116,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[114:116,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[114:116,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[114:116,], labels = rownames(sup$coor[114:116,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[114:116,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[114:116,], col = 6, pch = 16)
+text(sup$coor[114:116,], labels = rownames(sup$coor[114:116,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+## Consola de videojuegos
+
+Los pesos, distancias al cuadrado y las nuevas coordenadas son:
+
+```{r}
+#| echo: false
+kable(pes_dist_coor[117:119,], digits = 3)
+```
+
+Los valores test y los cosenos cuadrados son:
+
+```{r}
+#| echo: false
+kable(head(test_cos[117:119,]), digits = 3)
+```
+
+```{r}
+#| echo: false
+plot(sup$coor[117:119,], col = 6, pch = 16,
+     xlim = c(-1,1), ylim = c(-1,1),
+     bty="n", axes = FALSE)
+text(sup$coor[117:119,], labels = rownames(sup$coor[117:119,],),
+     col = 6, pos = 1, font = 3, srt=-45) # srt es para rotar el texto
+curve(sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+curve(-sqrt(1 - x*x), -1, 1, 1e4, add = TRUE, lty = 3)
+abline(h=0, col="grey"); abline(v=0, col="grey")
+s.arrow(acp$co, add.plot = TRUE, boxes = T,
+        xax = 1, yax = 2)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
+        xax = 1, yax = 2)
+```
+
+```{r}
+#| echo: false
+plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
+     xlim = c(min(sup$coor[117:119,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
+points(sup$coor[117:119,], col = 6, pch = 16)
+text(sup$coor[117:119,], labels = rownames(sup$coor[117:119,]),
+     col = 6, pos = 1, font = 3, srt=-45)
+```
+
+:::
