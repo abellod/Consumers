@@ -348,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">bty=</span><span class="st">"n"</span>)</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">bty=</span><span class="st">"n"</span>,<span class="at">cex.axis=</span><span class="fl">0.5</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sorted_grupo <span class="ot">&lt;-</span> <span class="fu">with</span>(data, <span class="fu">reorder</span>(GRUPOREFERENCIA, PUNT_GLOBAL, median, <span class="at">na.rm =</span> T))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span>PUNT_GLOBAL <span class="sc">~</span> sorted_grupo, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">4</span>, <span class="at">horizontal =</span> T)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">

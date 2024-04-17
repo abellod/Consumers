@@ -26,6 +26,7 @@ data$ESTU_GENERO <- as.factor(data$ESTU_GENERO)
 table(data$ESTU_GENERO)
 
 # edad
+# esta la quitamos
 library(stringr)
 edad <- str_sub(data$ESTU_FECHANACIMIENTO,7,10)
 edad<-as.numeric(edad)
@@ -36,7 +37,6 @@ sum(is.na(data$ESTU_TIENEETNIA)) # 775 na's
 data$ESTU_TIENEETNIA <- ifelse(is.na(data$ESTU_TIENEETNIA), "Desconocido", data$ESTU_TIENEETNIA)
 data$ESTU_TIENEETNIA <- as.factor(data$ESTU_TIENEETNIA)
 table(data$ESTU_TIENEETNIA)
-
 
 # depto
 data$ESTU_DEPTO_RESIDE<-ifelse(data$ESTU_DEPTO_RESIDE %in% c("BARCELONA","BUENOS AIRES","FRANKFURT","HOUSTON","LIMA","MIAMI","NUEVA YORK","PARIS","QUEBEC","ROMA","SACRAMENTO","SANTIAGO DE CHILE","SAO PAULO","SEUL","TRENTON"),"EXTRANJERO",data$ESTU_DEPTO_RESIDE)
@@ -56,52 +56,52 @@ table(data$ESTU_DEPTO_RESIDE)
 
 # estado civil
 sum(is.na(data$ESTU_ESTADOCIVIL)) # 580 na's
-data$ESTU_ESTADOCIVIL <- ifelse(is.na(data$ESTU_ESTADOCIVIL), "Desconocido", data$ESTU_ESTADOCIVIL)
+data$ESTU_ESTADOCIVIL <- ifelse(is.na(data$ESTU_ESTADOCIVIL), "Desconocido", ifelse(data$ESTU_ESTADOCIVIL=="Casado","C",ifelse(data$ESTU_ESTADOCIVIL=="Separado y/o Viudo","SyoV",ifelse(data$ESTU_ESTADOCIVIL=="Soltero","S","UL"))))
 data$ESTU_ESTADOCIVIL <- as.factor(data$ESTU_ESTADOCIVIL)
 table(data$ESTU_ESTADOCIVIL)
 
 # valor matricula
 ## recodificamos para que quede como factor
 sum(is.na(data$ESTU_VALORMATRICULAUNIVERSIDAD)) # 2194 na's
-data$ESTU_VALORMATRICULAUNIVERSIDAD <- ifelse(is.na(data$ESTU_VALORMATRICULAUNIVERSIDAD), "Desconocido", data$ESTU_VALORMATRICULAUNIVERSIDAD)
-data$ESTU_VALORMATRICULAUNIVERSIDAD <- factor(data$ESTU_VALORMATRICULAUNIVERSIDAD, levels = c("Menos de 500 mil","Entre 500 mil y menos de 1 millón", "Entre 1 millón y menos de 2.5 millones", "Entre 2.5 millones y menos de 4 millones","Entre 4 millones y menos de 5.5 millones","Entre 5.5 millones y menos de 7 millones","Más de 7 millones","No pagó matrícula","Desconocido"))
+data$ESTU_VALORMATRICULAUNIVERSIDAD <- ifelse(is.na(data$ESTU_VALORMATRICULAUNIVERSIDAD), "Desconocido", ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Menos de 500 mil","m500",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 500 mil y menos de 1 millón","e500m1",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 1 millón y menos de 2.5 millones","e1m2.5",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 2.5 millones y menos de 4 millones","e2.5m4",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 4 millones y menos de 5.5 millones","e4m5.5",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 5.5 millones y menos de 7 millones","e5.5m7",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Más de 7 millones","M7","NP"))))))))
+data$ESTU_VALORMATRICULAUNIVERSIDAD <- factor(data$ESTU_VALORMATRICULAUNIVERSIDAD, levels = c("m500","e500m1", "e1m2.5", "e2.5m4","e4m5.5","e5.5m7","M7","NP","Desconocido"))
 table(data$ESTU_VALORMATRICULAUNIVERSIDAD)
 
 # capacitacion del examen
 sum(is.na(data$ESTU_COMOCAPACITOEXAMENSB11)) # 2069 na's
-data$ESTU_COMOCAPACITOEXAMENSB11 <- ifelse(is.na(data$ESTU_COMOCAPACITOEXAMENSB11), "Desconocido", data$ESTU_COMOCAPACITOEXAMENSB11)
+data$ESTU_COMOCAPACITOEXAMENSB11 <- ifelse(is.na(data$ESTU_COMOCAPACITOEXAMENSB11), "Desconocido", ifelse(data$ESTU_COMOCAPACITOEXAMENSB11=="No realizó ninguna prueba de preparación","Ninguna",ifelse(data$ESTU_COMOCAPACITOEXAMENSB11=="Repasó por cuenta propia","CuentaPropia","Curso")))
 data$ESTU_COMOCAPACITOEXAMENSB11 <- as.factor(data$ESTU_COMOCAPACITOEXAMENSB11)
 table(data$ESTU_COMOCAPACITOEXAMENSB11)
 
 
 # semestre que cursa
 sum(is.na(data$ESTU_SEMESTRECURSA)) # 2194 na's
-data$ESTU_SEMESTRECURSA<-ifelse(data$ESTU_SEMESTRECURSA %in% c("01","02","03","04","05","06"),"06 o menos",data$ESTU_SEMESTRECURSA)
+data$ESTU_SEMESTRECURSA<-ifelse(data$ESTU_SEMESTRECURSA %in% c("01","02","03","04","05","06"),"06m",ifelse(data$ESTU_SEMESTRECURSA=="12 o más","12M",data$ESTU_SEMESTRECURSA))
 data$ESTU_SEMESTRECURSA <- ifelse(is.na(data$ESTU_SEMESTRECURSA), "Desconocido", data$ESTU_SEMESTRECURSA)
 data$ESTU_SEMESTRECURSA <- as.factor(data$ESTU_SEMESTRECURSA)
 table(data$ESTU_SEMESTRECURSA)
 
 # educacion papa
 sum(is.na(data$FAMI_EDUCACIONPADRE)) # 4738 na's
-data$FAMI_EDUCACIONPADRE <- ifelse(is.na(data$FAMI_EDUCACIONPADRE), "Desconocido", data$FAMI_EDUCACIONPADRE)
+data$FAMI_EDUCACIONPADRE <- ifelse(is.na(data$FAMI_EDUCACIONPADRE), "Desconocido", ifelse(data$FAMI_EDUCACIONPADRE=="Educación profesional completa","EPC",ifelse(data$FAMI_EDUCACIONPADRE=="Educación profesional incompleta","EPI",ifelse(data$FAMI_EDUCACIONPADRE=="No Aplica","NAp",ifelse(data$FAMI_EDUCACIONPADRE=="No sabe","NS",ifelse(data$FAMI_EDUCACIONPADRE=="Postgrado","Post",ifelse(data$FAMI_EDUCACIONPADRE=="Primaria completa","PC",ifelse(data$FAMI_EDUCACIONPADRE=="Primaria incompleta","PI",ifelse(data$FAMI_EDUCACIONPADRE=="Secundaria (Bachillerato) completa","BC",ifelse(data$FAMI_EDUCACIONPADRE=="Secundaria (Bachillerato) incompleta","BI",ifelse(data$FAMI_EDUCACIONPADRE=="Técnica o tecnológica completa","TTC",ifelse(data$FAMI_EDUCACIONPADRE=="Técnica o tecnológica incompleta","TTI",data$FAMI_EDUCACIONPADRE))))))))))))
 data$FAMI_EDUCACIONPADRE <- as.factor(data$FAMI_EDUCACIONPADRE)
 table(data$FAMI_EDUCACIONPADRE)
 
 # educacion mama
 sum(is.na(data$FAMI_EDUCACIONMADRE)) # 4886 na's
-data$FAMI_EDUCACIONMADRE <- ifelse(is.na(data$FAMI_EDUCACIONMADRE), "Desconocido", data$FAMI_EDUCACIONMADRE)
+data$FAMI_EDUCACIONMADRE <- ifelse(is.na(data$FAMI_EDUCACIONMADRE), "Desconocido", ifelse(data$FAMI_EDUCACIONMADRE=="Educación profesional completa","EPC",ifelse(data$FAMI_EDUCACIONMADRE=="Educación profesional incompleta","EPI",ifelse(data$FAMI_EDUCACIONMADRE=="No Aplica","NAp",ifelse(data$FAMI_EDUCACIONMADRE=="No sabe","NS",ifelse(data$FAMI_EDUCACIONMADRE=="Postgrado","Post",ifelse(data$FAMI_EDUCACIONMADRE=="Primaria completa","PC",ifelse(data$FAMI_EDUCACIONMADRE=="Primaria incompleta","PI",ifelse(data$FAMI_EDUCACIONMADRE=="Secundaria (Bachillerato) completa","BC",ifelse(data$FAMI_EDUCACIONMADRE=="Secundaria (Bachillerato) incompleta","BI",ifelse(data$FAMI_EDUCACIONMADRE=="Técnica o tecnológica completa","TTC",ifelse(data$FAMI_EDUCACIONMADRE=="Técnica o tecnológica incompleta","TTI",data$FAMI_EDUCACIONMADRE))))))))))))
 data$FAMI_EDUCACIONMADRE <- as.factor(data$FAMI_EDUCACIONMADRE)
 table(data$FAMI_EDUCACIONMADRE)
 
 # ocupacion papa
 sum(is.na(data$FAMI_OCUPACIONPADRE)) # 2060 na's
-data$FAMI_OCUPACIONPADRE <- ifelse(is.na(data$FAMI_OCUPACIONPADRE), "Desconocido", data$FAMI_OCUPACIONPADRE)
+data$FAMI_OCUPACIONPADRE <- ifelse(is.na(data$FAMI_OCUPACIONPADRE), "Desconocido", ifelse(data$FAMI_OCUPACIONPADRE=="Empleado con cargo como director o gerente general","EDGG",ifelse(data$FAMI_OCUPACIONPADRE=="Empleado de nivel auxiliar o administrativo","ENAA",ifelse(data$FAMI_OCUPACIONPADRE=="Empleado de nivel directivo","END",ifelse(data$FAMI_OCUPACIONPADRE=="Empleado de nivel técnico o profesional","ENTP",ifelse(data$FAMI_OCUPACIONPADRE=="Empleado obrero u operario","EOO",ifelse(data$FAMI_OCUPACIONPADRE=="Empresario","Emp",ifelse(data$FAMI_OCUPACIONPADRE=="Hogar","H",ifelse(data$FAMI_OCUPACIONPADRE=="Otra actividad u ocupación","OAO", ifelse(data$FAMI_OCUPACIONPADRE=="Pensionado","Pen",ifelse(data$FAMI_OCUPACIONPADRE=="Pequeño empresario","PE",ifelse(data$FAMI_OCUPACIONPADRE=="Profesional independiente","PI","TCP"))))))))))))
 data$FAMI_OCUPACIONPADRE <- as.factor(data$FAMI_OCUPACIONPADRE)
 table(data$FAMI_OCUPACIONPADRE)
 
 # ocupacion mama
 sum(is.na(data$FAMI_OCUPACIONMADRE)) # 2060 na's
-data$FAMI_OCUPACIONMADRE <- ifelse(is.na(data$FAMI_OCUPACIONMADRE), "Desconocido", data$FAMI_OCUPACIONMADRE)
+data$FAMI_OCUPACIONMADRE <- ifelse(is.na(data$FAMI_OCUPACIONMADRE), "Desconocido", ifelse(data$FAMI_OCUPACIONMADRE=="Empleado con cargo como director o gerente general","EDGG",ifelse(data$FAMI_OCUPACIONMADRE=="Empleado de nivel auxiliar o administrativo","ENAA",ifelse(data$FAMI_OCUPACIONMADRE=="Empleado de nivel directivo","END",ifelse(data$FAMI_OCUPACIONMADRE=="Empleado de nivel técnico o profesional","ENTP",ifelse(data$FAMI_OCUPACIONMADRE=="Empleado obrero u operario","EOO",ifelse(data$FAMI_OCUPACIONMADRE=="Empresario","Emp",ifelse(data$FAMI_OCUPACIONMADRE=="Hogar","H",ifelse(data$FAMI_OCUPACIONMADRE=="Otra actividad u ocupación","OAO", ifelse(data$FAMI_OCUPACIONMADRE=="Pensionado","Pen",ifelse(data$FAMI_OCUPACIONMADRE=="Pequeño empresario","PE",ifelse(data$FAMI_OCUPACIONMADRE=="Profesional Independiente","PI","TCP"))))))))))))
 data$FAMI_OCUPACIONMADRE <- as.factor(data$FAMI_OCUPACIONMADRE)
 table(data$FAMI_OCUPACIONMADRE)
 
@@ -168,18 +168,20 @@ table(data$ESTU_HORASSEMANATRABAJA)
 
 # grupo de referencia
 sum(is.na(data$GRUPOREFERENCIA)) # 0 na's
+data$GRUPOREFERENCIA<-ifelse(data$GRUPOREFERENCIA=="ADMINISTRACIÓN Y AFINES","AdmYAfin",ifelse(data$GRUPOREFERENCIA=="ARQUITECTURA Y URBANISMO","ArqYUrb",ifelse(data$GRUPOREFERENCIA=="BELLAS ARTES Y DISEÑO","BelArtYDis",ifelse(data$GRUPOREFERENCIA=="CIENCIAS AGROPECUARIAS","CienAgr",ifelse(data$GRUPOREFERENCIA=="CIENCIAS MILITARES Y NAVALES","CienMilYNav",ifelse(data$GRUPOREFERENCIA=="CIENCIAS NATURALES Y EXACTAS","CienNatYExac",ifelse(data$GRUPOREFERENCIA=="CIENCIAS SOCIALES","CienSoc",ifelse(data$GRUPOREFERENCIA=="COMUNICACIÓN, PERIODISMO Y PUBLICIDAD","ComuPerYPub",ifelse(data$GRUPOREFERENCIA=="CONTADURÍA Y AFINES","ContYAfin",ifelse(data$GRUPOREFERENCIA=="DERECHO","Derecho",ifelse(data$GRUPOREFERENCIA=="ECONOMÍA","Economía",ifelse(data$GRUPOREFERENCIA=="ECONOMÍA, ADMINISTRACIÓN, CONTADURÍA Y AFINES - UNIVERSITARIA","EcAdContYAfinU",ifelse(data$GRUPOREFERENCIA=="EDUCACIÓN","Educación",ifelse(data$GRUPOREFERENCIA=="ENFERMERÍA","Enfermeria",ifelse(data$GRUPOREFERENCIA=="GRUPO REFERENCIA NACIONAL","GrupRefNal", ifelse(data$GRUPOREFERENCIA=="GRUPO REFERENCIA NACIONAL UNIVERSITARIO","GrupRefNalU", ifelse(data$GRUPOREFERENCIA=="HUMANIDADES","Hum", ifelse(data$GRUPOREFERENCIA=="INGENIERÍA","Inge", ifelse(data$GRUPOREFERENCIA=="MEDICINA","Med", ifelse(data$GRUPOREFERENCIA=="PSICOLOGÍA","Psic", ifelse(data$GRUPOREFERENCIA=="RECREACIÓN Y DEPORTES","RecYDep", "salud")))))))))))))))))))))
 data$GRUPOREFERENCIA<- as.factor(data$GRUPOREFERENCIA)
 table(data$GRUPOREFERENCIA)
 str(data$GRUPOREFERENCIA) # 22 niveles
 
 # metodo
 sum(is.na(data$ESTU_METODO_PRGM)) # 0 na's
-data$ESTU_METODO_PRGM <- ifelse(data$ESTU_METODO_PRGM == "DISTANCIA VITUAL", "DISTANCIA VIRTUAL", data$ESTU_METODO_PRGM)
+data$ESTU_METODO_PRGM <- ifelse(data$ESTU_METODO_PRGM == "DISTANCIA VITUAL", "distVirtual", ifelse(data$ESTU_METODO_PRGM=="DISTANCIA","distancia","presencial"))
 data$ESTU_METODO_PRGM<- as.factor(data$ESTU_METODO_PRGM)
 table(data$ESTU_METODO_PRGM)
 
 # caracter academico institucion
 sum(is.na(data$INST_CARACTER_ACADEMICO)) # 0 na's
+data$INST_CARACTER_ACADEMICO<-ifelse(data$INST_CARACTER_ACADEMICO=="INSTITUCIÓN TECNOLÓGICA","InstTec",ifelse(data$INST_CARACTER_ACADEMICO=="INSTITUCIÓN UNIVERSITARIA","InstUni", ifelse(data$INST_CARACTER_ACADEMICO=="TÉCNICA PROFESIONAL","TecProf", "Universidad")))
 data$INST_CARACTER_ACADEMICO<- as.factor(data$INST_CARACTER_ACADEMICO)
 table(data$INST_CARACTER_ACADEMICO)
 ```
