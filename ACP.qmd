@@ -304,6 +304,7 @@ kable(head(test_cos[1:3,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[1:3,], col = 6, pch = 16,
      #xlim = c(-1,1), ylim = c(-1,1), # si le ponemos esta linea entonces queda de -1 a 1 pero no se ve Desconocido
      xlim = c(min(sup$coor[1:3,]-0.2),1), ylim = c(-1,1),
@@ -323,7 +324,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[1:3,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[1:3,], col = 6, pch = 16)
 text(sup$coor[1:3,], labels = rownames(sup$coor[1:3,]),
@@ -351,6 +352,7 @@ kable(head(test_cos[4:6,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[4:6,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -369,7 +371,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[4:6,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[4:6,], col = 6, pch = 16)
 text(sup$coor[4:6,], labels = rownames(sup$coor[4:6,]),
@@ -396,6 +398,7 @@ kable(head(test_cos[7:9,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[7:9,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -414,7 +417,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[7:9,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[7:9,], col = 6, pch = 16)
 text(sup$coor[7:9,], labels = rownames(sup$coor[7:9,]),
@@ -441,6 +444,7 @@ kable(head(test_cos[10:14,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[10:14,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -459,7 +463,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[10:14,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[10:14,], col = 6, pch = 16)
 text(sup$coor[10:14,], labels = rownames(sup$coor[10:14,]),
@@ -484,6 +488,7 @@ kable(head(test_cos[36:48,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[36:48,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -502,7 +507,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[36:48,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[36:48,], col = 6, pch = 16)
 text(sup$coor[36:48,], labels = rownames(sup$coor[36:48,]),
@@ -527,6 +532,7 @@ kable(head(test_cos[49:61,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[49:61,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -545,7 +551,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[49:61,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[49:61,], col = 6, pch = 16)
 text(sup$coor[49:61,], labels = rownames(sup$coor[49:61,]),
@@ -570,6 +576,7 @@ kable(head(test_cos[62:74,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[62:74,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -588,7 +595,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[62:74,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[62:74,], col = 6, pch = 16)
 text(sup$coor[62:74,], labels = rownames(sup$coor[62:74,]),
@@ -613,6 +620,7 @@ kable(head(test_cos[75:87,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[75:87,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -631,7 +639,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[75:87,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[75:87,], col = 6, pch = 16)
 text(sup$coor[75:87,], labels = rownames(sup$coor[75:87,]),
@@ -656,6 +664,7 @@ kable(head(test_cos[120:125,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[120:125,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -674,7 +683,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[120:125,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[120:125,], col = 6, pch = 16)
 text(sup$coor[120:125,], labels = rownames(sup$coor[120:125,]),
@@ -707,6 +716,7 @@ kable(head(test_cos[24:27,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[24:27,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -725,7 +735,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[24:27,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[24:27,], col = 6, pch = 16)
 text(sup$coor[24:27,], labels = rownames(sup$coor[24:27,]),
@@ -750,6 +760,7 @@ kable(head(test_cos[28:35,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[28:35,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -768,7 +779,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[28:35,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[28:35,], col = 6, pch = 16)
 text(sup$coor[28:35,], labels = rownames(sup$coor[28:35,]),
@@ -793,6 +804,7 @@ kable(head(test_cos[126:147,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[126:147,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -811,7 +823,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[126:147,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[126:147,], col = 6, pch = 16)
 text(sup$coor[126:147,], labels = rownames(sup$coor[126:147,]),
@@ -836,6 +848,7 @@ kable(head(test_cos[148:150,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[148:150,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -854,7 +867,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[148:150,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[148:150,], col = 6, pch = 16)
 text(sup$coor[148:150,], labels = rownames(sup$coor[148:150,]),
@@ -879,6 +892,7 @@ kable(head(test_cos[151:154,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[151:154,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -897,7 +911,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[151:154,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[151:154,], col = 6, pch = 16)
 text(sup$coor[151:154,], labels = rownames(sup$coor[151:154,]),
@@ -930,6 +944,7 @@ kable(head(test_cos[15:23,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[15:23,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -948,7 +963,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[15:23,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[15:23,], col = 6, pch = 16)
 text(sup$coor[15:23,], labels = rownames(sup$coor[15:23,]),
@@ -973,6 +988,7 @@ kable(head(test_cos[88:95,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[88:95,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -991,7 +1007,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[88:95,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[88:95,], col = 6, pch = 16)
 text(sup$coor[88:95,], labels = rownames(sup$coor[88:95,]),
@@ -1016,6 +1032,7 @@ kable(head(test_cos[96:98,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[96:98,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -1034,7 +1051,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[96:98,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[96:98,], col = 6, pch = 16)
 text(sup$coor[96:98,], labels = rownames(sup$coor[96:98,]),
@@ -1059,6 +1076,7 @@ kable(head(test_cos[99:101,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[99:101,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -1077,7 +1095,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[99:101,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[99:101,], col = 6, pch = 16)
 text(sup$coor[99:101,], labels = rownames(sup$coor[99:101,]),
@@ -1102,6 +1120,7 @@ kable(head(test_cos[102:104,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[102:104,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -1120,7 +1139,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[102:104,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[102:104,], col = 6, pch = 16)
 text(sup$coor[102:104,], labels = rownames(sup$coor[102:104,]),
@@ -1145,6 +1164,7 @@ kable(head(test_cos[105:107,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[105:107,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -1163,7 +1183,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[105:107,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[105:107,], col = 6, pch = 16)
 text(sup$coor[105:107,], labels = rownames(sup$coor[105:107,]),
@@ -1188,6 +1208,7 @@ kable(head(test_cos[108:110,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[108:110,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -1206,7 +1227,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[108:110,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[108:110,], col = 6, pch = 16)
 text(sup$coor[108:110,], labels = rownames(sup$coor[108:110,]),
@@ -1231,6 +1252,7 @@ kable(head(test_cos[111:113,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[111:113,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -1249,7 +1271,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[111:113,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[111:113,], col = 6, pch = 16)
 text(sup$coor[111:113,], labels = rownames(sup$coor[111:113,]),
@@ -1274,6 +1296,7 @@ kable(head(test_cos[114:116,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[114:116,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -1292,7 +1315,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[114:116,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[114:116,], col = 6, pch = 16)
 text(sup$coor[114:116,], labels = rownames(sup$coor[114:116,]),
@@ -1317,6 +1340,7 @@ kable(head(test_cos[117:119,]), digits = 3)
 
 ```{r}
 #| echo: false
+#| eval: false
 plot(sup$coor[117:119,], col = 6, pch = 16,
      xlim = c(-1,1), ylim = c(-1,1),
      bty="n", axes = FALSE)
@@ -1335,7 +1359,7 @@ s.arrow(GGlob, add.plot = TRUE, boxes = FALSE,
 #| echo: false
 plot(acp, Tcol = FALSE, ucal = 100, cex.row = 0,
      xlim = c(min(sup$coor[117:119,]-0.2),1), ylim = c(-1, 1), plot.axes = FALSE)
-s.arrow(acp$co, add.plot = TRUE, boxes = FALSE)
+s.arrow(acp$co, add.plot = TRUE, boxes = T)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 points(sup$coor[117:119,], col = 6, pch = 16)
 text(sup$coor[117:119,], labels = rownames(sup$coor[117:119,]),
