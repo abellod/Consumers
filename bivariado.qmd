@@ -186,6 +186,8 @@ sum(is.na(data$INST_CARACTER_ACADEMICO)) # 0 na's
 data$INST_CARACTER_ACADEMICO<-ifelse(data$INST_CARACTER_ACADEMICO=="INSTITUCIÓN TECNOLÓGICA","InstTec",ifelse(data$INST_CARACTER_ACADEMICO=="INSTITUCIÓN UNIVERSITARIA","InstUni", ifelse(data$INST_CARACTER_ACADEMICO=="TÉCNICA PROFESIONAL","TecProf", "Universidad")))
 data$INST_CARACTER_ACADEMICO<- as.factor(data$INST_CARACTER_ACADEMICO)
 table(data$INST_CARACTER_ACADEMICO)
+
+names(data)[29:33]<-c("cuanti","lec","ciu","ing","esc")
 ```
 ## Variables cuantitativas
 
@@ -197,6 +199,7 @@ plotpairs(as.matrix(data[,29:34]))
 ```
 
 ```{r}
+#| echo: false
 # Matriz de correlaciones
 kable(cor(data[,29:34]), digits = 2)
 ```
@@ -209,6 +212,7 @@ kable(cor(data[,29:34]), digits = 2)
 ### Sexo
 
 ```{r}
+#| echo: false
 sorted_sexo <- with(data, reorder(ESTU_GENERO, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_sexo, las = 1, col = 4, horizontal = T)
 ```
@@ -216,6 +220,7 @@ boxplot(data$PUNT_GLOBAL ~ sorted_sexo, las = 1, col = 4, horizontal = T)
 ### Estado civil
 
 ```{r}
+#| echo: false
 par(bty="n")
 sorted_civil <- with(data, reorder(ESTU_ESTADOCIVIL, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_civil, las = 1, col = 4, horizontal = T)
@@ -224,6 +229,7 @@ boxplot(data$PUNT_GLOBAL ~ sorted_civil, las = 1, col = 4, horizontal = T)
 ### Horas trabaja
 
 ```{r}
+#| echo: false
 par(bty="n")
 sorted_horas <- with(data, reorder(ESTU_HORASSEMANATRABAJA, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_horas, las = 1, col = 4, horizontal = T)
@@ -232,6 +238,7 @@ boxplot(data$PUNT_GLOBAL ~ sorted_horas, las = 1, col = 4, horizontal = T)
 ### Capacitación examen
 
 ```{r}
+#| echo: false
 par(bty="n")
 sorted_cap <- with(data, reorder(ESTU_COMOCAPACITOEXAMENSB11, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_cap, las = 1, col = 4, horizontal = T)
@@ -240,6 +247,7 @@ boxplot(data$PUNT_GLOBAL ~ sorted_cap, las = 1, col = 4, horizontal = T)
 ### Semestre que cursa
 
 ```{r}
+#| echo: false
 par(bty="n")
 sorted_semestre <- with(data, reorder(ESTU_SEMESTRECURSA, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_semestre, las = 1, col = 4, horizontal = T)
@@ -248,6 +256,7 @@ boxplot(data$PUNT_GLOBAL ~ sorted_semestre, las = 1, col = 4, horizontal = T)
 ### Grupo referencia
 
 ```{r}
+#| echo: false
 par(bty="n",cex.axis=0.5)
 sorted_grupo <- with(data, reorder(GRUPOREFERENCIA, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_grupo, las = 1, col = 4, horizontal = T)
@@ -256,6 +265,7 @@ boxplot(data$PUNT_GLOBAL ~ sorted_grupo, las = 1, col = 4, horizontal = T)
 ### Modalidad
 
 ```{r}
+#| echo: false
 par(bty="n")
 sorted_modalidad <- with(data, reorder(ESTU_METODO_PRGM, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_modalidad, las = 1, col = 4, horizontal = T)
@@ -264,6 +274,7 @@ boxplot(data$PUNT_GLOBAL ~ sorted_modalidad, las = 1, col = 4, horizontal = T)
 ### Carácter académico
 
 ```{r}
+#| echo: false
 par(bty="n")
 sorted_car <- with(data, reorder(INST_CARACTER_ACADEMICO, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_car, las = 1, col = 4, horizontal = T)
@@ -272,6 +283,7 @@ boxplot(data$PUNT_GLOBAL ~ sorted_car, las = 1, col = 4, horizontal = T)
 ### Valor matrícula
 
 ```{r}
+#| echo: false
 par(bty="n")
 sorted_valor <- with(data, reorder(ESTU_VALORMATRICULAUNIVERSIDAD, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_valor, las = 1, col = 4, horizontal = T)
@@ -280,6 +292,7 @@ boxplot(data$PUNT_GLOBAL ~ sorted_valor, las = 1, col = 4, horizontal = T)
 ### Estrato
 
 ```{r}
+#| echo: false
 par(bty="n")
 sorted_estrato <- with(data, reorder(FAMI_ESTRATOVIVIENDA, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_estrato, las = 1, col = 4, horizontal = T)
@@ -288,7 +301,182 @@ boxplot(data$PUNT_GLOBAL ~ sorted_estrato, las = 1, col = 4, horizontal = T)
 
 ## Variables cualitativas
 
+### Sexo
+
+::: panel-tabset
+
+#### Estado civil
+
 ```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$ESTU_ESTADOCIVIL)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Educación padre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$FAMI_EDUCACIONPADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Educación madre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$FAMI_EDUCACIONMADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Ocupación padre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$FAMI_OCUPACIONPADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Ocupación madre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$FAMI_OCUPACIONMADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Horas trabaja
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$ESTU_HORASSEMANATRABAJA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Capacitación examen
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$ESTU_COMOCAPACITOEXAMENSB11)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Semestre cursa
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$ESTU_SEMESTRECURSA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Grupo referencia
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$GRUPOREFERENCIA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Modalidad
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$ESTU_METODO_PRGM)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Caracter académico
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$INST_CARACTER_ACADEMICO)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Valor matricula
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_GENERO, data$ESTU_VALORMATRICULAUNIVERSIDAD)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Estrato
+
+```{r}
+#| echo: false
 tc <- table(data$ESTU_GENERO, data$FAMI_ESTRATOVIVIENDA)
 tabtc <- cbind(tc, totF = rowSums(tc))
 tabtc <- rbind(tabtc, totC=colSums(tabtc))
@@ -299,13 +487,420 @@ plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
 
+:::
+
+### Horas trabaja
+
+::: panel-tabset
+
+#### Estado civil
+
 ```{r}
+#| echo: false
+tc <- table(data$ESTU_HORASSEMANATRABAJA, data$ESTU_ESTADOCIVIL)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Semestre cursa
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_HORASSEMANATRABAJA, data$ESTU_SEMESTRECURSA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Grupo referencia
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_HORASSEMANATRABAJA, data$GRUPOREFERENCIA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Valor matricula
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_HORASSEMANATRABAJA, data$ESTU_VALORMATRICULAUNIVERSIDAD)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Estrato
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_HORASSEMANATRABAJA, data$FAMI_ESTRATOVIVIENDA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Educación padre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_HORASSEMANATRABAJA, data$FAMI_EDUCACIONPADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Educación madre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_HORASSEMANATRABAJA, data$FAMI_EDUCACIONMADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Ocupación padre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_HORASSEMANATRABAJA, data$FAMI_OCUPACIONPADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Ocupación madre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_HORASSEMANATRABAJA, data$FAMI_OCUPACIONMADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+:::
+
+### Estado civil
+
+::: panel-tabset
+
+#### Semestre cursa
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_ESTADOCIVIL, data$ESTU_SEMESTRECURSA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Grupo referencia
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_ESTADOCIVIL, data$GRUPOREFERENCIA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Modalidad
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_ESTADOCIVIL, data$ESTU_METODO_PRGM)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Carácter académico
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_ESTADOCIVIL, data$INST_CARACTER_ACADEMICO)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Valor matricula
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_ESTADOCIVIL, data$ESTU_VALORMATRICULAUNIVERSIDAD)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Estrato
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_ESTADOCIVIL, data$FAMI_ESTRATOVIVIENDA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Educación padre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_ESTADOCIVIL, data$FAMI_EDUCACIONPADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Educación madre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_ESTADOCIVIL, data$FAMI_EDUCACIONMADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Ocupación padre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_ESTADOCIVIL, data$FAMI_OCUPACIONPADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Ocupación madre
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_ESTADOCIVIL, data$FAMI_OCUPACIONMADRE)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+:::
+
+### Semestre cursa
+
+::: panel-tabset
+
+#### Grupo referencia
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_SEMESTRECURSA, data$GRUPOREFERENCIA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Capacitación examen
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_SEMESTRECURSA, data$ESTU_COMOCAPACITOEXAMENSB11)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Modalidad
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_SEMESTRECURSA, data$ESTU_PRGM_ACADEMICO)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Estrato
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_SEMESTRECURSA, data$FAMI_ESTRATOVIVIENDA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Valor matricula
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_SEMESTRECURSA, data$ESTU_VALORMATRICULAUNIVERSIDAD)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+:::
+
+### Valor matricula
+
+::: panel-tabset
+
+#### Estrato
+
+```{r}
+#| echo: false
 tc <- table(data$ESTU_VALORMATRICULAUNIVERSIDAD, data$FAMI_ESTRATOVIVIENDA)
 tabtc <- cbind(tc, totF = rowSums(tc))
 tabtc <- rbind(tabtc, totC=colSums(tabtc))
 
 # Gráficos de los perfiles fila y perfiles columna
 par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
-plotct(t(tc), "row", col=2:11)
+plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+
+#### Grupo referencia
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_VALORMATRICULAUNIVERSIDAD, data$GRUPOREFERENCIA)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Modalidad
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_VALORMATRICULAUNIVERSIDAD, data$ESTU_PRGM_ACADEMICO)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+#### Carácter académico
+
+```{r}
+#| echo: false
+tc <- table(data$ESTU_VALORMATRICULAUNIVERSIDAD, data$INST_CARACTER_ACADEMICO)
+tabtc <- cbind(tc, totF = rowSums(tc))
+tabtc <- rbind(tabtc, totC=colSums(tabtc))
+
+# Gráficos de los perfiles fila y perfiles columna
+par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
+plotct(t(tc), "row", col=2:5)
+plotct(tc, "row", col=2:10)
+```
+
+:::

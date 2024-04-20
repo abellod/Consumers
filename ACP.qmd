@@ -184,6 +184,8 @@ sum(is.na(data$INST_CARACTER_ACADEMICO)) # 0 na's
 data$INST_CARACTER_ACADEMICO<-ifelse(data$INST_CARACTER_ACADEMICO=="INSTITUCIÓN TECNOLÓGICA","InstTec",ifelse(data$INST_CARACTER_ACADEMICO=="INSTITUCIÓN UNIVERSITARIA","InstUni", ifelse(data$INST_CARACTER_ACADEMICO=="TÉCNICA PROFESIONAL","TecProf", "Universidad")))
 data$INST_CARACTER_ACADEMICO<- as.factor(data$INST_CARACTER_ACADEMICO)
 table(data$INST_CARACTER_ACADEMICO)
+
+names(data)[29:33]<-c("cuanti","lec","ciu","ing","esc")
 ```
 
 

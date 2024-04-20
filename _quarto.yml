@@ -12,6 +12,11 @@ book:
     - bivariado.qmd
     - ACP.qmd
     - references.qmd
+  favicon: 'fav.png'
+  sidebar: 
+    tools: 
+      - icon: github
+        url: https://github.com/SofiaBello27/Consumers
 
 bibliography: references.bib
 bibliographystyle: apa
