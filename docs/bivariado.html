@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -255,9 +255,11 @@ ul.task-list li input[type="checkbox"] {
 </table>
 </div>
 </div>
+<p>La correlación lineal entre cada componente y el puntaje global en general es alta. Entre componentes sin embargo no pasa lo mismo, ya que por ejemplo, la correlación entre el componente de escritura y los demás componentes es baja, mientras que la correlación entre componentes como lectura y competencias ciudadanas o razonamiento cuantitativo y lectura es más alta.</p>
 </section>
 <section id="variables-continua-y-cualitativa" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="variables-continua-y-cualitativa"><span class="header-section-number">2.2</span> Variables continua y cualitativa</h2>
+<p>Se comparará el puntaje global respecto a distintas variables de interés a través de boxplots con el fin de observar si hay una diferencia entre las distribuciones de los puntajes en las distintas variables cualitativas de interés.</p>
 <section id="puntaje-global-vs-cualitativas" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="puntaje-global-vs-cualitativas"><span class="header-section-number">2.2.1</span> Puntaje global vs cualitativas</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -269,6 +271,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Las dos cajas son parecidas, lo que puede indicar que el sexo no afecta a los puntajes, sin embargo, en el caso de los que tienen un sexo desconocido, si parece haber una mayor puntuación media y una concentración alrededor de 150 y 200.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
@@ -276,6 +279,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>En general todas las cajas son muy parecidas y aunque algunas son un poco más delgadas, todas tienen una distribución similar, por lo que el estado civil no parece afectar al puntaje global.</p>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
@@ -283,6 +287,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Las cajas parecen distribuirse de igual manera, sin enmbargo, los que no trabajan parecen tener puntajes un poco más altos en promedio respecto a las otras categorías, pero visualmente la diferencia no es muy notoria.</p>
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <div class="cell">
@@ -290,6 +295,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Las diferencias de puntajes entre distintas capacitaciones no es muy apreciable, por lo que parece que el tipo de capacitación no afecta en gran medida al puntaje global, aunque es notorio que en el caso de estudiar por cuenta propia, hay más datos atípicos tanto por encima como por debajo de la mediana de los puntajes.</p>
 </div>
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <div class="cell">
@@ -297,6 +303,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>El semestre no parece afectar enormemente a la distribución del puntaje global, sin embargo sí parece haber una tendencia que indica que a mayores semestres, los puntajes tienden a ser un poco mejores, habiendo una diferencia visualmente notable en por ejemplo, los de 6 semestres o menos y los de 12 semestres o más.</p>
 </div>
 <div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
 <div class="cell">
@@ -304,6 +311,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>En el caso del grupo de referencia, si parece haber un cambio al diferenciar entre distintos grupos de referencia, tanto en distribución como en puntajes, pues para grupos de referencia como Grupo referencia nacional o Econ.,admin.,contad. y afines Univer, los bigotes de las cajas son más cortos que otros grupos, y además hay una clara diferencia en algunas cajas pues por ejemplo, la caja del grupo Econ.,admin.,contad. y afines Univer no se solapa con la caja del grupo de Recreación y deportes, indicando que el grupo de referencia parece afectar de manera significativa al puntaje global.</p>
 </div>
 <div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
 <div class="cell">
@@ -311,6 +319,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La modalidad no parece afectar demasiado al puntaje global ya que las cajas se solapan, sin embargo si se puede apreciar una diferencia entre los puntajes con individuos en modalidad presencial y con individuos en modalidad a distancia, ya que el percentil 75 de ambos grupos es menor que la mediana del grupo de modalidad presencial.</p>
 </div>
 <div id="tabset-1-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-8-tab">
 <div class="cell">
@@ -318,6 +327,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Aunque las cajas se solapan, los puntajes globales de los individuos que están en una universidad son un poco mayores, debido a que la mediana de los estudiantes en universidad es mayor que las de los individuos que asisten a una institución de carácter académico diferente.</p>
 </div>
 <div id="tabset-1-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-9-tab">
 <div class="cell">
@@ -325,6 +335,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Los puntajes globales de los estudiantes que pagan más de 7 millones parecen ser en general más altos respecto a los de otros grupos, mientras que los puntajes entre los demás grupos no parecen diferenciarse demasiado.</p>
 </div>
 <div id="tabset-1-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-10-tab">
 <div class="cell">
@@ -332,6 +343,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Hay una clara tendencia que indica que a mayor estrato los puntajes globales tienden a aumentar, ya que, dejando de lado a los individuos con estrato desconocido, los estratos están organizados, siendo los mejores puntajes los de mayor estrato.</p>
 </div>
 </div>
 </div>
@@ -339,8 +351,10 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="variables-cualitativas" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="variables-cualitativas"><span class="header-section-number">2.3</span> Variables cualitativas</h2>
+<p>Se compararán las distintas variables cualitativas que son de interés para dar respuesta a los objetivos con variables que no necesariamente dan respuesta a los objetivos pero que se cree que pueden tener una relación con las variables cualitativas que si son de interés. En cada variable se comentarán las observaciones que se obtuvieron de la comparación y y al final se hará un resumen de estas comparaciones.</p>
 <section id="sexo-1" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="sexo-1"><span class="header-section-number">2.3.1</span> Sexo</h3>
+<p>Hay que recordar que sólo hay 5 individuos con el sexo desconocido, por lo que es normal que la distribución de las distintas variables en esta categoría difiera de la marginal.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Estado civil</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Educación padre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Educación madre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Ocupación padre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">Ocupación madre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">Horas trabaja</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-7" role="tab" aria-controls="tabset-2-7" aria-selected="false">Capacitación examen</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-8" role="tab" aria-controls="tabset-2-8" aria-selected="false">Semestre cursa</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-9" role="tab" aria-controls="tabset-2-9" aria-selected="false">Grupo referencia</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-10" role="tab" aria-controls="tabset-2-10" aria-selected="false">Modalidad</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-11" role="tab" aria-controls="tabset-2-11" aria-selected="false">Caracter académico</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-12" role="tab" aria-controls="tabset-2-12" aria-selected="false">Valor matricula</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-13" role="tab" aria-controls="tabset-2-13" aria-selected="false">Estrato</a></li></ul>
 <div class="tab-content">
@@ -350,6 +364,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La distribución de los sexos de cada estado civil es muy parecida a la distribución marginal, por lo que no parece haber una diferencia significativa en la distribución de los sexos en los distintos estados civiles.</p>
+<p>En el caso de la distribución de los estados civiles de cada sexo también son muy parecidos a la distribución marginal, a excepción del sexo desconocido, en cuyo caso todos los que poseen esta categoría tienen un estado civil desconocido. De ahí, no parece haber diferencia significativa en la distribución de los estados civiles en cada sexo.</p>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
@@ -357,6 +373,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>En el caso de la distribución de los sexos para los distintos niveles educativos de cada padre no parece diferir mucho entre la mayoría de categorías, sin embargo algunas si se alejan un poco de la distribución marginal, pero no son muy notorias estas diferencias y sólo ocurren en 3 niveles de educación.</p>
+<p>Los niveles de educación de los padres son muy parecidas entre los distintos sexos respecto a la distribución marginal, excepto cuando el sexo es desconocido, donde sí se diferencia mucho, debido a la poca cantidad de individuos en esta categoría.</p>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <div class="cell">
@@ -364,6 +382,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>En el caso de la distribución de los sexos para los distintos niveles educativos de cada madre sí hay una diferencia un poco notable entre la mayoría de categorías respecto a la distribución marginal. Resalta la categoría que tiene un 10% menos en la proporción de mujeres respecto a la proporción de mujeres en la distribución marginal.</p>
+<p>De la misma manera que en la variable anterior, los niveles de educación de las madres son muy parecidos entre los distintos sexos respecto a la distribución marginal, excepto cuando el sexo es desconocido, donde sí se diferencia mucho por la cantidad mínima de individuos en esta categoría. Esto se obviará en las siguientes comparaciones.</p>
 </div>
 <div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
 <div class="cell">
@@ -371,6 +391,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La distribución de los sexos diferenciando entre los distintas ocupaciones del padre difieren en general de la distribución marginal pero no de gran manera, aunque si es apreciable.</p>
+<p>La distribución de las ocupaciones del padre diferenciando entre sexos son muy parecidas a la de la distribución marginal. No parece haber diferencia entre sexos.</p>
 </div>
 <div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
 <div class="cell">
@@ -378,6 +400,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La distribución de los sexos diferenciando entre los distintas ocupaciones de la madre difieren en general un poco menos de la distribución marginal respecto a la variable anterior, pero tampoco de gran manera. Igualmente sigue siendo apreciable.</p>
+<p>La distribución de las ocupaciones de la madre diferenciando entre sexos también son muy parecidas a la de la distribución marginal. No parece haber diferencia entre sexos.</p>
 </div>
 <div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
 <div class="cell">
@@ -385,6 +409,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Las distribución de los sexos entre las distintas categorías de esta variable no parecen cambiar mucho de la marginal, aunque si parece haber una diferencia apreciable entre la distribución marginal y el grupo de personas que no trabajan, puesto que hay proporcionalmente más mujeres en este grupo que la proporción de hombres y mujeres en la población.</p>
+<p>La distribución de horas que trabajan los individuos diferenciando entre sexos es muy parecida a la distribución marginal. No parece haber diferencia entre sexos.</p>
 </div>
 <div id="tabset-2-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-7-tab">
 <div class="cell">
@@ -392,6 +418,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La distribución de sexos respecto a la forma en la que se capacitaron para el examen de los individuos se parece mucho a la distribución marginal, excepto por las personas que se capacitaron a través de un curso, ya que parece haber una cantidad considerable de más mujeres en proporción respecto a la proporción de mujeres en la población.</p>
+<p>La distribución de la forma en la que se capacitaron los individuos para el examen diferenciando entre sexos es muy parecida a la distribución marginal. No parece haber diferencia entre sexos.</p>
 </div>
 <div id="tabset-2-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-8-tab">
 <div class="cell">
@@ -399,6 +427,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La distribución de los sexos diferenciando por el semestre que cursa el individuo parece diferenciarse de la marginal en varias categorías, por lo que para los distintos semestres cursados hay en su mayoría una proporción distinta de mujeres y hombres que en la población.</p>
+<p>La distribución de los semestres cursados entre los distintos sexos no parece diferenciarse mucho de la distribución marginal, o lo mismo, no parece haber diferencia entre sexos.</p>
 </div>
 <div id="tabset-2-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-9-tab">
 <div class="cell">
@@ -406,6 +436,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La distribución de los sexos diferenciando por el grupo de referencia del individuo se diferencia de gran manera de la distribución marginal en varias categorías, o lo mismo hay una clara diferencia en la distribución de hombres y mujeres en los distintos grupos de referencia, además de respecto a la población.</p>
+<p>En este caso la distribución de los grupos de referencia entre los distintos sexos sí parece diferenciarse de la distribución marginal, no excesivamente pero si se llega a apreciar este cambio entre las distintas categorías.</p>
 </div>
 <div id="tabset-2-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-10-tab">
 <div class="cell">
@@ -413,6 +445,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La distribución de los sexos entre modalidades de estudio no se diferencia mucho de la distribución marginal. No hay una diferencia que llame la atención entre las categorías.</p>
+<p>La distribución de las modalidades de estudio en cada sexo se parece mucho a la distribución marginal, por lo que no parece haber diferencia entre sexos.</p>
 </div>
 <div id="tabset-2-11" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-11-tab">
 <div class="cell">
@@ -420,6 +454,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La proporción de hombres que pertenecen a un instituto tecnológico es notoriamente mayor que la proporción de hombres de la población, de ahí, la distribución de hombres y mujeres diferenciando entre el carácter académico de la institución no se diferencia mucho de la distribución de hombres y mujeres en la población.</p>
+<p>La distribución del carácter académico de la institución a la que pertenecen los individuos en cada sexo no se diferencia mucho de la marginal, por lo que no parece que haya diferencias notorias entre sexos.</p>
 </div>
 <div id="tabset-2-12" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-12-tab">
 <div class="cell">
@@ -427,6 +463,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La distribución de los sexos respecto a el valor que pagan de matrícula es muy parecida a la distribución marginal. No parece haber diferencias de proporción de hombres y mujeres en los distintos valores de la matrícula.</p>
+<p>La distribución de valores de matrículas en los sexos es muy parecida a la distribución marginal. No parece haber diferencias entre los sexos.</p>
 </div>
 <div id="tabset-2-13" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-13-tab">
 <div class="cell">
@@ -434,12 +472,17 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="bivariado_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>La distribución de los sexos respecto a los estratos, en general es muy parecida a la distribución marginal. Sin embargo hay diferencias que parecen no ser muy significativas pero que son apreciables.</p>
+<p>La distribución de estratos en ambos sexos es muy parecida a la distribución marginal. No parece haber diferencias entre los sexos.</p>
 </div>
 </div>
 </div>
+<p>Resumiendo, en la mayoría de las variables no había diferencia en la distribución de hombres y mujeres, aunque si se pudo apreciar una diferencia en varias categorías en las variables Educación madre, Ocupación padre, Ocupación madre, Semestre cursa, grupo referencia, y estrato, por lo que puede que sean variables que dependen de el sexo, y además se pudo apreciar diferencias notables en sólo una categoría en las variables Horas trabaja, Capacitación examen, Modalidad y Carácter académico, donde había más proporción de un sexo que del otro notoriamente respecto a la distribución marginal. En general lo que ocurría es que la proporción de mujeres era mayor a la proporción de mujeres en la población, sin embargo en el caso de la variable Carácter académico, la proporción de hombres que hacen parte de un instituto tecnológico es mayor que la proporción de hombres en la población.</p>
+<p>Además, en el caso del sexo, la distribución de las distintas variables no difería entre hombres y mujeres en casi todas las variables, sin embargo sí hubo diferencias en la distribución de hombres y mujeres en la variable grupo de referencia. Esto puede indicar que la distribución de hombres y mujeres en las distintas carreras es notablemente distinta.</p>
 </section>
 <section id="horas-trabaja-2" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="horas-trabaja-2"><span class="header-section-number">2.3.2</span> Horas trabaja</h3>
+<p>En el caso de la esta variable, la cantidad de individuos con la categoría es de 6867, por lo que aunque sigue siendo un porcentaje bajo respecto al del total de la población, es más notorio, lo que hará que esta categoría sea menos problemática y muestre información que valga la pena tomar en cuenta.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Estado civil</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Semestre cursa</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Grupo referencia</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">Valor matricula</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false">Estrato</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-6" role="tab" aria-controls="tabset-3-6" aria-selected="false">Educación padre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-7" role="tab" aria-controls="tabset-3-7" aria-selected="false">Educación madre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-8" role="tab" aria-controls="tabset-3-8" aria-selected="false">Ocupación padre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-9" role="tab" aria-controls="tabset-3-9" aria-selected="false">Ocupación madre</a></li></ul>
 <div class="tab-content">

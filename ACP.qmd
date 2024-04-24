@@ -188,7 +188,6 @@ table(data$INST_CARACTER_ACADEMICO)
 names(data)[29:33]<-c("cuanti","lec","ciu","ing","esc")
 ```
 
-
 Miremos la correlación de las variables cuantitativas
 
 ```{r}
@@ -222,7 +221,7 @@ s.corcircle(acp$co)
 ```
 
 Usaremos la variable de "Puntaje global" como ilustrativa y sus nuevas coordenadas son:
- 
+
 ```{r}
 #| echo: false
 # exam como ilustrativa
@@ -237,7 +236,7 @@ s.corcircle(acp$co)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 ```
 
-Parece que el Puntaje Global y la mayoría de las varibles excepto "Puntaje de Comunicación Escrita" están muy correlacionadas con el primer eje. 
+Parece que el Puntaje Global y la mayoría de las varibles excepto "Puntaje de Comunicación Escrita" están muy correlacionadas con el primer eje.
 
 ### ACP tres ejes
 
@@ -259,7 +258,7 @@ s.arrow(GGlob1, xax = 2, yax = 3,
         add.plot = TRUE, boxes = FALSE)
 ```
 
-::: {.callout-important}
+::: callout-important
 ESTO DEBERÍAMOS PONERLO DE OTRA FORMA Y EN OTRO LADO. Se quitaron las variables INST_NOMBRE_INSTITUCION, ESTU_PRGM_ACADEMICO, ESTU_COD_RESIDE_DEPTO y ESTU_FECHANACIMIENTO
 :::
 
@@ -278,14 +277,13 @@ kable(cbind(wcat = sup$wcat, d2 = sup$dis2, sup$coor),
 kable(cbind(sup$tv, sup$cos2), digits = 3)
 ```
 
-::: {.callout-note}
+::: callout-note
 Note que para el análisis del ACP se continuó teniendo en cuenta únicamente dos ejes.
 :::
 
 ## Variables relacionadas con la información personal
 
 ::: panel-tabset
-
 ## Sexo
 
 Los pesos, distancias al cuadrado y las nuevas coordenadas son:
@@ -296,7 +294,6 @@ pes_dist_coor<-cbind(wcat = sup$wcat, d2 = sup$dis2, sup$coor)
 kable(pes_dist_coor[1:3,], 
       digits = 3)
 ```
-
 
 Los valores test y los cosenos cuadrados son:
 
@@ -335,7 +332,6 @@ text(sup$coor[1:3,], labels = rownames(sup$coor[1:3,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
 
-
 ## Etnia
 
 Los pesos, distancias al cuadrado y las nuevas coordenadas son:
@@ -345,7 +341,6 @@ Los pesos, distancias al cuadrado y las nuevas coordenadas son:
 kable(pes_dist_coor[4:6,], 
       digits = 3)
 ```
-
 
 Los valores test y los cosenos cuadrados son:
 
@@ -392,7 +387,6 @@ kable(pes_dist_coor[7:9,],
       digits = 3)
 ```
 
-
 Los valores test y los cosenos cuadrados son:
 
 ```{r}
@@ -437,7 +431,6 @@ Los pesos, distancias al cuadrado y las nuevas coordenadas son:
 kable(pes_dist_coor[10:14,], 
       digits = 3)
 ```
-
 
 Los valores test y los cosenos cuadrados son:
 
@@ -693,13 +686,11 @@ points(sup$coor[120:125,], col = 6, pch = 16)
 text(sup$coor[120:125,], labels = rownames(sup$coor[120:125,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
-
 :::
 
 ## Variables relacionadas con la información académica
 
 ::: panel-tabset
-
 ## Capacitación examen
 
 Los pesos, distancias al cuadrado y las nuevas coordenadas son:
@@ -709,7 +700,6 @@ Los pesos, distancias al cuadrado y las nuevas coordenadas son:
 kable(pes_dist_coor[24:27,], 
       digits = 3)
 ```
-
 
 Los valores test y los cosenos cuadrados son:
 
@@ -921,13 +911,11 @@ points(sup$coor[151:154,], col = 6, pch = 16)
 text(sup$coor[151:154,], labels = rownames(sup$coor[151:154,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
-
 :::
 
 ## Variables relacionadas con la información socioeconómica
 
 ::: panel-tabset
-
 ## Valor matrícula
 
 Los pesos, distancias al cuadrado y las nuevas coordenadas son:
@@ -937,7 +925,6 @@ Los pesos, distancias al cuadrado y las nuevas coordenadas son:
 kable(pes_dist_coor[15:23,], 
       digits = 3)
 ```
-
 
 Los valores test y los cosenos cuadrados son:
 
@@ -1369,5 +1356,4 @@ points(sup$coor[117:119,], col = 6, pch = 16)
 text(sup$coor[117:119,], labels = rownames(sup$coor[117:119,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
-
 :::

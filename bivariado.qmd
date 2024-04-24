@@ -204,7 +204,11 @@ plotpairs(as.matrix(data[,29:34]))
 kable(cor(data[,29:34]), digits = 2)
 ```
 
+La correlación lineal entre cada componente y el puntaje global en general es alta. Entre componentes sin embargo no pasa lo mismo, ya que por ejemplo, la correlación entre el componente de escritura y los demás componentes es baja, mientras que la correlación entre componentes como lectura y competencias ciudadanas o razonamiento cuantitativo y lectura es más alta.
+
 ## Variables continua y cualitativa
+
+Se comparará el puntaje global respecto a distintas variables de interés a través de boxplots con el fin de observar si hay una diferencia entre las distribuciones de los puntajes en las distintas variables cualitativas de interés. 
 
 ### Puntaje global vs cualitativas
 
@@ -217,6 +221,8 @@ sorted_sexo <- with(data, reorder(ESTU_GENERO, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_sexo, las = 1, col = 4, horizontal = T)
 ```
 
+Las dos cajas son parecidas, lo que puede indicar que el sexo no afecta a los puntajes, sin embargo, en el caso de los que tienen un sexo desconocido, si parece haber una mayor puntuación media y una concentración alrededor de 150 y 200.
+
 ### Estado civil
 
 ```{r}
@@ -225,6 +231,8 @@ par(bty="n")
 sorted_civil <- with(data, reorder(ESTU_ESTADOCIVIL, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_civil, las = 1, col = 4, horizontal = T)
 ```
+
+En general todas las cajas son muy parecidas y aunque algunas son un poco más delgadas, todas tienen una distribución similar, por lo que el estado civil no parece afectar al puntaje global.
 
 ### Horas trabaja
 
@@ -235,6 +243,8 @@ sorted_horas <- with(data, reorder(ESTU_HORASSEMANATRABAJA, PUNT_GLOBAL, median,
 boxplot(data$PUNT_GLOBAL ~ sorted_horas, las = 1, col = 4, horizontal = T)
 ```
 
+Las cajas parecen distribuirse de igual manera, sin enmbargo, los que no trabajan parecen tener puntajes un poco más altos en promedio respecto a las otras categorías, pero visualmente la diferencia no es muy notoria. 
+
 ### Capacitación examen
 
 ```{r}
@@ -243,6 +253,8 @@ par(bty="n")
 sorted_cap <- with(data, reorder(ESTU_COMOCAPACITOEXAMENSB11, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_cap, las = 1, col = 4, horizontal = T)
 ```
+
+Las diferencias de puntajes entre distintas capacitaciones no es muy apreciable, por lo que parece que el tipo de capacitación no afecta en gran medida al puntaje global, aunque es notorio que en el caso de estudiar por cuenta propia, hay más datos atípicos tanto por encima como por debajo de la mediana de los puntajes.
 
 ### Semestre que cursa
 
@@ -253,6 +265,8 @@ sorted_semestre <- with(data, reorder(ESTU_SEMESTRECURSA, PUNT_GLOBAL, median, n
 boxplot(data$PUNT_GLOBAL ~ sorted_semestre, las = 1, col = 4, horizontal = T)
 ```
 
+El semestre no parece afectar enormemente a la distribución del puntaje global, sin embargo sí parece haber una tendencia que indica que a mayores semestres, los puntajes tienden a ser un poco mejores, habiendo una diferencia visualmente notable en por ejemplo, los de 6 semestres o menos y los de 12 semestres o más.
+
 ### Grupo referencia
 
 ```{r}
@@ -261,6 +275,7 @@ par(bty="n",cex.axis=0.5)
 sorted_grupo <- with(data, reorder(GRUPOREFERENCIA, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_grupo, las = 1, col = 4, horizontal = T)
 ```
+En el caso del grupo de referencia, si parece haber un cambio al diferenciar entre distintos grupos de referencia, tanto en distribución como en puntajes, pues para grupos de referencia como Grupo referencia nacional o Econ.,admin.,contad. y afines Univer, los bigotes de las cajas son más cortos que otros grupos, y además hay una clara diferencia en algunas cajas pues por ejemplo, la caja del grupo Econ.,admin.,contad. y afines Univer no se solapa con la caja del grupo de Recreación y deportes, indicando que el grupo de referencia parece afectar de manera significativa al puntaje global.
 
 ### Modalidad
 
@@ -271,6 +286,8 @@ sorted_modalidad <- with(data, reorder(ESTU_METODO_PRGM, PUNT_GLOBAL, median, na
 boxplot(data$PUNT_GLOBAL ~ sorted_modalidad, las = 1, col = 4, horizontal = T)
 ```
 
+La modalidad no parece afectar demasiado al puntaje global ya que las cajas se solapan, sin embargo si se puede apreciar una diferencia entre los puntajes con individuos en modalidad presencial y con individuos en modalidad a distancia, ya que el percentil 75 de ambos grupos es menor que la mediana del grupo de modalidad presencial.
+
 ### Carácter académico
 
 ```{r}
@@ -279,6 +296,7 @@ par(bty="n")
 sorted_car <- with(data, reorder(INST_CARACTER_ACADEMICO, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_car, las = 1, col = 4, horizontal = T)
 ```
+Aunque las cajas se solapan, los puntajes globales de los individuos que están en una universidad son un poco mayores, debido a que la mediana de los estudiantes en universidad es mayor que las de los individuos que asisten a una institución de carácter académico diferente.
 
 ### Valor matrícula
 
@@ -288,6 +306,7 @@ par(bty="n")
 sorted_valor <- with(data, reorder(ESTU_VALORMATRICULAUNIVERSIDAD, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_valor, las = 1, col = 4, horizontal = T)
 ```
+Los puntajes globales de los estudiantes que pagan más de 7 millones parecen ser en general más altos respecto a los de otros grupos, mientras que los puntajes entre los demás grupos no parecen diferenciarse demasiado. 
 
 ### Estrato
 
@@ -297,11 +316,17 @@ par(bty="n")
 sorted_estrato <- with(data, reorder(FAMI_ESTRATOVIVIENDA, PUNT_GLOBAL, median, na.rm = T))
 boxplot(data$PUNT_GLOBAL ~ sorted_estrato, las = 1, col = 4, horizontal = T)
 ```
+Hay una clara tendencia que indica que a mayor estrato los puntajes globales tienden a aumentar, ya que, dejando de lado a los individuos con estrato desconocido, los estratos están organizados, siendo los mejores puntajes los de mayor estrato.
+
 :::
 
 ## Variables cualitativas
 
+Se compararán las distintas variables cualitativas que son de interés para dar respuesta a los objetivos con variables que no necesariamente dan respuesta a los objetivos pero que se cree que pueden tener una relación con las variables cualitativas que si son de interés. En cada variable se comentarán las observaciones que se obtuvieron de la comparación y y al final se hará un resumen de estas comparaciones.
+
 ### Sexo
+
+Hay que recordar que sólo hay 5 individuos con el sexo desconocido, por lo que es normal que la distribución de las distintas variables en esta categoría difiera de la marginal.
 
 ::: panel-tabset
 
@@ -319,6 +344,10 @@ plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
 
+La distribución de los sexos de cada estado civil es muy parecida a la distribución marginal, por lo que no parece haber una diferencia significativa en la distribución de los sexos en los distintos estados civiles.
+
+En el caso de la distribución de los estados civiles de cada sexo también son muy parecidos a la distribución marginal, a excepción del sexo desconocido, en cuyo caso todos los que poseen esta categoría tienen un estado civil desconocido. De ahí, no parece haber diferencia significativa en la distribución de los estados civiles en cada sexo.
+
 #### Educación padre
 
 ```{r}
@@ -332,6 +361,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+En el caso de la distribución de los sexos para los distintos niveles educativos de cada padre no parece diferir mucho entre la mayoría de categorías, sin embargo algunas si se alejan un poco de la distribución marginal, pero no son muy notorias estas diferencias y sólo ocurren en 3 niveles de educación.
+
+Los niveles de educación de los padres son muy parecidas entre los distintos sexos respecto a la distribución marginal, excepto cuando el sexo es desconocido, donde sí se diferencia mucho, debido a la poca cantidad de individuos en esta categoría.
 
 #### Educación madre
 
@@ -346,6 +378,10 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+En el caso de la distribución de los sexos para los distintos niveles educativos de cada madre sí hay una diferencia un poco notable entre la mayoría de categorías respecto a la distribución marginal. Resalta la categoría que tiene un 10% menos en la proporción de mujeres respecto a la proporción de mujeres en la distribución marginal.
+
+De la misma manera que en la variable anterior, los niveles de educación de las madres son muy parecidos entre los distintos sexos respecto a la distribución marginal, excepto cuando el sexo es desconocido, donde sí se diferencia mucho por la cantidad mínima de individuos en esta categoría. Esto se obviará en las siguientes comparaciones.
+
 
 #### Ocupación padre
 
@@ -360,6 +396,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de los sexos diferenciando entre los distintas ocupaciones del padre difieren en general de la distribución marginal pero no de gran manera, aunque si es apreciable.
+
+La distribución de las ocupaciones del padre diferenciando entre sexos son muy parecidas a la de la distribución marginal. No parece haber diferencia entre sexos.
 
 #### Ocupación madre
 
@@ -374,6 +413,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de los sexos diferenciando entre los distintas ocupaciones de la madre difieren en general un poco menos de la distribución marginal respecto a la variable anterior, pero tampoco de gran manera. Igualmente sigue siendo apreciable.
+
+La distribución de las ocupaciones de la madre diferenciando entre sexos también son muy parecidas a la de la distribución marginal. No parece haber diferencia entre sexos.
 
 #### Horas trabaja
 
@@ -388,6 +430,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Las distribución de los sexos entre las distintas categorías de esta variable no parecen cambiar mucho de la marginal, aunque si parece haber una diferencia apreciable entre la distribución marginal y el grupo de personas que no trabajan, puesto que hay proporcionalmente más mujeres en este grupo que la proporción de hombres y mujeres en la población.
+
+La distribución de horas que trabajan los individuos diferenciando entre sexos es muy parecida a la distribución marginal. No parece haber diferencia entre sexos.
 
 #### Capacitación examen
 
@@ -403,6 +448,10 @@ plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
 
+La distribución de sexos respecto a la forma en la que se capacitaron para el examen de los individuos se parece mucho a la distribución marginal, excepto por las personas que se capacitaron a través de un curso, ya que parece haber una cantidad considerable de más mujeres en proporción respecto a la proporción de mujeres en la población.
+
+La distribución de la forma en la que se capacitaron los individuos para el examen diferenciando entre sexos es muy parecida a la distribución marginal. No parece haber diferencia entre sexos.
+
 #### Semestre cursa
 
 ```{r}
@@ -416,6 +465,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de los sexos diferenciando por el semestre que cursa el individuo parece diferenciarse de la marginal en varias categorías, por lo que para los distintos semestres cursados hay en su mayoría una proporción distinta de mujeres y hombres que en la población.
+
+La distribución de los semestres cursados entre los distintos sexos no parece diferenciarse mucho de la distribución marginal, o lo mismo, no parece haber diferencia entre sexos.
 
 #### Grupo referencia
 
@@ -430,6 +482,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de los sexos diferenciando por el grupo de referencia del individuo se diferencia de gran manera de la distribución marginal en varias categorías, o lo mismo hay una clara diferencia en la distribución de hombres y mujeres en los distintos grupos de referencia, además de respecto a la población.
+
+En este caso la distribución de  los grupos de referencia entre los distintos sexos sí parece diferenciarse de la distribución marginal, no excesivamente pero si se llega a apreciar este cambio entre las distintas categorías.
 
 #### Modalidad
 
@@ -444,6 +499,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de los sexos entre modalidades de estudio no se diferencia mucho de la distribución marginal. No hay una diferencia que llame la atención entre las categorías.
+
+La distribución de las modalidades de estudio en cada sexo se parece mucho a la distribución marginal, por lo que no parece haber diferencia entre sexos.
 
 #### Caracter académico
 
@@ -458,6 +516,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La proporción de hombres que pertenecen a un instituto tecnológico es notoriamente mayor que la proporción de hombres de la población, de ahí, la distribución de hombres y mujeres diferenciando entre el carácter académico de la institución no se diferencia mucho de la distribución de hombres y mujeres en la población.
+
+La distribución del carácter académico de la institución a la que pertenecen los individuos en cada sexo no se diferencia mucho de la marginal, por lo que no parece que haya diferencias notorias entre sexos.
 
 #### Valor matricula
 
@@ -473,6 +534,10 @@ plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
 
+La distribución de los sexos respecto a el valor que pagan de matrícula es muy parecida a la distribución marginal. No parece haber diferencias de proporción de hombres y mujeres en los distintos valores de la matrícula.
+
+La distribución de valores de matrículas en los sexos es muy parecida a la distribución marginal. No parece haber diferencias entre los sexos.
+
 #### Estrato
 
 ```{r}
@@ -486,10 +551,19 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de los sexos respecto a los estratos, en general es muy parecida a la distribución marginal. Sin embargo hay diferencias que parecen no ser muy significativas pero que son apreciables.
+
+La distribución de estratos en ambos sexos es muy parecida a la distribución marginal. No parece haber diferencias entre los sexos.
 
 :::
 
+Resumiendo, en la mayoría de las variables no había diferencia en la distribución de hombres y mujeres, aunque si se pudo apreciar una diferencia en varias categorías en las variables Educación madre, Ocupación padre, Ocupación madre, Semestre cursa, grupo referencia, y estrato, por lo que puede que sean variables que dependen de el sexo, y además se pudo apreciar diferencias notables en sólo una categoría en las variables Horas trabaja, Capacitación examen, Modalidad y Carácter académico, donde había más proporción de un sexo que del otro notoriamente respecto a la distribución marginal. En general lo que ocurría es que la proporción de mujeres era mayor a la proporción de mujeres en la población, sin embargo en el caso de la variable Carácter académico, la proporción de hombres que hacen parte de un instituto tecnológico es mayor que la proporción de hombres en la población. 
+
+Además, en el caso del sexo, la distribución de las distintas variables no difería entre hombres y mujeres en casi todas las variables, sin embargo sí hubo diferencias en la distribución de hombres y mujeres en la variable grupo de referencia. Esto puede indicar que la distribución de hombres y mujeres en las distintas carreras es notablemente distinta.
+
 ### Horas trabaja
+
+En el caso de la esta variable, la cantidad de individuos con la categoría es de 6867, por lo que aunque sigue siendo un porcentaje bajo respecto al del total de la población, es más notorio, lo que hará que esta categoría sea menos problemática y muestre información que valga la pena tomar en cuenta.
 
 ::: panel-tabset
 
