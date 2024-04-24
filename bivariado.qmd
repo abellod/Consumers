@@ -62,7 +62,7 @@ data$ESTU_ESTADOCIVIL <- ifelse(is.na(data$ESTU_ESTADOCIVIL), "Desconocido", ife
 data$ESTU_ESTADOCIVIL <- as.factor(data$ESTU_ESTADOCIVIL)
 table(data$ESTU_ESTADOCIVIL)
 
-# valor matricula
+# valor matrícula
 ## recodificamos para que quede como factor
 sum(is.na(data$ESTU_VALORMATRICULAUNIVERSIDAD)) # 2194 na's
 data$ESTU_VALORMATRICULAUNIVERSIDAD <- ifelse(is.na(data$ESTU_VALORMATRICULAUNIVERSIDAD), "Desconocido", ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Menos de 500 mil","m500",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 500 mil y menos de 1 millón","e500m1",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 1 millón y menos de 2.5 millones","e1m2.5",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 2.5 millones y menos de 4 millones","e2.5m4",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 4 millones y menos de 5.5 millones","e4m5.5",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 5.5 millones y menos de 7 millones","e5.5m7",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Más de 7 millones","M7","NP"))))))))
@@ -520,7 +520,7 @@ La proporción de hombres que pertenecen a un instituto tecnológico es notoriam
 
 La distribución del carácter académico de la institución a la que pertenecen los individuos en cada sexo no se diferencia mucho de la marginal, por lo que no parece que haya diferencias notorias entre sexos.
 
-#### Valor matricula
+#### Valor matrícula
 
 ```{r}
 #| echo: false
@@ -561,9 +561,11 @@ Resumiendo, en la mayoría de las variables no había diferencia en la distribuc
 
 Además, en el caso del sexo, la distribución de las distintas variables no difería entre hombres y mujeres en casi todas las variables, sin embargo sí hubo diferencias en la distribución de hombres y mujeres en la variable grupo de referencia. Esto puede indicar que la distribución de hombres y mujeres en las distintas carreras es notablemente distinta.
 
+Las observaciones ponen en el foco a las mujeres ya que parecen diferenciarse un poco más de la población.
+
 ### Horas trabaja
 
-En el caso de la esta variable, la cantidad de individuos con la categoría es de 6867, por lo que aunque sigue siendo un porcentaje bajo respecto al del total de la población, es más notorio, lo que hará que esta categoría sea menos problemática y muestre información que valga la pena tomar en cuenta.
+En el caso de la esta variable, la cantidad de individuos con la categoría desconocido es de 6867, por lo que aunque sigue siendo un porcentaje bajo respecto al del total de la población, es más notorio, lo que hará que esta categoría sea menos problemática y muestre información que valga la pena tomar en cuenta.
 
 ::: panel-tabset
 
@@ -580,6 +582,11 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de horas de trabajo entre los estados civiles difiere de la distribución marginal en varias categorías, mostrando que individuos con los estados civiles Union libre, Casado y Separado y/o viudo trabajan en promedio más horas que individuos con estado civil soltero o personas con estado civil desconocido.
+
+En el caso de la distribución de estados civiles en las distintas categorías de horas de trabajo, en la mayoría de categorías hay una distribución parecida a la distribución marginal, sin embargo en el caso de las personas que no trabajan hay una diferencia notoria, habiendo una cantidad considerablemente mayor de gente soltera respecto a las otras categorías.
+
+Esto parece indicarnos que la gente que trabaja menos horas o directamente no trabaja es principalmente soltera, algo que presuntamente puede ir ligado con la edad.
 
 #### Semestre cursa
 
@@ -594,6 +601,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de horas de trabajo no resulta muy parecida en todas las categorías del semestre cursado por el individuo, pero tampoco difiere excesivamente, ya que todas las categorías se solapan entre sí. Las diferencias más notorias respecto a la distribución marginal se ven en las personas que cursan los semestres más avanzados y las personas que cursan los semestres menos avanzados, trabajando más horas respecto a la población.
+
+La distribución de semestre cursado respecto a las horas de trabajo del individuo no difiere en general de la distribución marginal, la distribución que más se diferencia de la marginal es la de los individuos que no trabajan.
 
 #### Grupo referencia
 
@@ -608,8 +618,11 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de horas de trabajo respecto a el grupo de referencia varia notoriamente, hay grupos de referencia en los que la distribución de horas de trabajo muestra una clara mayoría en pocas o nulas horas de trabajo, mientras que en otros grupos las horas de trabajo son más que en la distribución de la población.
 
-#### Valor matricula
+En general la distribución de grupos de referencia respecto a las horas de trabajo es similar a la distribución marginal, sin embargo, los que trabajan más de 30 horas y los que no trabajan tienen una distribución que se diferencia de la marginal.
+
+#### Valor matrícula
 
 ```{r}
 #| echo: false
@@ -622,6 +635,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Hay una clara diferencia entre los que pagan más de 7 millones y la distribución marginal, pues estos trabajan menos horas que los demás grupos, por otra parte, los que pagan entre 1 millón y 2.5 millones parecen trabajan en promedio más horas que los demás grupos y que la población en general.
+
+En cuanto a la distribución de los costos de matrículas y las horas de trabajo, los que más se diferencian de la distribución marginal son los que trabajan menos horas, teniendo costos más elevados de matrícula, y los que trabajan más de 30 horas, teniendo costos mas pequeños de matrícula.
 
 #### Estrato
 
@@ -636,6 +652,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Los estratos 4, 5 y 6 trabajan menos horas en promedio, mientras que los estratos 1, 2, 3 y las personas sin estrato tienen distribución de las horas de trabajo similar a la marginal. Resalta el hecho de que la mayoría de personas con estrato desconocido también tienen un número de horas de trabajo desconocido, y dado que la cantidad de observaciones en esta categoría es de 5531, es algo que resulta importante tomar en cuenta.
+
+De la misma manera, las personas con horas de trabajo desconocidas contienen a la mayor parte de personas con estrato desconocido, diferenciando enormemente la distribución de estratos en esta categoría respecto a la distribución marginal. De ahí, las categorías son similares a la distribución marginal, resaltando que los que trabajan menos horas parecen tener estratos más altos que la población.
 
 #### Educación padre
 
@@ -650,6 +669,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de horas de trabajo en las personas cuyo padre tiene posgrado se diferencian notoriamente de la distribución marginal, pues estas personas trabajan menos horas que los demás grupos. Hay otros grupos que también trabajan menos horas, presuntamente el grupo con un padre con educación profesional completa también trabaja menos. Mismo caso que la variable anterior, la mayoría de personas cuyas horas de trabajo son desconocidas se concentran en el nivel de educación superior del padre desconocido.
+
+De la misma manera, la mayoría personas con un padre con educación desconocida se concentran en el grupo de personas con horas de trabajo desconocidas. De ahí, las distribuciones de niveles de educación del padre por horas de trabajo son muy parecidas a la marginal, sin embargo de nuevo las personas que no trabajan tienden a tener una distribución un poco distinta a la marginal, resaltando que en proporción hay notoriamente más padres con posgrados y con educación profesional completa que en la población.
 
 #### Educación madre
 
@@ -664,6 +686,7 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Se repiten los mismos patrones que con la educación del padre.
 
 #### Ocupación padre
 
@@ -678,6 +701,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Las personas con padres con cargos más altos parecen trabajar menos que la población, por ejemplo como es el caso de los individuos con padres empresarios o con padres empleados a nivel técnico o profesional. 
+
+Como en los anteriores casos, resaltan las personas que no trabajan, teniendo una distribución de ocupación del padre que se diferencia notoriamente de la distribución marginal, pues en estos individuos los padrees en general tienen cargos más altos, como empleado con cargo como director o gerente general, empresarios, y empleados de nivel técnico o profesional.
 
 #### Ocupación madre
 
@@ -692,10 +718,23 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Como en el caso anterior, las personas con madres con cargos más altos parecen trabajar en promedio menos horas.
+
+Resalta el hecho de que, a diferencia de la variable anterior, muchas de las madres trabajan en el hogar, independientemente de las horas de trabajo del individuo. Además de esto, sigue notandose una diferencia entre las personas que no trabajan y la ocupación de la madre, pues para estos individuos las madres tienen cargos más altos.
 
 :::
 
+Resumiendo, en la mayoría de las variables el grupo que no trabaja y el grupo que trabaja más de 30 horas a la semana parece diferenciarse de la población. Se presenció que en general el grupo que no trabaja y en general las personas que trabajan menos horas se asociaron a un nivel socioeconómico más alto, siendo que los grupos que trabajaban pocas horas parecían tener padres y madres con mejores cargos, con un mayor nivel educativo, una matrícula y un estrato más alto que los demás. 
+
+Además, en la mayoría de casos, la distribución de las variables en el grupo que no trabaja se diferenciaba notoriamente la distribución marginal, teniendo en general mayor concentración de variables asociadas a un nivel socioeconómico más alto.
+
+También resaltó que en algunas variables, los valores desconocidos de las variables se concentraban en las personas con horas de trabajo desconocidas, por lo que parece que en algunas preguntas del cuestionario, las personas que no respondieron en esas preguntas tampoco respondieron en la pregunta referente a las horas de trabajo.
+
+Las categorías que quedan en el foco después de las observaciones son las personas que no trabajan y las personas que trabajan más de 30 horas.
+
 ### Estado civil
+
+En esta variable hay 580 personas con estado civil desconocido, por lo que es un porcentaje muy bajo de la población y por tanto puede llevar a resultados que no sean muy confiables, pero se tendrán en cuenta en las observaciones a menos que parezcan llevar a ideas carentes de sentido.
 
 ::: panel-tabset
 
@@ -712,6 +751,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Las personas que cursan semestres más avanzados parecen tener una concentración mayor de gente soltera en proporción que la población. Además, las personas que cursan semestres menos avanzados tienen una proporción mayor de casados, separados y/o viudos y personas en unión libre que el resto de grupos y que la población. Resalta que las personas en semestres desconocidos tienen la mayor cantidad de personas con estado civil desconocido.
+
+En general la distribución del semestre que cursa en los distintos estados civiles no difiere de gran manera respecto a la distribución marginal, sin embargo la distribución del semestre que cursa en personas con estado civil desconocido si se diferencian enormemente de la distribución marginal, siendo notoria una clara mayoría de personas a las que se desconoce el semestre que cursan.
 
 #### Grupo referencia
 
@@ -726,6 +768,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Hay diferencias claras entre la distribución del estado civil entre varios grupos de referencia respecto a la distribución marginal, resaltando un grupo con una proporción notablemente mayor de personas con estado civil desconocido.
+
+En el caso de la distribución de grupos de referencia con respecto al estado civil del individuo, varios grupos se diferencian de la distribución marginal, siendo estos los individuos en Unión libre, Separados y/o viudos y Casados. Los individuos solteros tienen una distribución muy parecida a la distribución marginal, y los individuos con estado civil desconocido también poseen diferencias notorias.
 
 #### Modalidad
 
@@ -740,6 +785,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Resalta el hecho de que hay más personas casadas y en unión libre estudiando en modalidades a distancia virtual y a distancia, mientras que la distribución de estados civiles en la modalidad presencial se asemeja a la distribución marginal.
+
+La distribución de las distintas modalidades de estudio en las personas solteras y con estado civil desconocido se parecen de manera considerable a la marginal, mientras que las personas separadas y/o viudas, Casadas y en Unión libre tienen una distribución de la modalidad de estudio notoriamente diferente respecto a la marginal, habiendo menos personas que estudian de manera presencial.
 
 #### Carácter académico
 
@@ -754,20 +802,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de estados civiles que más se parece a la distribución marginal aparece en las personas que estudian en una universidad, mientras que la distribución de estados civiles de las personas que estudian en una institución de carácter académico diferente no tienen un parecido tan notorio con la distribución marginal. Resalta el grupo de personas que estudian en una institución tecnológica, pues hay más proporción de personas casadas, separadas y/o viudas y personas en unión libre que en la población.
 
-#### Valor matricula
-
-```{r}
-#| echo: false
-tc <- table(data$ESTU_ESTADOCIVIL, data$ESTU_VALORMATRICULAUNIVERSIDAD)
-tabtc <- cbind(tc, totF = rowSums(tc))
-tabtc <- rbind(tabtc, totC=colSums(tabtc))
-
-# Gráficos de los perfiles fila y perfiles columna
-par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
-plotct(t(tc), "row", col=2:5)
-plotct(tc, "row", col=2:10)
-```
+Como en las variables anteriores, la distribución del carácter académico de la institución a la que pertenece el individuo se parece mucho a la distribución marginal en el caso de las personas solteras y con estado civil desconocido, mientras que las personas casadas, en unión libre y separadas y/o viudas se diferencian notoriamente de la distribución marginal, teniendo una proporción considerablemente menor de personas que estudian en una universidad.
 
 #### Estrato
 
@@ -782,66 +819,19 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Resalta que las personas en los estratos 4, 5 y 6 tienen una distribución de estados civiles distinta a la marginal, habiendo una concentración mayor de solteros y una concentración menor de personas casadas y en unión libre. De ahí las demás categorías presentan una distribución parecida a la distribución marginal. También se observa que las personas sin estrato tienen una proporción mayor de personas en unión libre respecto al resto de grupos y a la distribución marginal.
 
-#### Educación padre
-
-```{r}
-#| echo: false
-tc <- table(data$ESTU_ESTADOCIVIL, data$FAMI_EDUCACIONPADRE)
-tabtc <- cbind(tc, totF = rowSums(tc))
-tabtc <- rbind(tabtc, totC=colSums(tabtc))
-
-# Gráficos de los perfiles fila y perfiles columna
-par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
-plotct(t(tc), "row", col=2:5)
-plotct(tc, "row", col=2:10)
-```
-
-#### Educación madre
-
-```{r}
-#| echo: false
-tc <- table(data$ESTU_ESTADOCIVIL, data$FAMI_EDUCACIONMADRE)
-tabtc <- cbind(tc, totF = rowSums(tc))
-tabtc <- rbind(tabtc, totC=colSums(tabtc))
-
-# Gráficos de los perfiles fila y perfiles columna
-par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
-plotct(t(tc), "row", col=2:5)
-plotct(tc, "row", col=2:10)
-```
-
-#### Ocupación padre
-
-```{r}
-#| echo: false
-tc <- table(data$ESTU_ESTADOCIVIL, data$FAMI_OCUPACIONPADRE)
-tabtc <- cbind(tc, totF = rowSums(tc))
-tabtc <- rbind(tabtc, totC=colSums(tabtc))
-
-# Gráficos de los perfiles fila y perfiles columna
-par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
-plotct(t(tc), "row", col=2:5)
-plotct(tc, "row", col=2:10)
-```
-
-#### Ocupación madre
-
-```{r}
-#| echo: false
-tc <- table(data$ESTU_ESTADOCIVIL, data$FAMI_OCUPACIONMADRE)
-tabtc <- cbind(tc, totF = rowSums(tc))
-tabtc <- rbind(tabtc, totC=colSums(tabtc))
-
-# Gráficos de los perfiles fila y perfiles columna
-par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
-plotct(t(tc), "row", col=2:5)
-plotct(tc, "row", col=2:10)
-```
+En general la distribución de los estratos entre los distintos estados civiles es muy parecida a la marginal, los que más se diferencian son las personas en unión libre y casados, teniendo más personas con un menor estrato.
 
 :::
 
+Resumiendo, en la mayoría de variables parece haber una diferencia notoria principalmente entre la distribución del estado civil en las distintas categorías, habiendo siempre una concentración mayor de casados, separados y/o viudos y personas en unión libre en algunas categorías, y en cambio en otras una concentración mucho mayor de personas solteras.
+
+Además, en el caso del estado civil, la distribución de las demás variables para las personas solteras era parecida en su mayoría a la distribución marginal, patrón que curiosamente también apareció en algunas variables, en personas con estado civil desconocido, mientras que la distribución de las variables en las personas casadas, separadas y/o viudas y en unión libre era notoriamente distinta de la distribución marginal.
+
 ### Semestre cursa
+
+La cantidad de personas con el semestre que cursa desconocido es de 2194, por lo que es una cantidad que aunque en proporción es pequeña, igual merece ser tomada en cuenta y puede presentar información pertinente.
 
 ::: panel-tabset
 
@@ -859,6 +849,10 @@ plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
 
+La distribución del semestre que cursa cada persona entre los distintos grupos de referencia es muy distinta, en general, a la distribución marginal. 
+
+En el caso de la distribución de los grupos de referencia respecto al semestre que cursa el individuo, hay tres categorías cuya distribución se diferencia mucho de la marginal, siendo las de personas que cursan el semestre 12 o más, personas que cursan el semestre 11 y personas que cursan el semestre 6 o menos. De ahí, igual las categorías en general difieren de la distribución marginal, pero no de manera tan notable como en las tres categorías anteriores.
+
 #### Capacitación examen
 
 ```{r}
@@ -872,12 +866,15 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Resalta a primera vista que todas las personas cuya capacitación para el examen es desconocida, el semestre que cursan también es desconocido. De ahí, la distribución del semestre que cursa en las distintas formas de capacitarse para el examen es muy parecida a la distribución marginal.
+
+Asimismo, también ocurre que a la mayoría de personas que están en un semestre desconocido, también se desconoce la manera de capacitación para el examen. Las demás categorías parecen tener distribuciones similares a la de la distribución marginal, resaltando las personas que cursan el semestre 12 o más y el semestre 11, siendo las que se diferencian un poco más de la distribución marginal.
 
 #### Modalidad
 
 ```{r}
 #| echo: false
-tc <- table(data$ESTU_SEMESTRECURSA, data$ESTU_PRGM_ACADEMICO)
+tc <- table(data$ESTU_SEMESTRECURSA, data$ESTU_METODO_PRGM)
 tabtc <- cbind(tc, totF = rowSums(tc))
 tabtc <- rbind(tabtc, totC=colSums(tabtc))
 
@@ -886,6 +883,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución del semestre que cursa el individuo en las distintas modalidades de estudio se diferencia de la distribución marginal cuando la modalidad es distancia virtual o distancia, mientras que, como en el caso del estado civil, la distribución de esta variable en la modalidad presencial se asemeja a la distribución marginal.
+
+Resulta curioso que para los semestres más avanzados y para los semestres menos avanzados la distribución de la modalidad de estudio es muy diferente a la distribución marginal, habiendo en proporción más personas en modalidad presencial en semestres avanzados, y habiendo más personas en modalidad a distancia o distancia virtual en semestres menos avanzados.
 
 #### Estrato
 
@@ -900,8 +900,11 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Para los estratos más altos, la distribución de los semestres que cursa el individuo se diferencia en mayor medida de la distribución marginal respecto a los otros estratos. También resalta que las personas sin estrato también tienen una distribución notablemente distinta de semestre que cursa el individuo a la marginal.
 
-#### Valor matricula
+Resalta que las personas en los semestres más avanzados o que el semestre es desconocido, los estratos son más altos, de ahí, las demás categorías presentan una distribución de los estratos muy parecida a la distribución marginal.
+
+#### Valor matrícula
 
 ```{r}
 #| echo: false
@@ -914,10 +917,23 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Ocurre un caso curioso, en ambos sentidos, todas las personas con valor de la matrícula desconocido están en un semestre desconocido, y todas las personas en un semestre desconocido tienen un valor de la matrícula desconocido, diferenciandose de manera abismal con la distribución marginal en ambos casos.
+
+En general la distribución de el semestre que cursa el individuo en cada valor de la matrícula se parece mucho a la marginal, exceptuando por las personas que pagan más de 7 millones en matrícula, en cuyo caso la distribución del semestre que cursa es muy distinta a la marginal. La distribución de personas que pagan entre 1 y 2.5 millones también parece distinguirse un poco de la marginal, pero sólo porque hay una cantidad considerablemente mayor de personas en el semestre 8 respecto a los demás grupos.
+
+Para los semestres avanzados, la distribución del valor de la matrícula es muy distinta a la distribución marginal, habiendo una proporción muy alta de gente con matrículas de más de 7 millones. De ahí, la distribución del valor de la matrícula diferenciando entre el semestre que cursa el individuo se parece mucho a la distribución marginal.
 
 :::
 
-### Valor matricula
+Resumiendo, las variables parecen tener una distribución de el semestre que cursa distinta a la marginal debido a los individuos que cursaban o bien semestres más avanzados, o bien semestres menos avanzados. 
+
+Cuando se revisó la distribución de las distintas variables diferenciando por el semestre que cursa, se encontró que las distribuciones que más se diferenciaban de la marginal eran las de los individuos que cursaban semestres o bien más avanzados, siendo el semestre 11 o 12 o más, o bien menos avanzados, siendo el semestre 6 o menos.
+
+También resaltó que en algunas variables el desconocer el valor de la variable no representaba una diferencia notoria respecto a la distribución marginal, mientras que en otras, el desconocer la variable parecía estar estrechamente ligado a desconocer el semestre que cursa el individuo.
+
+### Valor matrícula
+
+Para esta variable también hay 2194 personas a las que se desconoce el valor de la matrícula, por lo que es pertinente ver cómo se comporta esta categoría comparandola con otras variables.
 
 ::: panel-tabset
 
@@ -934,6 +950,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Para los distintos estratos la distribución de valores de la matrícula difiere mucho de la marginal, viendose una clara tendencia de que a estratos más altos, valores en la matrícula mayores, y a estratos más bajos, menores valores en la matrícula.
+
+En el caso de los distintos valores de la matrícula, hay una mayor proporción de personas con estrato alto en valores mayores de la matrícula, mientras que para valores menores de la matrícula hay una menor o nula presencia de personas con estrato alto.
 
 #### Grupo referencia
 
@@ -948,12 +967,15 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de valores de matrículas entre los distintos grupos, aunque para algunos grupos se parece a la marginal, para otros difiere enormemente.
+
+Por otra parte, la distribución de los distintos grupos de referencia difiere de la distribución marginal principalmente para costos más elevados de la matrícula, con una proporción grande de individuos que pertenecen al grupo de referencia enfermería.
 
 #### Modalidad
 
 ```{r}
 #| echo: false
-tc <- table(data$ESTU_VALORMATRICULAUNIVERSIDAD, data$ESTU_PRGM_ACADEMICO)
+tc <- table(data$ESTU_VALORMATRICULAUNIVERSIDAD, data$ESTU_METODO_PRGM)
 tabtc <- cbind(tc, totF = rowSums(tc))
 tabtc <- rbind(tabtc, totC=colSums(tabtc))
 
@@ -962,6 +984,9 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+Mientras la distribución de valores de matricula es muy parecida entre la modalidad presencial y la distribución marginal, las modalidades distancia virtual y distancia tienen una distribución mucho más distinta a la marginal, siendo notoria la nula presencia de valores altos en la matrícula para modalidades de estudio a distancia o distancia virtual.
+
+Se notan diferencias grandes entre las distribución de las distintas modalidades de estudio y el valor de la matrícula, puesto que para valores altos de la matrícula la modalidad es presencial en su mayoría o totalidad mientras que para valoresde la matrícula entre 1 y 2.5 millones hay una proporción mucho mayor de estudiantes en modalidad a distancia o distancia virtual respecto a la distribución marginal.
 
 #### Carácter académico
 
@@ -976,5 +1001,12 @@ par(mfrow=c(2,1), mai=c(0.4,1,0.3,0.1))
 plotct(t(tc), "row", col=2:5)
 plotct(tc, "row", col=2:10)
 ```
+La distribución de los valores de matrícula para individuos que estudian en una universidad se parece un poco a la distribución marginal, mientras que para las instituciones de un carácter académico distinto, la distribución de valores de matrícula difiere en gran medida de la marginal, habiendo una proporción mayor de matrículas menos costosas respecto a la distribución marginal.
+
+La distribución del carácter académico de la institución del individuo difiere mucho entre distintos valores de matrículas, habiendo una mayor proporción de individuos que estudian en una universidad en valores más altos de la matrícula respecto a  la distribución marginal, y habiendo una mayor proporción de individuos que estudian en instituciones universitarias, técnicas profesionales o instituciones tecnológicas en valores medios de la matrícula. Para los valores más bajos de la matrícula se vuelve a presentar una mayor concentración de estudiantes que hacen parte de una universidad.
 
 :::
+
+Resumiendo la información presentada anteriormente, el valor de la matrícula parece estar estrechamente ligado con variables como el estrato, la modalidad de estudio o el carácter académico de la institución, puesto que las matrículas más caras se encuentran en instituciones con modalidad presencial y universidades, mientras que las matrículas con valores un poco menores se encuentra en instituciones con modalidad a distancia o distancia virtual y siendo instituciones universitarias, tecnológicas o técnicas profesionales.
+
+
