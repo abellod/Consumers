@@ -234,6 +234,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="ACP_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Varias variables parecen estar correlacionadas de manera moderada mientras otras variables tienen una correlación fuerte. La variable que menos se correlaciona con las otras es el puntaje en Comunicación Escrita, de ahí, la variable que más se correlaciona con las otras es el puntaje en Lectura Crítica.</p>
 <p>Luego de realizar el ACP usando la función <span class="math inline">\(\texttt{dudi.pca}\)</span> de la librería <span class="math inline">\(\texttt{ade4}\)</span>, la inercia (o los valores propios de los nuevos ejes) son</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -351,7 +352,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="ACP_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Parece que el Puntaje Global y la mayoría de las varibles excepto “Puntaje de Comunicación Escrita” están muy correlacionadas con el primer eje.</p>
+<p>El Puntaje Global y la mayoría de las varibles excepto “Puntaje de Comunicación Escrita” están muy correlacionadas con el primer eje. Además, debido a que todas las variables están correlacionadas con el primer eje de manera positiva, tenemos que el primer eje es un “factor tamaño”. El segundo eje divide los componentes en Comunicación Escrita por una parte y por otra parte todos los demás, sin embargo, no representa muy bien a los demás componentes. Se ve claramente que el Componente más correlacionado al segundo eje es el de Comunicación Escrita. Además de esto, visualmente se aprecia que con sólo dos ejes están bien representados todos los componentes.</p>
 <section id="acp-tres-ejes" class="level3" data-number="3.0.1">
 <h3 data-number="3.0.1" class="anchored" data-anchor-id="acp-tres-ejes"><span class="header-section-number">3.0.1</span> ACP tres ejes</h3>
 <p>Solo para observar, se hace un ACP conservando tres ejes, el segundo plano nos permite ver que el tercer eje separa los puntajes de comprensión escrita, ingles y global, con los puntajes de razonamiento cuantitativo, lectura crítica y competencias ciudadanas. Además, este tercer eje no parece tener mucha correlación con la mayoría de los puntajes a excepción del puntaje de inglés.</p>
@@ -476,6 +477,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Se ve que los hombres se caracterizan por tener en promedio puntajes superiores a las mujeres. Vemos que el grupo “Desconocido” está muy lejos en el plano factorial, debido a que sólo 5 individuos pertenecen a este grupo, su valor test logra ser mayor a dos, sin embargo, al ser tan pocos individuos respecto a la población total, puede llevar a conclusiones erróneas. La correlación de esta variable con el primer eje es baja pero importante mientras que con el segundo eje es casi nula.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -561,6 +563,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>En promedio, las personas que sí tienen etnia tienen peores puntajes que el promedio global mientras que los que no tienen etnia se caracterizan por tener en promedio un puntaje mejor que el promedio global. Para los individuos cuya etnia es desconocida, se caracterizan por tener puntajes que en promedio son menores al promedio global, aunque cabe recordar que sólo 775 individuos pertenecen a este grupo, siendo un porcentaje muy pequeño de la población.</p>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -646,6 +649,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Se ve que los individuos que residen en Bogotá tienen en promedio mejores puntajes que la población general mientras que los que residen en otro lugar tienen en promedio peores puntajes. Para las personas a las cuales no se conoce el lugar de residencia, no parecen tener puntajes ni peores ni mejores. Tampoco parece haber diferencia del desempeño en el componente de Comunicación Escrita por lugar de residencia.</p>
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -759,6 +763,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Se ve que las personas solteras tienen en promedio mejores puntajes que los individuos con otros estados civiles. Para las personas con estado civil desconido, no parecen tener en promedio puntajes más altos o bajos respecto a la media global.</p>
 </div>
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -926,6 +931,55 @@ Nota
 <td style="text-align: right;">0.040</td>
 <td style="text-align: right;">0.074</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">Ninguno</td>
+<td style="text-align: right;">31.204</td>
+<td style="text-align: right;">-2.237</td>
+<td style="text-align: right;">0.977</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NS</td>
+<td style="text-align: right;">-10.785</td>
+<td style="text-align: right;">1.658</td>
+<td style="text-align: right;">0.948</td>
+<td style="text-align: right;">0.007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">29.497</td>
+<td style="text-align: right;">-3.858</td>
+<td style="text-align: right;">0.967</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PI</td>
+<td style="text-align: right;">51.808</td>
+<td style="text-align: right;">-8.306</td>
+<td style="text-align: right;">0.944</td>
+<td style="text-align: right;">0.007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Post</td>
+<td style="text-align: right;">-67.250</td>
+<td style="text-align: right;">11.518</td>
+<td style="text-align: right;">0.909</td>
+<td style="text-align: right;">0.008</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TTC</td>
+<td style="text-align: right;">-12.964</td>
+<td style="text-align: right;">4.287</td>
+<td style="text-align: right;">0.788</td>
+<td style="text-align: right;">0.026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TTI</td>
+<td style="text-align: right;">1.132</td>
+<td style="text-align: right;">0.901</td>
+<td style="text-align: right;">0.271</td>
+<td style="text-align: right;">0.052</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -935,6 +989,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Vemos que personas con padres con un nivel educativo más alto tienen mejores puntajes, siendo que en promedio los mejores puntajes son de individuos con padres que tienen un posgrado mientras que en promedio los puntajes más bajos son de individuos con primaria completa, primaria incompleta o directamente ningún nivel educativo.</p>
 </div>
 <div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -1102,6 +1157,55 @@ Nota
 <td style="text-align: right;">0.971</td>
 <td style="text-align: right;">0.011</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">Ninguno</td>
+<td style="text-align: right;">28.508</td>
+<td style="text-align: right;">-3.847</td>
+<td style="text-align: right;">0.973</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NS</td>
+<td style="text-align: right;">0.884</td>
+<td style="text-align: right;">2.141</td>
+<td style="text-align: right;">0.173</td>
+<td style="text-align: right;">0.308</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">31.096</td>
+<td style="text-align: right;">-5.467</td>
+<td style="text-align: right;">0.946</td>
+<td style="text-align: right;">0.009</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PI</td>
+<td style="text-align: right;">51.800</td>
+<td style="text-align: right;">-8.149</td>
+<td style="text-align: right;">0.946</td>
+<td style="text-align: right;">0.007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Post</td>
+<td style="text-align: right;">-65.794</td>
+<td style="text-align: right;">11.559</td>
+<td style="text-align: right;">0.914</td>
+<td style="text-align: right;">0.009</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TTC</td>
+<td style="text-align: right;">-14.013</td>
+<td style="text-align: right;">3.495</td>
+<td style="text-align: right;">0.791</td>
+<td style="text-align: right;">0.015</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TTI</td>
+<td style="text-align: right;">1.616</td>
+<td style="text-align: right;">2.936</td>
+<td style="text-align: right;">0.356</td>
+<td style="text-align: right;">0.357</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1111,6 +1215,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Mismo caso que con la educación del padre, los individuos con madres que tienen posgrados tienen los mejores puntajes respecto al promedio, mientras que los individuos cuyas madres no tienen ningún nivel educativo tienen los peores puntajes en promedio.</p>
 </div>
 <div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -1278,6 +1383,55 @@ Nota
 <td style="text-align: right;">0.944</td>
 <td style="text-align: right;">0.013</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">EOO</td>
+<td style="text-align: right;">14.571</td>
+<td style="text-align: right;">-5.124</td>
+<td style="text-align: right;">0.764</td>
+<td style="text-align: right;">0.029</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">17.272</td>
+<td style="text-align: right;">-1.817</td>
+<td style="text-align: right;">0.958</td>
+<td style="text-align: right;">0.003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OAO</td>
+<td style="text-align: right;">19.031</td>
+<td style="text-align: right;">-6.551</td>
+<td style="text-align: right;">0.839</td>
+<td style="text-align: right;">0.030</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PE</td>
+<td style="text-align: right;">-8.904</td>
+<td style="text-align: right;">1.649</td>
+<td style="text-align: right;">0.835</td>
+<td style="text-align: right;">0.009</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pen</td>
+<td style="text-align: right;">-6.477</td>
+<td style="text-align: right;">1.559</td>
+<td style="text-align: right;">0.778</td>
+<td style="text-align: right;">0.014</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PI</td>
+<td style="text-align: right;">-29.377</td>
+<td style="text-align: right;">5.573</td>
+<td style="text-align: right;">0.895</td>
+<td style="text-align: right;">0.010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TCP</td>
+<td style="text-align: right;">37.567</td>
+<td style="text-align: right;">-6.772</td>
+<td style="text-align: right;">0.898</td>
+<td style="text-align: right;">0.009</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1287,6 +1441,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Se ve que, en promedio son mejores los puntajes de los individuos con padres cuya ocupación es son Empleado de nivel técnico o profesional, seguidos de Profesional independiente, Empleado con cargo como director o gerente general, Empleado de nivel directivo, Desconocido, Pequeño empresario, Empleado de nivel auxiliar o administrativo y Pensionado. De ahí, los individuos con padres cuya ocupación es otra tienen peores puntajes en promedio respecto al puntaje promedio global. Resalta el hecho de que los individuos para los que la ocupación del padre es el hogar tienen en promedio los peores puntajes.</p>
 </div>
 <div id="tabset-1-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-8-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -1454,6 +1609,55 @@ Nota
 <td style="text-align: right;">0.966</td>
 <td style="text-align: right;">0.007</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">EOO</td>
+<td style="text-align: right;">0.324</td>
+<td style="text-align: right;">-1.520</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">44.461</td>
+<td style="text-align: right;">-9.932</td>
+<td style="text-align: right;">0.901</td>
+<td style="text-align: right;">0.014</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OAO</td>
+<td style="text-align: right;">17.629</td>
+<td style="text-align: right;">-4.433</td>
+<td style="text-align: right;">0.947</td>
+<td style="text-align: right;">0.018</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PE</td>
+<td style="text-align: right;">-5.898</td>
+<td style="text-align: right;">3.725</td>
+<td style="text-align: right;">0.723</td>
+<td style="text-align: right;">0.088</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pen</td>
+<td style="text-align: right;">-7.192</td>
+<td style="text-align: right;">1.429</td>
+<td style="text-align: right;">0.895</td>
+<td style="text-align: right;">0.011</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PI</td>
+<td style="text-align: right;">-25.147</td>
+<td style="text-align: right;">4.028</td>
+<td style="text-align: right;">0.845</td>
+<td style="text-align: right;">0.007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TCP</td>
+<td style="text-align: right;">11.898</td>
+<td style="text-align: right;">-0.721</td>
+<td style="text-align: right;">0.856</td>
+<td style="text-align: right;">0.001</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1463,6 +1667,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Mismo caso que la variable anterior. Madres con ocupaciones como Empleado con cargo como director o gerente general, Profesional independiente o Empleado de nivel directivo aparecen en individuos con mejores puntajes que el promedio mientras que individuos con madres cuya ocupación es Hogar, Trabajador por cuenta propia o Otra actividad u ocupación tienen en promedio puntajes peores al promedio global. Resalta que individuos con madres cuya ocupación es Empleado obrero u operario tienen en promedio puntajes que no difieren mucho del promedio global.</p>
 </div>
 <div id="tabset-1-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-9-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -1590,9 +1795,12 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Individuos que no trabajan tienen en promedio puntajes más altos que el promedio global y notoriamente más altos respecto a todos los demás grupos. Se ve en los valores test que a medida que las horas de trabajo aumentan, los puntajes en promedio disminuyen, llegando a que en promedio las personas que trabajan 30 horas tienen los peores puntajes. Esto sin contar a los individuos cuyas horas de trabajo son desconocidas, pues estos tienen el valor test más grande de todos, asociado a peores puntajes respecto a la media, y siendo 6867 individuos, son una porción relativamente importante de la población.</p>
 </div>
 </div>
 </div>
+<p>Primero que nada, resaltó un patrón en los cosenos cuadrados de las categorías de todas las variables, el cual era que las categorías “Desconocido”, que hacen referencia a los datos faltantes en cada variable, eran las que más tenían correlación con el segundo eje, mientras que todas las demás categorías tenían correlaciones muy pequeñas o casi nulas.</p>
+<p>Se vio que personas con padres y madres en ocupaciones que a menudo son mejor remuneradas y con niveles educativos más altos tienen mejores puntajes. Los hombres parecen tener mejores puntajes en promedio que las mujeres, y la presencia de Etnia también resulta una caracteristica de personas con peores puntajes respecto al promedio. El estado civil y el departamento en el que se reside también caracteriza a los puntajes, siendo que las personas solteras tienen en promedio mejores puntajes que las personas con otro estado civil, y que las personas que residen en Bogotá tienen en promedio mejores puntajes que las personas que residen en otros departamentos.</p>
 </section>
 <section id="variables-relacionadas-con-la-información-académica" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-académica"><span class="header-section-number">3.2</span> Variables relacionadas con la información académica</h2>
@@ -1697,6 +1905,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Curiosamente los individuos que no tuvieron ninguna preparación son los que en promedio tienen puntajes más altos, seguidos de a los que se desconoce su capacitación del examen, mientras que los que se prepararon por cuenta propia tienen los peores puntajes en promedio, seguidos de los individuos que se prepararon con un curso.</p>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -1829,6 +2038,20 @@ Nota
 <td style="text-align: right;">0.970</td>
 <td style="text-align: right;">0.017</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">12M</td>
+<td style="text-align: right;">-42.746</td>
+<td style="text-align: right;">8.025</td>
+<td style="text-align: right;">0.976</td>
+<td style="text-align: right;">0.010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">-9.770</td>
+<td style="text-align: right;">12.174</td>
+<td style="text-align: right;">0.490</td>
+<td style="text-align: right;">0.231</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1838,6 +2061,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Los estudiantes que están cursando su onceavo semestre y los que están en su doceavo semestre o más son los que tienen mejores puntajes en promedio, mientras que todos los demás tienen puntajes peores al promedio, a excepción de los estudiantes cuyo semestre es desconocido, para los cuales también se aprecia que sus puntajes en promedio son mayores al promedio de la población.</p>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -2068,6 +2292,118 @@ Nota
 <td style="text-align: right;">0.942</td>
 <td style="text-align: right;">0.013</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">CienSoc</td>
+<td style="text-align: right;">6.574</td>
+<td style="text-align: right;">-11.792</td>
+<td style="text-align: right;">0.124</td>
+<td style="text-align: right;">0.121</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ComuPerYPub</td>
+<td style="text-align: right;">-2.652</td>
+<td style="text-align: right;">-4.981</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.034</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ContYAfin</td>
+<td style="text-align: right;">28.824</td>
+<td style="text-align: right;">6.306</td>
+<td style="text-align: right;">0.842</td>
+<td style="text-align: right;">0.012</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Derecho</td>
+<td style="text-align: right;">-11.504</td>
+<td style="text-align: right;">-5.799</td>
+<td style="text-align: right;">0.153</td>
+<td style="text-align: right;">0.012</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EcAdContYAfinU</td>
+<td style="text-align: right;">-10.700</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.845</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Economía</td>
+<td style="text-align: right;">-28.713</td>
+<td style="text-align: right;">-0.321</td>
+<td style="text-align: right;">0.974</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Educación</td>
+<td style="text-align: right;">27.930</td>
+<td style="text-align: right;">-14.863</td>
+<td style="text-align: right;">0.777</td>
+<td style="text-align: right;">0.067</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Enfermeria</td>
+<td style="text-align: right;">9.487</td>
+<td style="text-align: right;">-1.632</td>
+<td style="text-align: right;">0.851</td>
+<td style="text-align: right;">0.008</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GrupRefNal</td>
+<td style="text-align: right;">2.163</td>
+<td style="text-align: right;">-0.571</td>
+<td style="text-align: right;">0.949</td>
+<td style="text-align: right;">0.020</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GrupRefNalU</td>
+<td style="text-align: right;">18.084</td>
+<td style="text-align: right;">1.181</td>
+<td style="text-align: right;">0.980</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hum</td>
+<td style="text-align: right;">-16.704</td>
+<td style="text-align: right;">-4.034</td>
+<td style="text-align: right;">0.741</td>
+<td style="text-align: right;">0.013</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inge</td>
+<td style="text-align: right;">-48.350</td>
+<td style="text-align: right;">20.809</td>
+<td style="text-align: right;">0.566</td>
+<td style="text-align: right;">0.032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Med</td>
+<td style="text-align: right;">-57.758</td>
+<td style="text-align: right;">14.145</td>
+<td style="text-align: right;">0.971</td>
+<td style="text-align: right;">0.018</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Psic</td>
+<td style="text-align: right;">21.393</td>
+<td style="text-align: right;">-17.311</td>
+<td style="text-align: right;">0.461</td>
+<td style="text-align: right;">0.092</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RecYDep</td>
+<td style="text-align: right;">12.238</td>
+<td style="text-align: right;">-0.328</td>
+<td style="text-align: right;">0.971</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">salud</td>
+<td style="text-align: right;">13.309</td>
+<td style="text-align: right;">-4.329</td>
+<td style="text-align: right;">0.921</td>
+<td style="text-align: right;">0.030</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2077,6 +2413,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Gracias a los valores test podemos apreciar que individuos que pertenecen a los grupos de referencia Medicina, Ingeniería, Econ.,admin.,contad. y afines Univer., Ciencias naturales y exactas y Economía tienen en promedio mejores puntajes, mientras que individuos que pertenecen a grupos de referencia tales como Educación, Administración y afines o Contaduría y afines son los que tienen en promedio peores puntajes respecto al resto de individuos. Además, los individuos cuyo gurpo de referencia es Ciencias agrarias tienen puntajes que en promedio no difieren del promedio global.</p>
 </div>
 <div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -2162,6 +2499,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Se observa que individuos cuya modalidad de estudio es presencial tienen mejores puntajes que el promedio, y que individiuos cuya modalidad de estudio es a distancia o a distancia virtual, teniendo estos últimos puntajes peores en promedio que el puntaje promedio global.</p>
 </div>
 <div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -2261,9 +2599,11 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-65-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Los individuos cuya institución es una Universidad tienen en promedio puntajes mejores a individuos que pertenecen a Instituciones tecnológicas, Técnicas profesionales e Instituciones universitarias, siendo estos últimos los que en promedio tienen los peores puntajes.</p>
 </div>
 </div>
 </div>
+<p>Resulta curioso cómo las personas con ninguna capacitación tienen mejores puntajes que personas que se capacitaron de alguna otra manera, sin embargo, esto puede ser explicado debido a lo común de estas categorías, pues un patrón que se repitió en las anteriores variables a excepción del semestre que cursa el individuo y el grupo de referencia, es que para las categorías más comunes, como lo son pertenecer a una universidad, no prepararse de ninguna manera para el examen o estudiar en modalidad presencial. En el caso de los grupos de referencia, grupos que son más asociados a las ciencias y las matemáticas tienen en promedio mejores puntajes que los demás. También se vio que estudiantes que cursan los semestres más avanzados son los que tienen puntajes más altos, lo cual puede relacionarse al grupo de referencia medicina, siendo esta la carrera más extensa, por lo que puede parecer que estudiantes de medicina tienen mejores puntajes y por la naturaleza de su carrera, se encuentran en semestres más avanzados.</p>
 </section>
 <section id="variables-relacionadas-con-la-información-socioeconómica" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-socioeconómica"><span class="header-section-number">3.3</span> Variables relacionadas con la información socioeconómica</h2>
@@ -2408,6 +2748,27 @@ Nota
 <td style="text-align: right;">0.783</td>
 <td style="text-align: right;">0.007</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">M7</td>
+<td style="text-align: right;">-108.085</td>
+<td style="text-align: right;">11.015</td>
+<td style="text-align: right;">0.944</td>
+<td style="text-align: right;">0.003</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NP</td>
+<td style="text-align: right;">3.259</td>
+<td style="text-align: right;">-5.795</td>
+<td style="text-align: right;">0.052</td>
+<td style="text-align: right;">0.050</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Desconocido</td>
+<td style="text-align: right;">-9.770</td>
+<td style="text-align: right;">12.174</td>
+<td style="text-align: right;">0.490</td>
+<td style="text-align: right;">0.231</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2417,6 +2778,7 @@ Nota
 <p><img src="ACP_files/figure-html/unnamed-chunk-69-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Resalta que los que pagan más de 7 millones tienen en promedio puntajes mucho más altos que el promedio global. Los individuos que pagan entre 5.5 y 7 millones, los que pagan menos de 500 mil pesos y a los que se desconoce cuanto pagan también tienen en promedio, puntajes mejores al promedio global. De ahí, todos los demás puntajes son peores en promedio al puntaje promedio de la población.</p>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <p>Los pesos, distancias al cuadrado y las nuevas coordenadas son:</p>
@@ -2548,6 +2910,20 @@ Nota
 <td style="text-align: right;">8.395</td>
 <td style="text-align: right;">0.839</td>
 <td style="text-align: right;">0.008</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estrato 6</td>
+<td style="text-align: right;">-44.138</td>
+<td style="text-align: right;">7.571</td>
+<td style="text-align: right;">0.798</td>
+<td style="text-align: right;">0.007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sin Estrato</td>
+<td style="text-align: right;">9.259</td>
+<td style="text-align: right;">-0.249</td>
+<td style="text-align: right;">0.984</td>
+<td style="text-align: right;">0.000</td>
 </tr>
 </tbody>
 </table>

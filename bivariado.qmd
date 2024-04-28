@@ -1,7 +1,5 @@
 # Análisis bivariado
 
-A continuación se muestra un adelanto de los resultados del análisis bivariado de ciertas variables de la base de datos a trabajar.
-
 ```{r}
 #| echo: false
 #| results: hide

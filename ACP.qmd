@@ -198,6 +198,8 @@ kable(cor(Y), digits = 3)
 heatmap(cor(Y), NA, NA)
 ```
 
+Varias variables parecen estar correlacionadas de manera moderada mientras otras variables tienen una correlación fuerte. La variable que menos se correlaciona con las otras es el puntaje en Comunicación Escrita, de ahí, la variable que más se correlaciona con las otras es el puntaje en Lectura Crítica.
+
 Luego de realizar el ACP usando la función $\texttt{dudi.pca}$ de la librería $\texttt{ade4}$, la inercia (o los valores propios de los nuevos ejes) son
 
 ```{r}
@@ -236,7 +238,7 @@ s.corcircle(acp$co)
 s.arrow(GGlob, add.plot = TRUE, boxes = FALSE)
 ```
 
-Parece que el Puntaje Global y la mayoría de las varibles excepto "Puntaje de Comunicación Escrita" están muy correlacionadas con el primer eje.
+El Puntaje Global y la mayoría de las varibles excepto "Puntaje de Comunicación Escrita" están muy correlacionadas con el primer eje. Además, debido a que todas las variables están correlacionadas con el primer eje de manera positiva, tenemos que el primer eje es un "factor tamaño". El segundo eje divide los componentes en Comunicación Escrita por una parte y por otra parte todos los demás, sin embargo, no representa muy bien a los demás componentes. Se ve claramente que el Componente más correlacionado al segundo eje es el de Comunicación Escrita. Además de esto, visualmente se aprecia que con sólo dos ejes están bien representados todos los componentes.
 
 ### ACP tres ejes
 
@@ -331,6 +333,7 @@ points(sup$coor[1:3,], col = 6, pch = 16)
 text(sup$coor[1:3,], labels = rownames(sup$coor[1:3,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Se ve que los hombres se caracterizan por tener en promedio puntajes superiores a las mujeres. Vemos que el grupo "Desconocido" está muy lejos en el plano factorial, debido a que sólo 5 individuos pertenecen a este grupo, su valor test logra ser mayor a dos, sin embargo, al ser tan pocos individuos respecto a la población total, puede llevar a conclusiones erróneas. La correlación de esta variable con el primer eje es baja pero importante mientras que con el segundo eje es casi nula.
 
 ## Etnia
 
@@ -376,6 +379,7 @@ points(sup$coor[4:6,], col = 6, pch = 16)
 text(sup$coor[4:6,], labels = rownames(sup$coor[4:6,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+En promedio, las personas que sí tienen etnia tienen peores puntajes que el promedio global mientras que los que no tienen etnia se caracterizan por tener en promedio un puntaje mejor que el promedio global. Para los individuos cuya etnia es desconocida, se caracterizan por tener puntajes que en promedio son menores al promedio global, aunque cabe recordar que sólo 775 individuos pertenecen a este grupo, siendo un porcentaje muy pequeño de la población.
 
 ## Departamento
 
@@ -421,6 +425,7 @@ points(sup$coor[7:9,], col = 6, pch = 16)
 text(sup$coor[7:9,], labels = rownames(sup$coor[7:9,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Se ve que los individuos que residen en Bogotá tienen en promedio mejores puntajes que la población general mientras que los que residen en otro lugar tienen en promedio peores puntajes. Para las personas a las cuales no se conoce el lugar de residencia, no parecen tener puntajes ni peores ni mejores. Tampoco parece haber diferencia del desempeño en el componente de Comunicación Escrita por lugar de residencia. 
 
 ## Estado civil
 
@@ -467,6 +472,8 @@ text(sup$coor[10:14,], labels = rownames(sup$coor[10:14,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
 
+Se ve que las personas solteras tienen en promedio mejores puntajes que los individuos con otros estados civiles. Para las personas con estado civil desconido, no parecen tener en promedio puntajes más altos o bajos respecto a la media global.
+
 ## Educación padre
 
 Los pesos, distancias al cuadrado y las nuevas coordenadas son:
@@ -480,7 +487,7 @@ Los valores test y los cosenos cuadrados son:
 
 ```{r}
 #| echo: false
-kable(head(test_cos[36:48,]), digits = 3)
+kable(test_cos[36:48,], digits = 3)
 ```
 
 ```{r}
@@ -510,6 +517,7 @@ points(sup$coor[36:48,], col = 6, pch = 16)
 text(sup$coor[36:48,], labels = rownames(sup$coor[36:48,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Vemos que personas con padres con un nivel educativo más alto tienen mejores puntajes, siendo que en promedio los mejores puntajes son de individuos con padres que tienen un posgrado mientras que en promedio los puntajes más bajos son de individuos con primaria completa, primaria incompleta o directamente ningún nivel educativo. 
 
 ## Educación madre
 
@@ -524,7 +532,7 @@ Los valores test y los cosenos cuadrados son:
 
 ```{r}
 #| echo: false
-kable(head(test_cos[49:61,]), digits = 3)
+kable(test_cos[49:61,], digits = 3)
 ```
 
 ```{r}
@@ -554,6 +562,7 @@ points(sup$coor[49:61,], col = 6, pch = 16)
 text(sup$coor[49:61,], labels = rownames(sup$coor[49:61,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Mismo caso que con la educación del padre, los individuos con madres que tienen posgrados tienen los mejores puntajes respecto al promedio, mientras que los individuos cuyas madres no tienen ningún nivel educativo tienen los peores puntajes en promedio.
 
 ## Ocupación padre
 
@@ -568,7 +577,7 @@ Los valores test y los cosenos cuadrados son:
 
 ```{r}
 #| echo: false
-kable(head(test_cos[62:74,]), digits = 3)
+kable(test_cos[62:74,], digits = 3)
 ```
 
 ```{r}
@@ -598,6 +607,7 @@ points(sup$coor[62:74,], col = 6, pch = 16)
 text(sup$coor[62:74,], labels = rownames(sup$coor[62:74,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Se ve que, en promedio son mejores los puntajes de los individuos con padres cuya ocupación es son Empleado de nivel técnico o profesional, seguidos de Profesional independiente, Empleado con cargo como director o gerente general, Empleado de nivel directivo, Desconocido, Pequeño empresario, Empleado de nivel auxiliar o administrativo y Pensionado. De ahí, los individuos con padres cuya ocupación es otra tienen peores puntajes en promedio respecto al puntaje promedio global. Resalta el hecho de que los individuos para los que la ocupación del padre es el hogar tienen en promedio los peores puntajes.
 
 ## Ocupación madre
 
@@ -612,7 +622,7 @@ Los valores test y los cosenos cuadrados son:
 
 ```{r}
 #| echo: false
-kable(head(test_cos[75:87,]), digits = 3)
+kable(test_cos[75:87,], digits = 3)
 ```
 
 ```{r}
@@ -642,6 +652,7 @@ points(sup$coor[75:87,], col = 6, pch = 16)
 text(sup$coor[75:87,], labels = rownames(sup$coor[75:87,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Mismo caso que la variable anterior. Madres con ocupaciones como Empleado con cargo como director o gerente general, Profesional independiente o Empleado de nivel directivo aparecen en individuos con mejores puntajes que el promedio mientras que individuos con madres cuya ocupación es Hogar, Trabajador por cuenta propia o Otra actividad u ocupación tienen en promedio puntajes peores al promedio global. Resalta que individuos con madres cuya ocupación es Empleado obrero u operario tienen en promedio puntajes que no difieren mucho del promedio global.
 
 ## Horas trabaja
 
@@ -686,7 +697,13 @@ points(sup$coor[120:125,], col = 6, pch = 16)
 text(sup$coor[120:125,], labels = rownames(sup$coor[120:125,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Individuos que no trabajan tienen en promedio puntajes más altos que el promedio global y notoriamente más altos respecto a todos los demás grupos. Se ve en los valores test que a medida que las horas de trabajo aumentan, los puntajes en promedio disminuyen, llegando a que en promedio las personas que trabajan 30 horas tienen los peores puntajes. Esto sin contar a los individuos cuyas horas de trabajo son desconocidas, pues estos tienen el valor test más grande de todos, asociado a peores puntajes respecto a la media, y siendo 6867 individuos, son una porción relativamente importante de la población.
+
 :::
+
+Primero que nada, resaltó un patrón en los cosenos cuadrados de las categorías de todas las variables, el cual era que las categorías "Desconocido", que hacen referencia a los datos faltantes en cada variable, eran las que más tenían correlación con el segundo eje, mientras que todas las demás categorías tenían correlaciones muy pequeñas o casi nulas.
+
+Se vio que personas con padres y madres en ocupaciones que a menudo son mejor remuneradas y con niveles educativos más altos tienen mejores puntajes. Los hombres parecen tener mejores puntajes en promedio que las mujeres, y la presencia de Etnia también resulta una caracteristica de personas con peores puntajes respecto al promedio. El estado civil y el departamento en el que se reside también caracteriza a los puntajes, siendo que las personas solteras tienen en promedio mejores puntajes que las personas con otro estado civil, y que las personas que residen en Bogotá tienen en promedio mejores puntajes que las personas que residen en otros departamentos.
 
 ## Variables relacionadas con la información académica
 
@@ -736,6 +753,8 @@ text(sup$coor[24:27,], labels = rownames(sup$coor[24:27,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
 
+Curiosamente los individuos que no tuvieron ninguna preparación son los que en promedio tienen puntajes más altos, seguidos de a los que se desconoce su capacitación del examen, mientras que los que se prepararon por cuenta propia tienen los peores puntajes en promedio, seguidos de los individuos que se prepararon con un curso.
+
 ## Semestre que cursa
 
 Los pesos, distancias al cuadrado y las nuevas coordenadas son:
@@ -749,7 +768,7 @@ Los valores test y los cosenos cuadrados son:
 
 ```{r}
 #| echo: false
-kable(head(test_cos[28:35,]), digits = 3)
+kable(test_cos[28:35,], digits = 3)
 ```
 
 ```{r}
@@ -779,6 +798,7 @@ points(sup$coor[28:35,], col = 6, pch = 16)
 text(sup$coor[28:35,], labels = rownames(sup$coor[28:35,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Los estudiantes que están cursando su onceavo semestre y los que están en su doceavo semestre o más son los que tienen mejores puntajes en promedio, mientras que todos los demás tienen puntajes peores al promedio, a excepción de los estudiantes cuyo semestre es desconocido, para los cuales también se aprecia que sus puntajes en promedio son mayores al promedio de la población.
 
 ## Grupo referencia
 
@@ -793,7 +813,7 @@ Los valores test y los cosenos cuadrados son:
 
 ```{r}
 #| echo: false
-kable(head(test_cos[126:147,]), digits = 3)
+kable(test_cos[126:147,], digits = 3)
 ```
 
 ```{r}
@@ -823,6 +843,7 @@ points(sup$coor[126:147,], col = 6, pch = 16)
 text(sup$coor[126:147,], labels = rownames(sup$coor[126:147,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Gracias a los valores test podemos apreciar que individuos que pertenecen a los grupos de referencia Medicina, Ingeniería, Econ.,admin.,contad. y afines Univer., Ciencias naturales y exactas y Economía tienen en promedio mejores puntajes, mientras que individuos que pertenecen a grupos de referencia tales como Educación, Administración y afines o Contaduría y afines son los que tienen en promedio peores puntajes respecto al resto de individuos. Además, los individuos cuyo gurpo de referencia es Ciencias agrarias tienen puntajes que en promedio no difieren del promedio global.
 
 ## Modalidad
 
@@ -867,6 +888,7 @@ points(sup$coor[148:150,], col = 6, pch = 16)
 text(sup$coor[148:150,], labels = rownames(sup$coor[148:150,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Se observa que individuos cuya modalidad de estudio es presencial tienen mejores puntajes que el promedio, y que individiuos cuya modalidad de estudio es a distancia o a distancia virtual, teniendo estos últimos puntajes peores en promedio que el puntaje promedio global.
 
 ## Carácter académico
 
@@ -911,7 +933,12 @@ points(sup$coor[151:154,], col = 6, pch = 16)
 text(sup$coor[151:154,], labels = rownames(sup$coor[151:154,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+
+Los individuos cuya institución es una Universidad tienen en promedio puntajes mejores a individuos que pertenecen a Instituciones tecnológicas, Técnicas profesionales e Instituciones universitarias, siendo estos últimos los que en promedio tienen los peores puntajes.
+
 :::
+
+Resulta curioso cómo las personas con ninguna capacitación tienen mejores puntajes que personas que se capacitaron de alguna otra manera, sin embargo, esto puede ser explicado debido a lo común de estas categorías, pues un patrón que se repitió en las anteriores variables a excepción del semestre que cursa el individuo y el grupo de referencia, es que para las categorías más comunes, como lo son pertenecer a una universidad, no prepararse de ninguna manera para el examen o estudiar en modalidad presencial. En el caso de los grupos de referencia, grupos que son más asociados a las ciencias y las matemáticas tienen en promedio mejores puntajes que los demás. También se vio que estudiantes que cursan los semestres más avanzados son los que tienen puntajes más altos, lo cual puede relacionarse al grupo de referencia medicina, siendo esta la carrera más extensa, por lo que puede parecer que estudiantes de medicina tienen mejores puntajes y por la naturaleza de su carrera, se encuentran en semestres más avanzados.
 
 ## Variables relacionadas con la información socioeconómica
 
@@ -930,7 +957,7 @@ Los valores test y los cosenos cuadrados son:
 
 ```{r}
 #| echo: false
-kable(head(test_cos[15:23,]), digits = 3)
+kable(test_cos[15:23,], digits = 3)
 ```
 
 ```{r}
@@ -960,6 +987,7 @@ points(sup$coor[15:23,], col = 6, pch = 16)
 text(sup$coor[15:23,], labels = rownames(sup$coor[15:23,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Resalta que los que pagan más de 7 millones tienen en promedio puntajes mucho más altos que el promedio global. Los individuos que pagan entre 5.5 y 7 millones, los que pagan menos de 500 mil pesos y a los que se desconoce cuanto pagan también tienen en promedio, puntajes mejores al promedio global. De ahí, todos los demás puntajes son peores en promedio al puntaje promedio de la población.
 
 ## Estrato
 
@@ -974,7 +1002,7 @@ Los valores test y los cosenos cuadrados son:
 
 ```{r}
 #| echo: false
-kable(head(test_cos[88:95,]), digits = 3)
+kable(test_cos[88:95,], digits = 3)
 ```
 
 ```{r}
@@ -1004,6 +1032,7 @@ points(sup$coor[88:95,], col = 6, pch = 16)
 text(sup$coor[88:95,], labels = rownames(sup$coor[88:95,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+En cuanto al estrato, se ve que claramente los mejores estratos tienen en promedio, mejores puntajes, y a medida que el estrato disminuye, el promedio de los puntajes también disminuye.
 
 ## Internet
 
@@ -1018,7 +1047,7 @@ Los valores test y los cosenos cuadrados son:
 
 ```{r}
 #| echo: false
-kable(head(test_cos[96:98,]), digits = 3)
+kable(test_cos[96:98,], digits = 3)
 ```
 
 ```{r}
@@ -1048,6 +1077,7 @@ points(sup$coor[96:98,], col = 6, pch = 16)
 text(sup$coor[96:98,], labels = rownames(sup$coor[96:98,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
+Debido al parecido de esta variable y las siguientes variables, la interpretación de estas quedará en el resumen de esta subsección.
 
 ## Computador
 
@@ -1357,3 +1387,7 @@ text(sup$coor[117:119,], labels = rownames(sup$coor[117:119,]),
      col = 6, pos = 1, font = 3, srt=-45)
 ```
 :::
+
+Se vio que las personas que pagan una cantidad considerablemente mayor de dinero tienen mejores puntajes, aunado a que también los individuos de estratos más altos tenían en promedio puntajes más altos que los de estratos más bajos. Por último, se vio que en casi todas las preguntas referentes a poseer o no algun objeto o servicio, los individuos que respondían afirmativamente a estas preguntas tenían en promedio mejores puntajes que los que no poseen estos bienes o a los que se desconocía de si poseen estos bienes, a excepción de la motocicleta, en donde se vio que los individuos que no poseen motocicleta tenían mejores puntajes que los que sí poseen motocicleta. 
+
+Resalta que en general, los individuos con mejores puntajes en promedio tienen características asociadas a un nivel socioeconómico alto, como un estrato alto, un valor de matrícula mayor o tener acceso a algunos bienes y servicios.
