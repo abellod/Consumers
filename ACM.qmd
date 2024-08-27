@@ -1,0 +1,483 @@
+# Análisis de Correspondecias Múltiples
+
+```{r}
+#| echo: false
+#| results: hide
+#| message: false
+#| warning: false
+
+library(FactoClass)
+library(Factoshiny)
+library(factoextra)
+library(plotly)
+library(knitr)
+library(DT)
+library(GDAtools)
+library(readr)
+library(dplyr)
+
+# 4 cifras significativas y sin notación científica:
+options(digits = 4, scipen = 999) 
+
+#setwd("C:\\Users\\soffy\\OneDrive\\Escritorio\\Universidad\\Multivariada\\Consumers")
+
+# Carga de datos originales
+saberpro <- read_delim("DATA_ICFES_SABERPROPROFESIONAL_2022-2.TXT", delim = "¬", escape_double = FALSE, trim_ws = TRUE)
+kable(head(saberpro), digits=2) 
+
+# nuestros datos
+data <- saberpro[,-c(1,2,5:9,13:15,17:21,23:26,28:34,49:54,56:62,65,67:70,72:75,77:82,84:86,88:90,92:94,96:98,100:102,104:109)]
+
+# genero
+sum(is.na(data$ESTU_GENERO)) # hay 5 NA'S
+data$ESTU_GENERO <- ifelse(is.na(data$ESTU_GENERO), "Desconocido", data$ESTU_GENERO)
+data$ESTU_GENERO <- as.factor(data$ESTU_GENERO)
+table(data$ESTU_GENERO)
+
+# edad
+# esta la quitamos
+library(stringr)
+edad <- str_sub(data$ESTU_FECHANACIMIENTO,7,10)
+edad<-as.numeric(edad)
+edades<-2023-edad
+
+# etnia
+sum(is.na(data$ESTU_TIENEETNIA)) # 775 na's
+data$ESTU_TIENEETNIA <- ifelse(is.na(data$ESTU_TIENEETNIA), "Desconocido", data$ESTU_TIENEETNIA)
+data$ESTU_TIENEETNIA <- as.factor(data$ESTU_TIENEETNIA)
+table(data$ESTU_TIENEETNIA)
+
+# depto
+data$ESTU_DEPTO_RESIDE<-ifelse(data$ESTU_DEPTO_RESIDE %in% c("BARCELONA","BUENOS AIRES","FRANKFURT","HOUSTON","LIMA","MIAMI","NUEVA YORK","PARIS","QUEBEC","ROMA","SACRAMENTO","SANTIAGO DE CHILE","SAO PAULO","SEUL","TRENTON"),"EXTRANJERO",data$ESTU_DEPTO_RESIDE)
+sum(is.na(data$ESTU_DEPTO_RESIDE))
+length(unique(data$ESTU_DEPTO_RESIDE)) # hay 35 pq son mas los extranjeros y NAs
+data$ESTU_DEPTO_RESIDE <- ifelse(is.na(data$ESTU_DEPTO_RESIDE), "Desconocido", data$ESTU_DEPTO_RESIDE)
+data$ESTU_DEPTO_RESIDE <- as.factor(data$ESTU_DEPTO_RESIDE)
+data <- data %>%
+  mutate(ESTU_DEPTO_RESIDE = case_when(
+    ESTU_DEPTO_RESIDE == "BOGOTÁ" ~ ESTU_DEPTO_RESIDE,
+    ESTU_DEPTO_RESIDE == "Desconocido" ~ "Desconocido",
+    TRUE ~ "OTRO"
+  ))
+data$ESTU_DEPTO_RESIDE <- as.factor(data$ESTU_DEPTO_RESIDE)
+table(data$ESTU_DEPTO_RESIDE)
+
+
+# estado civil
+sum(is.na(data$ESTU_ESTADOCIVIL)) # 580 na's
+data$ESTU_ESTADOCIVIL <- ifelse(is.na(data$ESTU_ESTADOCIVIL), "Desconocido", ifelse(data$ESTU_ESTADOCIVIL=="Casado","C",ifelse(data$ESTU_ESTADOCIVIL=="Separado y/o Viudo","SyoV",ifelse(data$ESTU_ESTADOCIVIL=="Soltero","S","UL"))))
+data$ESTU_ESTADOCIVIL <- as.factor(data$ESTU_ESTADOCIVIL)
+table(data$ESTU_ESTADOCIVIL)
+
+# valor matricula
+## recodificamos para que quede como factor
+sum(is.na(data$ESTU_VALORMATRICULAUNIVERSIDAD)) # 2194 na's
+data$ESTU_VALORMATRICULAUNIVERSIDAD <- ifelse(is.na(data$ESTU_VALORMATRICULAUNIVERSIDAD), "Desconocido", ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Menos de 500 mil","m500",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 500 mil y menos de 1 millón","e500m1",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 1 millón y menos de 2.5 millones","e1m2.5",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 2.5 millones y menos de 4 millones","e2.5m4",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 4 millones y menos de 5.5 millones","e4m5.5",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Entre 5.5 millones y menos de 7 millones","e5.5m7",ifelse(data$ESTU_VALORMATRICULAUNIVERSIDAD=="Más de 7 millones","M7","NP"))))))))
+data$ESTU_VALORMATRICULAUNIVERSIDAD <- factor(data$ESTU_VALORMATRICULAUNIVERSIDAD, levels = c("m500","e500m1", "e1m2.5", "e2.5m4","e4m5.5","e5.5m7","M7","NP","Desconocido"))
+table(data$ESTU_VALORMATRICULAUNIVERSIDAD)
+
+# capacitacion del examen
+sum(is.na(data$ESTU_COMOCAPACITOEXAMENSB11)) # 2069 na's
+data$ESTU_COMOCAPACITOEXAMENSB11 <- ifelse(is.na(data$ESTU_COMOCAPACITOEXAMENSB11), "Desconocido", ifelse(data$ESTU_COMOCAPACITOEXAMENSB11=="No realizó ninguna prueba de preparación","Ninguna",ifelse(data$ESTU_COMOCAPACITOEXAMENSB11=="Repasó por cuenta propia","CuentaPropia","Curso")))
+data$ESTU_COMOCAPACITOEXAMENSB11 <- as.factor(data$ESTU_COMOCAPACITOEXAMENSB11)
+table(data$ESTU_COMOCAPACITOEXAMENSB11)
+
+
+# semestre que cursa
+sum(is.na(data$ESTU_SEMESTRECURSA)) # 2194 na's
+data$ESTU_SEMESTRECURSA<-ifelse(data$ESTU_SEMESTRECURSA %in% c("01","02","03","04","05","06"),"06m",ifelse(data$ESTU_SEMESTRECURSA=="12 o más","12M",data$ESTU_SEMESTRECURSA))
+data$ESTU_SEMESTRECURSA <- ifelse(is.na(data$ESTU_SEMESTRECURSA), "Desconocido", data$ESTU_SEMESTRECURSA)
+data$ESTU_SEMESTRECURSA <- as.factor(data$ESTU_SEMESTRECURSA)
+table(data$ESTU_SEMESTRECURSA)
+
+# educacion papa
+sum(is.na(data$FAMI_EDUCACIONPADRE)) # 4738 na's
+data$FAMI_EDUCACIONPADRE <- ifelse(is.na(data$FAMI_EDUCACIONPADRE), "Desconocido", ifelse(data$FAMI_EDUCACIONPADRE=="Educación profesional completa","EPC",ifelse(data$FAMI_EDUCACIONPADRE=="Educación profesional incompleta","EPI",ifelse(data$FAMI_EDUCACIONPADRE=="No Aplica","NAp",ifelse(data$FAMI_EDUCACIONPADRE=="No sabe","NS",ifelse(data$FAMI_EDUCACIONPADRE=="Postgrado","Post",ifelse(data$FAMI_EDUCACIONPADRE=="Primaria completa","PC",ifelse(data$FAMI_EDUCACIONPADRE=="Primaria incompleta","PI",ifelse(data$FAMI_EDUCACIONPADRE=="Secundaria (Bachillerato) completa","BC",ifelse(data$FAMI_EDUCACIONPADRE=="Secundaria (Bachillerato) incompleta","BI",ifelse(data$FAMI_EDUCACIONPADRE=="Técnica o tecnológica completa","TTC",ifelse(data$FAMI_EDUCACIONPADRE=="Técnica o tecnológica incompleta","TTI",data$FAMI_EDUCACIONPADRE))))))))))))
+data$FAMI_EDUCACIONPADRE <- as.factor(data$FAMI_EDUCACIONPADRE)
+table(data$FAMI_EDUCACIONPADRE)
+
+# educacion mama
+sum(is.na(data$FAMI_EDUCACIONMADRE)) # 4886 na's
+data$FAMI_EDUCACIONMADRE <- ifelse(is.na(data$FAMI_EDUCACIONMADRE), "Desconocido", ifelse(data$FAMI_EDUCACIONMADRE=="Educación profesional completa","EPC",ifelse(data$FAMI_EDUCACIONMADRE=="Educación profesional incompleta","EPI",ifelse(data$FAMI_EDUCACIONMADRE=="No Aplica","NAp",ifelse(data$FAMI_EDUCACIONMADRE=="No sabe","NS",ifelse(data$FAMI_EDUCACIONMADRE=="Postgrado","Post",ifelse(data$FAMI_EDUCACIONMADRE=="Primaria completa","PC",ifelse(data$FAMI_EDUCACIONMADRE=="Primaria incompleta","PI",ifelse(data$FAMI_EDUCACIONMADRE=="Secundaria (Bachillerato) completa","BC",ifelse(data$FAMI_EDUCACIONMADRE=="Secundaria (Bachillerato) incompleta","BI",ifelse(data$FAMI_EDUCACIONMADRE=="Técnica o tecnológica completa","TTC",ifelse(data$FAMI_EDUCACIONMADRE=="Técnica o tecnológica incompleta","TTI",data$FAMI_EDUCACIONMADRE))))))))))))
+data$FAMI_EDUCACIONMADRE <- as.factor(data$FAMI_EDUCACIONMADRE)
+table(data$FAMI_EDUCACIONMADRE)
+
+# ocupacion papa
+sum(is.na(data$FAMI_OCUPACIONPADRE)) # 2060 na's
+data$FAMI_OCUPACIONPADRE <- ifelse(is.na(data$FAMI_OCUPACIONPADRE), "Desconocido", ifelse(data$FAMI_OCUPACIONPADRE=="Empleado con cargo como director o gerente general","EDGG",ifelse(data$FAMI_OCUPACIONPADRE=="Empleado de nivel auxiliar o administrativo","ENAA",ifelse(data$FAMI_OCUPACIONPADRE=="Empleado de nivel directivo","END",ifelse(data$FAMI_OCUPACIONPADRE=="Empleado de nivel técnico o profesional","ENTP",ifelse(data$FAMI_OCUPACIONPADRE=="Empleado obrero u operario","EOO",ifelse(data$FAMI_OCUPACIONPADRE=="Empresario","Emp",ifelse(data$FAMI_OCUPACIONPADRE=="Hogar","H",ifelse(data$FAMI_OCUPACIONPADRE=="Otra actividad u ocupación","OAO", ifelse(data$FAMI_OCUPACIONPADRE=="Pensionado","Pen",ifelse(data$FAMI_OCUPACIONPADRE=="Pequeño empresario","PE",ifelse(data$FAMI_OCUPACIONPADRE=="Profesional independiente","PI","TCP"))))))))))))
+data$FAMI_OCUPACIONPADRE <- as.factor(data$FAMI_OCUPACIONPADRE)
+table(data$FAMI_OCUPACIONPADRE)
+
+# ocupacion mama
+sum(is.na(data$FAMI_OCUPACIONMADRE)) # 2060 na's
+data$FAMI_OCUPACIONMADRE <- ifelse(is.na(data$FAMI_OCUPACIONMADRE), "Desconocido", ifelse(data$FAMI_OCUPACIONMADRE=="Empleado con cargo como director o gerente general","EDGG",ifelse(data$FAMI_OCUPACIONMADRE=="Empleado de nivel auxiliar o administrativo","ENAA",ifelse(data$FAMI_OCUPACIONMADRE=="Empleado de nivel directivo","END",ifelse(data$FAMI_OCUPACIONMADRE=="Empleado de nivel técnico o profesional","ENTP",ifelse(data$FAMI_OCUPACIONMADRE=="Empleado obrero u operario","EOO",ifelse(data$FAMI_OCUPACIONMADRE=="Empresario","Emp",ifelse(data$FAMI_OCUPACIONMADRE=="Hogar","H",ifelse(data$FAMI_OCUPACIONMADRE=="Otra actividad u ocupación","OAO", ifelse(data$FAMI_OCUPACIONMADRE=="Pensionado","Pen",ifelse(data$FAMI_OCUPACIONMADRE=="Pequeño empresario","PE",ifelse(data$FAMI_OCUPACIONMADRE=="Profesional Independiente","PI","TCP"))))))))))))
+data$FAMI_OCUPACIONMADRE <- as.factor(data$FAMI_OCUPACIONMADRE)
+table(data$FAMI_OCUPACIONMADRE)
+
+# estrato
+sum(is.na(data$FAMI_ESTRATOVIVIENDA)) # 5531 na's
+data$FAMI_ESTRATOVIVIENDA <- ifelse(is.na(data$FAMI_ESTRATOVIVIENDA), "Desconocido", data$FAMI_ESTRATOVIVIENDA)
+data$FAMI_ESTRATOVIVIENDA <- as.factor(data$FAMI_ESTRATOVIVIENDA)
+table(data$FAMI_ESTRATOVIVIENDA)
+
+
+# internet
+sum(is.na(data$FAMI_TIENEINTERNET)) # 5697 na's
+data$FAMI_TIENEINTERNET <- ifelse(is.na(data$FAMI_TIENEINTERNET), "Desconocido", data$FAMI_TIENEINTERNET)
+data$FAMI_TIENEINTERNET <- as.factor(data$FAMI_TIENEINTERNET)
+table(data$FAMI_TIENEINTERNET)
+
+# computador
+sum(is.na(data$FAMI_TIENECOMPUTADOR)) # 6163 na's
+data$FAMI_TIENECOMPUTADOR <- ifelse(is.na(data$FAMI_TIENECOMPUTADOR), "Desconocido", data$FAMI_TIENECOMPUTADOR)
+data$FAMI_TIENECOMPUTADOR <- as.factor(data$FAMI_TIENECOMPUTADOR)
+table(data$FAMI_TIENECOMPUTADOR)
+
+# lavadora
+sum(is.na(data$FAMI_TIENELAVADORA)) # 6354 na's
+data$FAMI_TIENELAVADORA <- ifelse(is.na(data$FAMI_TIENELAVADORA), "Desconocido", data$FAMI_TIENELAVADORA)
+data$FAMI_TIENELAVADORA <- as.factor(data$FAMI_TIENELAVADORA)
+table(data$FAMI_TIENELAVADORA)
+
+# microogas
+sum(is.na(data$FAMI_TIENEHORNOMICROOGAS)) # 7019 na's
+data$FAMI_TIENEHORNOMICROOGAS <- ifelse(is.na(data$FAMI_TIENEHORNOMICROOGAS), "Desconocido", data$FAMI_TIENEHORNOMICROOGAS)
+data$FAMI_TIENEHORNOMICROOGAS <- as.factor(data$FAMI_TIENEHORNOMICROOGAS)
+table(data$FAMI_TIENEHORNOMICROOGAS)
+
+# tv
+sum(is.na(data$FAMI_TIENESERVICIOTV)) # 5801 na's
+data$FAMI_TIENESERVICIOTV <- ifelse(is.na(data$FAMI_TIENESERVICIOTV), "Desconocido", data$FAMI_TIENESERVICIOTV)
+data$FAMI_TIENESERVICIOTV <- as.factor(data$FAMI_TIENESERVICIOTV)
+table(data$FAMI_TIENESERVICIOTV)
+
+# auto
+sum(is.na(data$FAMI_TIENEAUTOMOVIL)) # 7187 na's
+data$FAMI_TIENEAUTOMOVIL <- ifelse(is.na(data$FAMI_TIENEAUTOMOVIL), "Desconocido", data$FAMI_TIENEAUTOMOVIL)
+data$FAMI_TIENEAUTOMOVIL <- as.factor(data$FAMI_TIENEAUTOMOVIL)
+table(data$FAMI_TIENEAUTOMOVIL)
+
+# moto
+sum(is.na(data$FAMI_TIENEMOTOCICLETA)) # 7525 na's
+data$FAMI_TIENEMOTOCICLETA <- ifelse(is.na(data$FAMI_TIENEMOTOCICLETA), "Desconocido", data$FAMI_TIENEMOTOCICLETA)
+data$FAMI_TIENEMOTOCICLETA <- as.factor(data$FAMI_TIENEMOTOCICLETA)
+table(data$FAMI_TIENEMOTOCICLETA)
+
+# consola
+sum(is.na(data$FAMI_TIENECONSOLAVIDEOJUEGOS)) # 7993 na's
+data$FAMI_TIENECONSOLAVIDEOJUEGOS <- ifelse(is.na(data$FAMI_TIENECONSOLAVIDEOJUEGOS), "Desconocido", data$FAMI_TIENECONSOLAVIDEOJUEGOS)
+data$FAMI_TIENECONSOLAVIDEOJUEGOS <- as.factor(data$FAMI_TIENECONSOLAVIDEOJUEGOS)
+table(data$FAMI_TIENECONSOLAVIDEOJUEGOS)
+
+# horas trabaja
+sum(is.na(data$ESTU_HORASSEMANATRABAJA)) # 6867 na's
+data$ESTU_HORASSEMANATRABAJA <- ifelse(is.na(data$ESTU_HORASSEMANATRABAJA), "Desconocido", data$ESTU_HORASSEMANATRABAJA)
+data$ESTU_HORASSEMANATRABAJA <- factor(data$ESTU_HORASSEMANATRABAJA, levels = c("0", "Menos de 10 horas", "Entre 11 y 20 horas", "Entre 21 y 30 horas", "Más de 30 horas", "Desconocido"))
+table(data$ESTU_HORASSEMANATRABAJA)
+
+# grupo de referencia
+sum(is.na(data$GRUPOREFERENCIA)) # 0 na's
+data$GRUPOREFERENCIA<-ifelse(data$GRUPOREFERENCIA=="ADMINISTRACIÓN Y AFINES","AdmYAfin",ifelse(data$GRUPOREFERENCIA=="ARQUITECTURA Y URBANISMO","ArqYUrb",ifelse(data$GRUPOREFERENCIA=="BELLAS ARTES Y DISEÑO","BelArtYDis",ifelse(data$GRUPOREFERENCIA=="CIENCIAS AGROPECUARIAS","CienAgr",ifelse(data$GRUPOREFERENCIA=="CIENCIAS MILITARES Y NAVALES","CienMilYNav",ifelse(data$GRUPOREFERENCIA=="CIENCIAS NATURALES Y EXACTAS","CienNatYExac",ifelse(data$GRUPOREFERENCIA=="CIENCIAS SOCIALES","CienSoc",ifelse(data$GRUPOREFERENCIA=="COMUNICACIÓN, PERIODISMO Y PUBLICIDAD","ComuPerYPub",ifelse(data$GRUPOREFERENCIA=="CONTADURÍA Y AFINES","ContYAfin",ifelse(data$GRUPOREFERENCIA=="DERECHO","Derecho",ifelse(data$GRUPOREFERENCIA=="ECONOMÍA","Economía",ifelse(data$GRUPOREFERENCIA=="ECONOMÍA, ADMINISTRACIÓN, CONTADURÍA Y AFINES - UNIVERSITARIA","EcAdContYAfinU",ifelse(data$GRUPOREFERENCIA=="EDUCACIÓN","Educación",ifelse(data$GRUPOREFERENCIA=="ENFERMERÍA","Enfermeria",ifelse(data$GRUPOREFERENCIA=="GRUPO REFERENCIA NACIONAL","GrupRefNal", ifelse(data$GRUPOREFERENCIA=="GRUPO REFERENCIA NACIONAL UNIVERSITARIO","GrupRefNalU", ifelse(data$GRUPOREFERENCIA=="HUMANIDADES","Hum", ifelse(data$GRUPOREFERENCIA=="INGENIERÍA","Inge", ifelse(data$GRUPOREFERENCIA=="MEDICINA","Med", ifelse(data$GRUPOREFERENCIA=="PSICOLOGÍA","Psic", ifelse(data$GRUPOREFERENCIA=="RECREACIÓN Y DEPORTES","RecYDep", "salud")))))))))))))))))))))
+data$GRUPOREFERENCIA<- as.factor(data$GRUPOREFERENCIA)
+table(data$GRUPOREFERENCIA)
+str(data$GRUPOREFERENCIA) # 22 niveles
+
+# metodo
+sum(is.na(data$ESTU_METODO_PRGM)) # 0 na's
+data$ESTU_METODO_PRGM <- ifelse(data$ESTU_METODO_PRGM == "DISTANCIA VITUAL", "distVirtual", ifelse(data$ESTU_METODO_PRGM=="DISTANCIA","distancia","presencial"))
+data$ESTU_METODO_PRGM<- as.factor(data$ESTU_METODO_PRGM)
+table(data$ESTU_METODO_PRGM)
+
+# caracter academico institucion
+sum(is.na(data$INST_CARACTER_ACADEMICO)) # 0 na's
+data$INST_CARACTER_ACADEMICO<-ifelse(data$INST_CARACTER_ACADEMICO=="INSTITUCIÓN TECNOLÓGICA","InstTec",ifelse(data$INST_CARACTER_ACADEMICO=="INSTITUCIÓN UNIVERSITARIA","InstUni", ifelse(data$INST_CARACTER_ACADEMICO=="TÉCNICA PROFESIONAL","TecProf", "Universidad")))
+data$INST_CARACTER_ACADEMICO<- as.factor(data$INST_CARACTER_ACADEMICO)
+table(data$INST_CARACTER_ACADEMICO)
+
+names(data)[29:33]<-c("cuanti","lec","ciu","ing","esc")
+```
+
+
+Si recodificamos las variables de puntajes
+
+```{r}
+#| echo: false
+# Recodificación puntaje cuati
+percentiles <- quantile(data$cuanti, probs = c(0.2, 0.4, 0.6, 0.8))
+
+data$cuantiCAT <- cut(data$cuanti,
+                    breaks = c(-Inf, percentiles[1], percentiles[2], percentiles[3], percentiles[4], Inf),
+                    labels = c("Bajo", "Medio Bajo", "Medio", "Medio Alto", "Alto"))
+
+
+# Recodificación puntaje lec
+percentiles <- quantile(data$lec, probs = c(0.2, 0.4, 0.6, 0.8))
+
+data$lecCAT <- cut(data$lec,
+                    breaks = c(-Inf, percentiles[1], percentiles[2], percentiles[3], percentiles[4], Inf),
+                    labels = c("Bajo", "Medio Bajo", "Medio", "Medio Alto", "Alto"))
+
+
+# Recodificación puntaje ciu
+percentiles <- quantile(data$ciu, probs = c(0.2, 0.4, 0.6, 0.8))
+
+data$ciuCAT <- cut(data$ciu,
+                    breaks = c(-Inf, percentiles[1], percentiles[2], percentiles[3], percentiles[4], Inf),
+                    labels = c("Bajo", "Medio Bajo", "Medio", "Medio Alto", "Alto"))
+
+
+# Recodificación puntaje ing
+percentiles <- quantile(data$ing, probs = c(0.2, 0.4, 0.6, 0.8))
+
+data$ingCAT <- cut(data$ing,
+                    breaks = c(-Inf, percentiles[1], percentiles[2], percentiles[3], percentiles[4], Inf),
+                    labels = c("Bajo", "Medio Bajo", "Medio", "Medio Alto", "Alto"))
+
+
+# Recodificación puntaje esc
+percentiles <- quantile(data$esc, probs = c(0.2, 0.4, 0.6, 0.8))
+
+data$escCAT <- cut(data$esc,
+                    breaks = c(-Inf, percentiles[1], percentiles[2], percentiles[3], percentiles[4], Inf),
+                    labels = c("Bajo", "Medio Bajo", "Medio", "Medio Alto", "Alto"))
+
+
+# Recodificación puntaje global
+percentiles <- quantile(data$PUNT_GLOBAL, probs = c(0.2, 0.4, 0.6, 0.8))
+
+data$globalCAT <- cut(data$PUNT_GLOBAL,
+                    breaks = c(-Inf, percentiles[1], percentiles[2], percentiles[3], percentiles[4], Inf),
+                    labels = c("Bajo", "Medio Bajo", "Medio", "Medio Alto", "Alto"))
+```
+
+## Variables relacionadas con la información personal
+
+```{r}
+#| echo: false
+
+Y <- data[,c(1,3,4,6,10:13,23)]
+str(Y)
+
+acm <- MCA(Y, graph=FALSE)
+
+fviz_screeplot(acm, addlabels = TRUE, ylim = c(0, 20))
+
+```
+
+```{r}
+#| echo: false
+# Criterio de Benzecri
+
+## Haciendo las cuentas uno mismo:
+s <- ncol(Y)
+l <- acm$eig[acm$eig[,1] > 1/s, 1]
+tau <- ( s / (s - 1) )^2 * ( l - (1/s) )^2
+ptau <- tau / sum( tau ) * 100
+barplot(ptau, col="darkred", ylim = c(0,75))
+
+#library(GDAtools)
+ptau <- modif.rate(acm)$modif[, 1] # cuanta inercia queda
+```
+
+Contribución de las variables al eje 1
+
+```{r}
+#| echo: false
+fviz_contrib(acm, choice = "var", axes = 1, top=6) # top=6 para que muestre quienes contribuyen más
+```
+
+
+```{r}
+#| echo: false
+fviz_mca_var(acm, axes = c(1,2),
+             choice = "mca.cor", repel = TRUE, 
+             ggtheme = theme_minimal())
+
+```
+
+```{r}
+#| echo: false
+Ys <- cbind(data$PUNT_GLOBAL, Y)
+res.mca <- MCA(Ys, graph=FALSE, quanti.sup = 1)
+
+fviz_mca_var(res.mca, axes=c(1,2), 
+             choice="quanti.sup",
+             ggtheme=theme_minimal())
+```
+
+
+::: panel-tabset
+
+### Sexo
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_GENERO_Desconocido",
+                                      "ESTU_GENERO_F",
+                                      "ESTU_GENERO_M")),
+             ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(1,2),
+#              repel = TRUE, 
+#              select.var = list(name=c("ESTU_GENERO_Desconocido",
+#                                       "ESTU_GENERO_F",
+#                                       "ESTU_GENERO_M")),
+#              ggtheme = theme_minimal())
+```
+
+### Etnia
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_TIENEETNIA_Desconocido ",
+                                      "ESTU_TIENEETNIA_Si",
+                                      "ESTU_TIENEETNIA_No")),
+             ggtheme = theme_minimal())
+```
+
+### Departamento
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_DEPTO_RESIDE_BOGOTÁ",
+                                      "ESTU_DEPTO_RESIDE_Desconocido",
+                                      "ESTU_DEPTO_RESIDE_OTRO")),
+             ggtheme = theme_minimal())
+```
+
+### Estado civil
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_ESTADOCIVIL_C ",
+                                      "ESTU_ESTADOCIVIL_Desconocido",
+                                      "ESTU_ESTADOCIVIL_S",
+                                      "ESTU_ESTADOCIVIL_SyV",
+                                      "ESTU_ESTADOCIVIL_UL")),
+             ggtheme = theme_minimal())
+```
+
+### Educación padre
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_EDUCACIONPADRE_BC",
+                                      "FAMI_EDUCACIONPADRE_BI",
+                                      "FAMI_EDUCACIONPADRE_Desconocido",
+                                      "FAMI_EDUCACIONPADRE_EPC",
+                                      "FAMI_EDUCACIONPADRE_EPI",
+                                      "FAMI_EDUCACIONPADRE_NAp",
+                                      "FAMI_EDUCACIONPADRE_Ninguno",
+                                      "FAMI_EDUCACIONPADRE_NS",
+                                      "FAMI_EDUCACIONPADRE_PC",
+                                      "FAMI_EDUCACIONPADRE_PI",
+                                      "FAMI_EDUCACIONPADRE_Post",
+                                      "FAMI_EDUCACIONPADRE_TTC",
+                                      "FAMI_EDUCACIONPADRE_TTI")),
+             ggtheme = theme_minimal())
+```
+
+### Educación madre
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_EDUCACIONMADRE_BC",
+                                      "FAMI_EDUCACIONMADRE_BI",
+                                      "FAMI_EDUCACIONMADRE_Desconocido",
+                                      "FAMI_EDUCACIONMADRE_EPC",
+                                      "FAMI_EDUCACIONMADRE_EPI",
+                                      "FAMI_EDUCACIONMADRE_NAp",
+                                      "FAMI_EDUCACIONMADRE_Ninguno",
+                                      "FAMI_EDUCACIONMADRE_NS",
+                                      "FAMI_EDUCACIONMADRE_PC",
+                                      "FAMI_EDUCACIONMADRE_PI",
+                                      "FAMI_EDUCACIONMADRE_Post",
+                                      "FAMI_EDUCACIONMADRE_TTC",
+                                      "FAMI_EDUCACIONMADRE_TTI")),
+             ggtheme = theme_minimal())
+```
+
+### Ocupación padre
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_OCUPACIONPADRE_Desconocido",
+                                      "FAMI_OCUPACIONPADRE_EDGG",
+                                      "FAMI_OCUPACIONPADRE_Emp",
+                                      "FAMI_OCUPACIONPADRE_ENAA",
+                                      "FAMI_OCUPACIONPADRE_END",
+                                      "FAMI_OCUPACIONPADRE_ENTP",
+                                      "FAMI_OCUPACIONPADRE_EOO",
+                                      "FAMI_OCUPACIONPADRE_H",
+                                      "FAMI_OCUPACIONPADRE_OAO",
+                                      "FAMI_OCUPACIONPADRE_PE",
+                                      "FAMI_OCUPACIONPADRE_Pen",
+                                      "FAMI_OCUPACIONPADRE_PI",
+                                      "FAMI_OCUPACIONPADRE_TCP")),
+             ggtheme = theme_minimal())
+```
+
+### Ocupación madre
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_OCUPACIONMADRE_Desconocido",
+                                      "FAMI_OCUPACIONMADRE_EDGG",
+                                      "FAMI_OCUPACIONMADRE_Emp",
+                                      "FAMI_OCUPACIONMADRE_ENAA",
+                                      "FAMI_OCUPACIONMADRE_END",
+                                      "FAMI_OCUPACIONMADRE_ENTP",
+                                      "FAMI_OCUPACIONMADRE_EOO",
+                                      "FAMI_OCUPACIONMADRE_H",
+                                      "FAMI_OCUPACIONMADRE_OAO",
+                                      "FAMI_OCUPACIONMADRE_PE",
+                                      "FAMI_OCUPACIONMADRE_Pen",
+                                      "FAMI_OCUPACIONMADRE_PI",
+                                      "FAMI_OCUPACIONMADRE_TCP")),
+             ggtheme = theme_minimal())
+```
+
+### Horas trabaja
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_HORASSEMANATRABAJA_0",
+                                      "ESTU_HORASSEMANATRABAJA_Menos de 10 horas",
+                                      "ESTU_HORASSEMANATRABAJA_Entre 11 y 20 horas",
+                                      "ESTU_HORASSEMANATRABAJA_Entre 21 y 30 horas",
+                                      "ESTU_HORASSEMANATRABAJA_Más de 30 horas",
+                                      "ESTU_HORASSEMANATRABAJA_Desconocido")),
+             ggtheme = theme_minimal())
+```
+:::
+
+## Variables relacionadas con la información académica
+
+## Variables relacionadas con la información socioeconómica

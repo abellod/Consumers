@@ -11,6 +11,7 @@ book:
     - univariado.qmd
     - bivariado.qmd
     - ACP.qmd
+    - ACM.qmd
     - references.qmd
   favicon: 'fav.png'
   sidebar: 
