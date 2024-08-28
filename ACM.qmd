@@ -1,5 +1,9 @@
 # Análisis de Correspondecias Múltiples
 
+A continuación se muestra el Análisis de Correspondencias Múltiples (ACM) de los datos SaberPro 2022-2.
+
+Se realiza un ACM para cada una de los distintos tipos de variables que cuenta la base de datos (Variables relacionadas con la información personal, Variables relacionadas con la información académica y Variables relacionadas con la información socioeconómica). En cada uno de los ACP se muestra la variable cuantitativa correspondiente al puntaje global como variable suplementaria.
+
 ```{r}
 #| echo: false
 #| results: hide
@@ -197,12 +201,12 @@ table(data$INST_CARACTER_ACADEMICO)
 names(data)[29:33]<-c("cuanti","lec","ciu","ing","esc")
 ```
 
-
-Si recodificamos las variables de puntajes
-
 ```{r}
 #| echo: false
-# Recodificación puntaje cuati
+#| eval: false
+
+# NO ES NECESARIO RECODIFICAR LAS VARIABLES
+#Recodificación puntaje cuati
 percentiles <- quantile(data$cuanti, probs = c(0.2, 0.4, 0.6, 0.8))
 
 data$cuantiCAT <- cut(data$cuanti,
@@ -252,17 +256,20 @@ data$globalCAT <- cut(data$PUNT_GLOBAL,
 
 ## Variables relacionadas con la información personal
 
+### Dimensiones para el ACM
+
 ```{r}
 #| echo: false
 
 Y <- data[,c(1,3,4,6,10:13,23)]
-str(Y)
+#str(Y)
 
 acm <- MCA(Y, graph=FALSE)
 
 fviz_screeplot(acm, addlabels = TRUE, ylim = c(0, 20))
 
 ```
+Como en el ACM existen ejes que se consideran "parásitos", se utiliza el \textbf{Criterio de Benzecri} para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
 
 ```{r}
 #| echo: false
@@ -274,18 +281,48 @@ l <- acm$eig[acm$eig[,1] > 1/s, 1]
 tau <- ( s / (s - 1) )^2 * ( l - (1/s) )^2
 ptau <- tau / sum( tau ) * 100
 barplot(ptau, col="darkred", ylim = c(0,75))
-
-#library(GDAtools)
-ptau <- modif.rate(acm)$modif[, 1] # cuanta inercia queda
 ```
 
-Contribución de las variables al eje 1
+La inercia en cada eje luego de aplicar el cirterio de Benzecri es
+
+```{r}
+#| echo: false
+#library(GDAtools)
+ptau <- modif.rate(acm)$modif[, 1] # cuanta inercia queda
+#head(ptau)
+
+ejes <- c()
+for(i in 1:length(ptau)){
+  ejes <- rbind(ejes,paste0("Eje ",i))
+}
+
+tabla_ejes <- data.frame(Ejes=ejes,Inercia=ptau)
+#str(tabla_ejes)
+kable(tabla_ejes, digits = 4)
+```
+Entonces, se realiza el análisis con 3 ejes para el ACM. 
+
+### Contribución de las variables al eje 1
 
 ```{r}
 #| echo: false
 fviz_contrib(acm, choice = "var", axes = 1, top=6) # top=6 para que muestre quienes contribuyen más
 ```
 
+### Contribución de las variables al eje 2
+
+```{r}
+#| echo: false
+fviz_contrib(acm, choice = "var", axes = 2, top=6) # top=6 para que muestre quienes contribuyen más
+```
+
+### Contribución de las variables al eje 3
+
+```{r}
+#| echo: false
+fviz_contrib(acm, choice = "var", axes = 3, top=23) # top=6 para que muestre quienes contribuyen más
+```
+### Representación de las variables
 
 ```{r}
 #| echo: false
@@ -293,7 +330,14 @@ fviz_mca_var(acm, axes = c(1,2),
              choice = "mca.cor", repel = TRUE, 
              ggtheme = theme_minimal())
 
+# sospechoso pq no cambia
+fviz_mca_var(acm, axes = c(1,3),
+             choice = "mca.cor", repel = TRUE, 
+             ggtheme = theme_minimal())
+
 ```
+
+### Visualización del puntaje global
 
 ```{r}
 #| echo: false
@@ -303,8 +347,21 @@ res.mca <- MCA(Ys, graph=FALSE, quanti.sup = 1)
 fviz_mca_var(res.mca, axes=c(1,2), 
              choice="quanti.sup",
              ggtheme=theme_minimal())
+
+# sospechoso pq no cambia
+fviz_mca_var(res.mca, axes=c(2,3), 
+             choice="quanti.sup",
+             ggtheme=theme_minimal())
 ```
 
+```{r}
+#| echo: false
+
+# se ve imundo
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal())
+```
 
 ::: panel-tabset
 
@@ -314,6 +371,13 @@ fviz_mca_var(res.mca, axes=c(1,2),
 #| echo: false
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_GENERO_Desconocido",
+                                      "ESTU_GENERO_F",
+                                      "ESTU_GENERO_M")),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(2,3), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              select.var = list(name=c("ESTU_GENERO_Desconocido",
                                       "ESTU_GENERO_F",
@@ -480,4 +544,448 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ## Variables relacionadas con la información académica
 
+### Dimensiones para el ACM
+
+```{r}
+#| echo: false
+
+Y <- data[,c(8,9,26,27,28)]
+#str(Y)
+
+acm <- MCA(Y, graph=FALSE)
+
+fviz_screeplot(acm, addlabels = TRUE, ylim = c(0, 20))
+
+```
+
+Se utiliza el \textbf{Criterio de Benzecri} para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
+
+```{r}
+#| echo: false
+# Criterio de Benzecri
+
+## Haciendo las cuentas uno mismo:
+s <- ncol(Y)
+l <- acm$eig[acm$eig[,1] > 1/s, 1]
+tau <- ( s / (s - 1) )^2 * ( l - (1/s) )^2
+ptau <- tau / sum( tau ) * 100
+barplot(ptau, col="darkred", ylim = c(0,75))
+```
+
+La inercia en cada eje luego de aplicar el cirterio de Benzecri es
+
+```{r}
+#| echo: false
+#library(GDAtools)
+ptau <- modif.rate(acm)$modif[, 1] # cuanta inercia queda
+#head(ptau)
+
+ejes <- c()
+for(i in 1:length(ptau)){
+  ejes <- rbind(ejes,paste0("Eje ",i))
+}
+
+tabla_ejes <- data.frame(Ejes=ejes,Inercia=ptau)
+#str(tabla_ejes)
+kable(tabla_ejes, digits = 4)
+```
+
+Entonces, se realiza el análisis con 3 ejes para el ACM. 
+
+### Contribución de las variables al eje 1
+
+```{r}
+#| echo: false
+fviz_contrib(acm, choice = "var", axes = 1, top=6) # top=6 para que muestre quienes contribuyen más
+```
+
+### Contribución de las variables al eje 2
+
+```{r}
+#| echo: false
+fviz_contrib(acm, choice = "var", axes = 2, top=11) # top=6 para que muestre quienes contribuyen más
+```
+
+### Contribución de las variables al eje 3
+
+```{r}
+#| echo: false
+fviz_contrib(acm, choice = "var", axes = 3, top=13) # top=6 para que muestre quienes contribuyen más
+```
+
+### Representación de las variables
+
+```{r}
+#| echo: false
+fviz_mca_var(acm, axes = c(1,2),
+             choice = "mca.cor", repel = TRUE, 
+             ggtheme = theme_minimal())
+
+# sospechoso pq no cambia
+fviz_mca_var(acm, axes = c(1,3),
+             choice = "mca.cor", repel = TRUE, 
+             ggtheme = theme_minimal())
+
+```
+
+### Visualización del puntaje global
+
+```{r}
+#| echo: false
+Ys <- cbind(data$PUNT_GLOBAL, Y)
+res.mca <- MCA(Ys, graph=FALSE, quanti.sup = 1)
+
+fviz_mca_var(res.mca, axes=c(1,2), 
+             choice="quanti.sup",
+             ggtheme=theme_minimal())
+
+# sospechoso pq no cambia
+fviz_mca_var(res.mca, axes=c(2,3), 
+             choice="quanti.sup",
+             ggtheme=theme_minimal())
+```
+
+```{r}
+#| echo: false
+
+# se ve imundo
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal())
+```
+
+::: panel-tabset
+
+### Capacitación examen
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_COMOCAPACITOEXAMENSB11_CuentaPropia",
+                                      "ESTU_COMOCAPACITOEXAMENSB11_Curso",
+                                      "ESTU_COMOCAPACITOEXAMENSB11_Desconocido",
+                                      "ESTU_COMOCAPACITOEXAMENSB11_Ninguna")),
+             ggtheme = theme_minimal())
+```
+
+
+### Semestre que cursa
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_SEMESTRECURSA_06m",
+                                      "ESTU_SEMESTRECURSA_07",
+                                      "EESTU_SEMESTRECURSA_08",
+                                      "ESTU_SEMESTRECURSA_09",
+                                      "ESTU_SEMESTRECURSA_10",
+                                      "ESTU_SEMESTRECURSA_11",
+                                      "ESTU_SEMESTRECURSA_12M",
+                                      "ESTU_SEMESTRECURSA_Desconocido")),
+             ggtheme = theme_minimal())
+```
+
+### Grupo referencia
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("AdmYAfin",
+                                      "ArqYUrb",
+                                      "BelArtYDis",
+                                      "CienAgr",
+                                      "CienMilYNav",
+                                      "CienNatYExac",
+                                      "CienSoc",
+                                      "ComuPerYPub",
+                                      "ContYAfin",
+                                      "Derecho",
+                                      "EcAdContYAfinU",
+                                      "Economía",
+                                      "Educación",
+                                      "Enfermeria",
+                                      "GrupRefNal",
+                                      "Hum",
+                                      "Inge",
+                                      "Med",
+                                      "Psic",
+                                      "RecYDep",
+                                      "salud")),
+             ggtheme = theme_minimal())
+```
+
+
+### Modalidad
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("distancia",
+                                      "distVirtual",
+                                      "presencial")),
+             ggtheme = theme_minimal())
+```
+
+### Carácter académico
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("InstTec",
+                                      "InstUni",
+                                      "TecProf",
+                                      "Universidad")),
+             ggtheme = theme_minimal())
+```
+
+:::
+
 ## Variables relacionadas con la información socioeconómica
+
+### Dimensiones para el ACM
+
+```{r}
+#| echo: false
+
+Y <- data[,c(7,14:22)]
+#str(Y)
+
+acm <- MCA(Y, graph=FALSE)
+
+fviz_screeplot(acm, addlabels = TRUE, ylim = c(0, 20))
+
+```
+
+Se utiliza el \textbf{Criterio de Benzecri} para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
+
+```{r}
+#| echo: false
+# Criterio de Benzecri
+
+## Haciendo las cuentas uno mismo:
+s <- ncol(Y)
+l <- acm$eig[acm$eig[,1] > 1/s, 1]
+tau <- ( s / (s - 1) )^2 * ( l - (1/s) )^2
+ptau <- tau / sum( tau ) * 100
+barplot(ptau, col="darkred", ylim = c(0,75))
+```
+
+La inercia en cada eje luego de aplicar el cirterio de Benzecri es
+
+```{r}
+#| echo: false
+#library(GDAtools)
+ptau <- modif.rate(acm)$modif[, 1] # cuanta inercia queda
+#head(ptau)
+
+ejes <- c()
+for(i in 1:length(ptau)){
+  ejes <- rbind(ejes,paste0("Eje ",i))
+}
+
+tabla_ejes <- data.frame(Ejes=ejes,Inercia=ptau)
+#str(tabla_ejes)
+kable(tabla_ejes, digits = 4)
+```
+Entonces, se realiza el análisis con 2 ejes para el ACM. 
+
+### Contribución de las variables al eje 1
+
+```{r}
+#| echo: false
+fviz_contrib(acm, choice = "var", axes = 1, top = 10) # top=6 para que muestre quienes contribuyen más
+```
+
+### Contribución de las variables al eje 2
+
+```{r}
+#| echo: false
+fviz_contrib(acm, choice = "var", axes = 2, top = 14) # top=6 para que muestre quienes contribuyen más
+```
+
+### Representación de las variables
+
+```{r}
+#| echo: false
+fviz_mca_var(acm, axes = c(1,2),
+             choice = "mca.cor", repel = TRUE, 
+             ggtheme = theme_minimal())
+
+# sospechoso pq no cambia
+fviz_mca_var(acm, axes = c(1,3),
+             choice = "mca.cor", repel = TRUE, 
+             ggtheme = theme_minimal())
+
+```
+
+### Visualización del puntaje global
+
+```{r}
+#| echo: false
+Ys <- cbind(data$PUNT_GLOBAL, Y)
+res.mca <- MCA(Ys, graph=FALSE, quanti.sup = 1)
+
+fviz_mca_var(res.mca, axes=c(1,2), 
+             choice="quanti.sup",
+             ggtheme=theme_minimal())
+
+# sospechoso pq no cambia
+fviz_mca_var(res.mca, axes=c(2,3), 
+             choice="quanti.sup",
+             ggtheme=theme_minimal())
+```
+
+::: panel-tabset
+
+### Valor matrícula 
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_VALORMATRICULAUNIVERSIDAD_m500",
+                                      "ESTU_VALORMATRICULAUNIVERSIDAD_e500m1",
+                                      "ESTU_VALORMATRICULAUNIVERSIDAD_e1m2.5",
+                                      "ESTU_VALORMATRICULAUNIVERSIDAD_e2.5m4",
+                                      "ESTU_VALORMATRICULAUNIVERSIDAD_e4m5.5",
+                                      "ESTU_VALORMATRICULAUNIVERSIDAD_e5.5m7",
+                                      "ESTU_VALORMATRICULAUNIVERSIDAD_M7",
+                                      "ESTU_VALORMATRICULAUNIVERSIDAD_NP",
+                                      "ESTU_VALORMATRICULAUNIVERSIDAD_Desconocido")),
+             ggtheme = theme_minimal())
+```
+
+### Estrato
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_ESTRATOVIVIENDA_Desconocido",
+                                      "FAMI_ESTRATOVIVIENDA_Estrato 1",
+                                      "FAMI_ESTRATOVIVIENDA_Estrato 2",
+                                      "FAMI_ESTRATOVIVIENDA_Estrato 3",
+                                      "FAMI_ESTRATOVIVIENDA_Estrato 4",
+                                      "FAMI_ESTRATOVIVIENDA_Estrato 5",
+                                      "FAMI_ESTRATOVIVIENDA_Estrato 6",
+                                      "FAMI_ESTRATOVIVIENDA_Sin Estrato")),
+             ggtheme = theme_minimal())
+```
+
+### Internet
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_TIENEINTERNET_Desconocido",
+                                      "FAMI_TIENEINTERNET_No",
+                                      "FAMI_TIENEINTERNET_Si")),
+             ggtheme = theme_minimal())
+```
+
+### Computador
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_TIENECOMPUTADOR_Desconocido",
+                                      "FAMI_TIENECOMPUTADOR_No",
+                                      "FAMI_TIENECOMPUTADOR_Si")),
+             ggtheme = theme_minimal())
+```
+
+### Lavadora
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_TIENELAVADORA_Desconocido",
+                                      "FAMI_TIENELAVADORA_Si",
+                                      "FAMI_TIENELAVADORA_No")),
+             ggtheme = theme_minimal())
+```
+
+### Horno microogas
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_TIENEHORNOMICROOGAS_Desconocido",
+                                      "FAMI_TIENEHORNOMICROOGAS_Si",
+                                      "FAMI_TIENEHORNOMICROOGAS_No")),
+             ggtheme = theme_minimal())
+```
+
+### TV
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_TIENESERVICIOTV_Desconocido",
+                                      "FAMI_TIENESERVICIOTV_Si",
+                                      "FAMI_TIENESERVICIOTV_No")),
+             ggtheme = theme_minimal())
+```
+
+### Automóvil
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_TIENEAUTOMOVIL_Desconocido",
+                                      "FAMI_TIENEAUTOMOVIL_Si",
+                                      "FAMI_TIENEAUTOMOVIL_No")),
+             ggtheme = theme_minimal())
+```
+
+### Motocicleta
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_TIENEMOTOCICLETA_Desconocido",
+                                      "FAMI_TIENEMOTOCICLETA_No",
+                                      "FAMI_TIENEMOTOCICLETA_Si")),
+             ggtheme = theme_minimal())
+```
+
+### Consola de videojuegos
+
+```{r}
+#| echo: false
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_TIENECONSOLAVIDEOJUEGOS_Desconocido",
+                                      "FAMI_TIENECONSOLAVIDEOJUEGOS_Si",
+                                      "FAMI_TIENECONSOLAVIDEOJUEGOS_No")),
+             ggtheme = theme_minimal())
+```
+
+:::
