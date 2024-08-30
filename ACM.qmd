@@ -2,7 +2,7 @@
 
 A continuación se muestra el Análisis de Correspondencias Múltiples (ACM) de los datos SaberPro 2022-2.
 
-Se realiza un ACM para cada una de los distintos tipos de variables que cuenta la base de datos (Variables relacionadas con la información personal, Variables relacionadas con la información académica y Variables relacionadas con la información socioeconómica). En cada uno de los ACP se muestra la variable cuantitativa correspondiente al puntaje global como variable suplementaria.
+Se realiza un ACM para cada una de los distintos tipos de variables que cuenta la base de datos (Variables relacionadas con la información personal, Variables relacionadas con la información académica y Variables relacionadas con la información socioeconómica). En cada uno de los ACM se muestra la variable cuantitativa correspondiente al puntaje global como variable suplementaria.
 
 ```{r}
 #| echo: false
@@ -44,6 +44,7 @@ library(stringr)
 edad <- str_sub(data$ESTU_FECHANACIMIENTO,7,10)
 edad<-as.numeric(edad)
 edades<-2023-edad
+summary(edades)
 
 # etnia
 sum(is.na(data$ESTU_TIENEETNIA)) # 775 na's
@@ -270,7 +271,7 @@ fviz_screeplot(acm, addlabels = TRUE, ylim = c(0, 20))
 
 ```
 
-Como en el ACM existen ejes que se consideran "parásitos", se utiliza el \textbf{Criterio de Benzécri} para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
+Como en el ACM existen ejes que se consideran "parásitos", se utiliza el **Criterio de Benzécri** para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
 
 ```{r}
 #| echo: false
@@ -284,7 +285,7 @@ ptau <- tau / sum( tau ) * 100
 barplot(ptau, col="darkred", ylim = c(0,75))
 ```
 
-La inercia en cada eje luego de aplicar el criterio de Benzécri es
+La inercia en cada eje luego de aplicar el **criterio de Benzécri** es
 
 ```{r}
 #| echo: false
@@ -329,14 +330,21 @@ fviz_contrib(acm, choice = "var", axes = 3, top=23) # top=6 para que muestre qui
 
 ```{r}
 #| echo: false
+#| warning: false
 fviz_mca_var(acm, axes = c(1,2),
              choice = "mca.cor", repel = TRUE, 
              ggtheme = theme_minimal())
 
 # sospechoso pq no cambia
-fviz_mca_var(acm, axes = c(1,3),
-             choice = "mca.cor", repel = TRUE, 
-             ggtheme = theme_minimal())
+# fviz_mca_var(acm, axes = c(1,3),
+#              choice = "mca.cor", repel = TRUE, 
+#              ggtheme = theme_minimal())
+
+## Haciendo el gráfico con ggplot:
+ggplot(data = acm$var$eta2, aes(x = `Dim 3`, y = `Dim 2`)) +
+  geom_point(colour = "red") + xlim(0,0.7) + ylim(0,0.7) +
+  geom_text(label=rownames(acm$var$eta2), colour = "red", hjust=1) +
+  theme_minimal()
 
 ```
 
@@ -350,15 +358,11 @@ res.mca <- MCA(Ys, graph=FALSE, quanti.sup = 1)
 fviz_mca_var(res.mca, axes=c(1,2), 
              choice="quanti.sup",
              ggtheme=theme_minimal())
-
-# sospechoso pq no cambia
-fviz_mca_var(res.mca, axes=c(2,3), 
-             choice="quanti.sup",
-             ggtheme=theme_minimal())
 ```
 
 ```{r}
 #| echo: false
+#| eval: false
 
 # se ve imundo
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
@@ -367,10 +371,31 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 ```
 
 ::: panel-tabset
+
 ### Sexo
+
+Las coordenadas son:
 
 ```{r}
 #| echo: false
+
+visualizar <- acm$var
+coordenas <- visualizar$coord
+
+coord <- data.frame(coordenas)
+kable(coord[1:3,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+valores_test <- visualizar$v.test
+
+val_test <- data.frame(valores_test)
+#str(val_test)
+kable(val_test[1:3,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -379,7 +404,7 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "ESTU_GENERO_M")),
              ggtheme = theme_minimal())
 
-fviz_mca_var(acm, axes = c(2,3), col.var = "cos2", repel = TRUE, 
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              select.var = list(name=c("ESTU_GENERO_Desconocido",
                                       "ESTU_GENERO_F",
@@ -396,10 +421,29 @@ fviz_mca_var(acm, axes = c(2,3), col.var = "cos2", repel = TRUE,
 
 ### Etnia
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
 
+kable(coord[4:6,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[4:6,1:3], digits = 4)
+
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_TIENEETNIA_Desconocido ",
+                                      "ESTU_TIENEETNIA_Si",
+                                      "ESTU_TIENEETNIA_No")),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              select.var = list(name=c("ESTU_TIENEETNIA_Desconocido ",
                                       "ESTU_TIENEETNIA_Si",
@@ -409,10 +453,29 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ### Departamento
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
 
+kable(coord[7:9,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[7:9,1:3], digits = 4)
+
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_DEPTO_RESIDE_BOGOTÁ",
+                                      "ESTU_DEPTO_RESIDE_Desconocido",
+                                      "ESTU_DEPTO_RESIDE_OTRO")),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              select.var = list(name=c("ESTU_DEPTO_RESIDE_BOGOTÁ",
                                       "ESTU_DEPTO_RESIDE_Desconocido",
@@ -422,10 +485,31 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ### Estado civil
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
 
+kable(coord[10:14,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[10:14,1:3], digits = 4)
+
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_ESTADOCIVIL_C ",
+                                      "ESTU_ESTADOCIVIL_Desconocido",
+                                      "ESTU_ESTADOCIVIL_S",
+                                      "ESTU_ESTADOCIVIL_SyV",
+                                      "ESTU_ESTADOCIVIL_UL")),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              select.var = list(name=c("ESTU_ESTADOCIVIL_C ",
                                       "ESTU_ESTADOCIVIL_Desconocido",
@@ -437,10 +521,39 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ### Educación padre
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
 
+kable(coord[15:27,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[15:27,1:3], digits = 4)
+
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_EDUCACIONPADRE_BC",
+                                      "FAMI_EDUCACIONPADRE_BI",
+                                      "FAMI_EDUCACIONPADRE_Desconocido",
+                                      "FAMI_EDUCACIONPADRE_EPC",
+                                      "FAMI_EDUCACIONPADRE_EPI",
+                                      "FAMI_EDUCACIONPADRE_NAp",
+                                      "FAMI_EDUCACIONPADRE_Ninguno",
+                                      "FAMI_EDUCACIONPADRE_NS",
+                                      "FAMI_EDUCACIONPADRE_PC",
+                                      "FAMI_EDUCACIONPADRE_PI",
+                                      "FAMI_EDUCACIONPADRE_Post",
+                                      "FAMI_EDUCACIONPADRE_TTC",
+                                      "FAMI_EDUCACIONPADRE_TTI")),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              select.var = list(name=c("FAMI_EDUCACIONPADRE_BC",
                                       "FAMI_EDUCACIONPADRE_BI",
@@ -460,10 +573,39 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ### Educación madre
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
 
+kable(coord[28:40,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[28:40,1:3], digits = 4)
+
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_EDUCACIONMADRE_BC",
+                                      "FAMI_EDUCACIONMADRE_BI",
+                                      "FAMI_EDUCACIONMADRE_Desconocido",
+                                      "FAMI_EDUCACIONMADRE_EPC",
+                                      "FAMI_EDUCACIONMADRE_EPI",
+                                      "FAMI_EDUCACIONMADRE_NAp",
+                                      "FAMI_EDUCACIONMADRE_Ninguno",
+                                      "FAMI_EDUCACIONMADRE_NS",
+                                      "FAMI_EDUCACIONMADRE_PC",
+                                      "FAMI_EDUCACIONMADRE_PI",
+                                      "FAMI_EDUCACIONMADRE_Post",
+                                      "FAMI_EDUCACIONMADRE_TTC",
+                                      "FAMI_EDUCACIONMADRE_TTI")),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              select.var = list(name=c("FAMI_EDUCACIONMADRE_BC",
                                       "FAMI_EDUCACIONMADRE_BI",
@@ -483,10 +625,39 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ### Ocupación padre
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
 
+kable(coord[41:53,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[41:53,1:3], digits = 4)
+
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_OCUPACIONPADRE_Desconocido",
+                                      "FAMI_OCUPACIONPADRE_EDGG",
+                                      "FAMI_OCUPACIONPADRE_Emp",
+                                      "FAMI_OCUPACIONPADRE_ENAA",
+                                      "FAMI_OCUPACIONPADRE_END",
+                                      "FAMI_OCUPACIONPADRE_ENTP",
+                                      "FAMI_OCUPACIONPADRE_EOO",
+                                      "FAMI_OCUPACIONPADRE_H",
+                                      "FAMI_OCUPACIONPADRE_OAO",
+                                      "FAMI_OCUPACIONPADRE_PE",
+                                      "FAMI_OCUPACIONPADRE_Pen",
+                                      "FAMI_OCUPACIONPADRE_PI",
+                                      "FAMI_OCUPACIONPADRE_TCP")),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              select.var = list(name=c("FAMI_OCUPACIONPADRE_Desconocido",
                                       "FAMI_OCUPACIONPADRE_EDGG",
@@ -506,10 +677,39 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ### Ocupación madre
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
 
+kable(coord[54:66,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[54:66,1:3], digits = 4)
+
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("FAMI_OCUPACIONMADRE_Desconocido",
+                                      "FAMI_OCUPACIONMADRE_EDGG",
+                                      "FAMI_OCUPACIONMADRE_Emp",
+                                      "FAMI_OCUPACIONMADRE_ENAA",
+                                      "FAMI_OCUPACIONMADRE_END",
+                                      "FAMI_OCUPACIONMADRE_ENTP",
+                                      "FAMI_OCUPACIONMADRE_EOO",
+                                      "FAMI_OCUPACIONMADRE_H",
+                                      "FAMI_OCUPACIONMADRE_OAO",
+                                      "FAMI_OCUPACIONMADRE_PE",
+                                      "FAMI_OCUPACIONMADRE_Pen",
+                                      "FAMI_OCUPACIONMADRE_PI",
+                                      "FAMI_OCUPACIONMADRE_TCP")),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              select.var = list(name=c("FAMI_OCUPACIONMADRE_Desconocido",
                                       "FAMI_OCUPACIONMADRE_EDGG",
@@ -529,10 +729,32 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ### Horas trabaja
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
 
+kable(coord[67:72,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[67:72,1:3], digits = 4)
+
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("ESTU_HORASSEMANATRABAJA_0",
+                                      "ESTU_HORASSEMANATRABAJA_Menos de 10 horas",
+                                      "ESTU_HORASSEMANATRABAJA_Entre 11 y 20 horas",
+                                      "ESTU_HORASSEMANATRABAJA_Entre 21 y 30 horas",
+                                      "ESTU_HORASSEMANATRABAJA_Más de 30 horas",
+                                      "ESTU_HORASSEMANATRABAJA_Desconocido")),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              select.var = list(name=c("ESTU_HORASSEMANATRABAJA_0",
                                       "ESTU_HORASSEMANATRABAJA_Menos de 10 horas",
@@ -551,7 +773,7 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 ```{r}
 #| echo: false
 
-Y <- data[,c(8,9,26,27,28)]
+Y <- data[,c(8,9,27,28)]
 #str(Y)
 
 acm <- MCA(Y, graph=FALSE)
@@ -560,7 +782,7 @@ fviz_screeplot(acm, addlabels = TRUE, ylim = c(0, 20))
 
 ```
 
-Se utiliza el \textbf{Criterio de Benzecri} para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
+Se utiliza el **Criterio de Benzecri** para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
 
 ```{r}
 #| echo: false
@@ -574,7 +796,7 @@ ptau <- tau / sum( tau ) * 100
 barplot(ptau, col="darkred", ylim = c(0,75))
 ```
 
-La inercia en cada eje luego de aplicar el cirterio de Benzecri es
+La inercia en cada eje luego de aplicar el **criterio de Benzécri** es
 
 ```{r}
 #| echo: false
@@ -592,7 +814,7 @@ tabla_ejes <- data.frame(Ejes=ejes,Inercia=ptau)
 kable(tabla_ejes, digits = 4)
 ```
 
-Entonces, se realiza el análisis con 3 ejes para el ACM.
+Entonces, se realiza el análisis con 2 ejes para el ACM.
 
 ### Contribución de las variables al eje 1
 
@@ -608,12 +830,7 @@ fviz_contrib(acm, choice = "var", axes = 1, top=6) # top=6 para que muestre quie
 fviz_contrib(acm, choice = "var", axes = 2, top=11) # top=6 para que muestre quienes contribuyen más
 ```
 
-### Contribución de las variables al eje 3
 
-```{r}
-#| echo: false
-fviz_contrib(acm, choice = "var", axes = 3, top=13) # top=6 para que muestre quienes contribuyen más
-```
 
 ### Representación de las variables
 
@@ -624,9 +841,14 @@ fviz_mca_var(acm, axes = c(1,2),
              ggtheme = theme_minimal())
 
 # sospechoso pq no cambia
-fviz_mca_var(acm, axes = c(1,3),
-             choice = "mca.cor", repel = TRUE, 
-             ggtheme = theme_minimal())
+# fviz_mca_var(acm, axes = c(1,3),
+#              choice = "mca.cor", repel = TRUE, 
+#              ggtheme = theme_minimal())
+
+# ggplot(data = acm$var$eta2, aes(x = `Dim 3`, y = `Dim 2`)) +
+#   geom_point(colour = "red") + xlim(0,0.7) + ylim(0,0.7) + 
+#   geom_text(label=rownames(acm$var$eta2), colour = "red", hjust=1) + 
+#   theme_minimal()
 
 ```
 
@@ -634,33 +856,51 @@ fviz_mca_var(acm, axes = c(1,3),
 
 ```{r}
 #| echo: false
-Ys <- cbind(data$PUNT_GLOBAL, Y)
-res.mca <- MCA(Ys, graph=FALSE, quanti.sup = 1)
+Ys <- cbind(data$PUNT_GLOBAL, data$ESTU_GENERO, data$GRUPOREFERENCIA ,Y)
+res.mca <- MCA(Ys, graph=FALSE, quali.sup = c(2,3), quanti.sup = 1)
 
 fviz_mca_var(res.mca, axes=c(1,2), 
              choice="quanti.sup",
              ggtheme=theme_minimal())
 
-# sospechoso pq no cambia
-fviz_mca_var(res.mca, axes=c(2,3), 
-             choice="quanti.sup",
-             ggtheme=theme_minimal())
 ```
 
 ```{r}
 #| echo: false
+#| eval: false
 
 # se ve imundo
-fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
              ggtheme = theme_minimal())
 ```
 
 ::: panel-tabset
+
 ### Capacitación examen
+
+Las coordenadas son:
 
 ```{r}
 #| echo: false
+
+visualizar <- acm$var
+coordenas <- visualizar$coord
+
+coord <- data.frame(coordenas)
+kable(coord[1:4,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+valores_test <- visualizar$v.test
+
+val_test <- data.frame(valores_test)
+#str(val_test)
+kable(val_test[1:4,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -669,12 +909,35 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "ESTU_COMOCAPACITOEXAMENSB11_Desconocido",
                                       "ESTU_COMOCAPACITOEXAMENSB11_Ninguna")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("ESTU_COMOCAPACITOEXAMENSB11_CuentaPropia",
+#                                       "ESTU_COMOCAPACITOEXAMENSB11_Curso",
+#                                       "ESTU_COMOCAPACITOEXAMENSB11_Desconocido",
+#                                       "ESTU_COMOCAPACITOEXAMENSB11_Ninguna")),
+#              ggtheme = theme_minimal())
+
+#fviz_mca_var(res.mca, repel = TRUE,
+#             ggtheme= theme_minimal())
 ```
 
 ### Semestre que cursa
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[5:12,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[5:12,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -687,43 +950,119 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "ESTU_SEMESTRECURSA_12M",
                                       "ESTU_SEMESTRECURSA_Desconocido")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("ESTU_SEMESTRECURSA_06m",
+#                                       "ESTU_SEMESTRECURSA_07",
+#                                       "EESTU_SEMESTRECURSA_08",
+#                                       "ESTU_SEMESTRECURSA_09",
+#                                       "ESTU_SEMESTRECURSA_10",
+#                                       "ESTU_SEMESTRECURSA_11",
+#                                       "ESTU_SEMESTRECURSA_12M",
+#                                       "ESTU_SEMESTRECURSA_Desconocido")),
+#              ggtheme = theme_minimal())
 ```
 
 ### Grupo referencia
 
+Se dejó como variable suplementaria ya que tiene 22 categorías
+
+Las coordenadas son:
+
 ```{r}
 #| echo: false
 
-fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("AdmYAfin",
-                                      "ArqYUrb",
-                                      "BelArtYDis",
-                                      "CienAgr",
-                                      "CienMilYNav",
-                                      "CienNatYExac",
-                                      "CienSoc",
-                                      "ComuPerYPub",
-                                      "ContYAfin",
-                                      "Derecho",
-                                      "EcAdContYAfinU",
-                                      "Economía",
-                                      "Educación",
-                                      "Enfermeria",
-                                      "GrupRefNal",
-                                      "Hum",
-                                      "Inge",
-                                      "Med",
-                                      "Psic",
-                                      "RecYDep",
-                                      "salud")),
+coordenas_sup <- res.mca$quali.sup$coord
+
+
+coord_sup <- data.frame(coordenas_sup)
+kable(coord_sup[4:25,1:3], digits = 4)
+
+```
+
+
+```{r}
+#| echo: false
+#| warning: false 
+
+valores_test_sup <- res.mca$quali.sup$v.test
+
+val_test_sup <- data.frame(valores_test_sup)
+kable(val_test_sup[4:25,1:3], digits = 4)
+
+# fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("AdmYAfin",
+#                                       "ArqYUrb",
+#                                       "BelArtYDis",
+#                                       "CienAgr",
+#                                       "CienMilYNav",
+#                                       "CienNatYExac",
+#                                       "CienSoc",
+#                                       "ComuPerYPub",
+#                                       "ContYAfin",
+#                                       "Derecho",
+#                                       "EcAdContYAfinU",
+#                                       "Economía",
+#                                       "Educación",
+#                                       "Enfermeria",
+#                                       "GrupRefNal",
+#                                       "Hum",
+#                                       "Inge",
+#                                       "Med",
+#                                       "Psic",
+#                                       "RecYDep",
+#                                       "salud")),
+#              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("AdmYAfin",
+#                                       "ArqYUrb",
+#                                       "BelArtYDis",
+#                                       "CienAgr",
+#                                       "CienMilYNav",
+#                                       "CienNatYExac",
+#                                       "CienSoc",
+#                                       "ComuPerYPub",
+#                                       "ContYAfin",
+#                                       "Derecho",
+#                                       "EcAdContYAfinU",
+#                                       "Economía",
+#                                       "Educación",
+#                                       "Enfermeria",
+#                                       "GrupRefNal",
+#                                       "Hum",
+#                                       "Inge",
+#                                       "Med",
+#                                       "Psic",
+#                                       "RecYDep",
+#                                       "salud")),
+#              ggtheme = theme_minimal())
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
              ggtheme = theme_minimal())
+
 ```
 
 ### Modalidad
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[13:15,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[13:15,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -731,12 +1070,31 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "distVirtual",
                                       "presencial")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("distancia",
+#                                       "distVirtual",
+#                                       "presencial")),
+#              ggtheme = theme_minimal())
 ```
 
 ### Carácter académico
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[16:19,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[16:19,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -745,6 +1103,14 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "TecProf",
                                       "Universidad")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("InstTec",
+#                                       "InstUni",
+#                                       "TecProf",
+#                                       "Universidad")),
+#              ggtheme = theme_minimal())
 ```
 :::
 
@@ -764,7 +1130,7 @@ fviz_screeplot(acm, addlabels = TRUE, ylim = c(0, 20))
 
 ```
 
-Se utiliza el \textbf{Criterio de Benzecri} para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
+Se utiliza el **Criterio de Benzécri** para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
 
 ```{r}
 #| echo: false
@@ -778,7 +1144,7 @@ ptau <- tau / sum( tau ) * 100
 barplot(ptau, col="darkred", ylim = c(0,75))
 ```
 
-La inercia en cada eje luego de aplicar el cirterio de Benzecri es
+La inercia en cada eje luego de aplicar el **criterio de Benzécri** es
 
 ```{r}
 #| echo: false
@@ -821,9 +1187,14 @@ fviz_mca_var(acm, axes = c(1,2),
              ggtheme = theme_minimal())
 
 # sospechoso pq no cambia
-fviz_mca_var(acm, axes = c(1,3),
-             choice = "mca.cor", repel = TRUE, 
-             ggtheme = theme_minimal())
+# fviz_mca_var(acm, axes = c(1,3),
+#              choice = "mca.cor", repel = TRUE, 
+#              ggtheme = theme_minimal())
+
+# ggplot(data = acm$var$eta2, aes(x = `Dim 3`, y = `Dim 2`)) +
+#   geom_point(colour = "red") + xlim(0,0.7) + ylim(0,0.7) + 
+#   geom_text(label=rownames(acm$var$eta2), colour = "red", hjust=1) + 
+#   theme_minimal()
 
 ```
 
@@ -831,24 +1202,41 @@ fviz_mca_var(acm, axes = c(1,3),
 
 ```{r}
 #| echo: false
-Ys <- cbind(data$PUNT_GLOBAL, Y)
-res.mca <- MCA(Ys, graph=FALSE, quanti.sup = 1)
+Ys <- cbind(data$PUNT_GLOBAL, data$ESTU_GENERO, Y)
+res.mca <- MCA(Ys, graph=FALSE, quali.sup = 2, quanti.sup = 1)
 
 fviz_mca_var(res.mca, axes=c(1,2), 
              choice="quanti.sup",
              ggtheme=theme_minimal())
 
-# sospechoso pq no cambia
-fviz_mca_var(res.mca, axes=c(2,3), 
-             choice="quanti.sup",
-             ggtheme=theme_minimal())
 ```
 
 ::: panel-tabset
+
 ### Valor matrícula
+
+Las coordenadas son:
 
 ```{r}
 #| echo: false
+
+visualizar <- acm$var
+coordenas <- visualizar$coord
+
+coord <- data.frame(coordenas)
+kable(coord[1:9,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+valores_test <- visualizar$v.test
+
+val_test <- data.frame(valores_test)
+#str(val_test)
+kable(val_test[1:9,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -862,12 +1250,37 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "ESTU_VALORMATRICULAUNIVERSIDAD_NP",
                                       "ESTU_VALORMATRICULAUNIVERSIDAD_Desconocido")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("ESTU_VALORMATRICULAUNIVERSIDAD_m500",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_e500m1",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_e1m2.5",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_e2.5m4",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_e4m5.5",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_e5.5m7",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_M7",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_NP",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_Desconocido")),
+#              ggtheme = theme_minimal())
 ```
 
 ### Estrato
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[10:17,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[10:17,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -880,12 +1293,36 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "FAMI_ESTRATOVIVIENDA_Estrato 6",
                                       "FAMI_ESTRATOVIVIENDA_Sin Estrato")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_ESTRATOVIVIENDA_Desconocido",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 1",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 2",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 3",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 4",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 5",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 6",
+#                                       "FAMI_ESTRATOVIVIENDA_Sin Estrato")),
+#              ggtheme = theme_minimal())
 ```
 
 ### Internet
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[18:20,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[18:20,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -893,12 +1330,31 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "FAMI_TIENEINTERNET_No",
                                       "FAMI_TIENEINTERNET_Si")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENEINTERNET_Desconocido",
+#                                       "FAMI_TIENEINTERNET_No",
+#                                       "FAMI_TIENEINTERNET_Si")),
+#              ggtheme = theme_minimal())
 ```
 
 ### Computador
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[21:23,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[21:23,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -906,12 +1362,31 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "FAMI_TIENECOMPUTADOR_No",
                                       "FAMI_TIENECOMPUTADOR_Si")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENECOMPUTADOR_Desconocido",
+#                                       "FAMI_TIENECOMPUTADOR_No",
+#                                       "FAMI_TIENECOMPUTADOR_Si")),
+#              ggtheme = theme_minimal())
 ```
 
 ### Lavadora
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[24:26,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[24:26,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -919,12 +1394,31 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "FAMI_TIENELAVADORA_Si",
                                       "FAMI_TIENELAVADORA_No")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENELAVADORA_Desconocido",
+#                                       "FAMI_TIENELAVADORA_Si",
+#                                       "FAMI_TIENELAVADORA_No")),
+#              ggtheme = theme_minimal())
 ```
 
 ### Horno microogas
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[27:29,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[27:29,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -932,12 +1426,31 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "FAMI_TIENEHORNOMICROOGAS_Si",
                                       "FAMI_TIENEHORNOMICROOGAS_No")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE,
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+#              select.var = list(name=c("FAMI_TIENEHORNOMICROOGAS_Desconocido",
+#                                       "FAMI_TIENEHORNOMICROOGAS_Si",
+#                                       "FAMI_TIENEHORNOMICROOGAS_No")),
+#              ggtheme = theme_minimal())
 ```
 
 ### TV
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[30:32,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[30:32,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -945,12 +1458,31 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "FAMI_TIENESERVICIOTV_Si",
                                       "FAMI_TIENESERVICIOTV_No")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENESERVICIOTV_Desconocido",
+#                                       "FAMI_TIENESERVICIOTV_Si",
+#                                       "FAMI_TIENESERVICIOTV_No")),
+#              ggtheme = theme_minimal())
 ```
 
 ### Automóvil
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[33:35,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[33:35,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -958,12 +1490,31 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "FAMI_TIENEAUTOMOVIL_Si",
                                       "FAMI_TIENEAUTOMOVIL_No")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENEAUTOMOVIL_Desconocido",
+#                                       "FAMI_TIENEAUTOMOVIL_Si",
+#                                       "FAMI_TIENEAUTOMOVIL_No")),
+#              ggtheme = theme_minimal())
 ```
 
 ### Motocicleta
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[36:38,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[36:38,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -971,12 +1522,31 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "FAMI_TIENEMOTOCICLETA_No",
                                       "FAMI_TIENEMOTOCICLETA_Si")),
              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENEMOTOCICLETA_Desconocido",
+#                                       "FAMI_TIENEMOTOCICLETA_No",
+#                                       "FAMI_TIENEMOTOCICLETA_Si")),
+#              ggtheme = theme_minimal())
 ```
 
 ### Consola de videojuegos
 
+Las coordenadas son:
+
 ```{r}
 #| echo: false
+
+kable(coord[39:41,1:3], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[39:41,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -984,5 +1554,12 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "FAMI_TIENECONSOLAVIDEOJUEGOS_Si",
                                       "FAMI_TIENECONSOLAVIDEOJUEGOS_No")),
              ggtheme = theme_minimal())
+# 
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENECONSOLAVIDEOJUEGOS_Desconocido",
+#                                       "FAMI_TIENECONSOLAVIDEOJUEGOS_Si",
+#                                       "FAMI_TIENECONSOLAVIDEOJUEGOS_No")),
+#              ggtheme = theme_minimal())
 ```
 :::
