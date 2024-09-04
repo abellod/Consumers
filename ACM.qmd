@@ -370,9 +370,27 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
              ggtheme = theme_minimal())
 ```
 
+```{r}
+#| echo: false
+
+nombres_originales <- rownames(acm$var$coord)
+nombres_variables <- unique(gsub("_[^_]+$", "", nombres_originales))
+
+for (i in seq_along(nombres_variables)) {
+  # Usar gsub para reemplazar el nombre de la variable por un número
+  nombres_modificados <- gsub(nombres_variables[i], as.character(i), nombres_originales)
+  
+  # Actualizar los nombres en el objeto ACM
+  nombres_originales <- nombres_modificados
+}
+
+rownames(acm$var$coord) <- nombres_originales
+rownames(acm$var$v.test) <- nombres_originales
+```
+
 ::: panel-tabset
 
-### Sexo
+### 1. Sexo
 
 Las coordenadas son:
 
@@ -399,17 +417,20 @@ kable(val_test[1:3,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("ESTU_GENERO_Desconocido",
-                                      "ESTU_GENERO_F",
-                                      "ESTU_GENERO_M")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("1_Desconocido",
+                                      "1_F",
+                                      "1_M")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
 
 fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("ESTU_GENERO_Desconocido",
-                                      "ESTU_GENERO_F",
-                                      "ESTU_GENERO_M")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("1_Desconocido",
+                                      "1_F",
+                                      "1_M")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
+
 
 # fviz_mca_var(acm, axes = c(1,2),
 #              repel = TRUE, 
@@ -419,7 +440,7 @@ fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE,
 #              ggtheme = theme_minimal())
 ```
 
-### Etnia
+### 2. Etnia
 
 Las coordenadas son:
 
@@ -438,20 +459,22 @@ kable(val_test[4:6,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("ESTU_TIENEETNIA_Desconocido ",
-                                      "ESTU_TIENEETNIA_Si",
-                                      "ESTU_TIENEETNIA_No")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("2_Desconocido ",
+                                      "2_Si",
+                                      "2_No")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
 
 fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("ESTU_TIENEETNIA_Desconocido ",
-                                      "ESTU_TIENEETNIA_Si",
-                                      "ESTU_TIENEETNIA_No")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("2_Desconocido ",
+                                      "2_Si",
+                                      "2_No")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
 ```
 
-### Departamento
+### 3. Departamento
 
 Las coordenadas son:
 
@@ -470,20 +493,22 @@ kable(val_test[7:9,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("ESTU_DEPTO_RESIDE_BOGOTÁ",
-                                      "ESTU_DEPTO_RESIDE_Desconocido",
-                                      "ESTU_DEPTO_RESIDE_OTRO")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("3_BOGOTÁ",
+                                      "3_Desconocido",
+                                      "3_OTRO")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
 
 fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("ESTU_DEPTO_RESIDE_BOGOTÁ",
-                                      "ESTU_DEPTO_RESIDE_Desconocido",
-                                      "ESTU_DEPTO_RESIDE_OTRO")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("3_BOGOTÁ",
+                                      "3_Desconocido",
+                                      "3_OTRO")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
 ```
 
-### Estado civil
+### 4. Estado civil
 
 Las coordenadas son:
 
@@ -502,24 +527,26 @@ kable(val_test[10:14,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("ESTU_ESTADOCIVIL_C ",
-                                      "ESTU_ESTADOCIVIL_Desconocido",
-                                      "ESTU_ESTADOCIVIL_S",
-                                      "ESTU_ESTADOCIVIL_SyV",
-                                      "ESTU_ESTADOCIVIL_UL")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("4_C ",
+                                      "4_Desconocido",
+                                      "4_S",
+                                      "4_SyV",
+                                      "4_UL")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
 
 fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("ESTU_ESTADOCIVIL_C ",
-                                      "ESTU_ESTADOCIVIL_Desconocido",
-                                      "ESTU_ESTADOCIVIL_S",
-                                      "ESTU_ESTADOCIVIL_SyV",
-                                      "ESTU_ESTADOCIVIL_UL")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("4_C ",
+                                      "4_Desconocido",
+                                      "4_S",
+                                      "4_SyV",
+                                      "4_UL")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
 ```
 
-### Educación padre
+### 5. Educación padre
 
 Las coordenadas son:
 
@@ -538,40 +565,42 @@ kable(val_test[15:27,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("FAMI_EDUCACIONPADRE_BC",
-                                      "FAMI_EDUCACIONPADRE_BI",
-                                      "FAMI_EDUCACIONPADRE_Desconocido",
-                                      "FAMI_EDUCACIONPADRE_EPC",
-                                      "FAMI_EDUCACIONPADRE_EPI",
-                                      "FAMI_EDUCACIONPADRE_NAp",
-                                      "FAMI_EDUCACIONPADRE_Ninguno",
-                                      "FAMI_EDUCACIONPADRE_NS",
-                                      "FAMI_EDUCACIONPADRE_PC",
-                                      "FAMI_EDUCACIONPADRE_PI",
-                                      "FAMI_EDUCACIONPADRE_Post",
-                                      "FAMI_EDUCACIONPADRE_TTC",
-                                      "FAMI_EDUCACIONPADRE_TTI")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("5_BC",
+                                      "5_BI",
+                                      "5_Desconocido",
+                                      "5_EPC",
+                                      "5_EPI",
+                                      "5_NAp",
+                                      "5_Ninguno",
+                                      "5_NS",
+                                      "5_PC",
+                                      "5_PI",
+                                      "5_Post",
+                                      "5_TTC",
+                                      "5_TTI")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
 
 fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("FAMI_EDUCACIONPADRE_BC",
-                                      "FAMI_EDUCACIONPADRE_BI",
-                                      "FAMI_EDUCACIONPADRE_Desconocido",
-                                      "FAMI_EDUCACIONPADRE_EPC",
-                                      "FAMI_EDUCACIONPADRE_EPI",
-                                      "FAMI_EDUCACIONPADRE_NAp",
-                                      "FAMI_EDUCACIONPADRE_Ninguno",
-                                      "FAMI_EDUCACIONPADRE_NS",
-                                      "FAMI_EDUCACIONPADRE_PC",
-                                      "FAMI_EDUCACIONPADRE_PI",
-                                      "FAMI_EDUCACIONPADRE_Post",
-                                      "FAMI_EDUCACIONPADRE_TTC",
-                                      "FAMI_EDUCACIONPADRE_TTI")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("5_BC",
+                                      "5_BI",
+                                      "5_Desconocido",
+                                      "5_EPC",
+                                      "5_EPI",
+                                      "5_NAp",
+                                      "5_Ninguno",
+                                      "5_NS",
+                                      "5_PC",
+                                      "5_PI",
+                                      "5_Post",
+                                      "5_TTC",
+                                      "5_TTI")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
 ```
 
-### Educación madre
+### 6. Educación madre
 
 Las coordenadas son:
 
@@ -590,40 +619,42 @@ kable(val_test[28:40,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("FAMI_EDUCACIONMADRE_BC",
-                                      "FAMI_EDUCACIONMADRE_BI",
-                                      "FAMI_EDUCACIONMADRE_Desconocido",
-                                      "FAMI_EDUCACIONMADRE_EPC",
-                                      "FAMI_EDUCACIONMADRE_EPI",
-                                      "FAMI_EDUCACIONMADRE_NAp",
-                                      "FAMI_EDUCACIONMADRE_Ninguno",
-                                      "FAMI_EDUCACIONMADRE_NS",
-                                      "FAMI_EDUCACIONMADRE_PC",
-                                      "FAMI_EDUCACIONMADRE_PI",
-                                      "FAMI_EDUCACIONMADRE_Post",
-                                      "FAMI_EDUCACIONMADRE_TTC",
-                                      "FAMI_EDUCACIONMADRE_TTI")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("6_BC",
+                                      "6_BI",
+                                      "6_Desconocido",
+                                      "6_EPC",
+                                      "6_EPI",
+                                      "6_NAp",
+                                      "6_Ninguno",
+                                      "6_NS",
+                                      "6_PC",
+                                      "6_PI",
+                                      "6_Post",
+                                      "6_TTC",
+                                      "6_TTI")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
 
 fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("FAMI_EDUCACIONMADRE_BC",
-                                      "FAMI_EDUCACIONMADRE_BI",
-                                      "FAMI_EDUCACIONMADRE_Desconocido",
-                                      "FAMI_EDUCACIONMADRE_EPC",
-                                      "FAMI_EDUCACIONMADRE_EPI",
-                                      "FAMI_EDUCACIONMADRE_NAp",
-                                      "FAMI_EDUCACIONMADRE_Ninguno",
-                                      "FAMI_EDUCACIONMADRE_NS",
-                                      "FAMI_EDUCACIONMADRE_PC",
-                                      "FAMI_EDUCACIONMADRE_PI",
-                                      "FAMI_EDUCACIONMADRE_Post",
-                                      "FAMI_EDUCACIONMADRE_TTC",
-                                      "FAMI_EDUCACIONMADRE_TTI")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("6_BC",
+                                      "6_BI",
+                                      "6_Desconocido",
+                                      "6_EPC",
+                                      "6_EPI",
+                                      "6_NAp",
+                                      "6_Ninguno",
+                                      "6_NS",
+                                      "6_PC",
+                                      "6_PI",
+                                      "6_Post",
+                                      "6_TTC",
+                                      "6_TTI")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
 ```
 
-### Ocupación padre
+### 7. Ocupación padre
 
 Las coordenadas son:
 
@@ -642,40 +673,42 @@ kable(val_test[41:53,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("FAMI_OCUPACIONPADRE_Desconocido",
-                                      "FAMI_OCUPACIONPADRE_EDGG",
-                                      "FAMI_OCUPACIONPADRE_Emp",
-                                      "FAMI_OCUPACIONPADRE_ENAA",
-                                      "FAMI_OCUPACIONPADRE_END",
-                                      "FAMI_OCUPACIONPADRE_ENTP",
-                                      "FAMI_OCUPACIONPADRE_EOO",
-                                      "FAMI_OCUPACIONPADRE_H",
-                                      "FAMI_OCUPACIONPADRE_OAO",
-                                      "FAMI_OCUPACIONPADRE_PE",
-                                      "FAMI_OCUPACIONPADRE_Pen",
-                                      "FAMI_OCUPACIONPADRE_PI",
-                                      "FAMI_OCUPACIONPADRE_TCP")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("7_Desconocido",
+                                      "7_EDGG",
+                                      "7_Emp",
+                                      "7_ENAA",
+                                      "7_END",
+                                      "7_ENTP",
+                                      "7_EOO",
+                                      "7_H",
+                                      "7_OAO",
+                                      "7_PE",
+                                      "7_Pen",
+                                      "7_PI",
+                                      "7_TCP")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
 
 fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("FAMI_OCUPACIONPADRE_Desconocido",
-                                      "FAMI_OCUPACIONPADRE_EDGG",
-                                      "FAMI_OCUPACIONPADRE_Emp",
-                                      "FAMI_OCUPACIONPADRE_ENAA",
-                                      "FAMI_OCUPACIONPADRE_END",
-                                      "FAMI_OCUPACIONPADRE_ENTP",
-                                      "FAMI_OCUPACIONPADRE_EOO",
-                                      "FAMI_OCUPACIONPADRE_H",
-                                      "FAMI_OCUPACIONPADRE_OAO",
-                                      "FAMI_OCUPACIONPADRE_PE",
-                                      "FAMI_OCUPACIONPADRE_Pen",
-                                      "FAMI_OCUPACIONPADRE_PI",
-                                      "FAMI_OCUPACIONPADRE_TCP")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("7_Desconocido",
+                                      "7_EDGG",
+                                      "7_Emp",
+                                      "7_ENAA",
+                                      "7_END",
+                                      "7_ENTP",
+                                      "7_EOO",
+                                      "7_H",
+                                      "7_OAO",
+                                      "7_PE",
+                                      "7_Pen",
+                                      "7_PI",
+                                      "7_TCP")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1.8, 1.8))
 ```
 
-### Ocupación madre
+### 8. Ocupación madre
 
 Las coordenadas son:
 
@@ -694,40 +727,42 @@ kable(val_test[54:66,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("FAMI_OCUPACIONMADRE_Desconocido",
-                                      "FAMI_OCUPACIONMADRE_EDGG",
-                                      "FAMI_OCUPACIONMADRE_Emp",
-                                      "FAMI_OCUPACIONMADRE_ENAA",
-                                      "FAMI_OCUPACIONMADRE_END",
-                                      "FAMI_OCUPACIONMADRE_ENTP",
-                                      "FAMI_OCUPACIONMADRE_EOO",
-                                      "FAMI_OCUPACIONMADRE_H",
-                                      "FAMI_OCUPACIONMADRE_OAO",
-                                      "FAMI_OCUPACIONMADRE_PE",
-                                      "FAMI_OCUPACIONMADRE_Pen",
-                                      "FAMI_OCUPACIONMADRE_PI",
-                                      "FAMI_OCUPACIONMADRE_TCP")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("8_Desconocido",
+                                      "8_EDGG",
+                                      "8_Emp",
+                                      "8_ENAA",
+                                      "8_END",
+                                      "8_ENTP",
+                                      "8_EOO",
+                                      "8_H",
+                                      "8_OAO",
+                                      "8_PE",
+                                      "8_Pen",
+                                      "8_PI",
+                                      "8_TCP")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
 
 fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("FAMI_OCUPACIONMADRE_Desconocido",
-                                      "FAMI_OCUPACIONMADRE_EDGG",
-                                      "FAMI_OCUPACIONMADRE_Emp",
-                                      "FAMI_OCUPACIONMADRE_ENAA",
-                                      "FAMI_OCUPACIONMADRE_END",
-                                      "FAMI_OCUPACIONMADRE_ENTP",
-                                      "FAMI_OCUPACIONMADRE_EOO",
-                                      "FAMI_OCUPACIONMADRE_H",
-                                      "FAMI_OCUPACIONMADRE_OAO",
-                                      "FAMI_OCUPACIONMADRE_PE",
-                                      "FAMI_OCUPACIONMADRE_Pen",
-                                      "FAMI_OCUPACIONMADRE_PI",
-                                      "FAMI_OCUPACIONMADRE_TCP")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("8_Desconocido",
+                                      "8_EDGG",
+                                      "8_Emp",
+                                      "8_ENAA",
+                                      "8_END",
+                                      "8_ENTP",
+                                      "8_EOO",
+                                      "8_H",
+                                      "8_OAO",
+                                      "8_PE",
+                                      "8_Pen",
+                                      "8_PI",
+                                      "8_TCP")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1.8, 1.8))
 ```
 
-### Horas trabaja
+### 9. Horas trabaja
 
 Las coordenadas son:
 
@@ -746,25 +781,53 @@ kable(val_test[67:72,1:3], digits = 4)
 
 fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("ESTU_HORASSEMANATRABAJA_0",
-                                      "ESTU_HORASSEMANATRABAJA_Menos de 10 horas",
-                                      "ESTU_HORASSEMANATRABAJA_Entre 11 y 20 horas",
-                                      "ESTU_HORASSEMANATRABAJA_Entre 21 y 30 horas",
-                                      "ESTU_HORASSEMANATRABAJA_Más de 30 horas",
-                                      "ESTU_HORASSEMANATRABAJA_Desconocido")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("9_0",
+                                      "9_Menos de 10 horas",
+                                      "9_Entre 11 y 20 horas",
+                                      "9_Entre 21 y 30 horas",
+                                      "9_Más de 30 horas",
+                                      "9_Desconocido")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
 
 fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("ESTU_HORASSEMANATRABAJA_0",
-                                      "ESTU_HORASSEMANATRABAJA_Menos de 10 horas",
-                                      "ESTU_HORASSEMANATRABAJA_Entre 11 y 20 horas",
-                                      "ESTU_HORASSEMANATRABAJA_Entre 21 y 30 horas",
-                                      "ESTU_HORASSEMANATRABAJA_Más de 30 horas",
-                                      "ESTU_HORASSEMANATRABAJA_Desconocido")),
-             ggtheme = theme_minimal())
+             select.var = list(name=c("9_0",
+                                      "9_Menos de 10 horas",
+                                      "9_Entre 11 y 20 horas",
+                                      "9_Entre 21 y 30 horas",
+                                      "9_Más de 30 horas",
+                                      "9_Desconocido")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
 ```
 :::
+
+```{r}
+#| echo: false
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
+
+```
+
+```{r}
+#| echo: false
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal())
+
+fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
+
+```
 
 ## Variables relacionadas con la información académica
 
