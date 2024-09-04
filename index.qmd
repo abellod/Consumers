@@ -42,7 +42,7 @@ Identificar patrones y relaciones entre variables socioeconómicas, personales y
 
 # Descripción de la tabla de datos
 
-El conjunto de datos que se trabajarán para cumplir con los objetivos de este estudio son los resultados del examen Saber Pro del 2022-2, proporcionados por el Instituto Colombiano para la Evaluación de la Educación (ICFES). 
+El conjunto de datos que se trabajarán para cumplir con los objetivos de este estudio son los resultados del examen Saber Pro del 2022-2, proporcionados por el Instituto Colombiano para la Evaluación de la Educación (ICFES).
 
 Los datos fueron tomados del cuestionario sociodemográfico que hace parte del formulario de inscripción al exámen Saber Pro, este cuestionario busca indagar por tres aspectos: información personal, académica y de citación, y socioeconómica.
 
@@ -264,215 +264,215 @@ names(data)[29:33]<-c("cuanti","lec","ciu","ing","esc")
 
 ### Variables cualitativas
 
-+----+--------------------------------+--------+----------------------------------------------------------+
-| Col| Variable                       | Tipo   | Categorías                                               |
-+====+================================+========+==========================================================+
-| 1  | ESTU_GENERO                    | Nominal|- F: Femenino                                             |
-|    |                                |        |- M: Masculino                                            |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 2  | ESTU_FECHANACIMIENTO           | Nominal|                                                          |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 3  | ESTU_TIENEETNIA                | Nominal|- Si                                                      |
-|    |                                |        |- No                                                      |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 4  | ESTU_DEPTO_RESIDE              | Nominal|- BOGOTÁ                                                  |
-|    |                                |        |- OTRO                                                    |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 5  | ESTU_COD_RESIDE_DEPTO          | Nominal|                                                          |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 6  | ESTU_ESTADOCIVIL               | Nominal|- S: Soltero                                              |
-|    |                                |        |- UL: Unión libre                                         |
-|    |                                |        |- C: Casado                                               |
-|    |                                |        |- SyoV: Separado y/o viudo                                |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 7  | ESTU_VALORMATRICULAUNIVERSIDAD | Nominal|- m500: Menos de 500 mil                                  |
-|    |                                |        |- e500m1: Entre 500 mil y menos de 1 millón               |
-|    |                                |        |- e1m2.5: Entre 1 millón y menos de 2.5 millones          |
-|    |                                |        |- e2.5m4: Entre 2.5 millones y menos de 4 millones        |
-|    |                                |        |- e4m5.5: Entre 4 millones y menos de 5.5 millones        |
-|    |                                |        |- e5.5m7: Entre 5.5 millones y menos de 7 millones        |
-|    |                                |        |- M7: Más de 7 millones                                   |
-|    |                                |        |- NP: No paga                                             |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 8  | ESTU_COMOCAPACITOEXAMENSB11    | Nominal|- Ninguna: No realizó ninguna prueba de preparación       |
-|    |                                |        |- CuentaPropia: Repasó por cuenta propia                  |
-|    |                                |        |- Curso: Tomó un curso de preparación                     |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 9  | ESTU_SEMESTRECURSA             | Nominal|- 06m: 6 semestres o menos                                |
-|    |                                |        |- 07                                                      |
-|    |                                |        |- 08                                                      |
-|    |                                |        |- 09                                                      |
-|    |                                |        |- 10                                                      |
-|    |                                |        |- 11                                                      |
-|    |                                |        |- 12M: 12 semestre o más                                  |
-|    |                                |        |- Desconocido                                             |   
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 10 | FAMI_EDUCACIONPADRE            | Nominal|- EPC: Educación profesional completa                     |
-|    |                                |        |- EPI: Educación profesional incompleta                   |
-|    |                                |        |- Ninguno                                                 |
-|    |                                |        |- NAp: No aplica                                          |
-|    |                                |        |- NS: No sabe                                             |
-|    |                                |        |- Post: Postgrado                                         |
-|    |                                |        |- PC: Primaria completa                                   |
-|    |                                |        |- PI: Primaria incompleta                                 |
-|    |                                |        |- BC: Bachillerato completo                               |
-|    |                                |        |- BI: Bachillerato incompleto                             |
-|    |                                |        |- TTC: Técnica o tecnológica completa                     |
-|    |                                |        |- TTI: Técnica o tecnológica incompleta                   |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 11 | FAMI_EDUCACIONMADRE            | Nominal|- EPC: Educación profesional completa                     |
-|    |                                |        |- EPI: Educación profesional incompleta                   |
-|    |                                |        |- Ninguno                                                 |
-|    |                                |        |- NAp: No aplica                                          |
-|    |                                |        |- NS: No sabe                                             |
-|    |                                |        |- Post: Postgrado                                         |
-|    |                                |        |- PC: Primaria completa                                   |
-|    |                                |        |- PI: Primaria incompleta                                 |
-|    |                                |        |- BC: Bachillerato completo                               |
-|    |                                |        |- BI: Bachillerato incompleto                             |
-|    |                                |        |- TTC: Técnica o tecnológica completa                     |
-|    |                                |        |- TTI: Técnica o tecnológica incompleta                   |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 12 | FAMI_OCUPACIONPADRE            | Nominal|- EDGG:Empleado con cargo como director o gerente general |
-|    |                                |        |- ENAA: Empleado de nivel auxiliar o administrativo       |
-|    |                                |        |- END: Empleado de nivel directivo                        |
-|    |                                |        |- ENTP: Empleado de nivel técnico o profesional           |
-|    |                                |        |- EOO: Empleado obrero u operario                         |
-|    |                                |        |- Emp: Empresario                                         |
-|    |                                |        |- H: Hogar                                                |
-|    |                                |        |- OAO: Otra actividad u ocupación                         |
-|    |                                |        |- Pen: Pensionado                                         |
-|    |                                |        |- PE: Pequeño empresario                                  |
-|    |                                |        |- PI: Profesional independiente                           |
-|    |                                |        |- TCP: Trabajador por cuenta propia                       |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 13 | FAMI_OCUPACIONMADRE            | Nominal|- EDGG:Empleado con cargo como director o gerente general |
-|    |                                |        |- ENAA: Empleado de nivel auxiliar o administrativo       |
-|    |                                |        |- END: Empleado de nivel directivo                        |
-|    |                                |        |- ENTP: Empleado de nivel técnico o profesional           |
-|    |                                |        |- EOO: Empleado obrero u operario                         |
-|    |                                |        |- Emp: Empresario                                         |
-|    |                                |        |- H: Hogar                                                |
-|    |                                |        |- OAO: Otra actividad u ocupación                         |
-|    |                                |        |- Pen: Pensionado                                         |
-|    |                                |        |- PE: Pequeño empresario                                  |
-|    |                                |        |- PI: Profesional independiente                           |
-|    |                                |        |- TCP: Trabajador por cuenta propia                       |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 14 | FAMI_ESTRATOVIVIENDA           | Nominal|- Sin Estrato                                             |
-|    |                                |        |- Estrato 1                                               |
-|    |                                |        |- Estrato 2                                               |
-|    |                                |        |- Estrato 3                                               |
-|    |                                |        |- Estrato 4                                               |
-|    |                                |        |- Estrato 5                                               |
-|    |                                |        |- Estrato 6                                               |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 15 | FAMI_TIENEINTERNET             | Nominal|- Si                                                      |
-|    |                                |        |- No                                                      |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 16 | FAMI_TIENECOMPUTADOR           | Nominal|- Si                                                      |
-|    |                                |        |- No                                                      |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 17 | FAMI_TIENELAVADORA             | Nominal|- Si                                                      |
-|    |                                |        |- No                                                      |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 18 | FAMI_TIENEHORNOMICROOGAS       | Nominal|- Si                                                      |
-|    |                                |        |- No                                                      |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 19 | FAMI_TIENESERVICIOTV           | Nominal|- Si                                                      |
-|    |                                |        |- No                                                      |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 20 | FAMI_TIENEAUTOMOVIL            | Nominal|- Si                                                      |
-|    |                                |        |- No                                                      |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 21 | FAMI_TIENEMOTOCICLETA          | Nominal|- Si                                                      |
-|    |                                |        |- No                                                      |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 22 | FAMI_TIENECONSOLAVIDEOJUEGOS   | Nominal|- Si                                                      |
-|    |                                |        |- No                                                      |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 23 | ESTU_HORASSEMANATRABAJA        | Nominal|- Menos de 10 horas                                       |
-|    |                                |        |- Entre 11 y 20 horas                                     |
-|    |                                |        |- Entre 21 y 30 horas                                     |
-|    |                                |        |- Más de 30 horas                                         |
-|    |                                |        |- 0                                                       |
-|    |                                |        |- Desconocido                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 24 | INST_NOMBRE_INSTITUCION        | Nominal|                                                          |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 25 | ESTU_PRGM_ACADEMICO            | Nominal|                                                          |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 26 | GRUPOREFERENCIA                | Nominal|- AdmYAfin: Administración y afines                       |
-|    |                                |        |- ArqYUrb: Arquitectura y urbanismo                       |
-|    |                                |        |- BelArtYDis: Bellas artes y diseño                       |
-|    |                                |        |- CienAgr: Ciencias agrarias                              |
-|    |                                |        |- CienMilYNav: Ciencias militares y navales               |
-|    |                                |        |- CienNatYExac: Ciencias naturales y exactas              |
-|    |                                |        |- CienSoc: Ciencias sociales                              |
-|    |                                |        |- ComuPerYPub: Comunicación, periodismo y publicidad      |
-|    |                                |        |- ContYAfin: Contaduría y afines                          |
-|    |                                |        |- Derecho                                                 |
-|    |                                |        |- Economía                                                |
-|    |                                |        |- EcAdContYAfinU: Econ.,admin.,contad. y afines Univer.   |
-|    |                                |        |- Educación                                               |
-|    |                                |        |- Enfermería                                              |
-|    |                                |        |- GrupRefNal: Grupo referencia nacional                   |
-|    |                                |        |- GrupRefNalU: Grupo referencia nacional universitaria    |
-|    |                                |        |- Hum: Humanidades                                        |
-|    |                                |        |- Inge: Ingeniería                                        |
-|    |                                |        |- Med: Medicina                                           |
-|    |                                |        |- Pisc: Psicología                                        |
-|    |                                |        |- RecYDep: Recreación y deportes                          |
-|    |                                |        |- salud                                                   |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 27 | ESTU_METODO_PRGM               | Nominal|- presencial: Presencial                                  |
-|    |                                |        |- distancia: Distancia                                    |
-|    |                                |        |- distVirtual: Distancia virtual                          |
-+----+--------------------------------+--------+----------------------------------------------------------+
-| 28 |INST_CARACTER_ACADEMICO         | Nominal|- InstTec: Institución tecnológica                        |
-|    |                                |        |- InstUni: Institución universitaria                      |
-|    |                                |        |- TecProf: Técnica profesional                            |
-|    |                                |        |- Universidad                                             |
-+----+--------------------------------+--------+----------------------------------------------------------+
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| Col      | Variable                       | Tipo     | Categorías                                                  |
++==========+================================+==========+=============================================================+
+| 1        | ESTU_GENERO                    | Nominal  | -   F: Femenino                                             |
+|          |                                |          | -   M: Masculino                                            |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 2        | ESTU_FECHANACIMIENTO           | Nominal  |                                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 3        | ESTU_TIENEETNIA                | Nominal  | -   Si                                                      |
+|          |                                |          | -   No                                                      |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 4        | ESTU_DEPTO_RESIDE              | Nominal  | -   BOGOTÁ                                                  |
+|          |                                |          | -   OTRO                                                    |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 5        | ESTU_COD_RESIDE_DEPTO          | Nominal  |                                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 6        | ESTU_ESTADOCIVIL               | Nominal  | -   S: Soltero                                              |
+|          |                                |          | -   UL: Unión libre                                         |
+|          |                                |          | -   C: Casado                                               |
+|          |                                |          | -   SyoV: Separado y/o viudo                                |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 7        | ESTU_VALORMATRICULAUNIVERSIDAD | Nominal  | -   m500: Menos de 500 mil                                  |
+|          |                                |          | -   e500m1: Entre 500 mil y menos de 1 millón               |
+|          |                                |          | -   e1m2.5: Entre 1 millón y menos de 2.5 millones          |
+|          |                                |          | -   e2.5m4: Entre 2.5 millones y menos de 4 millones        |
+|          |                                |          | -   e4m5.5: Entre 4 millones y menos de 5.5 millones        |
+|          |                                |          | -   e5.5m7: Entre 5.5 millones y menos de 7 millones        |
+|          |                                |          | -   M7: Más de 7 millones                                   |
+|          |                                |          | -   NP: No paga                                             |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 8        | ESTU_COMOCAPACITOEXAMENSB11    | Nominal  | -   Ninguna: No realizó ninguna prueba de preparación       |
+|          |                                |          | -   CuentaPropia: Repasó por cuenta propia                  |
+|          |                                |          | -   Curso: Tomó un curso de preparación                     |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 9        | ESTU_SEMESTRECURSA             | Nominal  | -   06m: 6 semestres o menos                                |
+|          |                                |          | -   07                                                      |
+|          |                                |          | -   08                                                      |
+|          |                                |          | -   09                                                      |
+|          |                                |          | -   10                                                      |
+|          |                                |          | -   11                                                      |
+|          |                                |          | -   12M: 12 semestre o más                                  |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 10       | FAMI_EDUCACIONPADRE            | Nominal  | -   EPC: Educación profesional completa                     |
+|          |                                |          | -   EPI: Educación profesional incompleta                   |
+|          |                                |          | -   Ninguno                                                 |
+|          |                                |          | -   NAp: No aplica                                          |
+|          |                                |          | -   NS: No sabe                                             |
+|          |                                |          | -   Post: Postgrado                                         |
+|          |                                |          | -   PC: Primaria completa                                   |
+|          |                                |          | -   PI: Primaria incompleta                                 |
+|          |                                |          | -   BC: Bachillerato completo                               |
+|          |                                |          | -   BI: Bachillerato incompleto                             |
+|          |                                |          | -   TTC: Técnica o tecnológica completa                     |
+|          |                                |          | -   TTI: Técnica o tecnológica incompleta                   |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 11       | FAMI_EDUCACIONMADRE            | Nominal  | -   EPC: Educación profesional completa                     |
+|          |                                |          | -   EPI: Educación profesional incompleta                   |
+|          |                                |          | -   Ninguno                                                 |
+|          |                                |          | -   NAp: No aplica                                          |
+|          |                                |          | -   NS: No sabe                                             |
+|          |                                |          | -   Post: Postgrado                                         |
+|          |                                |          | -   PC: Primaria completa                                   |
+|          |                                |          | -   PI: Primaria incompleta                                 |
+|          |                                |          | -   BC: Bachillerato completo                               |
+|          |                                |          | -   BI: Bachillerato incompleto                             |
+|          |                                |          | -   TTC: Técnica o tecnológica completa                     |
+|          |                                |          | -   TTI: Técnica o tecnológica incompleta                   |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 12       | FAMI_OCUPACIONPADRE            | Nominal  | -   EDGG:Empleado con cargo como director o gerente general |
+|          |                                |          | -   ENAA: Empleado de nivel auxiliar o administrativo       |
+|          |                                |          | -   END: Empleado de nivel directivo                        |
+|          |                                |          | -   ENTP: Empleado de nivel técnico o profesional           |
+|          |                                |          | -   EOO: Empleado obrero u operario                         |
+|          |                                |          | -   Emp: Empresario                                         |
+|          |                                |          | -   H: Hogar                                                |
+|          |                                |          | -   OAO: Otra actividad u ocupación                         |
+|          |                                |          | -   Pen: Pensionado                                         |
+|          |                                |          | -   PE: Pequeño empresario                                  |
+|          |                                |          | -   PI: Profesional independiente                           |
+|          |                                |          | -   TCP: Trabajador por cuenta propia                       |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 13       | FAMI_OCUPACIONMADRE            | Nominal  | -   EDGG:Empleado con cargo como director o gerente general |
+|          |                                |          | -   ENAA: Empleado de nivel auxiliar o administrativo       |
+|          |                                |          | -   END: Empleado de nivel directivo                        |
+|          |                                |          | -   ENTP: Empleado de nivel técnico o profesional           |
+|          |                                |          | -   EOO: Empleado obrero u operario                         |
+|          |                                |          | -   Emp: Empresario                                         |
+|          |                                |          | -   H: Hogar                                                |
+|          |                                |          | -   OAO: Otra actividad u ocupación                         |
+|          |                                |          | -   Pen: Pensionado                                         |
+|          |                                |          | -   PE: Pequeño empresario                                  |
+|          |                                |          | -   PI: Profesional independiente                           |
+|          |                                |          | -   TCP: Trabajador por cuenta propia                       |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 14       | FAMI_ESTRATOVIVIENDA           | Nominal  | -   Sin Estrato                                             |
+|          |                                |          | -   Estrato 1                                               |
+|          |                                |          | -   Estrato 2                                               |
+|          |                                |          | -   Estrato 3                                               |
+|          |                                |          | -   Estrato 4                                               |
+|          |                                |          | -   Estrato 5                                               |
+|          |                                |          | -   Estrato 6                                               |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 15       | FAMI_TIENEINTERNET             | Nominal  | -   Si                                                      |
+|          |                                |          | -   No                                                      |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 16       | FAMI_TIENECOMPUTADOR           | Nominal  | -   Si                                                      |
+|          |                                |          | -   No                                                      |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 17       | FAMI_TIENELAVADORA             | Nominal  | -   Si                                                      |
+|          |                                |          | -   No                                                      |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 18       | FAMI_TIENEHORNOMICROOGAS       | Nominal  | -   Si                                                      |
+|          |                                |          | -   No                                                      |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 19       | FAMI_TIENESERVICIOTV           | Nominal  | -   Si                                                      |
+|          |                                |          | -   No                                                      |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 20       | FAMI_TIENEAUTOMOVIL            | Nominal  | -   Si                                                      |
+|          |                                |          | -   No                                                      |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 21       | FAMI_TIENEMOTOCICLETA          | Nominal  | -   Si                                                      |
+|          |                                |          | -   No                                                      |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 22       | FAMI_TIENECONSOLAVIDEOJUEGOS   | Nominal  | -   Si                                                      |
+|          |                                |          | -   No                                                      |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 23       | ESTU_HORASSEMANATRABAJA        | Nominal  | -   Menos de 10 horas                                       |
+|          |                                |          | -   Entre 11 y 20 horas                                     |
+|          |                                |          | -   Entre 21 y 30 horas                                     |
+|          |                                |          | -   Más de 30 horas                                         |
+|          |                                |          | -   0                                                       |
+|          |                                |          | -   Desconocido                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 24       | INST_NOMBRE_INSTITUCION        | Nominal  |                                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 25       | ESTU_PRGM_ACADEMICO            | Nominal  |                                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 26       | GRUPOREFERENCIA                | Nominal  | -   AdmYAfin: Administración y afines                       |
+|          |                                |          | -   ArqYUrb: Arquitectura y urbanismo                       |
+|          |                                |          | -   BelArtYDis: Bellas artes y diseño                       |
+|          |                                |          | -   CienAgr: Ciencias agrarias                              |
+|          |                                |          | -   CienMilYNav: Ciencias militares y navales               |
+|          |                                |          | -   CienNatYExac: Ciencias naturales y exactas              |
+|          |                                |          | -   CienSoc: Ciencias sociales                              |
+|          |                                |          | -   ComuPerYPub: Comunicación, periodismo y publicidad      |
+|          |                                |          | -   ContYAfin: Contaduría y afines                          |
+|          |                                |          | -   Derecho                                                 |
+|          |                                |          | -   Economía                                                |
+|          |                                |          | -   EcAdContYAfinU: Econ.,admin.,contad. y afines Univer.   |
+|          |                                |          | -   Educación                                               |
+|          |                                |          | -   Enfermería                                              |
+|          |                                |          | -   GrupRefNal: Grupo referencia nacional                   |
+|          |                                |          | -   GrupRefNalU: Grupo referencia nacional universitaria    |
+|          |                                |          | -   Hum: Humanidades                                        |
+|          |                                |          | -   Inge: Ingeniería                                        |
+|          |                                |          | -   Med: Medicina                                           |
+|          |                                |          | -   Pisc: Psicología                                        |
+|          |                                |          | -   RecYDep: Recreación y deportes                          |
+|          |                                |          | -   salud                                                   |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 27       | ESTU_METODO_PRGM               | Nominal  | -   presencial: Presencial                                  |
+|          |                                |          | -   distancia: Distancia                                    |
+|          |                                |          | -   distVirtual: Distancia virtual                          |
++----------+--------------------------------+----------+-------------------------------------------------------------+
+| 28       | INST_CARACTER_ACADEMICO        | Nominal  | -   InstTec: Institución tecnológica                        |
+|          |                                |          | -   InstUni: Institución universitaria                      |
+|          |                                |          | -   TecProf: Técnica profesional                            |
+|          |                                |          | -   Universidad                                             |
++----------+--------------------------------+----------+-------------------------------------------------------------+
 
 : Diccionario variables cualitativas
 
 ### Varibles cuantitativas
 
-+----+----------------+---------------------+-----------------------------+
-| Col| Variable       | Tipo                | Nombre original             |
-+====+================+=====================+=============================+
-| 29 | cuanti         | Discreta, intervalo | MOD_RAZONA_CUANTITAT_PUNT   |
-+----+----------------+---------------------+-----------------------------+
-| 30 | lec            | Discreta, intervalo | MOD_LECTURA_CRITICA_PUNT    |
-+----+----------------+---------------------+-----------------------------+
-| 31 | ciu            | Discreta, intervalo | MOD_COMPETEN_CIUDADA_PUNT   |
-+----+----------------+---------------------+-----------------------------+
-| 32 | ing            | Discreta, intervalo | MOD_INGLES_PUNT             |
-+----+----------------+---------------------+-----------------------------+
-| 33 | esc            | Discreta, intervalo | MOD_COMUNI_ESCRITA_PUNT     |
-+----+----------------+---------------------+-----------------------------+
-| 34 | PUNT_GLOBAL    | Discreta, intervalo | PUNT_GLOBAL                 |
-+----+----------------+---------------------+-----------------------------+
++-------------+-------------+---------------------+---------------------------+
+| Col         | Variable    | Tipo                | Nombre original           |
++=============+=============+=====================+===========================+
+| 29          | cuanti      | Discreta, intervalo | MOD_RAZONA_CUANTITAT_PUNT |
++-------------+-------------+---------------------+---------------------------+
+| 30          | lec         | Discreta, intervalo | MOD_LECTURA_CRITICA_PUNT  |
++-------------+-------------+---------------------+---------------------------+
+| 31          | ciu         | Discreta, intervalo | MOD_COMPETEN_CIUDADA_PUNT |
++-------------+-------------+---------------------+---------------------------+
+| 32          | ing         | Discreta, intervalo | MOD_INGLES_PUNT           |
++-------------+-------------+---------------------+---------------------------+
+| 33          | esc         | Discreta, intervalo | MOD_COMUNI_ESCRITA_PUNT   |
++-------------+-------------+---------------------+---------------------------+
+| 34          | PUNT_GLOBAL | Discreta, intervalo | PUNT_GLOBAL               |
++-------------+-------------+---------------------+---------------------------+
 
 : Diccionario variables cuantitativas
 

@@ -410,7 +410,6 @@ layout(yaxis = list(title = colnames(data)[i] ),
 ```
 
 Se observa que un grupo grande de estudiantes conformado por el $35.044\%$ del total de individuos trabaja menos de 10 horas. También resalta el hecho de que hay una cantidad considerable de estudiantes que no respondieron a esta pregunta en el cuestionario, por lo que entran en la categoría desconocido.
-
 :::
 
 ### Variables relacionadas con la información académica
@@ -448,7 +447,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Hay una clara mayoría de estudiantes que repasaron por cuenta propia, siendo el $61.7\%$, seguido de una cantidad considerable de estudiantes que no se prepararon de ninguna manera. 
+Hay una clara mayoría de estudiantes que repasaron por cuenta propia, siendo el $61.7\%$, seguido de una cantidad considerable de estudiantes que no se prepararon de ninguna manera.
 
 #### Semestre que cursa
 
@@ -490,7 +489,7 @@ layout(yaxis = list(title = colnames(data)[i] ),
        showlegend = FALSE)
 ```
 
-Resalta la cantidad de estudiantes cuyo grupo de referencia es ingeniería y administración y afines, aunque no es raro debido a la cantidad de ingenierías diferentes que se ofertan en las universidades de todo el país. 
+Resalta la cantidad de estudiantes cuyo grupo de referencia es ingeniería y administración y afines, aunque no es raro debido a la cantidad de ingenierías diferentes que se ofertan en las universidades de todo el país.
 
 #### Modalidad
 
@@ -547,7 +546,6 @@ layout(
        showlegend = FALSE)
 ```
 
-
 ```{r}
 #| warning: false
 #| message: false
@@ -585,7 +583,7 @@ layout(yaxis = list(title = colnames(data)[i] ),
        showlegend = FALSE)
 ```
 
-Se observa que hay una repartición equitativa de la cantidad de estudiantes en cada uno de los diferentes valores del costo de matrícula. El valor de la matrícula que más resalta es "Entre 2.5 millones  y menos de 4 millones" con un $22.575\%$, seguido por "Entre 4 millones  y menos de 5.5 millones" con $15.988\%$ y el tercer lugar es para quienes pagan "Menos de 500 mil" con $14.085\%$.
+Se observa que hay una repartición equitativa de la cantidad de estudiantes en cada uno de los diferentes valores del costo de matrícula. La categoría que más resalta es "No paga" $22.575\%$, seguido por "Entre 1 millón y menos de 2.5 millones" con $15.988\%$ y el tercer lugar es para quienes pagan "Entre 5.5 millones y menos de 7 millones" con $14.085\%$.
 
 #### Estrato
 
@@ -745,7 +743,6 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-
 Se observa que la cantidad de hogares que cuentan con horno microogas es muy similar a la cantidad de hogares que no cuentan con este, ya que los primeros representan el $44.9\%$ de la población, mientras que los segundos el $49.6\%$.
 
 #### TV
@@ -781,7 +778,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí cuentan con servicio cerrado de televisión, aproximadamente el $69.8\%$; mientras que el $25.6\%$ no cuenta con este servicio.   
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro sí cuentan con servicio cerrado de televisión, aproximadamente el $69.8\%$; mientras que el $25.6\%$ no cuenta con este servicio.
 
 #### Automóvil
 
@@ -816,7 +813,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen automóvil particular, aproximadamente el $61.4\%$; mientras que el $32.9\%$ sí posee.   
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen automóvil particular, aproximadamente el $61.4\%$; mientras que el $32.9\%$ sí posee.
 
 #### Motocicleta
 
@@ -851,7 +848,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen automóvil particular, aproximadamente el $60.9\%$; mientras que el $33.2\%$ sí posee. 
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen automóvil particular, aproximadamente el $60.9\%$; mientras que el $33.2\%$ sí posee.
 
 #### Consola de videojuegos
 
@@ -886,8 +883,7 @@ per <- round(table(data[,i])/nrow(data)*100,3)
 plot_ly(data, labels = ~names(frecuencias), values = ~frecuencias, type = 'pie', textfont = list(color = "black"))
 ```
 
-Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen consola para videojuegos electrónicos, aproximadamente el $75.4\%$; mientras que el $18.4\%$ sí posee. 
-
+Se observa que la mayoría de los hogares de quienes presentaron el examen Saber Pro no poseen consola para videojuegos electrónicos, aproximadamente el $75.4\%$; mientras que el $18.4\%$ sí posee.
 :::
 
 ## Variables cuantitativas
@@ -902,7 +898,6 @@ layout(yaxis = list(title = "Frecuencia"))
 ```
 
 ::: panel-tabset
-
 #### Razonamiento cuantitativo
 
 ```{r}
@@ -1001,7 +996,7 @@ subplot(hist[[1]], boxplot[[1]], nrows = 2, shareX = T) %>%
 
 ```
 
-El histograma resalta respecto a las otras variables debido a un mayor número de puntajes por debajo de 150, que se espera sería la media. Además resalta que hay una cantidad considerable de personas con el puntaje más bajo. En el boxplot también se puede apreciar como en este caso, la mediana no está tan cerca a 150, que sería lo esperado. 
+El histograma resalta respecto a las otras variables debido a un mayor número de puntajes por debajo de 150, que se espera sería la media. Además resalta que hay una cantidad considerable de personas con el puntaje más bajo. En el boxplot también se puede apreciar como en este caso, la mediana no está tan cerca a 150, que sería lo esperado.
 
 #### Puntaje global
 
@@ -1022,6 +1017,4 @@ subplot(hist[[1]], boxplot[[1]], nrows = 2, shareX = T) %>%
 ```
 
 La distribución de los puntajes totales, en este caso, también parece asemejarse a una curva normal, lo cual tiene sentido debido al como se diseñan estas pruebas, intentando que tengan una distribución normal con una media teórica de 150 y una desviación estándar de 30 puntos. Cabe resaltar que el mayor puntaje de esta prueba fue 278, mientras que el menor fue 0.
-
 :::
-

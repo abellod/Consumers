@@ -1,4 +1,4 @@
-# Análisis de Correspondecias Múltiples
+# Análisis de Correspondencias Múltiples
 
 A continuación se muestra el Análisis de Correspondencias Múltiples (ACM) de los datos SaberPro 2022-2.
 
@@ -371,7 +371,6 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 ```
 
 ::: panel-tabset
-
 ### Sexo
 
 Las coordenadas son:
@@ -830,8 +829,6 @@ fviz_contrib(acm, choice = "var", axes = 1, top=6) # top=6 para que muestre quie
 fviz_contrib(acm, choice = "var", axes = 2, top=11) # top=6 para que muestre quienes contribuyen más
 ```
 
-
-
 ### Representación de las variables
 
 ```{r}
@@ -876,7 +873,6 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
 ```
 
 ::: panel-tabset
-
 ### Capacitación examen
 
 Las coordenadas son:
@@ -980,7 +976,6 @@ coord_sup <- data.frame(coordenas_sup)
 kable(coord_sup[4:25,1:3], digits = 4)
 
 ```
-
 
 ```{r}
 #| echo: false
@@ -1212,7 +1207,6 @@ fviz_mca_var(res.mca, axes=c(1,2),
 ```
 
 ::: panel-tabset
-
 ### Valor matrícula
 
 Las coordenadas son:
