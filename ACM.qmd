@@ -351,6 +351,9 @@ ggplot(data = acm$var$eta2, aes(x = `Dim 3`, y = `Dim 2`)) +
 
 ```
 
+Si bien se muestra que variables relacionadas con la ocupación de la madre y padre están muy correlacionadas con el eje 1, y variables relacionadas con la educación de madre y padre con el eje 2; esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Además, las variables de educación y ocupación de madre y padre tienen bastantes más categorías que las otras variables que se usaron para hacer este ACM.
+
+
 ### Visualización del puntaje global
 
 ```{r}
@@ -938,6 +941,8 @@ fviz_mca_var(acm, axes = c(1,2),
 
 ```
 
+Nuevamente, si bien se muestra que la variable Cómo capacitó el exámen está muy correlacionada con el eje 1, y las variables Método del programa y el Carácter acdémico de la institución se relacionan con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. 
+
 ### Visualización del puntaje global
 
 ```{r}
@@ -1352,6 +1357,8 @@ fviz_mca_var(acm, axes = c(1,2),
 #   theme_minimal()
 
 ```
+
+Tal como en los puntos anteriores, si bien se muestra que las variables relacionadas con tener o no cierto bien están correlacionadas con el eje 1, y la variable Valor matrícula de la universidad se relaciona con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Se ve también que en el eje 1 las categpría que más contribuyen son las ''Desconocido''.
 
 ### Visualización del puntaje global
 
