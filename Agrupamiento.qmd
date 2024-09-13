@@ -476,11 +476,12 @@ En términos generales, al ordenar los grupos de acuerdo a los puntajes, en orde
 
 
 ```{r}
+#| echo: false
+#| warning: false
 cluster_df_map <- cluster_df
 cluster_df_map <- cluster_df_map[cluster_df_map$Depto!="Desconocido",]
 cluster_df_map$CodDep <- c("91","05", "81", "08", "11", "13", "15", "17", "18", "85", "19", "20", "27","23", "25", "94", "95", "41", "44", "47", "50", "52", "54", "86", "63", "66", "88", "68", "70", "73", "76", "97", "99")
 
-setwd("C:/Users/soffy/OneDrive/Escritorio/Universidad/Multivariada/mapas")
 library(sf)
 #Aquí guardo área y poligonos para que R me logre graficar los departamentos
 deptoshp <- st_read("MGN_DPTO_POLITICO.shp",quiet=TRUE)
@@ -499,7 +500,7 @@ mundocol <- mundoshp %>%
 #Box calcula el rectangulo que envuelve a todo el conjunto de media_pun_tabla mapdeptos (locombia)
 #box deja un poquito a la izquierda porque tiene en cuenta a SAN ANDRES
 box <- st_bbox(mapdeptos)
-box
+#box
 
 mitema <- theme(legend.title=element_text(hjust = 0.5,color = "black"),
                 legend.text=element_text(hjust = 0.5),
