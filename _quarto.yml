@@ -12,6 +12,7 @@ book:
     - bivariado.qmd
     - ACP.qmd
     - ACM.qmd
+    - Agrupamiento.qmd
     - references.qmd
   favicon: 'fav.png'
   sidebar: 
