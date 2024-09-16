@@ -204,12 +204,23 @@ Para realizar la clasificación, se utiliza una estrategia completa de agrupamie
 
 ```{r}
 #| echo: false
+# # Recodificación puntaje global
+# percentiles <- quantile(data$PUNT_GLOBAL, probs = c(0.2, 0.4, 0.6, 0.8))
+# 
+# data$globalCAT <- cut(data$PUNT_GLOBAL,
+#                     breaks = c(-Inf, percentiles[1], percentiles[2], percentiles[3], percentiles[4], Inf),
+#                     labels = c("Bajo", "Medio Bajo", "Medio", "Medio Alto", "Alto"))
+# reco <- as.data.frame(table(data$globalCAT))
+# colnames(reco)<-c("globalCAT","Frecuencia")
+# kable(reco)
+
 # Recodificación puntaje global
-percentiles <- quantile(data$PUNT_GLOBAL, probs = c(0.2, 0.4, 0.6, 0.8))
+percentiles <- quantile(data$PUNT_GLOBAL, probs = c(0.1, 0.2, 0.3, 0.4, 0.5,  0.6, 0.7, 0.8, 0.9))
 
 data$globalCAT <- cut(data$PUNT_GLOBAL,
-                    breaks = c(-Inf, percentiles[1], percentiles[2], percentiles[3], percentiles[4], Inf),
-                    labels = c("Bajo", "Medio Bajo", "Medio", "Medio Alto", "Alto"))
+                    breaks = c(0, percentiles[1], percentiles[2], percentiles[3], percentiles[4], percentiles[5], percentiles[6], percentiles[7], percentiles[8], percentiles[9], 300)#,
+                    #labels = c("Bajo", "Medio Bajo", "Medio", "Medio Alto", "Alto")
+                    )
 reco <- as.data.frame(table(data$globalCAT))
 colnames(reco)<-c("globalCAT","Frecuencia")
 kable(reco)
@@ -234,8 +245,8 @@ K <- K[rownames(K) != "EXTRANJERO", ] # Quitamos a los de extranjero
 set.seed(627) # es necesario fijar la semilla para fijar los valores iniciales del agrupamiento jerarquico
 acs <- FactoClass(K, dudi.coa, # funcion acs
                   scanFC=FALSE, # para que no me pregunte en la consola cuantos ejes y cuantos clusters
-                  nf=4, # numero de ejes que vamos a dejar
-                  nfcl=4, # numero de ejes para usar en la clasificación
+                  nf=9, # numero de ejes que vamos a dejar
+                  nfcl=9, # numero de ejes para usar en la clasificación
                   k.clust=5) # numero de clusters
 ```
 
@@ -298,13 +309,13 @@ Caracterización y visualización de los grupos:
 
 En el grupo 1 se tiene:
 
--   La categoría "Bajo" está sobre-representada, ya que el $Test.Value = 29.99$ es muy alto y positivo. El $33.9\%$ de los individuos en esta clase pertenecen a la categoría "Bajo", lo cual es **más alto** que su proporción global del $20.9\%$.
+-   La categoría "$(113,124]$" está sobre-representada, ya que el $Test.Value = 20.89$ es muy alto y positivo. El $17.2\%$ de los individuos en esta clase pertenecen a esta categoría, lo cual es **más alto** que su proporción global del $10.3\%$.
 
--   De forma similar, la categoría "Medio Bajo" está sobre-representada, ya que el $Test.Value = 14.77$ es alto y positivo. El $26.5\%$ de los individuos en esta clase pertenecen a la categoría "Medio Bajo", lo cual es **más alto** que su proporción global del $20.4\%$.
+-   De forma similar, la categoría "$(0,113]$" está sobre-representada, ya que el $Test.Value = 18.89$ es alto y positivo. El $16.7\%$ de los individuos en esta clase pertenecen a esta categoría, lo cual es **más alto** que su proporción global del $10.6\%$.
 
--   En contraste, la categoría "Alto" está sub-representada en la clase 1, con un $Test.Value = -35.22$ y solo el $7.2\%$ de los individuos en la clase 1 pertenecen a esta categoría, mientras que a nivel global, el $19.8\%$ de los individuos están en la categoría "Alto".
+-   Además, la categoría "$(0124,132]$" está sobre-representada, ya que el $Test.Value = 12.82$ es alto y positivo. El $14.2\%$ de los individuos en esta clase pertenecen a esta categoría, lo cual es **más alto** que su proporción global del $10.2\%$.
 
-No les fue bien en el examen.
+Les fue mal en el examen.
 
 ```{r}
 #| echo: false
@@ -343,7 +354,7 @@ En el grupo 2 se tiene:
 
 -   De forma similar, la categoría "Medio Alto" está sobre-representada, ya que el $Test.Value = 9.315$ que es alto y positivo. El $20.9\%$ de los individuos en esta clase pertenecen a la categoría "Medio Alto", lo cual es **un poco más alto** que su proporción global del $20.4\%$.
 
-Les fue bien en el examen.
+En general, les fue bien en el examen.
 
 ```{r}
 #| echo: false
@@ -382,7 +393,7 @@ Les fue muy bien en el examen.
 kable(repre$cl3)
 ```
 
-Los departamentos que hacen parte del grupo 2 son:
+Los departamentos que hacen parte del grupo 3 son:
 
 ```{r}
 #| echo: false
@@ -409,7 +420,7 @@ En el grupo 4 se tiene:
 
 -   De forma similar, la categoría "Medio Bajo" está sobre-representada, ya que el $Test.Value = 17.91$ es alto y positivo. El $24.2\%$ de los individuos en esta clase pertenecen a la categoría "Medio Bajo", lo cual es **un poco más alto** que su proporción global del $20.4\%$.
 
-No les fue bien en el examen pero tampoco tan mal.
+Les fue mal y regular en el examen.
 
 ```{r}
 #| echo: false
