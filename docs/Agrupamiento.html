@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -191,8 +191,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Dados los objetivos de este proyecto, se caracteriza a los departamentos de acuerdo a su puntaje, estos son clasificados en 5 grupos pensando en que departamentos que pertenecen a la misma región pueden tener resultados similares en el puntaje global.</p>
-<p>Para realizar la clasificación, se utiliza una estrategia completa de agrupamiento, donde se mezclan diferentes técnicas multivariadas. Inicialmente se realiza un <em>Análisis de Correspondecias Simples, ACS</em> entre las variables Departamento de residencia del estudiante (<em>ESTU_DEPTO_RESIDE</em>) y el puntaje global recodificado en 5 categorías utilizando los percentiles (<em>gobalCAT</em>)</p>
+<p>Dados los objetivos de este proyecto, se caracteriza a los departamentos de acuerdo a su puntaje, estos son clasificados en 5 grupos pensando en que departamentos que pertenecen a la misma región geográfica pueden tener resultados similares en el puntaje global.</p>
+<p>Para realizar la clasificación, se utiliza una estrategia completa de agrupamiento, donde se mezclan diferentes técnicas multivariadas. Inicialmente se realiza un <em>Análisis de Correspondecias Simples, ACS</em> entre las variables Departamento de residencia del estudiante (<em>ESTU_DEPTO_RESIDE</em>) y el puntaje global recodificado en 10 categorías utilizando los percentiles (<em>globalCAT</em>)</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -369,11 +369,11 @@ Partition in  5  clusters</code></pre>
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>En el grupo 1 se tiene:</p>
 <ul>
-<li><p>La categoría “<span class="math inline">\((113,124]\)</span>” está sobre-representada, ya que el <span class="math inline">\(Test.Value = 20.89\)</span> es muy alto y positivo. El <span class="math inline">\(17.2\%\)</span> de los individuos en esta clase pertenecen a esta categoría, lo cual es <strong>más alto</strong> que su proporción global del <span class="math inline">\(10.3\%\)</span>.</p></li>
-<li><p>De forma similar, la categoría “<span class="math inline">\((0,113]\)</span>” está sobre-representada, ya que el <span class="math inline">\(Test.Value = 18.89\)</span> es alto y positivo. El <span class="math inline">\(16.7\%\)</span> de los individuos en esta clase pertenecen a esta categoría, lo cual es <strong>más alto</strong> que su proporción global del <span class="math inline">\(10.6\%\)</span>.</p></li>
-<li><p>Además, la categoría “<span class="math inline">\((0124,132]\)</span>” está sobre-representada, ya que el <span class="math inline">\(Test.Value = 12.82\)</span> es alto y positivo. El <span class="math inline">\(14.2\%\)</span> de los individuos en esta clase pertenecen a esta categoría, lo cual es <strong>más alto</strong> que su proporción global del <span class="math inline">\(10.2\%\)</span>.</p></li>
+<li><p>Las categorías “<span class="math inline">\((113,124]\)</span>”, “<span class="math inline">\((0,113]\)</span>” y “<span class="math inline">\((0124,132]\)</span>” están sobre-representadas, ya que sus <span class="math inline">\(Test.Values\)</span> son muy grandes en valor absoluto y positivos. El <span class="math inline">\(48.2\%\)</span> de los individuos en esta clase pertenecen a estas categorías, lo cual es <strong>mucho más alto</strong> que su proporción global del <span class="math inline">\(31.1\%\)</span>.</p></li>
+<li><p>Para las categorías “<span class="math inline">\((132,139]\)</span>” y “<span class="math inline">\((139,145]\)</span>”, en proporción hay más en el grupo que en la proporción global, sin embargo, aunque sus <span class="math inline">\(Test.Values\)</span> son significativos, no son <strong>tan altos</strong> respecto a las categorías mencionadas anteriormente. Lo mismo pasa para la categoría “<span class="math inline">\((145,152]\)</span>” , sólo que para esta categoría la proporción del grupo es menor respecto a la proporción global, con un <span class="math inline">\(Test.Value\)</span> en valor absoluto mayor a dos pero que respecto a otras categorías no es tan notorio.</p></li>
+<li><p>Por último, las categorías “<span class="math inline">\((152,160]\)</span>”, “<span class="math inline">\((160,168]\)</span>”, “<span class="math inline">\((168,180]\)</span>” y “<span class="math inline">\((180,300]\)</span>” están sub-representadas, ya que sus <span class="math inline">\(Test.Values\)</span> son muy grandes en valor absoluto y negativos. El <span class="math inline">\(20.6\%\)</span> de los individuos en esta clase pertenecen a estas categorías, lo cual es <strong>más bajo</strong> que su proporción global del <span class="math inline">\(39.6\%\)</span>.</p></li>
 </ul>
-<p>Les fue mal en el examen.</p>
+<p>En general, este grupo contiene a personas que tuvieron un mal desempeño en el examen, sin embargo no es el peor, pues están más representados los individuos con puntajes en el intervalo “<span class="math inline">\((113,124]\)</span>” que en el intervalo “<span class="math inline">\((0,113]\)</span>”.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -569,10 +569,11 @@ Partition in  5  clusters</code></pre>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>En el grupo 2 se tiene:</p>
 <ul>
-<li><p>La categoría “Alto” está sobre-representada, ya que el <span class="math inline">\(Test.Value = 10.13\)</span> que es alto y positivo. El <span class="math inline">\(21.1\%\)</span> de los individuos en esta clase pertenecen a la categoría “Alto”, lo cual es <strong>un poco más alto</strong> que su proporción global del <span class="math inline">\(21.1\%\)</span>.</p></li>
-<li><p>De forma similar, la categoría “Medio Alto” está sobre-representada, ya que el <span class="math inline">\(Test.Value = 9.315\)</span> que es alto y positivo. El <span class="math inline">\(20.9\%\)</span> de los individuos en esta clase pertenecen a la categoría “Medio Alto”, lo cual es <strong>un poco más alto</strong> que su proporción global del <span class="math inline">\(20.4\%\)</span>.</p></li>
+<li><p>Las categorías “<span class="math inline">\((168,180]\)</span>” y “<span class="math inline">\((160,168]\)</span>” están sobre-representadas, ya que sus <span class="math inline">\(Test.Values\)</span> son muy grandes en valor absoluto y positivos, aunque en proporción, esto no se nota tanto, pues el <span class="math inline">\(20.6\%\)</span> de los individuos en esta clase pertenecen a estas categorías, lo cual es <strong>más alto</strong> que su proporción global del <span class="math inline">\(19.1\%\)</span>, pero no es tan notorio.</p></li>
+<li><p>Para las categorías “<span class="math inline">\((180,300]\)</span>” y “<span class="math inline">\((152,160]\)</span>”, en proporción hay más en el grupo que en la proporción global, sin embargo, aunque sus <span class="math inline">\(Test.Values\)</span> son significativos, no son <strong>tan altos</strong> respecto a las categorías mencionadas anteriormente. Lo mismo pasa para las categorías “<span class="math inline">\((132,139]\)</span>” y “<span class="math inline">\((124,132]\)</span>”, sólo que para estas categorías la proporción del grupo es menor respecto a la proporción global, con un <span class="math inline">\(Test.Value\)</span> en valor absoluto mayor a dos pero que respecto a otras categorías no es tan notorio.</p></li>
+<li><p>Por último, las categorías “<span class="math inline">\((113,124]\)</span>” y “<span class="math inline">\((0,113]\)</span>” están sub-representadas, ya que sus <span class="math inline">\(Test.Values\)</span> son muy grandes en valor absoluto y negativos. El <span class="math inline">\(19.3\%\)</span> de los individuos en esta clase pertenecen a estas categorías, lo cual es <strong>más bajo</strong> que su proporción global del <span class="math inline">\(20.9\%\)</span>, pero no es tan notorio.</p></li>
 </ul>
-<p>En general, les fue bien en el examen.</p>
+<p>En general, este grupo contiene a personas que tuvieron un buen desempeño en el examen, sin embargo no es el mejor, pues están más representados los individuos con puntajes en los intervalos “<span class="math inline">\((168,180]\)</span>” y “<span class="math inline">\((160,168]\)</span>” que en el intervalo “<span class="math inline">\((180,300]\)</span>”.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -733,12 +734,13 @@ Partition in  5  clusters</code></pre>
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>En el grupo 1 se tiene:</p>
+<p>En el grupo 3 se tiene:</p>
 <ul>
-<li><p>La categoría “Alto” está sobre-representada, ya que el <span class="math inline">\(Test.Value = Inf\)</span> es muy muy alto y positivo. El <span class="math inline">\(29.2\%\)</span> de los individuos en esta clase pertenecen a la categoría “Alto”, lo cual es <strong>más alto</strong> que su proporción global del <span class="math inline">\(19.8\%\)</span>.</p></li>
-<li><p>De forma similar, la categoría “Medio Alto” está sobre-representada, ya que el <span class="math inline">\(Test.Value = 9.813\)</span> es alto y positivo. El <span class="math inline">\(21.6\%\)</span> de los individuos en esta clase pertenecen a la categoría “Medio Alto”, lo cual es <strong>un poco más alto</strong> que su proporción global del <span class="math inline">\(19.7\%\)</span>.</p></li>
+<li><p>Las categorías “<span class="math inline">\((180,300]\)</span>”, “<span class="math inline">\((168,180]\)</span>” y “<span class="math inline">\((160,168]\)</span>” están sobre-representadas, ya que sus <span class="math inline">\(Test.Values\)</span> son muy grandes en valor absoluto y positivos, pues el <span class="math inline">\(39.6\%\)</span> de los individuos en esta clase pertenecen a estas categorías, lo cual es <strong>más alto</strong> que su proporción global del <span class="math inline">\(28.9\%\)</span>.</p></li>
+<li><p>Para la categoría “<span class="math inline">\((152,160]\)</span>”, en proporción hay más en el grupo que en la proporción global, sin embargo, aunque su <span class="math inline">\(Test.Value\)</span> es significativo, no es <strong>tan alto</strong> respecto a las categorías mencionadas anteriormente. Lo mismo pasa para las categoría “<span class="math inline">\((139,145]\)</span>”, sólo que para esta categoría la proporción del grupo es menor respecto a la proporción global, con un <span class="math inline">\(Test.Value\)</span> en valor absoluto mayor a dos pero que respecto a otras categorías no es tan notorio.-</p></li>
+<li><p>Por último, las categorías “<span class="math inline">\((132,139]\)</span>”, “<span class="math inline">\((124,132]\)</span>”, “<span class="math inline">\((113,124]\)</span>” y “<span class="math inline">\((0,113]\)</span>” están sub-representadas, ya que sus <span class="math inline">\(Test.Values\)</span> son muy grandes en valor absoluto y negativos. El <span class="math inline">\(30.9\%\)</span> de los individuos en esta clase pertenecen a estas categorías, lo cual es <strong>más bajo</strong> que su proporción global del <span class="math inline">\(41.3\%\)</span>.</p></li>
 </ul>
-<p>Les fue muy bien en el examen.</p>
+<p>En general, este grupo contiene a personas que tuvieron un desempeño excelente en el examen, indicado por el altísimo valor del <span class="math inline">\(Test.Value\)</span> de los individuos con puntajes en el intervalo “<span class="math inline">\((180,300]\)</span>”, los mejores puntajes. Además, también se encuentra una mayor proporción de individuos con puntajes en los intervalos”<span class="math inline">\((168,180]\)</span>” y “<span class="math inline">\((160,168]\)</span>”.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -870,11 +872,11 @@ Partition in  5  clusters</code></pre>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <p>En el grupo 4 se tiene:</p>
 <ul>
-<li><p>Es el único grupo donde el valor test para Medio no es negativo, sin embargo no es muy grande (<span class="math inline">\(6.872\)</span>). El <span class="math inline">\(20.6\%\)</span> de los individuos en esta clase pertenecen a la categoría “Medio”, lo cual es <strong>un poco más alto</strong> que su proporción global del <span class="math inline">\(19.2\%\)</span></p></li>
-<li><p>La categoría “Bajo” está sobre-representada, ya que el <span class="math inline">\(Test.Value = 21.629\)</span> es muy alto y positivo. El <span class="math inline">\(25.7\%\)</span> de los individuos en esta clase pertenecen a la categoría “Bajo”, lo cual es <strong>más alto</strong> que su proporción global del <span class="math inline">\(20.9\%\)</span>.</p></li>
-<li><p>De forma similar, la categoría “Medio Bajo” está sobre-representada, ya que el <span class="math inline">\(Test.Value = 17.91\)</span> es alto y positivo. El <span class="math inline">\(24.2\%\)</span> de los individuos en esta clase pertenecen a la categoría “Medio Bajo”, lo cual es <strong>un poco más alto</strong> que su proporción global del <span class="math inline">\(20.4\%\)</span>.</p></li>
+<li><p>Las categorías “<span class="math inline">\((0,113]\)</span>”, “<span class="math inline">\((113,124]\)</span>”, “<span class="math inline">\((124,132]\)</span>” y “<span class="math inline">\((132,139]\)</span>” están sobre-representadas, ya que sus <span class="math inline">\(Test.Values\)</span> son muy grandes en valor absoluto y positivos, pues el <span class="math inline">\(50\%\)</span> de los individuos en esta clase pertenecen a estas categorías, lo cual es <strong>más alto</strong> que su proporción global del <span class="math inline">\(41.3\%\)</span>.</p></li>
+<li><p>Para las categorías “<span class="math inline">\((139,145]\)</span>” y “<span class="math inline">\((145,152]\)</span>”, en proporción hay más en el grupo que en la proporción global, sin embargo, aunque sus <span class="math inline">\(Test.Values\)</span> son significativos, no son <strong>tan altos</strong> respecto a las categorías mencionadas anteriormente. Lo mismo pasa para la categoría “<span class="math inline">\((152,160]\)</span>”, sólo que para esta categoría la proporción del grupo es menor respecto a la proporción global, con un <span class="math inline">\(Test.Value\)</span> en valor absoluto mayor a dos pero que respecto a otras categorías no es tan notorio.</p></li>
+<li><p>Por último, las categorías “<span class="math inline">\((160,168]\)</span>”, “<span class="math inline">\((168,180]\)</span>” y “<span class="math inline">\((180,300]\)</span>” están sub-representadas, ya que sus <span class="math inline">\(Test.Values\)</span> son muy grandes en valor absoluto y negativos. El <span class="math inline">\(19.2\%\)</span> de los individuos en esta clase pertenecen a estas categorías, lo cual es <strong>más bajo</strong> que su proporción global del <span class="math inline">\(28.9\%\)</span>.</p></li>
 </ul>
-<p>Les fue mal y regular en el examen.</p>
+<p>En general, este grupo contiene a personas que tuvieron un desempeño regular y malo en el examen, indicado por los altos valores del <span class="math inline">\(Test.Value\)</span> de los individuos con puntajes menores a 152.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -1065,8 +1067,11 @@ Partition in  5  clusters</code></pre>
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <p>En el grupo 5 se tiene:</p>
 <ul>
-<li>La categoría “Bajo” está sobre-representada, ya que el <span class="math inline">\(Test.Value = 35.260\)</span> es muy alto y positivo. El <span class="math inline">\(64.3\%\)</span> de los individuos en esta clase pertenecen a la categoría “Bajo”, lo cual es <strong>muchísimo más alto</strong> que su proporción global del <span class="math inline">\(20.9\%\)</span>.</li>
+<li><p>Las categorías “<span class="math inline">\((0,113]\)</span>” y “<span class="math inline">\((113,124]\)</span>” están sobre-representadas, ya que sus <span class="math inline">\(Test.Values\)</span> son muy grandes en valor absoluto y positivos, pues el <span class="math inline">\(64.6\%\)</span> de los individuos en esta clase pertenecen a estas categorías, lo cual es <strong>más alto</strong> que su proporción global del <span class="math inline">\(20.9\%\)</span>.</p></li>
+<li><p>Para la categoría “<span class="math inline">\((124,132]\)</span>”, en proporción hay más en el grupo que en la proporción global, sin embargo, aunque su <span class="math inline">\(Test.Value\)</span> es significativo, no es <strong>tan altos</strong> respecto a las categorías mencionadas anteriormente. Lo mismo pasa para las categorías “<span class="math inline">\((132,139]\)</span>” y “<span class="math inline">\((139,145]\)</span>”, sólo que para esta categoría la proporción del grupo es menor respecto a la proporción global, con un <span class="math inline">\(Test.Value\)</span> en valor absoluto mayor a dos pero que respecto a otras categorías no es tan notorio.</p></li>
+<li><p>Por último, las categorías “<span class="math inline">\((152,160]\)</span>”, “<span class="math inline">\((160,168]\)</span>”, “<span class="math inline">\((168,180]\)</span>” y “<span class="math inline">\((180,300]\)</span>” están sub-representadas, ya que sus <span class="math inline">\(Test.Values\)</span> son muy grandes en valor absoluto y negativos. El <span class="math inline">\(8.1\%\)</span> de los individuos en esta clase pertenecen a estas categorías, lo cual es <strong>más bajo</strong> que su proporción global del <span class="math inline">\(49.8\%\)</span>.</p></li>
 </ul>
+<p>En general, este grupo contiene a personas que tuvieron el peor desempeño del examen, indicado por el altísimo valor del <span class="math inline">\(Test.Value\)</span> de los individuos con puntajes en el intervalo “<span class="math inline">\((0,113]\)</span>”, los peores puntajes. Resalta también lo subrepresentados que están los individuos con mejores puntajes en este grupo. Además, también se encuentra una mayor proporción de individuos con puntajes en el intervalo “<span class="math inline">\((113,124]\)</span>”.</p>
 <p>Les fue muy mal en el examen.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -1211,7 +1216,7 @@ Partition in  5  clusters</code></pre>
 <ol type="1">
 <li>Grupo 3: Les fue muy bien</li>
 <li>Grupo 2: Les fue bien</li>
-<li>Grupo 4: No les fue bien … les fue medio y mal</li>
+<li>Grupo 4: No les fue bien … les fue regular y mal</li>
 <li>Grupo 1: Les fue mal</li>
 <li>Grupo 5: Les fue muy mal</li>
 </ol>
@@ -1224,6 +1229,8 @@ Partition in  5  clusters</code></pre>
 <p><img src="Agrupamiento_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Vemos que aunque los grupos no son exactamente como las regiones geográficas, hay ciertas similitudes que vale resaltar. Las regiones periféricas como lo son la orinoquía o la amazonía, y algunos departamentos también costeros como la Guajira o Córdoba tienen puntajes parecidos, siendo estos bajos. Además, muchos departamentos más centrales pertenecientes a la región andina tienen puntajes también parecidos, siendo estos altos. En cuanto al resto tienen un desempeño regular salvando las dos excepciones más importantes, Chocó y Bogotá D.C., en donde se concentran los peores y los mejores puntajes respectivamente.</p>
+<p>Aunque no sea una representación uno a uno de las regiones geográficas, se puede apreciar un patrón que vislumbra que las regiones periféricas por lo general tienen peores puntajes que las regiones más centrales.</p>
 
 
 </section>
