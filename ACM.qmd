@@ -311,6 +311,7 @@ Entonces, se realiza el análisis con 3 ejes para el ACM.
 #| echo: false
 fviz_contrib(acm, choice = "var", axes = 1, top=6) # top=6 para que muestre quienes contribuyen más
 ```
+
 Podemos ver que las que más contribuyen al primer eje son las categorías "desconocido" de las distintas variables, veremos a qué nos lleva esto más adelante.
 
 ### Contribución de las variables al eje 2
@@ -319,6 +320,7 @@ Podemos ver que las que más contribuyen al primer eje son las categorías "desc
 #| echo: false
 fviz_contrib(acm, choice = "var", axes = 2, top=6) # top=6 para que muestre quienes contribuyen más
 ```
+
 La mayor contribución en este eje también es dado por categorías "desconocido", por lo que la variabilidad de estas categorías fue capturada en el primer y segundo eje, de ahí, ya empiezan a aparecer categorías distintas.
 
 ### Contribución de las variables al eje 3
@@ -327,6 +329,7 @@ La mayor contribución en este eje también es dado por categorías "desconocido
 #| echo: false
 fviz_contrib(acm, choice = "var", axes = 3, top=23) # top=6 para que muestre quienes contribuyen más
 ```
+
 La mayor contribución en este eje es dado por categorías referentes a la ocupación y la educación de los padres.
 
 ### Representación de las variables
@@ -352,7 +355,6 @@ ggplot(data = acm$var$eta2, aes(x = `Dim 3`, y = `Dim 2`)) +
 ```
 
 Si bien se muestra que variables relacionadas con la ocupación de la madre y padre están muy correlacionadas con el eje 1, y variables relacionadas con la educación de madre y padre con el eje 2; esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Además, las variables de educación y ocupación de madre y padre tienen bastantes más categorías que las otras variables que se usaron para hacer este ACM.
-
 
 ### Visualización del puntaje global
 
@@ -402,9 +404,7 @@ rownames(acm$var$v.test) <- nombres_originales
 Para los siguientes ACMs, se graficaron los planos factoriales separando por variables y luego el plano factorial con todas las variables. En cada eje se acotó a un intervalo más pequeño para que se pueda apreciar de mejor manera la representación de las distintas variables, debido a que las categorías "desconocido" que hacen referencia a los valores faltantes en cada variable son las que más pesan, llevando a que tengan coordenadas que en proporción a las otras categorías son muy grandes, sin embargo, en el plano factorial con todas las variables se graficó tanto acotando como sin acotar, principalmente para apreciar esta diferencia. Además, para facilitar la visualización se recodificaron las variables con el fin de que las etiquetas de cada categoría sean más legibles. Se obviará la categoría desconocido en la mayoría de las variables ya que siempre estaba relacionada al primer eje y no parecía decir nada relevante.
 :::
 
-
 ::: panel-tabset
-
 ### 1. Sexo
 
 Las coordenadas son:
@@ -454,7 +454,6 @@ fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE,
 #                                       "ESTU_GENERO_M")),
 #              ggtheme = theme_minimal())
 ```
-
 
 ### 2. Etnia
 
@@ -819,7 +818,7 @@ fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE,
 ```
 :::
 
-Teniendo en cuenta las coordenadas del puntaje global, encontrándose en el cuarto cuadrante de los planos plano, las conclusiones a las que se llegan son muy parecidas a las que se obtuvieron en el ACP. Los estudiantes con características como hombre, sin etnia, que viven en Bogotá, con estado civil soltero, con padres y madres con niveles de educación superior, mejores puestos laborales y menos horas de trabajo, tienen en promedio mejores puntajes que el resto. El primer eje no parece aportar información relevante, el segundo parece reafirmar las conclusiones halladas en el ACP y el tercer eje también parece reafirmar estas conclusiones. 
+Teniendo en cuenta las coordenadas del puntaje global, encontrándose en el cuarto cuadrante de los planos plano, las conclusiones a las que se llegan son muy parecidas a las que se obtuvieron en el ACP. Los estudiantes con características como hombre, sin etnia, que viven en Bogotá, con estado civil soltero, con padres y madres con niveles de educación superior, mejores puestos laborales y menos horas de trabajo, tienen en promedio mejores puntajes que el resto. El primer eje no parece aportar información relevante, el segundo parece reafirmar las conclusiones halladas en el ACP y el tercer eje también parece reafirmar estas conclusiones.
 
 ```{r}
 #| echo: false
@@ -833,9 +832,11 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
   coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
 
 ```
+
 Vemos que sin acotar en el primer y segundo eje, la mayoría de las categorías están muy cerca al centro, mientras que las categorías desconocido se encuentran por lo general muy alejadas de el centro, lo cual era esperable pues estos individuos son los que tenían valores faltantes, que por lo general eran una pequeña cantidad, por lo que su variabilidad es muy grande.
 
-Acotando en los ejes, podemos ver que las características relacionadas a un mejor nivel socioeconómico y a menos responsabilidades, como padres y madres en mejores cargos, padres y madres con mejores niveles educativos, estar soltero, no trabajar, se encuentran concentradas en el cuarto cuadrante del plano, en donde también se encuentran las coordenadas del puntaje global. 
+Acotando en los ejes, podemos ver que las características relacionadas a un mejor nivel socioeconómico y a menos responsabilidades, como padres y madres en mejores cargos, padres y madres con mejores niveles educativos, estar soltero, no trabajar, se encuentran concentradas en el cuarto cuadrante del plano, en donde también se encuentran las coordenadas del puntaje global.
+
 ```{r}
 #| echo: false
 fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
@@ -848,7 +849,8 @@ fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE,
   coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
 
 ```
-Vemos que sin acotar el tercer eje, la mayoría de las categorías están muy cerca al centro, y las categorías desconocido aunque están lejos, no es de la misma manera que con el primer o segundo eje. 
+
+Vemos que sin acotar el tercer eje, la mayoría de las categorías están muy cerca al centro, y las categorías desconocido aunque están lejos, no es de la misma manera que con el primer o segundo eje.
 
 Acotando en los ejes, podemos ver prácticamente lo mismo, aunque en este plano factorial algunas categorías "desconocido" se pueden apreciar más cerca a las demás variables, concretamente concentrándose en el tercer cuadrante. De ahí, no se aprecia a simple vista una agrupación nueva.
 
@@ -910,6 +912,7 @@ Entonces, se realiza el análisis con 2 ejes para el ACM.
 #| echo: false
 fviz_contrib(acm, choice = "var", axes = 1, top=6) # top=6 para que muestre quienes contribuyen más
 ```
+
 De nuevo las categorías que más contribuyen al primer eje son las de desconocido.
 
 ### Contribución de las variables al eje 2
@@ -941,7 +944,7 @@ fviz_mca_var(acm, axes = c(1,2),
 
 ```
 
-Nuevamente, si bien se muestra que la variable Cómo capacitó el exámen está muy correlacionada con el eje 1, y las variables Método del programa y el Carácter acdémico de la institución se relacionan con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. 
+Nuevamente, si bien se muestra que la variable Cómo capacitó el exámen está muy correlacionada con el eje 1, y las variables Método del programa y el Carácter acdémico de la institución se relacionan con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable.
 
 ### Visualización del puntaje global
 
@@ -987,7 +990,6 @@ rownames(res.mca$var$coord) <- nombres_originales
 ```
 
 ::: panel-tabset
-
 ### 1. Capacitación examen
 
 Las coordenadas son:
@@ -1093,7 +1095,6 @@ coord_sup <- data.frame(coordenas_sup)
 kable(coord_sup[4:25,1:2], digits = 4)
 
 ```
-
 
 ```{r}
 #| echo: false
@@ -1392,7 +1393,6 @@ rownames(acm$var$v.test) <- nombres_originales
 ```
 
 ::: panel-tabset
-
 ### 1. Valor matrícula
 
 Las coordenadas son:
@@ -1768,6 +1768,1542 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
              ggtheme = theme_minimal()) +
   coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+
+```
+
+El plano factorial sin acotar muestra que las únicas categorías que realmente están muy bien representadas en el primer eje son las de desconocido. Acotando, vemos que realmente el segundo eje captura la información como si fuera un índice, reafirmando las conclusiones halladas en el ACP. Las categorías que representan un mayor nivel socioeconómico parecen tener mejores puntajes al promedio mientras que las categorías que representan un nivel socioeconómico más bajo parecen tener puntajes peores al promedio, exceptuando de nuevo, el poseer o no motocicleta, en cuyo caso pasa lo contrario.
+
+
+# Análisis de Correspondencias Múltiples sin considerar "Desconocido"
+
+A continuación se muestra el Análisis de Correspondencias Múltiples (ACM) de los datos SaberPro 2022-2.
+
+Se realiza un ACM para cada una de los distintos tipos de variables que cuenta la base de datos (Variables relacionadas con la información personal, Variables relacionadas con la información académica y Variables relacionadas con la información socioeconómica). En cada uno de los ACM se muestra la variable cuantitativa correspondiente al puntaje global como variable suplementaria.
+
+
+## Variables relacionadas con la información personal
+
+### Dimensiones para el ACM
+
+```{r}
+#| echo: false
+Y <- data[,c(1,3,4,6,23)]
+Ys <- cbind(data$PUNT_GLOBAL, data$FAMI_EDUCACIONMADRE, data$FAMI_EDUCACIONPADRE, data$FAMI_OCUPACIONMADRE, data$FAMI_OCUPACIONPADRE ,Y)
+
+# Para no tener problema con los desconocidos, los vamos a incluir en la categoria que tenga más individuos
+
+# Sexo
+Ys$ESTU_GENERO <- as.character(Ys$ESTU_GENERO)
+Ys$ESTU_GENERO <- ifelse(Ys$ESTU_GENERO == "Desconocido", "F", Ys$ESTU_GENERO)
+Ys$ESTU_GENERO <- factor(Ys$ESTU_GENERO)
+
+# Etnia
+#table(Ys$ESTU_TIENEETNIA)
+Ys$ESTU_TIENEETNIA <- as.character(Ys$ESTU_TIENEETNIA)
+Ys$ESTU_TIENEETNIA <- ifelse(Ys$ESTU_TIENEETNIA == "Desconocido", "No", Ys$ESTU_TIENEETNIA)
+Ys$ESTU_TIENEETNIA <- factor(Ys$ESTU_TIENEETNIA)
+#table(Ys$ESTU_TIENEETNIA)
+
+# Depto
+#table(Ys$ESTU_DEPTO_RESIDE)
+Ys$ESTU_DEPTO_RESIDE <- as.character(Ys$ESTU_DEPTO_RESIDE)
+Ys$ESTU_DEPTO_RESIDE <- ifelse(Ys$ESTU_DEPTO_RESIDE == "Desconocido", "OTRO", Ys$ESTU_DEPTO_RESIDE)
+Ys$ESTU_DEPTO_RESIDE <- factor(Ys$ESTU_DEPTO_RESIDE)
+#table(Ys$ESTU_DEPTO_RESIDE)
+
+# Estado civil
+#table(Ys$ESTU_ESTADOCIVIL)
+Ys$ESTU_ESTADOCIVIL <- as.character(Ys$ESTU_ESTADOCIVIL)
+Ys$ESTU_ESTADOCIVIL <- ifelse(Ys$ESTU_ESTADOCIVIL == "Desconocido", "S", Ys$ESTU_ESTADOCIVIL)
+Ys$ESTU_ESTADOCIVIL <- factor(Ys$ESTU_ESTADOCIVIL)
+#table(Ys$ESTU_ESTADOCIVIL)
+
+# Horas trabaja
+#table(Ys$ESTU_HORASSEMANATRABAJA)
+Ys$ESTU_HORASSEMANATRABAJA <- as.character(Ys$ESTU_HORASSEMANATRABAJA)
+Ys$ESTU_HORASSEMANATRABAJA <- ifelse(Ys$ESTU_HORASSEMANATRABAJA == "Desconocido", "Más de 30 horas", Ys$ESTU_HORASSEMANATRABAJA)
+Ys$ESTU_HORASSEMANATRABAJA <- factor(Ys$ESTU_HORASSEMANATRABAJA)
+#table(Ys$ESTU_HORASSEMANATRABAJA)
+
+#MCA con ventilación de aquellas categorias menores al 6%
+#res.mca <- MCA(Ys, graph=FALSE, quali.sup = c(2), quanti.sup = 1)
+#acm_ventil<-MCA(Ys,graph = FALSE, quali.sup = c(2,3,4,5), quanti.sup = 1, level.ventil = 0.06)
+
+res.mca<-MCA(Ys,graph = FALSE, quali.sup = c(2,3,4,5), quanti.sup = 1)
+
+fviz_screeplot(res.mca, addlabels = TRUE, ylim = c(0, 20))
+
+```
+
+Como en el ACM existen ejes que se consideran "parásitos", se utiliza el **Criterio de Benzécri** para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
+
+```{r}
+#| echo: false
+# Criterio de Benzecri
+
+## Haciendo las cuentas uno mismo:
+s <- ncol(Ys)
+l <- res.mca$eig[res.mca$eig[,1] > 1/s, 1]
+tau <- ( s / (s - 1) )^2 * ( l - (1/s) )^2
+ptau <- tau / sum( tau ) * 100
+barplot(ptau, col="darkred", ylim = c(0,75))
+```
+
+La inercia en cada eje luego de aplicar el **criterio de Benzécri** es
+
+```{r}
+#| echo: false
+#library(GDAtools)
+ptau <- modif.rate(res.mca)$modif[, 1] # cuanta inercia queda
+#head(ptau)
+
+ejes <- c()
+for(i in 1:length(ptau)){
+  ejes <- rbind(ejes,paste0("Eje ",i))
+}
+
+tabla_ejes <- data.frame(Ejes=ejes,Inercia=ptau)
+#str(tabla_ejes)
+kable(tabla_ejes, digits = 4)
+```
+
+Entonces, se realiza el análisis con 2 ejes para el ACM.
+
+### Contribución de las variables al eje 1
+
+```{r}
+#| echo: false
+fviz_contrib(res.mca, choice = "var", axes = 1, top=7) # top=6 para que muestre quienes contribuyen más
+```
+
+Podemos ver que las que más contribuyen al primer eje son las categorías "desconocido" de las distintas variables, veremos a qué nos lleva esto más adelante.
+
+### Contribución de las variables al eje 2
+
+```{r}
+#| echo: false
+fviz_contrib(res.mca, choice = "var", axes = 2, top=6) # top=6 para que muestre quienes contribuyen más
+```
+
+La mayor contribución en este eje también es dado por categorías "desconocido", por lo que la variabilidad de estas categorías fue capturada en el primer y segundo eje, de ahí, ya empiezan a aparecer categorías distintas.
+
+
+### Representación de las variables
+
+```{r}
+#| echo: false
+#| warning: false
+fviz_mca_var(res.mca, axes = c(1,2),
+             choice = "mca.cor", repel = TRUE, 
+             ggtheme = theme_minimal())
+
+# sospechoso pq no cambia
+# fviz_mca_var(acm, axes = c(1,3),
+#              choice = "mca.cor", repel = TRUE, 
+#              ggtheme = theme_minimal())
+
+# ## Haciendo el gráfico con ggplot:
+# ggplot(data = acm_ventil$var$eta2, aes(x = `Dim 3`, y = `Dim 2`)) +
+#   geom_point(colour = "red") + xlim(0,0.7) + ylim(0,0.7) +
+#   geom_text(label=rownames(acm_ventil$var$eta2), colour = "red", hjust=1) +
+#   theme_minimal()
+
+```
+
+Si bien se muestra que variables relacionadas con la ocupación de la madre y padre están muy correlacionadas con el eje 1, y variables relacionadas con la educación de madre y padre con el eje 2; esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Además, las variables de educación y ocupación de madre y padre tienen bastantes más categorías que las otras variables que se usaron para hacer este ACM.
+
+### Visualización del puntaje global
+
+```{r}
+#| echo: false
+fviz_mca_var(res.mca, axes=c(1,2), 
+             choice="quanti.sup",
+             ggtheme=theme_minimal())
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+# se ve imundo
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal())
+```
+
+```{r}
+#| echo: false
+#| eval: false
+# No me funciona
+nombres_originales <- rownames(acm_ventil$var$coord)
+nombres_variables <- unique(gsub("_[^_]+$", "", nombres_originales))
+
+for (i in seq_along(nombres_variables)) {
+  # Usar gsub para reemplazar el nombre de la variable por un número
+  nombres_modificados <- gsub(nombres_variables[i], as.character(i), nombres_originales)
+  
+  # Actualizar los nombres en el objeto ACM
+  nombres_originales <- nombres_modificados
+}
+
+
+
+
+rownames(acm_ventil$var$coord) <- nombres_originales
+rownames(acm_ventil$var$v.test) <- nombres_originales
+```
+
+::: callout-note
+Para los siguientes ACMs, se graficaron los planos factoriales separando por variables y luego el plano factorial con todas las variables. En cada eje se acotó a un intervalo más pequeño para que se pueda apreciar de mejor manera la representación de las distintas variables, debido a que las categorías "desconocido" que hacen referencia a los valores faltantes en cada variable son las que más pesan, llevando a que tengan coordenadas que en proporción a las otras categorías son muy grandes, sin embargo, en el plano factorial con todas las variables se graficó tanto acotando como sin acotar, principalmente para apreciar esta diferencia. Además, para facilitar la visualización se recodificaron las variables con el fin de que las etiquetas de cada categoría sean más legibles. Se obviará la categoría desconocido en la mayoría de las variables ya que siempre estaba relacionada al primer eje y no parecía decir nada relevante.
+:::
+
+::: panel-tabset
+### 1. Sexo
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+visualizar <- res.mca$var
+coordenas <- visualizar$coord
+
+coord <- data.frame(coordenas)
+kable(coord[1:2,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+valores_test <- visualizar$v.test
+
+val_test <- data.frame(valores_test)
+#str(val_test)
+kable(val_test[1:2,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("F",
+                                      "M")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
+
+# fviz_mca_var(res.mca, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("F",
+#                                       "M")),
+#              ggtheme = theme_minimal()) +
+#   coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
+
+
+# fviz_mca_var(acm, axes = c(1,2),
+#              repel = TRUE, 
+#              select.var = list(name=c("ESTU_GENERO_Desconocido",
+#                                       "ESTU_GENERO_F",
+#                                       "ESTU_GENERO_M")),
+#              ggtheme = theme_minimal())
+```
+
+### 2. Etnia
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[3:4,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[3:4,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("Si",
+                                      "No")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
+
+# fviz_mca_var(res.mca, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("Si",
+#                                       "No")),
+#              ggtheme = theme_minimal()) +
+#   coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
+```
+
+### 3. Departamento
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[5:6,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[5:6,1:3], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("BOGOTÁ",
+                                      "OTRO")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1.2, 1))
+
+# fviz_mca_var(acm_ventil, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("BOGOTÁ",
+#                                       "OTRO")),
+#              ggtheme = theme_minimal()) +
+#   coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
+```
+
+### 4. Estado civil
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[7:10,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[7:10,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("C ",
+                                      "S",
+                                      "SyoV",
+                                      "UL")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
+
+# fviz_mca_var(res.mca, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("C ",
+#                                       "S",
+#                                       #"4_SyV",
+#                                       "UL")),
+#              ggtheme = theme_minimal()) +
+#   coord_cartesian(xlim = c(-1.8, 1.8), ylim = c(-1, 1))
+```
+
+### 5. Educación padre
+
+Las coordenadas son:
+
+```{r}
+coordenas_sup <- res.mca$quali.sup$coord
+
+coord_sup <- data.frame(coordenas_sup)
+kable(coord_sup[14:26,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+#| warning: false 
+
+valores_test_sup <- res.mca$quali.sup$v.test
+
+val_test_sup <- data.frame(valores_test_sup)
+kable(val_test_sup[14:26,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("data$FAMI_EDUCACIONPADRE_BC",
+                                      "data$FAMI_EDUCACIONPADRE_BI",
+                                      "data$FAMI_EDUCACIONPADRE_Desconocido",
+                                       "data$FAMI_EDUCACIONPADRE_EPC",
+                                      "data$FAMI_EDUCACIONPADRE_EPI",
+                                      "data$FAMI_EDUCACIONPADRE_NAp",
+                                      "data$FAMI_EDUCACIONPADRE_Ninguno",
+                                      "data$FAMI_EDUCACIONPADRE_NS",
+                                       "data$FAMI_EDUCACIONPADRE_PC",
+                                       "data$FAMI_EDUCACIONPADRE_PI",
+                                       "data$FAMI_EDUCACIONPADRE_Post",
+                                       "data$FAMI_EDUCACIONPADRE_TTC",
+                                      "data$FAMI_EDUCACIONPADRE_TTI")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.4), ylim = c(-1.5, 2.5))
+```
+
+### 6. Educación madre
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord_sup[1:13,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+#| warning: false 
+
+kable(val_test_sup[1:13,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("data$FAMI_EDUCACIONMADRE_BC",
+                                      "data$FAMI_EDUCACIONMADRE_BI",
+                                      "data$FAMI_EDUCACIONMADRE_Desconocido",
+                                      "data$FAMI_EDUCACIONMADRE_EPI",
+                                      "data$FAMI_EDUCACIONMADRE_NAp",
+                                       "data$FAMI_EDUCACIONMADRE_EPC",
+                                      "data$FAMI_EDUCACIONMADRE_Ninguno",
+                                      "data$FAMI_EDUCACIONMADRE_NS",
+                                       "data$FAMI_EDUCACIONMADRE_PC",
+                                       "data$FAMI_EDUCACIONMADRE_PI",
+                                       "data$FAMI_EDUCACIONMADRE_Post",
+                                       "data$FAMI_EDUCACIONMADRE_TTC",
+                                      "data$FAMI_EDUCACIONMADRE_TTI")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.4), ylim = c(-1.5, 2.5))
+```
+
+### 7. Ocupación padre
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord_sup[40:52,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+#| warning: false 
+
+kable(val_test_sup[40:52,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("data$FAMI_OCUPACIONPADRE_Desconocido",
+                                      "data$FAMI_OCUPACIONPADRE_EDGG",
+                                      "data$FAMI_OCUPACIONPADRE_Emp",
+                                      "data$FAMI_OCUPACIONPADRE_ENAA",
+                                      "data$FAMI_OCUPACIONPADRE_END",
+                                      "data$FAMI_OCUPACIONPADRE_ENTP",
+                                      "data$FAMI_OCUPACIONPADRE_EOO",
+                                      "data$FAMI_OCUPACIONPADRE_H",
+                                      "data$FAMI_OCUPACIONPADRE_PE",
+                                       "data$FAMI_OCUPACIONPADRE_OAO",
+                                       "data$FAMI_OCUPACIONPADRE_Pen",
+                                      "data$FAMI_OCUPACIONPADRE_PI",
+                                       "data$FAMI_OCUPACIONPADRE_TCP")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.4), ylim = c(-1.5, 2.5))
+```
+
+### 8. Ocupación madre
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord_sup[27:39,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+#| warning: false 
+
+kable(val_test_sup[27:39,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("data$FAMI_OCUPACIONMADRE_Desconocido",
+                                      "data$FAMI_OCUPACIONMADRE_EDGG",
+                                      "data$FAMI_OCUPACIONMADRE_Emp",
+                                      "data$FAMI_OCUPACIONMADRE_ENAA",
+                                      "data$FAMI_OCUPACIONMADRE_END",
+                                      "data$FAMI_OCUPACIONMADRE_ENTP",
+                                      "data$FAMI_OCUPACIONMADRE_EOO",
+                                      "data$FAMI_OCUPACIONMADRE_H",
+                                       "data$FAMI_OCUPACIONMADRE_OAO",
+                                      "data$FAMI_OCUPACIONMADRE_PE",
+                                      "data$FAMI_OCUPACIONMADRE_Pen",
+                                      "data$FAMI_OCUPACIONMADRE_PI",
+                                       "data$FAMI_OCUPACIONMADRE_TCP")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.4), ylim = c(-1.5, 2.5))
+```
+
+### 9. Horas trabaja
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[11:15,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[11:15,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("0",
+                                      "Menos de 10 horas",
+                                      "Entre 11 y 20 horas",
+                                      "Entre 21 y 30 horas",
+                                      "Más de 30 horas"#,
+                                      #"9_Desconocido"
+                                      )),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.5, 1.5), ylim = c(-1.5, 1.5))
+
+```
+:::
+
+Teniendo en cuenta las coordenadas del puntaje global, encontrándose en el cuarto cuadrante de los planos plano, las conclusiones a las que se llegan son muy parecidas a las que se obtuvieron en el ACP. Los estudiantes con características como hombre, sin etnia, que viven en Bogotá, con estado civil soltero, con padres y madres con niveles de educación superior, mejores puestos laborales y menos horas de trabajo, tienen en promedio mejores puntajes que el resto. El primer eje no parece aportar información relevante, el segundo parece reafirmar las conclusiones halladas en el ACP y el tercer eje también parece reafirmar estas conclusiones.
+
+```{r}
+#| echo: false
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal())
+
+# fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+#              ggtheme = theme_minimal()) +
+#   coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
+
+```
+
+Vemos que sin acotar en el primer y segundo eje, la mayoría de las categorías están muy cerca al centro, mientras que las categorías desconocido se encuentran por lo general muy alejadas de el centro, lo cual era esperable pues estos individuos son los que tenían valores faltantes, que por lo general eran una pequeña cantidad, por lo que su variabilidad es muy grande.
+
+Acotando en los ejes, podemos ver que las características relacionadas a un mejor nivel socioeconómico y a menos responsabilidades, como padres y madres en mejores cargos, padres y madres con mejores niveles educativos, estar soltero, no trabajar, se encuentran concentradas en el cuarto cuadrante del plano, en donde también se encuentran las coordenadas del puntaje global.
+
+En resumen, vemos que los datos parecen llevarnos a la misma conclusión que en el caso del ACP.
+
+## Variables relacionadas con la información académica
+
+### Dimensiones para el ACM
+
+```{r}
+#| echo: false
+
+Y <- data[,c(8,9,27,28)]
+Ys <- cbind(data$PUNT_GLOBAL, data$GRUPOREFERENCIA ,Y)
+
+# Para no tener problema con los desconocidos, los vamos a incluir en la categoria que tenga más individuos
+
+# Capacitación examen
+#table(Ys$ESTU_COMOCAPACITOEXAMENSB11)
+Ys$ESTU_COMOCAPACITOEXAMENSB11 <- as.character(Ys$ESTU_COMOCAPACITOEXAMENSB11)
+Ys$ESTU_COMOCAPACITOEXAMENSB11 <- ifelse(Ys$ESTU_COMOCAPACITOEXAMENSB11 == "Desconocido", "CuentaPropia", Ys$ESTU_COMOCAPACITOEXAMENSB11)
+Ys$ESTU_COMOCAPACITOEXAMENSB11 <- factor(Ys$ESTU_COMOCAPACITOEXAMENSB11)
+#table(Ys$ESTU_COMOCAPACITOEXAMENSB11)
+
+# Semestre que cursa
+#table(Ys$ESTU_SEMESTRECURSA)
+Ys$ESTU_SEMESTRECURSA <- as.character(Ys$ESTU_SEMESTRECURSA)
+Ys$ESTU_SEMESTRECURSA <- ifelse(Ys$ESTU_SEMESTRECURSA == "Desconocido", "09", Ys$ESTU_SEMESTRECURSA)
+Ys$ESTU_SEMESTRECURSA <- factor(Ys$ESTU_SEMESTRECURSA)
+#table(Ys$ESTU_SEMESTRECURSA)
+
+# Modalidad
+#table(Ys$ESTU_METODO_PRGM) # no tiene desconocido
+
+# Caracter académico
+#table(Ys$INST_CARACTER_ACADEMICO) # no tiene desconocido
+
+# ventilamos las categorias cuyos individuos sean menos del 1.7%
+#res.mca <- MCA(Ys,graph = FALSE, quali.sup = c(2), quanti.sup = 1, level.ventil = 0.02)
+res.mca <- MCA(Ys,graph = FALSE, quali.sup = c(2), quanti.sup = 1)
+
+fviz_screeplot(res.mca, addlabels = TRUE, ylim = c(0, 20))
+
+```
+
+Se utiliza el **Criterio de Benzecri** para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
+
+```{r}
+#| echo: false
+# Criterio de Benzecri
+
+## Haciendo las cuentas uno mismo:
+s <- ncol(Ys)
+l <- res.mca$eig[res.mca$eig[,1] > 1/s, 1]
+tau <- ( s / (s - 1) )^2 * ( l - (1/s) )^2
+ptau <- tau / sum( tau ) * 100
+barplot(ptau, col="darkred", ylim = c(0,75))
+```
+
+La inercia en cada eje luego de aplicar el **criterio de Benzécri** es
+
+```{r}
+#| echo: false
+#library(GDAtools)
+ptau <- modif.rate(res.mca)$modif[, 1] # cuanta inercia queda
+#head(ptau)
+
+ejes <- c()
+for(i in 1:length(ptau)){
+  ejes <- rbind(ejes,paste0("Eje ",i))
+}
+
+tabla_ejes <- data.frame(Ejes=ejes,Inercia=ptau)
+#str(tabla_ejes)
+kable(tabla_ejes, digits = 4)
+```
+
+Entonces, se realiza el análisis con 2 ejes para el ACM.
+
+### Contribución de las variables al eje 1
+
+```{r}
+#| echo: false
+fviz_contrib(res.mca, choice = "var", axes = 1, top=6) # top=6 para que muestre quienes contribuyen más
+```
+
+De nuevo las categorías que más contribuyen al primer eje son las de desconocido.
+
+### Contribución de las variables al eje 2
+
+```{r}
+#| echo: false
+fviz_contrib(res.mca, choice = "var", axes = 2, top=11) # top=6 para que muestre quienes contribuyen más
+```
+
+Las contribuciones al segundo eje se ven principalmente en la modalidad de estudio y el tipo de institución a la que el estudiante pertenece, y no se ve un aporte de las categorías desconocido.
+
+### Representación de las variables
+
+```{r}
+#| echo: false
+fviz_mca_var(res.mca, axes = c(1,2),
+             choice = "mca.cor", repel = TRUE, 
+             ggtheme = theme_minimal())
+
+# sospechoso pq no cambia
+# fviz_mca_var(acm, axes = c(1,3),
+#              choice = "mca.cor", repel = TRUE, 
+#              ggtheme = theme_minimal())
+
+# ggplot(data = acm$var$eta2, aes(x = `Dim 3`, y = `Dim 2`)) +
+#   geom_point(colour = "red") + xlim(0,0.7) + ylim(0,0.7) + 
+#   geom_text(label=rownames(acm$var$eta2), colour = "red", hjust=1) + 
+#   theme_minimal()
+
+```
+
+Nuevamente, si bien se muestra que la variable Cómo capacitó el exámen está muy correlacionada con el eje 1, y las variables Método del programa y el Carácter acdémico de la institución se relacionan con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable.
+
+### Visualización del puntaje global
+
+```{r}
+#| echo: false
+
+fviz_mca_var(res.mca, axes=c(1,2), 
+             choice="quanti.sup",
+             ggtheme=theme_minimal())
+
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+# se ve imundo
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal())
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+# no me funciona para cambiar los nombres de las variables
+nombres_originales <- rownames(res.mca$var$coord)
+nombres_variables <- unique(gsub("_[^_]+$", "", nombres_originales))[1:2]
+
+for (i in seq_along(nombres_variables)) {
+  # Usar gsub para reemplazar el nombre de la variable por un número
+  nombres_modificados <- gsub(nombres_variables[i], as.character(i), nombres_originales)
+  
+  # Actualizar los nombres en el objeto ACM
+  nombres_originales <- nombres_modificados
+}
+
+rownames(acm$var$coord) <- nombres_originales
+rownames(acm$var$v.test) <- nombres_originales
+rownames(res.mca$var$coord) <- nombres_originales
+
+```
+
+::: panel-tabset
+### 1. Capacitación examen
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+visualizar <- res.mca$var
+coordenas <- visualizar$coord
+
+coord <- data.frame(coordenas)
+kable(coord[1:3,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+valores_test <- visualizar$v.test
+
+val_test <- data.frame(valores_test)
+#str(val_test)
+kable(val_test[1:3,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("CuentaPropia",
+                                      "Curso",
+                                      "Ninguna")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.2, 1.2), ylim = c(-1.2, 1.2))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("ESTU_COMOCAPACITOEXAMENSB11_CuentaPropia",
+#                                       "ESTU_COMOCAPACITOEXAMENSB11_Curso",
+#                                       "ESTU_COMOCAPACITOEXAMENSB11_Desconocido",
+#                                       "ESTU_COMOCAPACITOEXAMENSB11_Ninguna")),
+#              ggtheme = theme_minimal())
+
+#fviz_mca_var(res.mca, repel = TRUE,
+#             ggtheme= theme_minimal())
+```
+
+### 2. Semestre que cursa
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[4:10,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[4:10,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("06m",
+                                      "07",
+                                      "08",
+                                      "09",
+                                      "10",
+                                      "11",
+                                      "12M")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.6, 1.6), ylim = c(-1.6, 1.6))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("ESTU_SEMESTRECURSA_06m",
+#                                       "ESTU_SEMESTRECURSA_07",
+#                                       "ESTU_SEMESTRECURSA_08",
+#                                       "ESTU_SEMESTRECURSA_09",
+#                                       "ESTU_SEMESTRECURSA_10",
+#                                       "ESTU_SEMESTRECURSA_11",
+#                                       "ESTU_SEMESTRECURSA_12M",
+#                                       "ESTU_SEMESTRECURSA_Desconocido")),
+#              ggtheme = theme_minimal())
+```
+
+### 3. Grupo referencia
+
+Se dejó como variable suplementaria ya que tiene 22 categorías
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+coordenas_sup <- res.mca$quali.sup$coord
+
+
+coord_sup <- data.frame(coordenas_sup)
+kable(coord_sup[1:22,1:2], digits = 4)
+
+```
+
+```{r}
+#| echo: false
+#| warning: false 
+
+valores_test_sup <- res.mca$quali.sup$v.test
+
+val_test_sup <- data.frame(valores_test_sup)
+kable(val_test_sup[1:22,1:2], digits = 4)
+
+# fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("AdmYAfin",
+#                                       "ArqYUrb",
+#                                       "BelArtYDis",
+#                                       "CienAgr",
+#                                       "CienMilYNav",
+#                                       "CienNatYExac",
+#                                       "CienSoc",
+#                                       "ComuPerYPub",
+#                                       "ContYAfin",
+#                                       "Derecho",
+#                                       "EcAdContYAfinU",
+#                                       "Economía",
+#                                       "Educación",
+#                                       "Enfermeria",
+#                                       "GrupRefNal",
+#                                       "Hum",
+#                                       "Inge",
+#                                       "Med",
+#                                       "Psic",
+#                                       "RecYDep",
+#                                       "salud")),
+#              ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("AdmYAfin",
+#                                       "ArqYUrb",
+#                                       "BelArtYDis",
+#                                       "CienAgr",
+#                                       "CienMilYNav",
+#                                       "CienNatYExac",
+#                                       "CienSoc",
+#                                       "ComuPerYPub",
+#                                       "ContYAfin",
+#                                       "Derecho",
+#                                       "EcAdContYAfinU",
+#                                       "Economía",
+#                                       "Educación",
+#                                       "Enfermeria",
+#                                       "GrupRefNal",
+#                                       "Hum",
+#                                       "Inge",
+#                                       "Med",
+#                                       "Psic",
+#                                       "RecYDep",
+#                                       "salud")),
+#              ggtheme = theme_minimal())
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("AdmYAfin",
+                                      "ArqYUrb",
+                                       "BelArtYDis",
+                                       "CienAgr",
+                                       "CienMilYNav",
+                                       "CienNatYExac",
+                                       "CienSoc",
+                                       "ComuPerYPub",
+                                       "ContYAfin",
+                                       "Derecho",
+                                       "EcAdContYAfinU",
+                                       "Economía",
+                                       "Educación",
+                                       "Enfermeria",
+                                       "GrupRefNal",
+                                       "Hum",
+                                       "Inge",
+                                       "Med",
+                                       "Psic",
+                                       "RecYDep",
+                                       "salud")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.4), ylim = c(-1.5, 2.5))
+
+```
+
+### 4. Modalidad
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[11:13,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[11:13,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("distancia",
+                                      "distVirtual",
+                                      "presencial")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-2.4, 2.4), ylim = c(-2.4, 2.4))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("distancia",
+#                                       "distVirtual",
+#                                       "presencial")),
+#              ggtheme = theme_minimal())
+```
+
+### 5. Carácter académico
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[14:17,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[14:17,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("InstTec",
+                                      "InstUni",
+                                      "TecProf",
+                                      "Universidad")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(-5, 5))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("InstTec",
+#                                       "InstUni",
+#                                       "TecProf",
+#                                       "Universidad")),
+#              ggtheme = theme_minimal())
+```
+:::
+
+De la misma manera que con el ACP, ya que, obviando el primer eje que parece tomar toda la inercia de las categorías desconocido, el segundo eje parece indicar que las personas con características como estudiar de manera presencial, en una universidad y cursando los últimos semestres obtienen mejores puntajes que el promedio, pues el puntaje global en ese eje apunta a la misma dirección. Además de esto, aunque se uso como variable suplementaria el grupo de referencia, se puede apreciar que también parece seguir las conclusiones del ACP, personas que hacen parte a grupos de referencia como Medicina, Econ.,admin.,contad. y afines Univer, obtienen mejores puntajes que el promedio.
+
+```{r}
+#| echo: false
+#| warning: false 
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal())
+
+# fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+#              ggtheme = theme_minimal()) +
+#   coord_cartesian(xlim = c(-0.4, 0.4), ylim = c(-1.5, 2.5))
+
+```
+
+Se ve que las únicas dos categorías desconocido están muy lejos del centro respecto al primer eje como en el ACM anterior, y acotando se puede apreciar mejor de nuevo el cómo se agrupan las categorías, estando cerca categorías como estar en 12 Semestre o más y medicina, además de mostrar que los individuos que pertenecen a las categorías que están más abajo del gráfico son los que obtienen mejores puntajes respecto al promedio, reafirmando lo concluído en el ACP.
+
+## Variables relacionadas con la información socioeconómica
+
+### Dimensiones para el ACM
+
+```{r}
+#| echo: false
+
+Y <- data[,c(7,14:22)]
+Ys <- cbind(data$PUNT_GLOBAL, data$ESTU_GENERO, Y)
+
+# Para no tener problema con los desconocidos, los vamos a incluir en la categoria que tenga más individuos
+
+# Valor matricula
+#table(Ys$ESTU_VALORMATRICULAUNIVERSIDAD)
+Ys$ESTU_VALORMATRICULAUNIVERSIDAD <- as.character(Ys$ESTU_VALORMATRICULAUNIVERSIDAD)
+Ys$ESTU_VALORMATRICULAUNIVERSIDAD <- ifelse(Ys$ESTU_VALORMATRICULAUNIVERSIDAD == "Desconocido", "e1m2.5", Ys$ESTU_VALORMATRICULAUNIVERSIDAD)
+Ys$ESTU_VALORMATRICULAUNIVERSIDAD <- factor(Ys$ESTU_VALORMATRICULAUNIVERSIDAD)
+#table(Ys$ESTU_VALORMATRICULAUNIVERSIDAD)
+
+# Estrato
+#table(Ys$FAMI_ESTRATOVIVIENDA)
+Ys$FAMI_ESTRATOVIVIENDA <- as.character(Ys$FAMI_ESTRATOVIVIENDA)
+Ys$FAMI_ESTRATOVIVIENDA <- ifelse(Ys$FAMI_ESTRATOVIVIENDA == "Desconocido", "Estrato 2", Ys$FAMI_ESTRATOVIVIENDA)
+Ys$FAMI_ESTRATOVIVIENDA <- factor(Ys$FAMI_ESTRATOVIVIENDA)
+#table(Ys$FAMI_ESTRATOVIVIENDA)
+
+# Internet
+#table(Ys$FAMI_TIENEINTERNET)
+Ys$FAMI_TIENEINTERNET <- as.character(Ys$FAMI_TIENEINTERNET)
+Ys$FAMI_TIENEINTERNET <- ifelse(Ys$FAMI_TIENEINTERNET == "Desconocido", "Si", Ys$FAMI_TIENEINTERNET)
+Ys$FAMI_TIENEINTERNET <- factor(Ys$FAMI_TIENEINTERNET)
+#table(Ys$FAMI_TIENEINTERNET)
+
+# Computador
+#table(Ys$FAMI_TIENECOMPUTADOR)
+Ys$FAMI_TIENECOMPUTADOR <- as.character(Ys$FAMI_TIENECOMPUTADOR)
+Ys$FAMI_TIENECOMPUTADOR <- ifelse(Ys$FAMI_TIENECOMPUTADOR == "Desconocido", "Si", Ys$FAMI_TIENECOMPUTADOR)
+Ys$FAMI_TIENECOMPUTADOR <- factor(Ys$FAMI_TIENECOMPUTADOR)
+#table(Ys$FAMI_TIENECOMPUTADOR)
+
+# Lavadora
+#table(Ys$FAMI_TIENELAVADORA)
+Ys$FAMI_TIENELAVADORA <- as.character(Ys$FAMI_TIENELAVADORA)
+Ys$FAMI_TIENELAVADORA <- ifelse(Ys$FAMI_TIENELAVADORA == "Desconocido", "Si", Ys$FAMI_TIENELAVADORA)
+Ys$FAMI_TIENELAVADORA <- factor(Ys$FAMI_TIENELAVADORA)
+#table(Ys$FAMI_TIENELAVADORA)
+
+# Horno microogas
+#table(Ys$FAMI_TIENEHORNOMICROOGAS) # no hacemos la transformación pq la diferencia entre si y no no es muy grande
+
+# TV
+#table(Ys$FAMI_TIENESERVICIOTV)
+Ys$FAMI_TIENESERVICIOTV <- as.character(Ys$FAMI_TIENESERVICIOTV)
+Ys$FAMI_TIENESERVICIOTV <- ifelse(Ys$FAMI_TIENESERVICIOTV == "Desconocido", "Si", Ys$FAMI_TIENESERVICIOTV)
+Ys$FAMI_TIENESERVICIOTV <- factor(Ys$FAMI_TIENESERVICIOTV)
+#table(Ys$FAMI_TIENESERVICIOTV)
+
+# Automovil
+#table(Ys$FAMI_TIENEAUTOMOVIL)
+Ys$FAMI_TIENEAUTOMOVIL <- as.character(Ys$FAMI_TIENEAUTOMOVIL)
+Ys$FAMI_TIENEAUTOMOVIL <- ifelse(Ys$FAMI_TIENEAUTOMOVIL == "Desconocido", "No", Ys$FAMI_TIENEAUTOMOVIL)
+Ys$FAMI_TIENEAUTOMOVIL <- factor(Ys$FAMI_TIENEAUTOMOVIL)
+#table(Ys$FAMI_TIENEAUTOMOVIL)
+
+# Motocicleta
+#table(Ys$FAMI_TIENEMOTOCICLETA)
+Ys$FAMI_TIENEMOTOCICLETA <- as.character(Ys$FAMI_TIENEMOTOCICLETA)
+Ys$FAMI_TIENEMOTOCICLETA <- ifelse(Ys$FAMI_TIENEMOTOCICLETA == "Desconocido", "No", Ys$FAMI_TIENEMOTOCICLETA)
+Ys$FAMI_TIENEMOTOCICLETA <- factor(Ys$FAMI_TIENEMOTOCICLETA)
+#table(Ys$FAMI_TIENEMOTOCICLETA)
+
+# Consola videojuegos
+#table(Ys$FAMI_TIENECONSOLAVIDEOJUEGOS)
+Ys$FAMI_TIENECONSOLAVIDEOJUEGOS <- as.character(Ys$FAMI_TIENECONSOLAVIDEOJUEGOS)
+Ys$FAMI_TIENECONSOLAVIDEOJUEGOS <- ifelse(Ys$FAMI_TIENECONSOLAVIDEOJUEGOS == "Desconocido", "No", Ys$FAMI_TIENECONSOLAVIDEOJUEGOS)
+Ys$FAMI_TIENECONSOLAVIDEOJUEGOS <- factor(Ys$FAMI_TIENECONSOLAVIDEOJUEGOS)
+#table(Ys$FAMI_TIENECONSOLAVIDEOJUEGOS)
+
+
+# acm ventilando categorias que tengan menos del  4.4%
+#res.mca <- MCA(Ys,graph = FALSE, quali.sup = c(2), quanti.sup = 1, level.ventil = 0.02)
+res.mca <- MCA(Ys,graph = FALSE, quali.sup = c(2), quanti.sup = 1)
+
+fviz_screeplot(res.mca, addlabels = TRUE, ylim = c(0, 20))
+
+```
+
+Se utiliza el **Criterio de Benzécri** para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:
+
+```{r}
+#| echo: false
+# Criterio de Benzecri
+
+## Haciendo las cuentas uno mismo:
+s <- ncol(Y)
+l <- res.mca$eig[res.mca$eig[,1] > 1/s, 1]
+tau <- ( s / (s - 1) )^2 * ( l - (1/s) )^2
+ptau <- tau / sum( tau ) * 100
+barplot(ptau, col="darkred", ylim = c(0,75))
+```
+
+La inercia en cada eje luego de aplicar el **criterio de Benzécri** es
+
+```{r}
+#| echo: false
+#library(GDAtools)
+ptau <- modif.rate(res.mca)$modif[, 1] # cuanta inercia queda
+#head(ptau)
+
+ejes <- c()
+for(i in 1:length(ptau)){
+  ejes <- rbind(ejes,paste0("Eje ",i))
+}
+
+tabla_ejes <- data.frame(Ejes=ejes,Inercia=ptau)
+#str(tabla_ejes)
+kable(tabla_ejes, digits = 4)
+```
+
+Entonces, se realiza el análisis con 2 ejes para el ACM.
+
+### Contribución de las variables al eje 1
+
+```{r}
+#| echo: false
+fviz_contrib(res.mca, choice = "var", axes = 1, top = 15) # top=6 para que muestre quienes contribuyen más
+```
+
+Las categorías que más aportan al primer eje son las de desconocido.
+
+### Contribución de las variables al eje 2
+
+```{r}
+#| echo: false
+fviz_contrib(res.mca, choice = "var", axes = 2, top = 4) # top=6 para que muestre quienes contribuyen más
+```
+
+Las categorías que más aportan al segundo eje son si tiene o no algún bien o servicio.
+
+### Representación de las variables
+
+```{r}
+#| echo: false
+fviz_mca_var(res.mca, axes = c(1,2),
+             choice = "mca.cor", repel = TRUE, 
+             ggtheme = theme_minimal())
+
+# sospechoso pq no cambia
+# fviz_mca_var(acm, axes = c(1,3),
+#              choice = "mca.cor", repel = TRUE, 
+#              ggtheme = theme_minimal())
+
+# ggplot(data = acm$var$eta2, aes(x = `Dim 3`, y = `Dim 2`)) +
+#   geom_point(colour = "red") + xlim(0,0.7) + ylim(0,0.7) + 
+#   geom_text(label=rownames(acm$var$eta2), colour = "red", hjust=1) + 
+#   theme_minimal()
+
+```
+
+Tal como en los puntos anteriores, si bien se muestra que las variables relacionadas con tener o no cierto bien están correlacionadas con el eje 1, y la variable Valor matrícula de la universidad se relaciona con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Se ve también que en el eje 1 las categpría que más contribuyen son las ''Desconocido''.
+
+### Visualización del puntaje global
+
+```{r}
+#| echo: false
+fviz_mca_var(res.mca, axes=c(1,2), 
+             choice="quanti.sup",
+             ggtheme=theme_minimal())
+
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+nombres_originales <- rownames(acm$var$coord)
+nombres_variables <- unique(gsub("_[^_]+$", "", nombres_originales))
+
+for (i in seq_along(nombres_variables)) {
+  # Usar gsub para reemplazar el nombre de la variable por un número
+  nombres_modificados <- gsub(nombres_variables[i], as.character(i), nombres_originales)
+  
+  # Actualizar los nombres en el objeto ACM
+  nombres_originales <- nombres_modificados
+}
+
+rownames(acm$var$coord) <- nombres_originales
+rownames(acm$var$v.test) <- nombres_originales
+```
+
+::: panel-tabset
+### 1. Valor matrícula
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+visualizar <- res.mca$var
+coordenas <- visualizar$coord
+
+coord <- data.frame(coordenas)
+kable(coord[1:8,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+valores_test <- visualizar$v.test
+
+val_test <- data.frame(valores_test)
+#str(val_test)
+kable(val_test[1:8,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("m500",
+                                      "e500m1",
+                                      "e1m2.5",
+                                      "e2.5m4",
+                                      "e4m5.5",
+                                      "e5.5m7",
+                                      "M7",
+                                      "NP")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-1.2, 1.2), ylim = c(-1.2, 1.2))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("ESTU_VALORMATRICULAUNIVERSIDAD_m500",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_e500m1",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_e1m2.5",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_e2.5m4",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_e4m5.5",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_e5.5m7",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_M7",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_NP",
+#                                       "ESTU_VALORMATRICULAUNIVERSIDAD_Desconocido")),
+#              ggtheme = theme_minimal())
+```
+
+### 2. Estrato
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[9:15,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[9:15,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("Estrato 1",
+                                      "Estrato 2",
+                                      "Estrato 3",
+                                      "Estrato 4",
+                                      "Estrato 5",
+                                      "Estrato 6",
+                                      "Sin Estrato")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_ESTRATOVIVIENDA_Desconocido",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 1",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 2",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 3",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 4",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 5",
+#                                       "FAMI_ESTRATOVIVIENDA_Estrato 6",
+#                                       "FAMI_ESTRATOVIVIENDA_Sin Estrato")),
+#              ggtheme = theme_minimal())
+```
+
+### 3. Internet
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[16:17,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[16:17,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("No",
+                                      "Si")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENEINTERNET_Desconocido",
+#                                       "FAMI_TIENEINTERNET_No",
+#                                       "FAMI_TIENEINTERNET_Si")),
+#              ggtheme = theme_minimal())
+```
+
+### 4. Computador
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[18:19,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[18:19,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("No",
+                                      "Si")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENECOMPUTADOR_Desconocido",
+#                                       "FAMI_TIENECOMPUTADOR_No",
+#                                       "FAMI_TIENECOMPUTADOR_Si")),
+#              ggtheme = theme_minimal())
+```
+
+### 5.Lavadora
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[20:21,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[20:21,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("Si",
+                                      "No")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENELAVADORA_Desconocido",
+#                                       "FAMI_TIENELAVADORA_Si",
+#                                       "FAMI_TIENELAVADORA_No")),
+#              ggtheme = theme_minimal())
+```
+
+### 6. Horno microogas
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[22:23,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[22:23,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("Si",
+                                      "No")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE,
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+#              select.var = list(name=c("FAMI_TIENEHORNOMICROOGAS_Desconocido",
+#                                       "FAMI_TIENEHORNOMICROOGAS_Si",
+#                                       "FAMI_TIENEHORNOMICROOGAS_No")),
+#              ggtheme = theme_minimal())
+```
+
+### 7. TV
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[24:25,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[24:25,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("Si",
+                                      "No")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENESERVICIOTV_Desconocido",
+#                                       "FAMI_TIENESERVICIOTV_Si",
+#                                       "FAMI_TIENESERVICIOTV_No")),
+#              ggtheme = theme_minimal())
+```
+
+### 8. Automóvil
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[26:27,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[26:27,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("Si",
+                                      "No")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENEAUTOMOVIL_Desconocido",
+#                                       "FAMI_TIENEAUTOMOVIL_Si",
+#                                       "FAMI_TIENEAUTOMOVIL_No")),
+#              ggtheme = theme_minimal())
+```
+
+### 9. Motocicleta
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[28:29,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[28:29,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("No",
+                                      "Si")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENEMOTOCICLETA_Desconocido",
+#                                       "FAMI_TIENEMOTOCICLETA_No",
+#                                       "FAMI_TIENEMOTOCICLETA_Si")),
+#              ggtheme = theme_minimal())
+```
+
+### 10. Consola de videojuegos
+
+Las coordenadas son:
+
+```{r}
+#| echo: false
+
+kable(coord[30:31,1:2], digits = 4)
+```
+
+Los valores test son:
+
+```{r}
+#| echo: false
+
+kable(val_test[30:31,1:2], digits = 4)
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             select.var = list(name=c("Si",
+                                      "No")),
+             ggtheme = theme_minimal()) +
+  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+# 
+# fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+#              select.var = list(name=c("FAMI_TIENECONSOLAVIDEOJUEGOS_Desconocido",
+#                                       "FAMI_TIENECONSOLAVIDEOJUEGOS_Si",
+#                                       "FAMI_TIENECONSOLAVIDEOJUEGOS_No")),
+#              ggtheme = theme_minimal())
+```
+:::
+
+Individualmente se encontraron los mismos patrones que con el ACP, tomando en cuenta las coordenadas del puntaje global, las categorías se encuentran organizadas respecto a si representan un nivel socioeconómico alto o no, por lo que las categorías que representan un mejor nivel socioeconómico se encuentran en la misma dirección que el puntaje global.
+
+```{r}
+#| echo: false
+#| warning: false 
+
+fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             ggtheme = theme_minimal())
+
+# fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE, 
+#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+#              ggtheme = theme_minimal()) +
+#   coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
 
 ```
 

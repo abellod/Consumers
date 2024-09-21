@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Análisis descriptivo de los resultados SaberPro 2022-2 - 5&nbsp; Agrupamiento</title>
+<title>Análisis descriptivo de los resultados SaberPro 2022-2 - 5&nbsp; Agrupamiento geografico</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,6 +63,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -77,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Agrupamiento.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Agrupamiento</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Agrupamiento.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Agrupamiento geografico</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -138,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Agrupamiento.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Agrupamiento</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Agrupamiento geografico</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -168,7 +171,20 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#paso-7" id="toc-paso-7" class="nav-link" data-scroll-target="#paso-7"><span class="header-section-number">5.1.7</span> Paso 7</a></li>
   </ul></li>
   <li><a href="#mapa-de-colombia" id="toc-mapa-de-colombia" class="nav-link" data-scroll-target="#mapa-de-colombia"><span class="header-section-number">5.2</span> Mapa de Colombia</a></li>
-  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">6</span> Conclusiones</a></li>
+  <li><a href="#agrupamiento-exploratorio" id="toc-agrupamiento-exploratorio" class="nav-link" data-scroll-target="#agrupamiento-exploratorio"><span class="header-section-number">6</span> Agrupamiento exploratorio</a>
+  <ul class="collapse">
+  <li><a href="#procedimiento-de-agrupación-1" id="toc-procedimiento-de-agrupación-1" class="nav-link" data-scroll-target="#procedimiento-de-agrupación-1"><span class="header-section-number">6.1</span> Procedimiento de agrupación</a>
+  <ul class="collapse">
+  <li><a href="#paso-1-1" id="toc-paso-1-1" class="nav-link" data-scroll-target="#paso-1-1"><span class="header-section-number">6.1.1</span> Paso 1</a></li>
+  <li><a href="#paso-2-1" id="toc-paso-2-1" class="nav-link" data-scroll-target="#paso-2-1"><span class="header-section-number">6.1.2</span> Paso 2</a></li>
+  <li><a href="#paso-3-1" id="toc-paso-3-1" class="nav-link" data-scroll-target="#paso-3-1"><span class="header-section-number">6.1.3</span> Paso 3</a></li>
+  <li><a href="#paso-4-1" id="toc-paso-4-1" class="nav-link" data-scroll-target="#paso-4-1"><span class="header-section-number">6.1.4</span> Paso 4</a></li>
+  <li><a href="#paso-5-1" id="toc-paso-5-1" class="nav-link" data-scroll-target="#paso-5-1"><span class="header-section-number">6.1.5</span> Paso 5</a></li>
+  <li><a href="#paso-6-1" id="toc-paso-6-1" class="nav-link" data-scroll-target="#paso-6-1"><span class="header-section-number">6.1.6</span> Paso 6</a></li>
+  <li><a href="#paso-7-1" id="toc-paso-7-1" class="nav-link" data-scroll-target="#paso-7-1"><span class="header-section-number">6.1.7</span> Paso 7</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">7</span> Conclusiones</a></li>
   </ul>
 </nav>
     </div>
@@ -177,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Agrupamiento</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Agrupamiento geografico</span></h1>
 </div>
 
 
@@ -336,8 +352,8 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">11</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">10</td>
 <td style="text-align: right;">0.0030</td>
 <td style="text-align: right;">0.0018</td>
 </tr>
@@ -350,8 +366,8 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">TOTAL</td>
-<td style="text-align: right;">34</td>
-<td style="text-align: right;">34</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">33</td>
 <td style="text-align: right;">0.0083</td>
 <td style="text-align: right;">0.0080</td>
 </tr>
@@ -522,37 +538,37 @@ Partition in  5  clusters</code></pre>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">17</td>
+<td style="text-align: left;">16</td>
 <td style="text-align: left;">GUAINIA</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">18</td>
+<td style="text-align: left;">17</td>
 <td style="text-align: left;">GUAVIARE</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">20</td>
+<td style="text-align: left;">19</td>
 <td style="text-align: left;">LA GUAJIRA</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">25</td>
+<td style="text-align: left;">24</td>
 <td style="text-align: left;">PUTUMAYO</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">28</td>
+<td style="text-align: left;">27</td>
 <td style="text-align: left;">SAN ANDRES</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">33</td>
+<td style="text-align: left;">32</td>
 <td style="text-align: left;">VAUPES</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">34</td>
+<td style="text-align: left;">33</td>
 <td style="text-align: left;">VICHADA</td>
 <td style="text-align: right;">1</td>
 </tr>
@@ -704,22 +720,22 @@ Partition in  5  clusters</code></pre>
 <td style="text-align: right;">2</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">26</td>
+<td style="text-align: left;">25</td>
 <td style="text-align: left;">QUINDIO</td>
 <td style="text-align: right;">2</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">27</td>
+<td style="text-align: left;">26</td>
 <td style="text-align: left;">RISARALDA</td>
 <td style="text-align: right;">2</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">29</td>
+<td style="text-align: left;">28</td>
 <td style="text-align: left;">SANTANDER</td>
 <td style="text-align: right;">2</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">32</td>
+<td style="text-align: left;">31</td>
 <td style="text-align: left;">VALLE</td>
 <td style="text-align: right;">2</td>
 </tr>
@@ -768,7 +784,7 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">(168,180]</td>
-<td style="text-align: right;">21.447</td>
+<td style="text-align: right;">21.445</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">33.6</td>
 <td style="text-align: right;">13.2</td>
@@ -777,7 +793,7 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">(160,168]</td>
-<td style="text-align: right;">9.789</td>
+<td style="text-align: right;">9.768</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">29.4</td>
 <td style="text-align: right;">10.4</td>
@@ -786,7 +802,7 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">(152,160]</td>
-<td style="text-align: right;">3.654</td>
+<td style="text-align: right;">3.672</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">26.8</td>
 <td style="text-align: right;">11.2</td>
@@ -795,7 +811,7 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">(139,145]</td>
-<td style="text-align: right;">-4.589</td>
+<td style="text-align: right;">-4.609</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">23.8</td>
 <td style="text-align: right;">8.4</td>
@@ -804,16 +820,16 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">(132,139]</td>
-<td style="text-align: right;">-10.127</td>
+<td style="text-align: right;">-10.105</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">21.9</td>
+<td style="text-align: right;">22.0</td>
 <td style="text-align: right;">8.8</td>
 <td style="text-align: right;">10.2</td>
 <td style="text-align: right;">12987</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">(124,132]</td>
-<td style="text-align: right;">-16.134</td>
+<td style="text-align: right;">-16.133</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">19.8</td>
 <td style="text-align: right;">7.9</td>
@@ -822,7 +838,7 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">(113,124]</td>
-<td style="text-align: right;">-21.964</td>
+<td style="text-align: right;">-21.962</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">17.9</td>
 <td style="text-align: right;">7.3</td>
@@ -831,7 +847,7 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">(0,113]</td>
-<td style="text-align: right;">-26.034</td>
+<td style="text-align: right;">-26.032</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">16.6</td>
 <td style="text-align: right;">6.9</td>
@@ -895,8 +911,8 @@ Partition in  5  clusters</code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">(0,113]</td>
-<td style="text-align: right;">15.278</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">15.281</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">27.2</td>
 <td style="text-align: right;">13.1</td>
 <td style="text-align: right;">10.6</td>
@@ -904,8 +920,8 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">(113,124]</td>
-<td style="text-align: right;">13.479</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">13.481</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">26.6</td>
 <td style="text-align: right;">12.6</td>
 <td style="text-align: right;">10.3</td>
@@ -913,8 +929,8 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">(124,132]</td>
-<td style="text-align: right;">13.081</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">13.083</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">26.5</td>
 <td style="text-align: right;">12.3</td>
 <td style="text-align: right;">10.2</td>
@@ -922,17 +938,17 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">(132,139]</td>
-<td style="text-align: right;">10.740</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">10.720</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">25.7</td>
-<td style="text-align: right;">12.0</td>
+<td style="text-align: right;">11.9</td>
 <td style="text-align: right;">10.2</td>
 <td style="text-align: right;">12987</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">(139,145]</td>
-<td style="text-align: right;">5.891</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">5.912</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">24.1</td>
 <td style="text-align: right;">9.9</td>
 <td style="text-align: right;">9.0</td>
@@ -940,26 +956,26 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">(145,152]</td>
-<td style="text-align: right;">3.506</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.486</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">23.1</td>
-<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">10.7</td>
 <td style="text-align: right;">10.2</td>
 <td style="text-align: right;">12992</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">(152,160]</td>
-<td style="text-align: right;">-2.322</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">21.3</td>
+<td style="text-align: right;">-2.341</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">21.2</td>
 <td style="text-align: right;">10.3</td>
 <td style="text-align: right;">10.7</td>
 <td style="text-align: right;">13562</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">(160,168]</td>
-<td style="text-align: right;">-9.113</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">-9.093</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">18.7</td>
 <td style="text-align: right;">7.7</td>
 <td style="text-align: right;">9.0</td>
@@ -967,8 +983,8 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">(168,180]</td>
-<td style="text-align: right;">-19.454</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">-19.457</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">15.4</td>
 <td style="text-align: right;">7.1</td>
 <td style="text-align: right;">10.1</td>
@@ -976,8 +992,8 @@ Partition in  5  clusters</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">(180,300]</td>
-<td style="text-align: right;">-36.965</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">-36.944</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">9.9</td>
 <td style="text-align: right;">4.4</td>
 <td style="text-align: right;">9.8</td>
@@ -1015,42 +1031,37 @@ Partition in  5  clusters</code></pre>
 <td style="text-align: right;">4</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">16</td>
-<td style="text-align: left;">Desconocido</td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">HUILA</td>
 <td style="text-align: right;">4</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">19</td>
-<td style="text-align: left;">HUILA</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">MAGDALENA</td>
 <td style="text-align: right;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">21</td>
-<td style="text-align: left;">MAGDALENA</td>
+<td style="text-align: left;">META</td>
 <td style="text-align: right;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">22</td>
-<td style="text-align: left;">META</td>
+<td style="text-align: left;">NARIÑO</td>
 <td style="text-align: right;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">23</td>
-<td style="text-align: left;">NARIÑO</td>
+<td style="text-align: left;">NORTE SANTANDER</td>
 <td style="text-align: right;">4</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">24</td>
-<td style="text-align: left;">NORTE SANTANDER</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">SUCRE</td>
 <td style="text-align: right;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">30</td>
-<td style="text-align: left;">SUCRE</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">31</td>
 <td style="text-align: left;">TOLIMA</td>
 <td style="text-align: right;">4</td>
 </tr>
@@ -1233,11 +1244,1690 @@ Partition in  5  clusters</code></pre>
 <p>Vemos que aunque los grupos no son exactamente como las regiones geográficas, hay ciertas similitudes que vale resaltar. Las regiones periféricas como lo son la orinoquía o la amazonía, y algunos departamentos también costeros como la Guajira o Córdoba tienen puntajes parecidos, siendo estos bajos. Además, muchos departamentos más centrales pertenecientes a la región andina tienen puntajes también parecidos, siendo estos altos. En cuanto al resto tienen un desempeño regular salvando las dos excepciones más importantes, Chocó y Bogotá D.C., en donde se concentran los peores y los mejores puntajes respectivamente.</p>
 <p>Aunque no sea una representación uno a uno de las regiones geográficas, se puede apreciar un patrón que vislumbra que las regiones periféricas por lo general tienen peores puntajes que las regiones más centrales.</p>
 </section>
-<section id="conclusiones" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Conclusiones</h1>
+<section id="agrupamiento-exploratorio" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Agrupamiento exploratorio</h1>
+<section id="procedimiento-de-agrupación-1" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="procedimiento-de-agrupación-1"><span class="header-section-number">6.1</span> Procedimiento de agrupación</h2>
+<section id="paso-1-1" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="paso-1-1"><span class="header-section-number">6.1.1</span> Paso 1</h3>
+<p>Realización del ACM entre las variables <em>ESTU_DEPTO_RESIDE</em> y <em>gobalCAT</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Agrupamiento_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="paso-2-1" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="paso-2-1"><span class="header-section-number">6.1.2</span> Paso 2</h3>
+<p>Conservaremos 5 ejes para no perder información y formaremos 10 grupos de forma netamente exploratoria.</p>
+</section>
+<section id="paso-3-1" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="paso-3-1"><span class="header-section-number">6.1.3</span> Paso 3</h3>
+</section>
+<section id="paso-4-1" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="paso-4-1"><span class="header-section-number">6.1.4</span> Paso 4</h3>
+<p>Los indices de agrupación jerárquica de los departamentos utilizando el método de Wald se muestran a continuación.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Agrupamiento_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="paso-5-1" class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="paso-5-1"><span class="header-section-number">6.1.5</span> Paso 5</h3>
+<p>Como se mencionó previamente, el corte se hizo para 5 grupos, de modo que se obtienen los valores inciales para el K-means.</p>
+<p>El dendograma de la agrupación jerárquica es:</p>
+</section>
+<section id="paso-6-1" class="level3" data-number="6.1.6">
+<h3 data-number="6.1.6" class="anchored" data-anchor-id="paso-6-1"><span class="header-section-number">6.1.6</span> Paso 6</h3>
+<p>A continuación, se muestran los cambios en tamaño y en la inercia luego del K-means</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: right;">Porcentaje</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">47.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">11.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">26.57</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">15.24</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>En general, ni los tamaños de los grupos ni la inercia dentro-grupo se modificaron demasiado. El agrupamiento jerárquico dio una buena partición incial.</p>
+</section>
+<section id="paso-7-1" class="level3" data-number="6.1.7">
+<h3 data-number="6.1.7" class="anchored" data-anchor-id="paso-7-1"><span class="header-section-number">6.1.7</span> Paso 7</h3>
+<p>Caracterización y visualización de los grupos:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Grupo 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Grupo 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Grupo 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Grupo 4</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>En el grupo 1 se tiene:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Test.Value</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">p.Value</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Class.Cat</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Cat.Class</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Global</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ESTU_DEPTO_RESIDE.BOGOTÁ</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">68.2</td>
+<td style="text-align: right;">37.0</td>
+<td style="text-align: right;">25.5</td>
+<td style="text-align: right;">32493</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.S</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">54.2</td>
+<td style="text-align: right;">97.2</td>
+<td style="text-align: right;">84.4</td>
+<td style="text-align: right;">107428</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e4m5.5</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">95.6</td>
+<td style="text-align: right;">23.1</td>
+<td style="text-align: right;">11.4</td>
+<td style="text-align: right;">14464</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e5.5m7</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">98.0</td>
+<td style="text-align: right;">13.7</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">8358</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.M7</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">99.5</td>
+<td style="text-align: right;">29.8</td>
+<td style="text-align: right;">14.1</td>
+<td style="text-align: right;">17936</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 3</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">58.8</td>
+<td style="text-align: right;">34.9</td>
+<td style="text-align: right;">27.9</td>
+<td style="text-align: right;">35526</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 4</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">85.2</td>
+<td style="text-align: right;">16.2</td>
+<td style="text-align: right;">8.9</td>
+<td style="text-align: right;">11383</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 5</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">92.9</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">4271</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 6</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">96.7</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">2384</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.0</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">81.5</td>
+<td style="text-align: right;">27.5</td>
+<td style="text-align: right;">15.8</td>
+<td style="text-align: right;">20171</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_METODO_PRGM.presencial</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">57.6</td>
+<td style="text-align: right;">99.7</td>
+<td style="text-align: right;">81.5</td>
+<td style="text-align: right;">103749</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.Universidad</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">59.3</td>
+<td style="text-align: right;">81.0</td>
+<td style="text-align: right;">64.2</td>
+<td style="text-align: right;">81747</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.11</td>
+<td style="text-align: right;">28.028</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">65.4</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">5502</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.12M</td>
+<td style="text-align: right;">27.771</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">66.4</td>
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">4874</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.07</td>
+<td style="text-align: right;">26.362</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">59.9</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">9659</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_GENERO.F</td>
+<td style="text-align: right;">10.187</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">48.2</td>
+<td style="text-align: right;">60.0</td>
+<td style="text-align: right;">58.6</td>
+<td style="text-align: right;">74559</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Entre 21 y 30 horas</td>
+<td style="text-align: right;">4.498</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">48.7</td>
+<td style="text-align: right;">12.8</td>
+<td style="text-align: right;">12.4</td>
+<td style="text-align: right;">15808</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.10</td>
+<td style="text-align: right;">4.472</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">48.1</td>
+<td style="text-align: right;">24.1</td>
+<td style="text-align: right;">23.5</td>
+<td style="text-align: right;">29941</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.08</td>
+<td style="text-align: right;">-3.383</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">46.3</td>
+<td style="text-align: right;">24.4</td>
+<td style="text-align: right;">24.8</td>
+<td style="text-align: right;">31530</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Entre 11 y 20 horas</td>
+<td style="text-align: right;">-3.753</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">45.9</td>
+<td style="text-align: right;">16.4</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">21436</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_GENERO.M</td>
+<td style="text-align: right;">-10.187</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">45.4</td>
+<td style="text-align: right;">40.0</td>
+<td style="text-align: right;">41.4</td>
+<td style="text-align: right;">52783</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e2.5m4</td>
+<td style="text-align: right;">-12.295</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">43.1</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">16.0</td>
+<td style="text-align: right;">20359</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Sin Estrato</td>
+<td style="text-align: right;">-17.072</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">13.2</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">555</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.SyoV</td>
+<td style="text-align: right;">-26.567</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">8.6</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">997</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_DEPTO_RESIDE.OTRO</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">39.8</td>
+<td style="text-align: right;">63.0</td>
+<td style="text-align: right;">74.5</td>
+<td style="text-align: right;">94849</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.C</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">7.7</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">6.4</td>
+<td style="text-align: right;">8120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.UL</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">8.8</td>
+<td style="text-align: right;">1.6</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">10797</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e1m2.5</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">14.6</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">24.3</td>
+<td style="text-align: right;">30942</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e500m1</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">21.2</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">8235</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.m500</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">23.1</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">13307</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.NP</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">13.9</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">13741</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.09</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">39.5</td>
+<td style="text-align: right;">28.8</td>
+<td style="text-align: right;">34.3</td>
+<td style="text-align: right;">43664</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 1</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">21.8</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">20.3</td>
+<td style="text-align: right;">25825</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 2</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">36.6</td>
+<td style="text-align: right;">29.0</td>
+<td style="text-align: right;">37.2</td>
+<td style="text-align: right;">47398</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Más de 30 horas</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">33.6</td>
+<td style="text-align: right;">28.9</td>
+<td style="text-align: right;">40.4</td>
+<td style="text-align: right;">51493</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_METODO_PRGM.distancia</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">11.5</td>
+<td style="text-align: right;">14635</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_METODO_PRGM.distVirtual</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">8958</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.InstTec</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">3699</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.InstUni</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">28.8</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: right;">31.1</td>
+<td style="text-align: right;">39563</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.TecProf</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">1.8</td>
+<td style="text-align: right;">2333</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>En el grupo 1 se tiene:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Test.Value</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">p.Value</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Class.Cat</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Cat.Class</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Global</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e2.5m4</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">48.0</td>
+<td style="text-align: right;">68.9</td>
+<td style="text-align: right;">16.0</td>
+<td style="text-align: right;">20359</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.10</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">19.3</td>
+<td style="text-align: right;">40.8</td>
+<td style="text-align: right;">23.5</td>
+<td style="text-align: right;">29941</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Más de 30 horas</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">18.9</td>
+<td style="text-align: right;">68.6</td>
+<td style="text-align: right;">40.4</td>
+<td style="text-align: right;">51493</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_METODO_PRGM.presencial</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">13.2</td>
+<td style="text-align: right;">96.7</td>
+<td style="text-align: right;">81.5</td>
+<td style="text-align: right;">103749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.InstTec</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">99.8</td>
+<td style="text-align: right;">26.0</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">3699</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.TecProf</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">93.1</td>
+<td style="text-align: right;">15.3</td>
+<td style="text-align: right;">1.8</td>
+<td style="text-align: right;">2333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_GENERO.M</td>
+<td style="text-align: right;">37.401</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">15.1</td>
+<td style="text-align: right;">56.1</td>
+<td style="text-align: right;">41.4</td>
+<td style="text-align: right;">52783</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 2</td>
+<td style="text-align: right;">34.880</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">15.2</td>
+<td style="text-align: right;">50.8</td>
+<td style="text-align: right;">37.2</td>
+<td style="text-align: right;">47398</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.UL</td>
+<td style="text-align: right;">30.852</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">20.9</td>
+<td style="text-align: right;">15.9</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">10797</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.C</td>
+<td style="text-align: right;">26.092</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">20.8</td>
+<td style="text-align: right;">11.9</td>
+<td style="text-align: right;">6.4</td>
+<td style="text-align: right;">8120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.InstUni</td>
+<td style="text-align: right;">16.070</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">13.3</td>
+<td style="text-align: right;">37.0</td>
+<td style="text-align: right;">31.1</td>
+<td style="text-align: right;">39563</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_DEPTO_RESIDE.OTRO</td>
+<td style="text-align: right;">8.138</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">77.2</td>
+<td style="text-align: right;">74.5</td>
+<td style="text-align: right;">94849</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.09</td>
+<td style="text-align: right;">5.311</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">11.8</td>
+<td style="text-align: right;">36.2</td>
+<td style="text-align: right;">34.3</td>
+<td style="text-align: right;">43664</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.SyoV</td>
+<td style="text-align: right;">3.895</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">15.0</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">997</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 1</td>
+<td style="text-align: right;">2.167</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">11.5</td>
+<td style="text-align: right;">20.9</td>
+<td style="text-align: right;">20.3</td>
+<td style="text-align: right;">25825</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Sin Estrato</td>
+<td style="text-align: right;">-7.631</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">555</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_DEPTO_RESIDE.BOGOTÁ</td>
+<td style="text-align: right;">-8.138</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">9.9</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">25.5</td>
+<td style="text-align: right;">32493</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 3</td>
+<td style="text-align: right;">-8.865</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">9.9</td>
+<td style="text-align: right;">24.8</td>
+<td style="text-align: right;">27.9</td>
+<td style="text-align: right;">35526</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.06m</td>
+<td style="text-align: right;">-9.128</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">5.6</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">2172</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Entre 21 y 30 horas</td>
+<td style="text-align: right;">-12.906</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">8.2</td>
+<td style="text-align: right;">9.2</td>
+<td style="text-align: right;">12.4</td>
+<td style="text-align: right;">15808</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e500m1</td>
+<td style="text-align: right;">-14.391</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">8235</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e1m2.5</td>
+<td style="text-align: right;">-16.108</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">8.7</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: right;">24.3</td>
+<td style="text-align: right;">30942</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.07</td>
+<td style="text-align: right;">-18.544</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">4.0</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">9659</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Menos de 10 horas</td>
+<td style="text-align: right;">-20.559</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">9.1</td>
+<td style="text-align: right;">14.5</td>
+<td style="text-align: right;">18434</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 6</td>
+<td style="text-align: right;">-20.992</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">2384</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Entre 11 y 20 horas</td>
+<td style="text-align: right;">-22.577</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">6.9</td>
+<td style="text-align: right;">10.5</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">21436</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.08</td>
+<td style="text-align: right;">-24.002</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">16.9</td>
+<td style="text-align: right;">24.8</td>
+<td style="text-align: right;">31530</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 5</td>
+<td style="text-align: right;">-24.785</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">4271</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.12M</td>
+<td style="text-align: right;">-25.765</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">4874</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_METODO_PRGM.distVirtual</td>
+<td style="text-align: right;">-26.510</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.7</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">8958</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.11</td>
+<td style="text-align: right;">-27.566</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">5502</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.m500</td>
+<td style="text-align: right;">-28.827</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">4.4</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">13307</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 4</td>
+<td style="text-align: right;">-30.529</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.6</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">8.9</td>
+<td style="text-align: right;">11383</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_GENERO.F</td>
+<td style="text-align: right;">-37.401</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">43.9</td>
+<td style="text-align: right;">58.6</td>
+<td style="text-align: right;">74559</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.S</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">71.1</td>
+<td style="text-align: right;">84.4</td>
+<td style="text-align: right;">107428</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e4m5.5</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">11.4</td>
+<td style="text-align: right;">14464</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e5.5m7</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">8358</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.M7</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">14.1</td>
+<td style="text-align: right;">17936</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.NP</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.4</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">13741</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.0</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">15.8</td>
+<td style="text-align: right;">20171</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_METODO_PRGM.distancia</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">11.5</td>
+<td style="text-align: right;">14635</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.Universidad</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">21.7</td>
+<td style="text-align: right;">64.2</td>
+<td style="text-align: right;">81747</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>En el grupo 1 se tiene:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Test.Value</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">p.Value</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Class.Cat</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Cat.Class</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Global</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ESTU_DEPTO_RESIDE.OTRO</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">34.4</td>
+<td style="text-align: right;">96.5</td>
+<td style="text-align: right;">74.5</td>
+<td style="text-align: right;">94849</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e500m1</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">68.9</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">8235</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.m500</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">71.1</td>
+<td style="text-align: right;">28.0</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">13307</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.NP</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">82.6</td>
+<td style="text-align: right;">33.6</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">13741</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.09</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">35.8</td>
+<td style="text-align: right;">46.2</td>
+<td style="text-align: right;">34.3</td>
+<td style="text-align: right;">43664</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 1</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">55.9</td>
+<td style="text-align: right;">42.7</td>
+<td style="text-align: right;">20.3</td>
+<td style="text-align: right;">25825</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_METODO_PRGM.distancia</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">63.2</td>
+<td style="text-align: right;">27.3</td>
+<td style="text-align: right;">11.5</td>
+<td style="text-align: right;">14635</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.Universidad</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">34.6</td>
+<td style="text-align: right;">83.5</td>
+<td style="text-align: right;">64.2</td>
+<td style="text-align: right;">81747</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Menos de 10 horas</td>
+<td style="text-align: right;">34.238</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">37.2</td>
+<td style="text-align: right;">20.3</td>
+<td style="text-align: right;">14.5</td>
+<td style="text-align: right;">18434</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Entre 11 y 20 horas</td>
+<td style="text-align: right;">31.701</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">35.5</td>
+<td style="text-align: right;">22.5</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">21436</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Sin Estrato</td>
+<td style="text-align: right;">24.958</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">77.3</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">555</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 2</td>
+<td style="text-align: right;">18.997</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">29.6</td>
+<td style="text-align: right;">41.5</td>
+<td style="text-align: right;">37.2</td>
+<td style="text-align: right;">47398</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.UL</td>
+<td style="text-align: right;">18.935</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">34.5</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">10797</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_GENERO.M</td>
+<td style="text-align: right;">13.867</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">28.6</td>
+<td style="text-align: right;">44.6</td>
+<td style="text-align: right;">41.4</td>
+<td style="text-align: right;">52783</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Entre 21 y 30 horas</td>
+<td style="text-align: right;">11.785</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">30.5</td>
+<td style="text-align: right;">14.2</td>
+<td style="text-align: right;">12.4</td>
+<td style="text-align: right;">15808</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.11</td>
+<td style="text-align: right;">7.005</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">30.7</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">5502</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.C</td>
+<td style="text-align: right;">5.300</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">29.1</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">6.4</td>
+<td style="text-align: right;">8120</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.12M</td>
+<td style="text-align: right;">4.236</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">29.1</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">4874</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.SyoV</td>
+<td style="text-align: right;">2.832</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">30.3</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">997</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.10</td>
+<td style="text-align: right;">-8.808</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">24.6</td>
+<td style="text-align: right;">21.8</td>
+<td style="text-align: right;">23.5</td>
+<td style="text-align: right;">29941</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_GENERO.F</td>
+<td style="text-align: right;">-13.867</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">25.1</td>
+<td style="text-align: right;">55.4</td>
+<td style="text-align: right;">58.6</td>
+<td style="text-align: right;">74559</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.S</td>
+<td style="text-align: right;">-18.757</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">25.6</td>
+<td style="text-align: right;">81.1</td>
+<td style="text-align: right;">84.4</td>
+<td style="text-align: right;">107428</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.08</td>
+<td style="text-align: right;">-20.819</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">22.1</td>
+<td style="text-align: right;">20.6</td>
+<td style="text-align: right;">24.8</td>
+<td style="text-align: right;">31530</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Más de 30 horas</td>
+<td style="text-align: right;">-22.641</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">23.2</td>
+<td style="text-align: right;">35.3</td>
+<td style="text-align: right;">40.4</td>
+<td style="text-align: right;">51493</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.06m</td>
+<td style="text-align: right;">-22.980</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">7.4</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">2172</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e1m2.5</td>
+<td style="text-align: right;">-24.952</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">21.2</td>
+<td style="text-align: right;">19.4</td>
+<td style="text-align: right;">24.3</td>
+<td style="text-align: right;">30942</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 6</td>
+<td style="text-align: right;">-36.519</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">2384</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.TecProf</td>
+<td style="text-align: right;">-37.435</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">1.8</td>
+<td style="text-align: right;">2333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_DEPTO_RESIDE.BOGOTÁ</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">3.6</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">25.5</td>
+<td style="text-align: right;">32493</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e2.5m4</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">16.0</td>
+<td style="text-align: right;">20359</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e4m5.5</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">11.4</td>
+<td style="text-align: right;">14464</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e5.5m7</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">8358</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.M7</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">14.1</td>
+<td style="text-align: right;">17936</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.07</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">9659</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 3</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">12.8</td>
+<td style="text-align: right;">13.4</td>
+<td style="text-align: right;">27.9</td>
+<td style="text-align: right;">35526</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 4</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">2.6</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">8.9</td>
+<td style="text-align: right;">11383</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 5</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">4271</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.0</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">7.7</td>
+<td style="text-align: right;">15.8</td>
+<td style="text-align: right;">20171</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_METODO_PRGM.distVirtual</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">8958</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_METODO_PRGM.presencial</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">23.4</td>
+<td style="text-align: right;">71.7</td>
+<td style="text-align: right;">81.5</td>
+<td style="text-align: right;">103749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.InstTec</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">3699</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.InstUni</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">14.1</td>
+<td style="text-align: right;">16.5</td>
+<td style="text-align: right;">31.1</td>
+<td style="text-align: right;">39563</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p>En el grupo 1 se tiene:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Test.Value</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">p.Value</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Class.Cat</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Cat.Class</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Global</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.C</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">42.5</td>
+<td style="text-align: right;">17.8</td>
+<td style="text-align: right;">6.4</td>
+<td style="text-align: right;">8120</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.UL</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">35.9</td>
+<td style="text-align: right;">20.0</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">10797</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e1m2.5</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">55.5</td>
+<td style="text-align: right;">88.4</td>
+<td style="text-align: right;">24.3</td>
+<td style="text-align: right;">30942</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.08</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">24.0</td>
+<td style="text-align: right;">39.0</td>
+<td style="text-align: right;">24.8</td>
+<td style="text-align: right;">31530</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Más de 30 horas</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">24.3</td>
+<td style="text-align: right;">64.4</td>
+<td style="text-align: right;">40.4</td>
+<td style="text-align: right;">51493</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_METODO_PRGM.distancia</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">35.2</td>
+<td style="text-align: right;">26.6</td>
+<td style="text-align: right;">11.5</td>
+<td style="text-align: right;">14635</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_METODO_PRGM.distVirtual</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">91.8</td>
+<td style="text-align: right;">42.4</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">8958</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.InstUni</td>
+<td style="text-align: right;">Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">43.8</td>
+<td style="text-align: right;">89.3</td>
+<td style="text-align: right;">31.1</td>
+<td style="text-align: right;">39563</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_GENERO.F</td>
+<td style="text-align: right;">36.571</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18.3</td>
+<td style="text-align: right;">70.3</td>
+<td style="text-align: right;">58.6</td>
+<td style="text-align: right;">74559</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.07</td>
+<td style="text-align: right;">34.421</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">28.4</td>
+<td style="text-align: right;">14.1</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">9659</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.06m</td>
+<td style="text-align: right;">28.198</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">40.0</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">2172</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 2</td>
+<td style="text-align: right;">25.151</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18.6</td>
+<td style="text-align: right;">45.3</td>
+<td style="text-align: right;">37.2</td>
+<td style="text-align: right;">47398</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.SyoV</td>
+<td style="text-align: right;">23.129</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">46.0</td>
+<td style="text-align: right;">2.4</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">997</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 3</td>
+<td style="text-align: right;">19.938</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18.5</td>
+<td style="text-align: right;">33.9</td>
+<td style="text-align: right;">27.9</td>
+<td style="text-align: right;">35526</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_DEPTO_RESIDE.BOGOTÁ</td>
+<td style="text-align: right;">17.419</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18.3</td>
+<td style="text-align: right;">30.6</td>
+<td style="text-align: right;">25.5</td>
+<td style="text-align: right;">32493</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Sin Estrato</td>
+<td style="text-align: right;">-5.957</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">555</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Entre 21 y 30 horas</td>
+<td style="text-align: right;">-10.062</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12.6</td>
+<td style="text-align: right;">10.3</td>
+<td style="text-align: right;">12.4</td>
+<td style="text-align: right;">15808</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.TecProf</td>
+<td style="text-align: right;">-12.889</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">1.8</td>
+<td style="text-align: right;">2333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Entre 11 y 20 horas</td>
+<td style="text-align: right;">-16.671</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">12.8</td>
+<td style="text-align: right;">16.8</td>
+<td style="text-align: right;">21436</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.09</td>
+<td style="text-align: right;">-17.386</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12.8</td>
+<td style="text-align: right;">28.9</td>
+<td style="text-align: right;">34.3</td>
+<td style="text-align: right;">43664</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_DEPTO_RESIDE.OTRO</td>
+<td style="text-align: right;">-17.419</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">14.2</td>
+<td style="text-align: right;">69.4</td>
+<td style="text-align: right;">74.5</td>
+<td style="text-align: right;">94849</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 6</td>
+<td style="text-align: right;">-22.192</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">2384</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 4</td>
+<td style="text-align: right;">-22.202</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8.6</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">8.9</td>
+<td style="text-align: right;">11383</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 1</td>
+<td style="text-align: right;">-22.950</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">14.4</td>
+<td style="text-align: right;">20.3</td>
+<td style="text-align: right;">25825</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_ESTRATOVIVIENDA.Estrato 5</td>
+<td style="text-align: right;">-23.603</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">4271</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.Menos de 10 horas</td>
+<td style="text-align: right;">-25.968</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">9.2</td>
+<td style="text-align: right;">8.8</td>
+<td style="text-align: right;">14.5</td>
+<td style="text-align: right;">18434</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.12M</td>
+<td style="text-align: right;">-29.566</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">4874</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.11</td>
+<td style="text-align: right;">-33.147</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2.2</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">5502</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.InstTec</td>
+<td style="text-align: right;">-34.346</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">3699</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e500m1</td>
+<td style="text-align: right;">-36.345</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">8235</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_GENERO.M</td>
+<td style="text-align: right;">-36.571</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10.9</td>
+<td style="text-align: right;">29.7</td>
+<td style="text-align: right;">41.4</td>
+<td style="text-align: right;">52783</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_ESTADOCIVIL.S</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">59.9</td>
+<td style="text-align: right;">84.4</td>
+<td style="text-align: right;">107428</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e2.5m4</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">6.8</td>
+<td style="text-align: right;">16.0</td>
+<td style="text-align: right;">20359</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e4m5.5</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">11.4</td>
+<td style="text-align: right;">14464</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.e5.5m7</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.2</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">8358</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.m500</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">13307</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.M7</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">14.1</td>
+<td style="text-align: right;">17936</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_VALORMATRICULAUNIVERSIDAD.NP</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">13741</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_SEMESTRECURSA.10</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7.9</td>
+<td style="text-align: right;">12.2</td>
+<td style="text-align: right;">23.5</td>
+<td style="text-align: right;">29941</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ESTU_HORASSEMANATRABAJA.0</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3.6</td>
+<td style="text-align: right;">3.7</td>
+<td style="text-align: right;">15.8</td>
+<td style="text-align: right;">20171</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTU_METODO_PRGM.presencial</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5.8</td>
+<td style="text-align: right;">31.1</td>
+<td style="text-align: right;">81.5</td>
+<td style="text-align: right;">103749</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INST_CARACTER_ACADEMICO.Universidad</td>
+<td style="text-align: right;">-Inf</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">64.2</td>
+<td style="text-align: right;">81747</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Agrupamiento_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="conclusiones" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Conclusiones</h1>
 <p>Realizado todo el análisis, Análisis de Componentes Principales, Análisis de Correspondencias Múltiples y Agrupamiento, podemos concluir que se lograron los objetivos.</p>
 <p>Primero que nada, se analizó y comparó los puntajes en los distintos componentes diferenciando entre el carácter académico de las instituciones, grupos de referencia, costos de matrícula, estrato, edad y género. Todo esto se logró en el Análisis de Componentes Principales. Además de esto, en el Análisis de Componentes Principales se analizó la posible relación entre variables con información socioeconómica, variables con información académica y variables con información personal y los puntajes de las pruebas, con hallazgos como que el estrato parece estar estrechamente relacionado, así como la educación de los padres, cargos de los padres, el carácter académico de la institución, las horas que trabaja a la semana el alumno, el costo de la matrícula, entre otras variables.</p>
-<p>El Análisis de Correspondencias Múltiples reafirmó estos hallazgos, y aunque surgieron dificultades en el tratamiento de los datos debido a la cantidad pequeña pero importante de datos faltantes en muchas variables, las conclusiones a las que se llegaron no se diferenciaban de las conclusiones del Análisis de Componentes Principales. A grandes rasgos, se podría hacer un índice utilizando tanto Análisis de Componentes Principales como Análisis de Correspondencias Múltiples, que representaría bien a los individuos.</p>
+<p>El Análisis de Correspondencias Múltiples reafirmó estos hallazgos, y aunque surgieron dificultades en el tratamiento de los datos debido a la cantidad pequeña pero importante de datos faltantes en muchas variables, las conclusiones a las que se llegaron no se diferenciaban de las conclusiones del Análisis de Componentes Principales pues la inercia de estas categorías por lo general se encontraba compacta en un solo eje. Por esto mismo, a grandes rasgos, se podría hacer un índice utilizando tanto un Análisis de Componentes Principales como un Análisis de Correspondencias Múltiples, pues ambos representarían bien a los individuos además de explicar gran parte de la inercia utilizando un solo eje.</p>
 <p>Por último, para cumplir el tercer objetivo con el Agrupamiento se tuvo que realizar antes un Análisis de Correspondencias Simples que relacionaba la información del departamento con distintos intervalos del puntaje global obtenido en las pruebas. Teniendo la información relacionada de esta manera, el Agrupamiento mostró que aunque no hay una representación uno a uno respecto a las regiones geográficas, si hay ciertos indicios de que hay regiones que obtienen puntajes parecidos entre sus departamentos. No sólo esto, sino que además mostró que los individuos que hacen parte de los departamentos de la periferia del país tienden a tener puntajes tanto parecidos como peores del promedio, mientras que los individuos que hacen parte de los departamentos centrales tienden a tener mejores puntajes que el promedio. Por lo que la exploración descriptiva parece sugerir que sí hay una relación espacial entre los puntajes, sin embargo, no como se esperaba.</p>
 
 

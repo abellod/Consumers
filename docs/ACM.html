@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -63,6 +97,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -136,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Agrupamiento.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Agrupamiento</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Agrupamiento geografico</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -179,6 +215,33 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#contribución-de-las-variables-al-eje-2-2" id="toc-contribución-de-las-variables-al-eje-2-2" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-2-2"><span class="header-section-number">4.3.3</span> Contribución de las variables al eje 2</a></li>
   <li><a href="#representación-de-las-variables-2" id="toc-representación-de-las-variables-2" class="nav-link" data-scroll-target="#representación-de-las-variables-2"><span class="header-section-number">4.3.4</span> Representación de las variables</a></li>
   <li><a href="#visualización-del-puntaje-global-2" id="toc-visualización-del-puntaje-global-2" class="nav-link" data-scroll-target="#visualización-del-puntaje-global-2"><span class="header-section-number">4.3.5</span> Visualización del puntaje global</a></li>
+  </ul></li>
+  <li><a href="#análisis-de-correspondencias-múltiples-sin-considerar-desconocido" id="toc-análisis-de-correspondencias-múltiples-sin-considerar-desconocido" class="nav-link" data-scroll-target="#análisis-de-correspondencias-múltiples-sin-considerar-desconocido"><span class="header-section-number">5</span> Análisis de Correspondencias Múltiples sin considerar “Desconocido”</a>
+  <ul class="collapse">
+  <li><a href="#variables-relacionadas-con-la-información-personal-1" id="toc-variables-relacionadas-con-la-información-personal-1" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-personal-1"><span class="header-section-number">5.1</span> Variables relacionadas con la información personal</a>
+  <ul class="collapse">
+  <li><a href="#dimensiones-para-el-acm-3" id="toc-dimensiones-para-el-acm-3" class="nav-link" data-scroll-target="#dimensiones-para-el-acm-3"><span class="header-section-number">5.1.1</span> Dimensiones para el ACM</a></li>
+  <li><a href="#contribución-de-las-variables-al-eje-1-3" id="toc-contribución-de-las-variables-al-eje-1-3" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-1-3"><span class="header-section-number">5.1.2</span> Contribución de las variables al eje 1</a></li>
+  <li><a href="#contribución-de-las-variables-al-eje-2-3" id="toc-contribución-de-las-variables-al-eje-2-3" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-2-3"><span class="header-section-number">5.1.3</span> Contribución de las variables al eje 2</a></li>
+  <li><a href="#representación-de-las-variables-3" id="toc-representación-de-las-variables-3" class="nav-link" data-scroll-target="#representación-de-las-variables-3"><span class="header-section-number">5.1.4</span> Representación de las variables</a></li>
+  <li><a href="#visualización-del-puntaje-global-3" id="toc-visualización-del-puntaje-global-3" class="nav-link" data-scroll-target="#visualización-del-puntaje-global-3"><span class="header-section-number">5.1.5</span> Visualización del puntaje global</a></li>
+  </ul></li>
+  <li><a href="#variables-relacionadas-con-la-información-académica-1" id="toc-variables-relacionadas-con-la-información-académica-1" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-académica-1"><span class="header-section-number">5.2</span> Variables relacionadas con la información académica</a>
+  <ul class="collapse">
+  <li><a href="#dimensiones-para-el-acm-4" id="toc-dimensiones-para-el-acm-4" class="nav-link" data-scroll-target="#dimensiones-para-el-acm-4"><span class="header-section-number">5.2.1</span> Dimensiones para el ACM</a></li>
+  <li><a href="#contribución-de-las-variables-al-eje-1-4" id="toc-contribución-de-las-variables-al-eje-1-4" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-1-4"><span class="header-section-number">5.2.2</span> Contribución de las variables al eje 1</a></li>
+  <li><a href="#contribución-de-las-variables-al-eje-2-4" id="toc-contribución-de-las-variables-al-eje-2-4" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-2-4"><span class="header-section-number">5.2.3</span> Contribución de las variables al eje 2</a></li>
+  <li><a href="#representación-de-las-variables-4" id="toc-representación-de-las-variables-4" class="nav-link" data-scroll-target="#representación-de-las-variables-4"><span class="header-section-number">5.2.4</span> Representación de las variables</a></li>
+  <li><a href="#visualización-del-puntaje-global-4" id="toc-visualización-del-puntaje-global-4" class="nav-link" data-scroll-target="#visualización-del-puntaje-global-4"><span class="header-section-number">5.2.5</span> Visualización del puntaje global</a></li>
+  </ul></li>
+  <li><a href="#variables-relacionadas-con-la-información-socioeconómica-1" id="toc-variables-relacionadas-con-la-información-socioeconómica-1" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-socioeconómica-1"><span class="header-section-number">5.3</span> Variables relacionadas con la información socioeconómica</a>
+  <ul class="collapse">
+  <li><a href="#dimensiones-para-el-acm-5" id="toc-dimensiones-para-el-acm-5" class="nav-link" data-scroll-target="#dimensiones-para-el-acm-5"><span class="header-section-number">5.3.1</span> Dimensiones para el ACM</a></li>
+  <li><a href="#contribución-de-las-variables-al-eje-1-5" id="toc-contribución-de-las-variables-al-eje-1-5" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-1-5"><span class="header-section-number">5.3.2</span> Contribución de las variables al eje 1</a></li>
+  <li><a href="#contribución-de-las-variables-al-eje-2-5" id="toc-contribución-de-las-variables-al-eje-2-5" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-2-5"><span class="header-section-number">5.3.3</span> Contribución de las variables al eje 2</a></li>
+  <li><a href="#representación-de-las-variables-5" id="toc-representación-de-las-variables-5" class="nav-link" data-scroll-target="#representación-de-las-variables-5"><span class="header-section-number">5.3.4</span> Representación de las variables</a></li>
+  <li><a href="#visualización-del-puntaje-global-5" id="toc-visualización-del-puntaje-global-5" class="nav-link" data-scroll-target="#visualización-del-puntaje-global-5"><span class="header-section-number">5.3.5</span> Visualización del puntaje global</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -3281,8 +3344,2409 @@ Nota
 </div>
 </div>
 <p>El plano factorial sin acotar muestra que las únicas categorías que realmente están muy bien representadas en el primer eje son las de desconocido. Acotando, vemos que realmente el segundo eje captura la información como si fuera un índice, reafirmando las conclusiones halladas en el ACP. Las categorías que representan un mayor nivel socioeconómico parecen tener mejores puntajes al promedio mientras que las categorías que representan un nivel socioeconómico más bajo parecen tener puntajes peores al promedio, exceptuando de nuevo, el poseer o no motocicleta, en cuyo caso pasa lo contrario.</p>
+</section>
+</section>
+<section id="análisis-de-correspondencias-múltiples-sin-considerar-desconocido" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Análisis de Correspondencias Múltiples sin considerar “Desconocido”</h1>
+<p>A continuación se muestra el Análisis de Correspondencias Múltiples (ACM) de los datos SaberPro 2022-2.</p>
+<p>Se realiza un ACM para cada una de los distintos tipos de variables que cuenta la base de datos (Variables relacionadas con la información personal, Variables relacionadas con la información académica y Variables relacionadas con la información socioeconómica). En cada uno de los ACM se muestra la variable cuantitativa correspondiente al puntaje global como variable suplementaria.</p>
+<section id="variables-relacionadas-con-la-información-personal-1" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-personal-1"><span class="header-section-number">5.1</span> Variables relacionadas con la información personal</h2>
+<section id="dimensiones-para-el-acm-3" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="dimensiones-para-el-acm-3"><span class="header-section-number">5.1.1</span> Dimensiones para el ACM</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-82-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Como en el ACM existen ejes que se consideran “parásitos”, se utiliza el <strong>Criterio de Benzécri</strong> para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-83-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>La inercia en cada eje luego de aplicar el <strong>criterio de Benzécri</strong> es</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Ejes</th>
+<th style="text-align: right;">Inercia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Eje 1</td>
+<td style="text-align: right;">56.3185</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eje 2</td>
+<td style="text-align: right;">42.3613</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eje 3</td>
+<td style="text-align: right;">1.2994</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eje 4</td>
+<td style="text-align: right;">0.0208</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Entonces, se realiza el análisis con 2 ejes para el ACM.</p>
+</section>
+<section id="contribución-de-las-variables-al-eje-1-3" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-1-3"><span class="header-section-number">5.1.2</span> Contribución de las variables al eje 1</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-85-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Podemos ver que las que más contribuyen al primer eje son las categorías “desconocido” de las distintas variables, veremos a qué nos lleva esto más adelante.</p>
+</section>
+<section id="contribución-de-las-variables-al-eje-2-3" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-2-3"><span class="header-section-number">5.1.3</span> Contribución de las variables al eje 2</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-86-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>La mayor contribución en este eje también es dado por categorías “desconocido”, por lo que la variabilidad de estas categorías fue capturada en el primer y segundo eje, de ahí, ya empiezan a aparecer categorías distintas.</p>
+</section>
+<section id="representación-de-las-variables-3" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="representación-de-las-variables-3"><span class="header-section-number">5.1.4</span> Representación de las variables</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-87-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Si bien se muestra que variables relacionadas con la ocupación de la madre y padre están muy correlacionadas con el eje 1, y variables relacionadas con la educación de madre y padre con el eje 2; esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ‘’Desconocido’’ con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Además, las variables de educación y ocupación de madre y padre tienen bastantes más categorías que las otras variables que se usaron para hacer este ACM.</p>
+</section>
+<section id="visualización-del-puntaje-global-3" class="level3" data-number="5.1.5">
+<h3 data-number="5.1.5" class="anchored" data-anchor-id="visualización-del-puntaje-global-3"><span class="header-section-number">5.1.5</span> Visualización del puntaje global</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-88-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para los siguientes ACMs, se graficaron los planos factoriales separando por variables y luego el plano factorial con todas las variables. En cada eje se acotó a un intervalo más pequeño para que se pueda apreciar de mejor manera la representación de las distintas variables, debido a que las categorías “desconocido” que hacen referencia a los valores faltantes en cada variable son las que más pesan, llevando a que tengan coordenadas que en proporción a las otras categorías son muy grandes, sin embargo, en el plano factorial con todas las variables se graficó tanto acotando como sin acotar, principalmente para apreciar esta diferencia. Además, para facilitar la visualización se recodificaron las variables con el fin de que las etiquetas de cada categoría sean más legibles. Se obviará la categoría desconocido en la mayoría de las variables ya que siempre estaba relacionada al primer eje y no parecía decir nada relevante.</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">1. Sexo</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">2. Etnia</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">3. Departamento</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">4. Estado civil</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" role="tab" aria-controls="tabset-4-5" aria-selected="false">5. Educación padre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-6" role="tab" aria-controls="tabset-4-6" aria-selected="false">6. Educación madre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-7" role="tab" aria-controls="tabset-4-7" aria-selected="false">7. Ocupación padre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-8" role="tab" aria-controls="tabset-4-8" aria-selected="false">8. Ocupación madre</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-9" role="tab" aria-controls="tabset-4-9" aria-selected="false">9. Horas trabaja</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">-0.1923</td>
+<td style="text-align: right;">0.2233</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.2716</td>
+<td style="text-align: right;">-0.3154</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">-81.56</td>
+<td style="text-align: right;">94.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">81.56</td>
+<td style="text-align: right;">-94.7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-92-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">-0.0839</td>
+<td style="text-align: right;">-0.1701</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">0.9389</td>
+<td style="text-align: right;">1.9040</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">-100.1</td>
+<td style="text-align: right;">-203.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Si</td>
+<td style="text-align: right;">100.1</td>
+<td style="text-align: right;">203.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-94-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BOGOTÁ</td>
+<td style="text-align: right;">-0.1266</td>
+<td style="text-align: right;">-1.1779</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OTRO</td>
+<td style="text-align: right;">0.0434</td>
+<td style="text-align: right;">0.4035</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+<th style="text-align: right;">Dim.3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BOGOTÁ</td>
+<td style="text-align: right;">-26.44</td>
+<td style="text-align: right;">-246</td>
+<td style="text-align: right;">38.23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OTRO</td>
+<td style="text-align: right;">26.44</td>
+<td style="text-align: right;">246</td>
+<td style="text-align: right;">-38.23</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-96-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">1.8129</td>
+<td style="text-align: right;">0.0298</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">-0.3184</td>
+<td style="text-align: right;">-0.0360</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SyoV</td>
+<td style="text-align: right;">1.5987</td>
+<td style="text-align: right;">-0.4576</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UL</td>
+<td style="text-align: right;">1.6569</td>
+<td style="text-align: right;">0.3781</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">168.83</td>
+<td style="text-align: right;">2.774</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S</td>
+<td style="text-align: right;">-263.89</td>
+<td style="text-align: right;">-29.839</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SyoV</td>
+<td style="text-align: right;">50.68</td>
+<td style="text-align: right;">-14.505</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UL</td>
+<td style="text-align: right;">179.96</td>
+<td style="text-align: right;">41.062</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-98-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-5-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>coordenas_sup <span class="ot">&lt;-</span> res.mca<span class="sc">$</span>quali.sup<span class="sc">$</span>coord</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>coord_sup <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(coordenas_sup)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coord_sup[<span class="dv">14</span><span class="sc">:</span><span class="dv">26</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">digits =</span> <span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 69%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_BC | -0.0831| 0.0295| |data\)</span>FAMI_EDUCACIONPADRE_BI</td>
+<td style="text-align: right;">0.1238</td>
+<td style="text-align: right;">-0.0065</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_Desconocido | 0.6280| -0.4846| |data\)</span>FAMI_EDUCACIONPADRE_EPC</td>
+<td style="text-align: right;">-0.3294</td>
+<td style="text-align: right;">-0.0412</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_EPI | -0.0938| -0.1138| |data\)</span>FAMI_EDUCACIONPADRE_NAp</td>
+<td style="text-align: right;">-0.0574</td>
+<td style="text-align: right;">-0.0049</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_Ninguno | 0.5291| 0.2800| |data\)</span>FAMI_EDUCACIONPADRE_NS</td>
+<td style="text-align: right;">-0.0865</td>
+<td style="text-align: right;">-0.1146</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_PC | 0.2491| 0.1075| |data\)</span>FAMI_EDUCACIONPADRE_PI</td>
+<td style="text-align: right;">0.2786</td>
+<td style="text-align: right;">0.1457</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_Post | -0.4255| -0.2051| |data\)</span>FAMI_EDUCACIONPADRE_TTC</td>
+<td style="text-align: right;">-0.1636</td>
+<td style="text-align: right;">0.0216</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data$FAMI_EDUCACIONPADRE_TTI</td>
+<td style="text-align: right;">-0.0225</td>
+<td style="text-align: right;">-0.0028</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 68%">
+<col style="width: 14%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_BC | -14.445| 5.1174| |data\)</span>FAMI_EDUCACIONPADRE_BI</td>
+<td style="text-align: right;">13.729</td>
+<td style="text-align: right;">-0.7219</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_Desconocido | 44.272| -34.1594| |data\)</span>FAMI_EDUCACIONPADRE_EPC</td>
+<td style="text-align: right;">-45.287</td>
+<td style="text-align: right;">-5.6674</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_EPI | -7.257| -8.8026| |data\)</span>FAMI_EDUCACIONPADRE_NAp</td>
+<td style="text-align: right;">-2.166</td>
+<td style="text-align: right;">-0.1841</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_Ninguno | 28.407| 15.0330| |data\)</span>FAMI_EDUCACIONPADRE_NS</td>
+<td style="text-align: right;">-5.155</td>
+<td style="text-align: right;">-6.8285</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_PC | 25.347| 10.9385| |data\)</span>FAMI_EDUCACIONPADRE_PI</td>
+<td style="text-align: right;">45.511</td>
+<td style="text-align: right;">23.7928</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONPADRE_Post | -42.392| -20.4382| |data\)</span>FAMI_EDUCACIONPADRE_TTC</td>
+<td style="text-align: right;">-19.274</td>
+<td style="text-align: right;">2.5460</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data$FAMI_EDUCACIONPADRE_TTI</td>
+<td style="text-align: right;">-1.395</td>
+<td style="text-align: right;">-0.1715</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-100-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-6-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 69%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_BC | -0.0137| 0.0077| |data\)</span>FAMI_EDUCACIONMADRE_BI</td>
+<td style="text-align: right;">0.1744</td>
+<td style="text-align: right;">0.0152</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_Desconocido | 0.6396| -0.5022| |data\)</span>FAMI_EDUCACIONMADRE_EPC</td>
+<td style="text-align: right;">-0.3692</td>
+<td style="text-align: right;">-0.0531</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_EPI | -0.2304| -0.1200| |data\)</span>FAMI_EDUCACIONMADRE_NAp</td>
+<td style="text-align: right;">0.0390</td>
+<td style="text-align: right;">0.1921</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_Ninguno | 0.6625| 0.3889| |data\)</span>FAMI_EDUCACIONMADRE_NS</td>
+<td style="text-align: right;">-0.0162</td>
+<td style="text-align: right;">-0.0369</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_PC | 0.3325| 0.0942| |data\)</span>FAMI_EDUCACIONMADRE_PI</td>
+<td style="text-align: right;">0.3866</td>
+<td style="text-align: right;">0.1586</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_Post | -0.4302| -0.1689| |data\)</span>FAMI_EDUCACIONMADRE_TTC</td>
+<td style="text-align: right;">-0.1828</td>
+<td style="text-align: right;">0.0541</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data$FAMI_EDUCACIONMADRE_TTI</td>
+<td style="text-align: right;">-0.0529</td>
+<td style="text-align: right;">0.0023</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 67%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_BC | -2.4932| 1.4009| |data\)</span>FAMI_EDUCACIONMADRE_BI</td>
+<td style="text-align: right;">20.6444</td>
+<td style="text-align: right;">1.8047</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_Desconocido | 45.5889| -35.8005| |data\)</span>FAMI_EDUCACIONMADRE_EPC</td>
+<td style="text-align: right;">-53.7278</td>
+<td style="text-align: right;">-7.7319</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_EPI | -14.4580| -7.5333| |data\)</span>FAMI_EDUCACIONMADRE_NAp</td>
+<td style="text-align: right;">0.6027</td>
+<td style="text-align: right;">2.9667</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_Ninguno | 28.6340| 16.8081| |data\)</span>FAMI_EDUCACIONMADRE_NS</td>
+<td style="text-align: right;">-0.3760</td>
+<td style="text-align: right;">-0.8568</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_PC | 33.1871| 9.4079| |data\)</span>FAMI_EDUCACIONMADRE_PI</td>
+<td style="text-align: right;">53.1003</td>
+<td style="text-align: right;">21.7837</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_EDUCACIONMADRE_Post | -45.5196| -17.8770| |data\)</span>FAMI_EDUCACIONMADRE_TTC</td>
+<td style="text-align: right;">-26.7396</td>
+<td style="text-align: right;">7.9173</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data$FAMI_EDUCACIONMADRE_TTI</td>
+<td style="text-align: right;">-3.7235</td>
+<td style="text-align: right;">0.1630</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-102-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-7-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 69%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_Desconocido | -0.1055| -0.1550| |data\)</span>FAMI_OCUPACIONPADRE_EDGG</td>
+<td style="text-align: right;">-0.4248</td>
+<td style="text-align: right;">-0.2980</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_Emp | -0.2200| -0.2577| |data\)</span>FAMI_OCUPACIONPADRE_ENAA</td>
+<td style="text-align: right;">-0.1836</td>
+<td style="text-align: right;">-0.1054</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_END | -0.3474| -0.1807| |data\)</span>FAMI_OCUPACIONPADRE_ENTP</td>
+<td style="text-align: right;">-0.3081</td>
+<td style="text-align: right;">-0.0202</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_EOO | 0.0674| -0.0123| |data\)</span>FAMI_OCUPACIONPADRE_H</td>
+<td style="text-align: right;">0.3491</td>
+<td style="text-align: right;">0.0730</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_OAO | 0.1072| 0.0727| |data\)</span>FAMI_OCUPACIONPADRE_PE</td>
+<td style="text-align: right;">-0.0589</td>
+<td style="text-align: right;">-0.1584</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_Pen | 0.1668| -0.1224| |data\)</span>FAMI_OCUPACIONPADRE_PI</td>
+<td style="text-align: right;">-0.3289</td>
+<td style="text-align: right;">-0.1713</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data$FAMI_OCUPACIONPADRE_TCP</td>
+<td style="text-align: right;">0.0791</td>
+<td style="text-align: right;">0.1244</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 69%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_Desconocido | -4.829| -7.095| |data\)</span>FAMI_OCUPACIONPADRE_EDGG</td>
+<td style="text-align: right;">-22.348</td>
+<td style="text-align: right;">-15.680</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_Emp | -13.951| -16.342| |data\)</span>FAMI_OCUPACIONPADRE_ENAA</td>
+<td style="text-align: right;">-9.324</td>
+<td style="text-align: right;">-5.356</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_END | -14.540| -7.564| |data\)</span>FAMI_OCUPACIONPADRE_ENTP</td>
+<td style="text-align: right;">-37.494</td>
+<td style="text-align: right;">-2.458</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_EOO | 9.282| -1.700| |data\)</span>FAMI_OCUPACIONPADRE_H</td>
+<td style="text-align: right;">19.590</td>
+<td style="text-align: right;">4.096</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_OAO | 16.009| 10.857| |data\)</span>FAMI_OCUPACIONPADRE_PE</td>
+<td style="text-align: right;">-4.293</td>
+<td style="text-align: right;">-11.537</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONPADRE_Pen | 19.922| -14.613| |data\)</span>FAMI_OCUPACIONPADRE_PI</td>
+<td style="text-align: right;">-24.766</td>
+<td style="text-align: right;">-12.898</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data$FAMI_OCUPACIONPADRE_TCP</td>
+<td style="text-align: right;">18.838</td>
+<td style="text-align: right;">29.640</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-104-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-8-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 69%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_Desconocido | -0.1055| -0.1550| |data\)</span>FAMI_OCUPACIONMADRE_EDGG</td>
+<td style="text-align: right;">-0.4217</td>
+<td style="text-align: right;">-0.3406</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_Emp | -0.2356| -0.2266| |data\)</span>FAMI_OCUPACIONMADRE_ENAA</td>
+<td style="text-align: right;">-0.2217</td>
+<td style="text-align: right;">-0.0829</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_END | -0.3188| -0.2066| |data\)</span>FAMI_OCUPACIONMADRE_ENTP</td>
+<td style="text-align: right;">-0.3190</td>
+<td style="text-align: right;">-0.0286</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_EOO | 0.0610| -0.2256| |data\)</span>FAMI_OCUPACIONMADRE_H</td>
+<td style="text-align: right;">0.1496</td>
+<td style="text-align: right;">0.1074</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_OAO | 0.0295| 0.0965| |data\)</span>FAMI_OCUPACIONMADRE_PE</td>
+<td style="text-align: right;">-0.0779</td>
+<td style="text-align: right;">-0.1110</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_Pen | 0.2119| -0.2155| |data\)</span>FAMI_OCUPACIONMADRE_PI</td>
+<td style="text-align: right;">-0.3499</td>
+<td style="text-align: right;">-0.1703</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data$FAMI_OCUPACIONMADRE_TCP</td>
+<td style="text-align: right;">0.0348</td>
+<td style="text-align: right;">0.0307</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 69%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_Desconocido | -4.829| -7.095| |data\)</span>FAMI_OCUPACIONMADRE_EDGG</td>
+<td style="text-align: right;">-17.427</td>
+<td style="text-align: right;">-14.076</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_Emp | -10.091| -9.706| |data\)</span>FAMI_OCUPACIONMADRE_ENAA</td>
+<td style="text-align: right;">-19.453</td>
+<td style="text-align: right;">-7.269</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_END | -15.243| -9.878| |data\)</span>FAMI_OCUPACIONMADRE_ENTP</td>
+<td style="text-align: right;">-39.876</td>
+<td style="text-align: right;">-3.579</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_EOO | 4.872| -18.026| |data\)</span>FAMI_OCUPACIONMADRE_H</td>
+<td style="text-align: right;">43.575</td>
+<td style="text-align: right;">31.277</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_OAO | 3.068| 10.031| |data\)</span>FAMI_OCUPACIONMADRE_PE</td>
+<td style="text-align: right;">-5.399</td>
+<td style="text-align: right;">-7.691</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data<span class="math inline">\(FAMI_OCUPACIONMADRE_Pen | 17.593| -17.889| |data\)</span>FAMI_OCUPACIONMADRE_PI</td>
+<td style="text-align: right;">-25.027</td>
+<td style="text-align: right;">-12.179</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">data$FAMI_OCUPACIONMADRE_TCP</td>
+<td style="text-align: right;">4.599</td>
+<td style="text-align: right;">4.049</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-106-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-9-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">-1.3459</td>
+<td style="text-align: right;">0.0376</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Entre 11 y 20 horas</td>
+<td style="text-align: right;">-0.1447</td>
+<td style="text-align: right;">0.4504</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Entre 21 y 30 horas</td>
+<td style="text-align: right;">-0.1498</td>
+<td style="text-align: right;">0.2135</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Más de 30 horas</td>
+<td style="text-align: right;">0.7056</td>
+<td style="text-align: right;">-0.5710</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Menos de 10 horas</td>
+<td style="text-align: right;">-0.2017</td>
+<td style="text-align: right;">0.8471</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">-208.37</td>
+<td style="text-align: right;">5.825</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Entre 11 y 20 horas</td>
+<td style="text-align: right;">-23.22</td>
+<td style="text-align: right;">72.305</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Entre 21 y 30 horas</td>
+<td style="text-align: right;">-20.13</td>
+<td style="text-align: right;">28.686</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Más de 30 horas</td>
+<td style="text-align: right;">207.48</td>
+<td style="text-align: right;">-167.899</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Menos de 10 horas</td>
+<td style="text-align: right;">-29.61</td>
+<td style="text-align: right;">124.368</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-108-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Teniendo en cuenta las coordenadas del puntaje global, encontrándose en el cuarto cuadrante de los planos plano, las conclusiones a las que se llegan son muy parecidas a las que se obtuvieron en el ACP. Los estudiantes con características como hombre, sin etnia, que viven en Bogotá, con estado civil soltero, con padres y madres con niveles de educación superior, mejores puestos laborales y menos horas de trabajo, tienen en promedio mejores puntajes que el resto. El primer eje no parece aportar información relevante, el segundo parece reafirmar las conclusiones halladas en el ACP y el tercer eje también parece reafirmar estas conclusiones.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 48 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-109-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Vemos que sin acotar en el primer y segundo eje, la mayoría de las categorías están muy cerca al centro, mientras que las categorías desconocido se encuentran por lo general muy alejadas de el centro, lo cual era esperable pues estos individuos son los que tenían valores faltantes, que por lo general eran una pequeña cantidad, por lo que su variabilidad es muy grande.</p>
+<p>Acotando en los ejes, podemos ver que las características relacionadas a un mejor nivel socioeconómico y a menos responsabilidades, como padres y madres en mejores cargos, padres y madres con mejores niveles educativos, estar soltero, no trabajar, se encuentran concentradas en el cuarto cuadrante del plano, en donde también se encuentran las coordenadas del puntaje global.</p>
+<p>En resumen, vemos que los datos parecen llevarnos a la misma conclusión que en el caso del ACP.</p>
+</section>
+</section>
+<section id="variables-relacionadas-con-la-información-académica-1" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-académica-1"><span class="header-section-number">5.2</span> Variables relacionadas con la información académica</h2>
+<section id="dimensiones-para-el-acm-4" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="dimensiones-para-el-acm-4"><span class="header-section-number">5.2.1</span> Dimensiones para el ACM</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-110-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Se utiliza el <strong>Criterio de Benzecri</strong> para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-111-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>La inercia en cada eje luego de aplicar el <strong>criterio de Benzécri</strong> es</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Ejes</th>
+<th style="text-align: right;">Inercia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Eje 1</td>
+<td style="text-align: right;">88.8663</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eje 2</td>
+<td style="text-align: right;">6.1176</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eje 3</td>
+<td style="text-align: right;">3.5136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eje 4</td>
+<td style="text-align: right;">1.1935</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eje 5</td>
+<td style="text-align: right;">0.3086</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eje 6</td>
+<td style="text-align: right;">0.0005</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Entonces, se realiza el análisis con 2 ejes para el ACM.</p>
+</section>
+<section id="contribución-de-las-variables-al-eje-1-4" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-1-4"><span class="header-section-number">5.2.2</span> Contribución de las variables al eje 1</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-113-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>De nuevo las categorías que más contribuyen al primer eje son las de desconocido.</p>
+</section>
+<section id="contribución-de-las-variables-al-eje-2-4" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-2-4"><span class="header-section-number">5.2.3</span> Contribución de las variables al eje 2</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-114-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Las contribuciones al segundo eje se ven principalmente en la modalidad de estudio y el tipo de institución a la que el estudiante pertenece, y no se ve un aporte de las categorías desconocido.</p>
+</section>
+<section id="representación-de-las-variables-4" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="representación-de-las-variables-4"><span class="header-section-number">5.2.4</span> Representación de las variables</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-115-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Nuevamente, si bien se muestra que la variable Cómo capacitó el exámen está muy correlacionada con el eje 1, y las variables Método del programa y el Carácter acdémico de la institución se relacionan con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ‘’Desconocido’’ con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable.</p>
+</section>
+<section id="visualización-del-puntaje-global-4" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="visualización-del-puntaje-global-4"><span class="header-section-number">5.2.5</span> Visualización del puntaje global</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-116-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">1. Capacitación examen</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">2. Semestre que cursa</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">3. Grupo referencia</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false">4. Modalidad</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-5" role="tab" aria-controls="tabset-5-5" aria-selected="false">5. Carácter académico</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CuentaPropia</td>
+<td style="text-align: right;">0.1441</td>
+<td style="text-align: right;">-0.2854</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Curso</td>
+<td style="text-align: right;">-0.5810</td>
+<td style="text-align: right;">1.1924</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: right;">-0.2017</td>
+<td style="text-align: right;">0.3810</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CuentaPropia</td>
+<td style="text-align: right;">76.26</td>
+<td style="text-align: right;">-150.98</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Curso</td>
+<td style="text-align: right;">-67.13</td>
+<td style="text-align: right;">137.78</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ninguna</td>
+<td style="text-align: right;">-37.98</td>
+<td style="text-align: right;">71.74</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-120-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">06m</td>
+<td style="text-align: right;">1.5699</td>
+<td style="text-align: right;">0.0437</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">07</td>
+<td style="text-align: right;">0.7322</td>
+<td style="text-align: right;">0.5901</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">08</td>
+<td style="text-align: right;">0.4573</td>
+<td style="text-align: right;">0.5157</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">09</td>
+<td style="text-align: right;">-0.0243</td>
+<td style="text-align: right;">-0.3775</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10</td>
+<td style="text-align: right;">-0.3963</td>
+<td style="text-align: right;">-0.6302</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">11</td>
+<td style="text-align: right;">-1.0527</td>
+<td style="text-align: right;">1.0122</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">12M</td>
+<td style="text-align: right;">-1.2686</td>
+<td style="text-align: right;">1.5855</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">06m</td>
+<td style="text-align: right;">73.796</td>
+<td style="text-align: right;">2.054</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">07</td>
+<td style="text-align: right;">74.856</td>
+<td style="text-align: right;">60.329</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">08</td>
+<td style="text-align: right;">93.608</td>
+<td style="text-align: right;">105.562</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">09</td>
+<td style="text-align: right;">-6.258</td>
+<td style="text-align: right;">-97.297</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10</td>
+<td style="text-align: right;">-78.401</td>
+<td style="text-align: right;">-124.691</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">11</td>
+<td style="text-align: right;">-79.829</td>
+<td style="text-align: right;">76.756</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">12M</td>
+<td style="text-align: right;">-90.312</td>
+<td style="text-align: right;">112.873</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-122-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<p>Se dejó como variable suplementaria ya que tiene 22 categorías</p>
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">AdmYAfin</td>
+<td style="text-align: right;">0.6173</td>
+<td style="text-align: right;">-0.1282</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ArqYUrb</td>
+<td style="text-align: right;">-0.5210</td>
+<td style="text-align: right;">-0.1761</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BelArtYDis</td>
+<td style="text-align: right;">-0.0004</td>
+<td style="text-align: right;">0.0078</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CienAgr</td>
+<td style="text-align: right;">-0.4076</td>
+<td style="text-align: right;">0.0289</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CienMilYNav</td>
+<td style="text-align: right;">0.9368</td>
+<td style="text-align: right;">0.4387</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CienNatYExac</td>
+<td style="text-align: right;">-0.6014</td>
+<td style="text-align: right;">0.1582</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CienSoc</td>
+<td style="text-align: right;">-0.0103</td>
+<td style="text-align: right;">0.2448</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ComuPerYPub</td>
+<td style="text-align: right;">0.1078</td>
+<td style="text-align: right;">0.0787</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ContYAfin</td>
+<td style="text-align: right;">0.3140</td>
+<td style="text-align: right;">-0.1830</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Derecho</td>
+<td style="text-align: right;">-0.3961</td>
+<td style="text-align: right;">-0.2818</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EcAdContYAfinU</td>
+<td style="text-align: right;">-0.8036</td>
+<td style="text-align: right;">-0.1792</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Economía</td>
+<td style="text-align: right;">-0.3010</td>
+<td style="text-align: right;">0.1383</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Educación</td>
+<td style="text-align: right;">0.0538</td>
+<td style="text-align: right;">0.1437</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Enfermeria</td>
+<td style="text-align: right;">-0.1207</td>
+<td style="text-align: right;">0.5174</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GrupRefNal</td>
+<td style="text-align: right;">0.0507</td>
+<td style="text-align: right;">-1.5956</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GrupRefNalU</td>
+<td style="text-align: right;">0.2085</td>
+<td style="text-align: right;">-0.8060</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hum</td>
+<td style="text-align: right;">-0.0563</td>
+<td style="text-align: right;">0.3454</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inge</td>
+<td style="text-align: right;">-0.2120</td>
+<td style="text-align: right;">-0.1759</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Med</td>
+<td style="text-align: right;">-1.1473</td>
+<td style="text-align: right;">1.1442</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Psic</td>
+<td style="text-align: right;">0.2373</td>
+<td style="text-align: right;">0.0601</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RecYDep</td>
+<td style="text-align: right;">0.1562</td>
+<td style="text-align: right;">-0.1438</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">salud</td>
+<td style="text-align: right;">-0.0082</td>
+<td style="text-align: right;">0.3313</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">AdmYAfin</td>
+<td style="text-align: right;">103.3514</td>
+<td style="text-align: right;">-21.4714</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ArqYUrb</td>
+<td style="text-align: right;">-38.7677</td>
+<td style="text-align: right;">-13.1073</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BelArtYDis</td>
+<td style="text-align: right;">-0.0216</td>
+<td style="text-align: right;">0.4681</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CienAgr</td>
+<td style="text-align: right;">-21.1117</td>
+<td style="text-align: right;">1.4967</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CienMilYNav</td>
+<td style="text-align: right;">26.3458</td>
+<td style="text-align: right;">12.3364</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CienNatYExac</td>
+<td style="text-align: right;">-29.1785</td>
+<td style="text-align: right;">7.6740</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CienSoc</td>
+<td style="text-align: right;">-0.6890</td>
+<td style="text-align: right;">16.4231</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ComuPerYPub</td>
+<td style="text-align: right;">6.5245</td>
+<td style="text-align: right;">4.7626</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ContYAfin</td>
+<td style="text-align: right;">29.3337</td>
+<td style="text-align: right;">-17.0982</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Derecho</td>
+<td style="text-align: right;">-37.7658</td>
+<td style="text-align: right;">-26.8660</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EcAdContYAfinU</td>
+<td style="text-align: right;">-8.5078</td>
+<td style="text-align: right;">-1.8973</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Economía</td>
+<td style="text-align: right;">-12.6812</td>
+<td style="text-align: right;">5.8288</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Educación</td>
+<td style="text-align: right;">5.2366</td>
+<td style="text-align: right;">13.9845</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Enfermeria</td>
+<td style="text-align: right;">-6.8734</td>
+<td style="text-align: right;">29.4692</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GrupRefNal</td>
+<td style="text-align: right;">0.2026</td>
+<td style="text-align: right;">-6.3827</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GrupRefNalU</td>
+<td style="text-align: right;">13.0887</td>
+<td style="text-align: right;">-50.5929</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hum</td>
+<td style="text-align: right;">-1.7002</td>
+<td style="text-align: right;">10.4402</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inge</td>
+<td style="text-align: right;">-36.3002</td>
+<td style="text-align: right;">-30.1110</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Med</td>
+<td style="text-align: right;">-88.8734</td>
+<td style="text-align: right;">88.6370</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Psic</td>
+<td style="text-align: right;">23.2395</td>
+<td style="text-align: right;">5.8830</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RecYDep</td>
+<td style="text-align: right;">4.2445</td>
+<td style="text-align: right;">-3.9084</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">salud</td>
+<td style="text-align: right;">-0.7339</td>
+<td style="text-align: right;">29.5406</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-124-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">distancia</td>
+<td style="text-align: right;">0.9108</td>
+<td style="text-align: right;">0.2684</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">distVirtual</td>
+<td style="text-align: right;">2.3605</td>
+<td style="text-align: right;">0.1413</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">presencial</td>
+<td style="text-align: right;">-0.3323</td>
+<td style="text-align: right;">-0.0501</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">distancia</td>
+<td style="text-align: right;">117.1</td>
+<td style="text-align: right;">34.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">distVirtual</td>
+<td style="text-align: right;">231.7</td>
+<td style="text-align: right;">13.87</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">presencial</td>
+<td style="text-align: right;">-248.7</td>
+<td style="text-align: right;">-37.45</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-126-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-5-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-5-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">InstTec</td>
+<td style="text-align: right;">-0.3083</td>
+<td style="text-align: right;">-2.3382</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">InstUni</td>
+<td style="text-align: right;">1.0956</td>
+<td style="text-align: right;">0.1723</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TecProf</td>
+<td style="text-align: right;">0.2167</td>
+<td style="text-align: right;">-4.2538</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Universidad</td>
+<td style="text-align: right;">-0.5225</td>
+<td style="text-align: right;">0.1438</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">InstTec</td>
+<td style="text-align: right;">-19.03</td>
+<td style="text-align: right;">-144.32</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">InstUni</td>
+<td style="text-align: right;">262.47</td>
+<td style="text-align: right;">41.29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TecProf</td>
+<td style="text-align: right;">10.56</td>
+<td style="text-align: right;">-207.37</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Universidad</td>
+<td style="text-align: right;">-249.64</td>
+<td style="text-align: right;">68.71</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-128-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>De la misma manera que con el ACP, ya que, obviando el primer eje que parece tomar toda la inercia de las categorías desconocido, el segundo eje parece indicar que las personas con características como estudiar de manera presencial, en una universidad y cursando los últimos semestres obtienen mejores puntajes que el promedio, pues el puntaje global en ese eje apunta a la misma dirección. Además de esto, aunque se uso como variable suplementaria el grupo de referencia, se puede apreciar que también parece seguir las conclusiones del ACP, personas que hacen parte a grupos de referencia como Medicina, Econ.,admin.,contad. y afines Univer, obtienen mejores puntajes que el promedio.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-129-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Se ve que las únicas dos categorías desconocido están muy lejos del centro respecto al primer eje como en el ACM anterior, y acotando se puede apreciar mejor de nuevo el cómo se agrupan las categorías, estando cerca categorías como estar en 12 Semestre o más y medicina, además de mostrar que los individuos que pertenecen a las categorías que están más abajo del gráfico son los que obtienen mejores puntajes respecto al promedio, reafirmando lo concluído en el ACP.</p>
+</section>
+</section>
+<section id="variables-relacionadas-con-la-información-socioeconómica-1" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-socioeconómica-1"><span class="header-section-number">5.3</span> Variables relacionadas con la información socioeconómica</h2>
+<section id="dimensiones-para-el-acm-5" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="dimensiones-para-el-acm-5"><span class="header-section-number">5.3.1</span> Dimensiones para el ACM</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-130-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Se utiliza el <strong>Criterio de Benzécri</strong> para determinar con cuantos ejes realizar el ACM. Luego de aplicar dicho criterio, se obtiene la siguiente inercia para los ejes:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-131-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>La inercia en cada eje luego de aplicar el <strong>criterio de Benzécri</strong> es</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Ejes</th>
+<th style="text-align: right;">Inercia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Eje 1</td>
+<td style="text-align: right;">91.8377</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eje 2</td>
+<td style="text-align: right;">6.5720</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eje 3</td>
+<td style="text-align: right;">1.5167</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eje 4</td>
+<td style="text-align: right;">0.0625</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eje 5</td>
+<td style="text-align: right;">0.0101</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eje 6</td>
+<td style="text-align: right;">0.0006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eje 7</td>
+<td style="text-align: right;">0.0003</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eje 8</td>
+<td style="text-align: right;">0.0001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Entonces, se realiza el análisis con 2 ejes para el ACM.</p>
+</section>
+<section id="contribución-de-las-variables-al-eje-1-5" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-1-5"><span class="header-section-number">5.3.2</span> Contribución de las variables al eje 1</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-133-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Las categorías que más aportan al primer eje son las de desconocido.</p>
+</section>
+<section id="contribución-de-las-variables-al-eje-2-5" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-2-5"><span class="header-section-number">5.3.3</span> Contribución de las variables al eje 2</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-134-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Las categorías que más aportan al segundo eje son si tiene o no algún bien o servicio.</p>
+</section>
+<section id="representación-de-las-variables-5" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="representación-de-las-variables-5"><span class="header-section-number">5.3.4</span> Representación de las variables</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-135-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Tal como en los puntos anteriores, si bien se muestra que las variables relacionadas con tener o no cierto bien están correlacionadas con el eje 1, y la variable Valor matrícula de la universidad se relaciona con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ‘’Desconocido’’ con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Se ve también que en el eje 1 las categpría que más contribuyen son las ‘’Desconocido’’.</p>
+</section>
+<section id="visualización-del-puntaje-global-5" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="visualización-del-puntaje-global-5"><span class="header-section-number">5.3.5</span> Visualización del puntaje global</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-136-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">1. Valor matrícula</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">2. Estrato</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">3. Internet</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" role="tab" aria-controls="tabset-6-4" aria-selected="false">4. Computador</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-5" role="tab" aria-controls="tabset-6-5" aria-selected="false">5.Lavadora</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-6" role="tab" aria-controls="tabset-6-6" aria-selected="false">6. Horno microogas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-7" role="tab" aria-controls="tabset-6-7" aria-selected="false">7. TV</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-8" role="tab" aria-controls="tabset-6-8" aria-selected="false">8. Automóvil</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-9" role="tab" aria-controls="tabset-6-9" aria-selected="false">9. Motocicleta</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-10" role="tab" aria-controls="tabset-6-10" aria-selected="false">10. Consola de videojuegos</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">e1m2.5</td>
+<td style="text-align: right;">0.1452</td>
+<td style="text-align: right;">-0.2339</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">e2.5m4</td>
+<td style="text-align: right;">-0.0016</td>
+<td style="text-align: right;">-0.2302</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">e4m5.5</td>
+<td style="text-align: right;">-0.2643</td>
+<td style="text-align: right;">-0.1884</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">e5.5m7</td>
+<td style="text-align: right;">-0.5615</td>
+<td style="text-align: right;">-0.0533</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">e500m1</td>
+<td style="text-align: right;">0.5093</td>
+<td style="text-align: right;">-0.0418</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m500</td>
+<td style="text-align: right;">0.7261</td>
+<td style="text-align: right;">0.0276</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M7</td>
+<td style="text-align: right;">-1.0412</td>
+<td style="text-align: right;">0.8446</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NP</td>
+<td style="text-align: right;">0.6458</td>
+<td style="text-align: right;">-0.0056</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">e1m2.5</td>
+<td style="text-align: right;">29.3570</td>
+<td style="text-align: right;">-47.2878</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">e2.5m4</td>
+<td style="text-align: right;">-0.2457</td>
+<td style="text-align: right;">-35.8405</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">e4m5.5</td>
+<td style="text-align: right;">-33.7620</td>
+<td style="text-align: right;">-24.0597</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">e5.5m7</td>
+<td style="text-align: right;">-53.1033</td>
+<td style="text-align: right;">-5.0449</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">e500m1</td>
+<td style="text-align: right;">47.7863</td>
+<td style="text-align: right;">-3.9254</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">m500</td>
+<td style="text-align: right;">88.5073</td>
+<td style="text-align: right;">3.3617</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">M7</td>
+<td style="text-align: right;">-150.4342</td>
+<td style="text-align: right;">122.0360</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NP</td>
+<td style="text-align: right;">80.1457</td>
+<td style="text-align: right;">-0.6938</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-139-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Estrato 1</td>
+<td style="text-align: right;">1.0884</td>
+<td style="text-align: right;">0.6679</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato 2</td>
+<td style="text-align: right;">0.2185</td>
+<td style="text-align: right;">-0.7429</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estrato 3</td>
+<td style="text-align: right;">-0.4484</td>
+<td style="text-align: right;">-0.0516</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato 4</td>
+<td style="text-align: right;">-1.1308</td>
+<td style="text-align: right;">0.7681</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estrato 5</td>
+<td style="text-align: right;">-1.4685</td>
+<td style="text-align: right;">1.3561</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato 6</td>
+<td style="text-align: right;">-1.6780</td>
+<td style="text-align: right;">1.8695</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sin Estrato</td>
+<td style="text-align: right;">1.0987</td>
+<td style="text-align: right;">1.4550</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Estrato 1</td>
+<td style="text-align: right;">195.89</td>
+<td style="text-align: right;">120.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato 2</td>
+<td style="text-align: right;">60.05</td>
+<td style="text-align: right;">-204.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estrato 3</td>
+<td style="text-align: right;">-99.54</td>
+<td style="text-align: right;">-11.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato 4</td>
+<td style="text-align: right;">-126.43</td>
+<td style="text-align: right;">85.87</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estrato 5</td>
+<td style="text-align: right;">-97.62</td>
+<td style="text-align: right;">90.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estrato 6</td>
+<td style="text-align: right;">-82.71</td>
+<td style="text-align: right;">92.15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sin Estrato</td>
+<td style="text-align: right;">25.94</td>
+<td style="text-align: right;">34.35</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-141-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEINTERNET_No</td>
+<td style="text-align: right;">1.6210</td>
+<td style="text-align: right;">1.1680</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEINTERNET_Si</td>
+<td style="text-align: right;">-0.2032</td>
+<td style="text-align: right;">-0.1464</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEINTERNET_No</td>
+<td style="text-align: right;">204.8</td>
+<td style="text-align: right;">147.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEINTERNET_Si</td>
+<td style="text-align: right;">-204.8</td>
+<td style="text-align: right;">-147.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-143-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-6-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-4-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENECOMPUTADOR_No</td>
+<td style="text-align: right;">1.4386</td>
+<td style="text-align: right;">1.0015</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENECOMPUTADOR_Si</td>
+<td style="text-align: right;">-0.1875</td>
+<td style="text-align: right;">-0.1305</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENECOMPUTADOR_No</td>
+<td style="text-align: right;">185.3</td>
+<td style="text-align: right;">129</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENECOMPUTADOR_Si</td>
+<td style="text-align: right;">-185.3</td>
+<td style="text-align: right;">-129</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-145-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-6-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-5-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENELAVADORA_No</td>
+<td style="text-align: right;">1.2847</td>
+<td style="text-align: right;">0.6070</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENELAVADORA_Si</td>
+<td style="text-align: right;">-0.2167</td>
+<td style="text-align: right;">-0.1024</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENELAVADORA_No</td>
+<td style="text-align: right;">188.3</td>
+<td style="text-align: right;">88.95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENELAVADORA_Si</td>
+<td style="text-align: right;">-188.3</td>
+<td style="text-align: right;">-88.95</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-147-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-6-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-6-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEHORNOMICROOGAS_Desconocido</td>
+<td style="text-align: right;">0.0426</td>
+<td style="text-align: right;">-2.2780</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEHORNOMICROOGAS_No</td>
+<td style="text-align: right;">0.6739</td>
+<td style="text-align: right;">0.0209</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEHORNOMICROOGAS_Desconocido</td>
+<td style="text-align: right;">3.676</td>
+<td style="text-align: right;">-196.339</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEHORNOMICROOGAS_No</td>
+<td style="text-align: right;">238.456</td>
+<td style="text-align: right;">7.385</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-149-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-6-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-7-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEHORNOMICROOGAS_Si</td>
+<td style="text-align: right;">-0.7491</td>
+<td style="text-align: right;">0.2565</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENESERVICIOTV_No</td>
+<td style="text-align: right;">0.9485</td>
+<td style="text-align: right;">0.4654</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEHORNOMICROOGAS_Si</td>
+<td style="text-align: right;">-241.4</td>
+<td style="text-align: right;">82.66</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENESERVICIOTV_No</td>
+<td style="text-align: right;">198.5</td>
+<td style="text-align: right;">97.41</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-151-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-6-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-8-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENESERVICIOTV_Si</td>
+<td style="text-align: right;">-0.3263</td>
+<td style="text-align: right;">-0.1601</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEAUTOMOVIL_No</td>
+<td style="text-align: right;">0.4512</td>
+<td style="text-align: right;">-0.2428</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENESERVICIOTV_Si</td>
+<td style="text-align: right;">-198.5</td>
+<td style="text-align: right;">-97.41</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEAUTOMOVIL_No</td>
+<td style="text-align: right;">229.7</td>
+<td style="text-align: right;">-123.62</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-153-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-6-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-9-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEAUTOMOVIL_Si</td>
+<td style="text-align: right;">-0.9183</td>
+<td style="text-align: right;">0.4942</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEMOTOCICLETA_No</td>
+<td style="text-align: right;">-0.0759</td>
+<td style="text-align: right;">-0.0106</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEAUTOMOVIL_Si</td>
+<td style="text-align: right;">-229.7</td>
+<td style="text-align: right;">123.623</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEMOTOCICLETA_No</td>
+<td style="text-align: right;">-38.4</td>
+<td style="text-align: right;">-5.388</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-155-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-6-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-10-tab">
+<p>Las coordenadas son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEMOTOCICLETA_Si</td>
+<td style="text-align: right;">0.1526</td>
+<td style="text-align: right;">0.0214</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENECONSOLAVIDEOJUEGOS_No</td>
+<td style="text-align: right;">0.2508</td>
+<td style="text-align: right;">-0.1575</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Los valores test son:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Dim.1</th>
+<th style="text-align: right;">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEMOTOCICLETA_Si</td>
+<td style="text-align: right;">38.4</td>
+<td style="text-align: right;">5.388</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENECONSOLAVIDEOJUEGOS_No</td>
+<td style="text-align: right;">188.7</td>
+<td style="text-align: right;">-118.475</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-157-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Individualmente se encontraron los mismos patrones que con el ACP, tomando en cuenta las coordenadas del puntaje global, las categorías se encuentran organizadas respecto a si representan un nivel socioeconómico alto o no, por lo que las categorías que representan un mejor nivel socioeconómico se encuentran en la misma dirección que el puntaje global.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ACM_files/figure-html/unnamed-chunk-158-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>El plano factorial sin acotar muestra que las únicas categorías que realmente están muy bien representadas en el primer eje son las de desconocido. Acotando, vemos que realmente el segundo eje captura la información como si fuera un índice, reafirmando las conclusiones halladas en el ACP. Las categorías que representan un mayor nivel socioeconómico parecen tener mejores puntajes al promedio mientras que las categorías que representan un nivel socioeconómico más bajo parecen tener puntajes peores al promedio, exceptuando de nuevo, el poseer o no motocicleta, en cuyo caso pasa lo contrario.</p>
 
 
+</section>
 </section>
 </section>
 
@@ -3528,7 +5992,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./Agrupamiento.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Agrupamiento</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Agrupamiento geografico</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
