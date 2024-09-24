@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -216,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#representación-de-las-variables-2" id="toc-representación-de-las-variables-2" class="nav-link" data-scroll-target="#representación-de-las-variables-2"><span class="header-section-number">4.3.4</span> Representación de las variables</a></li>
   <li><a href="#visualización-del-puntaje-global-2" id="toc-visualización-del-puntaje-global-2" class="nav-link" data-scroll-target="#visualización-del-puntaje-global-2"><span class="header-section-number">4.3.5</span> Visualización del puntaje global</a></li>
   </ul></li>
-  <li><a href="#análisis-de-correspondencias-múltiples-sin-considerar-desconocido" id="toc-análisis-de-correspondencias-múltiples-sin-considerar-desconocido" class="nav-link" data-scroll-target="#análisis-de-correspondencias-múltiples-sin-considerar-desconocido"><span class="header-section-number">5</span> Análisis de Correspondencias Múltiples sin considerar “Desconocido”</a>
+  <li><a href="#sec-sinDesconocido" id="toc-sec-sinDesconocido" class="nav-link" data-scroll-target="#sec-sinDesconocido"><span class="header-section-number">5</span> Análisis de Correspondencias Múltiples sin considerar “Desconocido”</a>
   <ul class="collapse">
   <li><a href="#variables-relacionadas-con-la-información-personal-1" id="toc-variables-relacionadas-con-la-información-personal-1" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-personal-1"><span class="header-section-number">5.1</span> Variables relacionadas con la información personal</a>
   <ul class="collapse">
@@ -226,22 +192,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#representación-de-las-variables-3" id="toc-representación-de-las-variables-3" class="nav-link" data-scroll-target="#representación-de-las-variables-3"><span class="header-section-number">5.1.4</span> Representación de las variables</a></li>
   <li><a href="#visualización-del-puntaje-global-3" id="toc-visualización-del-puntaje-global-3" class="nav-link" data-scroll-target="#visualización-del-puntaje-global-3"><span class="header-section-number">5.1.5</span> Visualización del puntaje global</a></li>
   </ul></li>
-  <li><a href="#variables-relacionadas-con-la-información-académica-1" id="toc-variables-relacionadas-con-la-información-académica-1" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-académica-1"><span class="header-section-number">5.2</span> Variables relacionadas con la información académica</a>
+  <li><a href="#visualización-conjunta" id="toc-visualización-conjunta" class="nav-link" data-scroll-target="#visualización-conjunta"><span class="header-section-number">5.2</span> Visualización conjunta</a></li>
+  <li><a href="#variables-relacionadas-con-la-información-académica-1" id="toc-variables-relacionadas-con-la-información-académica-1" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-académica-1"><span class="header-section-number">5.3</span> Variables relacionadas con la información académica</a>
   <ul class="collapse">
-  <li><a href="#dimensiones-para-el-acm-4" id="toc-dimensiones-para-el-acm-4" class="nav-link" data-scroll-target="#dimensiones-para-el-acm-4"><span class="header-section-number">5.2.1</span> Dimensiones para el ACM</a></li>
-  <li><a href="#contribución-de-las-variables-al-eje-1-4" id="toc-contribución-de-las-variables-al-eje-1-4" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-1-4"><span class="header-section-number">5.2.2</span> Contribución de las variables al eje 1</a></li>
-  <li><a href="#contribución-de-las-variables-al-eje-2-4" id="toc-contribución-de-las-variables-al-eje-2-4" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-2-4"><span class="header-section-number">5.2.3</span> Contribución de las variables al eje 2</a></li>
-  <li><a href="#representación-de-las-variables-4" id="toc-representación-de-las-variables-4" class="nav-link" data-scroll-target="#representación-de-las-variables-4"><span class="header-section-number">5.2.4</span> Representación de las variables</a></li>
-  <li><a href="#visualización-del-puntaje-global-4" id="toc-visualización-del-puntaje-global-4" class="nav-link" data-scroll-target="#visualización-del-puntaje-global-4"><span class="header-section-number">5.2.5</span> Visualización del puntaje global</a></li>
+  <li><a href="#dimensiones-para-el-acm-4" id="toc-dimensiones-para-el-acm-4" class="nav-link" data-scroll-target="#dimensiones-para-el-acm-4"><span class="header-section-number">5.3.1</span> Dimensiones para el ACM</a></li>
+  <li><a href="#contribución-de-las-variables-al-eje-1-4" id="toc-contribución-de-las-variables-al-eje-1-4" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-1-4"><span class="header-section-number">5.3.2</span> Contribución de las variables al eje 1</a></li>
+  <li><a href="#contribución-de-las-variables-al-eje-2-4" id="toc-contribución-de-las-variables-al-eje-2-4" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-2-4"><span class="header-section-number">5.3.3</span> Contribución de las variables al eje 2</a></li>
+  <li><a href="#representación-de-las-variables-4" id="toc-representación-de-las-variables-4" class="nav-link" data-scroll-target="#representación-de-las-variables-4"><span class="header-section-number">5.3.4</span> Representación de las variables</a></li>
+  <li><a href="#visualización-del-puntaje-global-4" id="toc-visualización-del-puntaje-global-4" class="nav-link" data-scroll-target="#visualización-del-puntaje-global-4"><span class="header-section-number">5.3.5</span> Visualización del puntaje global</a></li>
   </ul></li>
-  <li><a href="#variables-relacionadas-con-la-información-socioeconómica-1" id="toc-variables-relacionadas-con-la-información-socioeconómica-1" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-socioeconómica-1"><span class="header-section-number">5.3</span> Variables relacionadas con la información socioeconómica</a>
+  <li><a href="#visualización-conjunta-1" id="toc-visualización-conjunta-1" class="nav-link" data-scroll-target="#visualización-conjunta-1"><span class="header-section-number">5.4</span> Visualización conjunta</a></li>
+  <li><a href="#variables-relacionadas-con-la-información-socioeconómica-1" id="toc-variables-relacionadas-con-la-información-socioeconómica-1" class="nav-link" data-scroll-target="#variables-relacionadas-con-la-información-socioeconómica-1"><span class="header-section-number">5.5</span> Variables relacionadas con la información socioeconómica</a>
   <ul class="collapse">
-  <li><a href="#dimensiones-para-el-acm-5" id="toc-dimensiones-para-el-acm-5" class="nav-link" data-scroll-target="#dimensiones-para-el-acm-5"><span class="header-section-number">5.3.1</span> Dimensiones para el ACM</a></li>
-  <li><a href="#contribución-de-las-variables-al-eje-1-5" id="toc-contribución-de-las-variables-al-eje-1-5" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-1-5"><span class="header-section-number">5.3.2</span> Contribución de las variables al eje 1</a></li>
-  <li><a href="#contribución-de-las-variables-al-eje-2-5" id="toc-contribución-de-las-variables-al-eje-2-5" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-2-5"><span class="header-section-number">5.3.3</span> Contribución de las variables al eje 2</a></li>
-  <li><a href="#representación-de-las-variables-5" id="toc-representación-de-las-variables-5" class="nav-link" data-scroll-target="#representación-de-las-variables-5"><span class="header-section-number">5.3.4</span> Representación de las variables</a></li>
-  <li><a href="#visualización-del-puntaje-global-5" id="toc-visualización-del-puntaje-global-5" class="nav-link" data-scroll-target="#visualización-del-puntaje-global-5"><span class="header-section-number">5.3.5</span> Visualización del puntaje global</a></li>
+  <li><a href="#dimensiones-para-el-acm-5" id="toc-dimensiones-para-el-acm-5" class="nav-link" data-scroll-target="#dimensiones-para-el-acm-5"><span class="header-section-number">5.5.1</span> Dimensiones para el ACM</a></li>
+  <li><a href="#contribución-de-las-variables-al-eje-1-5" id="toc-contribución-de-las-variables-al-eje-1-5" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-1-5"><span class="header-section-number">5.5.2</span> Contribución de las variables al eje 1</a></li>
+  <li><a href="#contribución-de-las-variables-al-eje-2-5" id="toc-contribución-de-las-variables-al-eje-2-5" class="nav-link" data-scroll-target="#contribución-de-las-variables-al-eje-2-5"><span class="header-section-number">5.5.3</span> Contribución de las variables al eje 2</a></li>
+  <li><a href="#representación-de-las-variables-5" id="toc-representación-de-las-variables-5" class="nav-link" data-scroll-target="#representación-de-las-variables-5"><span class="header-section-number">5.5.4</span> Representación de las variables</a></li>
+  <li><a href="#visualización-del-puntaje-global-5" id="toc-visualización-del-puntaje-global-5" class="nav-link" data-scroll-target="#visualización-del-puntaje-global-5"><span class="header-section-number">5.5.5</span> Visualización del puntaje global</a></li>
   </ul></li>
+  <li><a href="#visualización-conjunta-2" id="toc-visualización-conjunta-2" class="nav-link" data-scroll-target="#visualización-conjunta-2"><span class="header-section-number">5.6</span> Visualización conjunta</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -3346,12 +3315,22 @@ Nota
 <p>El plano factorial sin acotar muestra que las únicas categorías que realmente están muy bien representadas en el primer eje son las de desconocido. Acotando, vemos que realmente el segundo eje captura la información como si fuera un índice, reafirmando las conclusiones halladas en el ACP. Las categorías que representan un mayor nivel socioeconómico parecen tener mejores puntajes al promedio mientras que las categorías que representan un nivel socioeconómico más bajo parecen tener puntajes peores al promedio, exceptuando de nuevo, el poseer o no motocicleta, en cuyo caso pasa lo contrario.</p>
 </section>
 </section>
-<section id="análisis-de-correspondencias-múltiples-sin-considerar-desconocido" class="level1" data-number="5">
+<section id="sec-sinDesconocido" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Análisis de Correspondencias Múltiples sin considerar “Desconocido”</h1>
-<p>A continuación se muestra el Análisis de Correspondencias Múltiples (ACM) de los datos SaberPro 2022-2.</p>
-<p>Se realiza un ACM para cada una de los distintos tipos de variables que cuenta la base de datos (Variables relacionadas con la información personal, Variables relacionadas con la información académica y Variables relacionadas con la información socioeconómica). En cada uno de los ACM se muestra la variable cuantitativa correspondiente al puntaje global como variable suplementaria.</p>
+<p>El análisis anterior se ve muy afectado por la categoría “Desconocido” de todas las variables en cada uno de los ACM, por lo tanto, a contnuación se realizan nuevamente los ACM pero sin considerar la categoría Desconocido en las distintas variaables.</p>
+<p>Para no tener en cuenta la categoría Desconocido, esta categoría se “sumó” a la categoría que tuviese más individuos en la variable correspondiente, por ejemplo, en el caso de <code>ESTU_DEPTO_RESIDE</code> que cuenta con tres categorías: “BOGOTÁ” (32493 individuos), “OTRO” (94839 individuos) y “Desconocido” (10 individuos), entonces se suman los 10 individuos de “Desconocido” a la categoría “OTRO” que tiene más individuos y no resulta afectada al sumar 10 más.</p>
+<p>La razón por la que se utiliza este método para no afectar el análisis por los “Desconocido”, es porque en algunos casos, esta categoría representa un porcentaje de los individuos similar al de otras categorías de la variable, por lo que no se puede “ventilar” ya que no solo se imputarían datos a los individuos de la categoría “Desconocido” sino también a estas categorías, lo que resulta en utilizar información falsa para el análisis.</p>
 <section id="variables-relacionadas-con-la-información-personal-1" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-personal-1"><span class="header-section-number">5.1</span> Variables relacionadas con la información personal</h2>
+<p>Las variables cualitativas <code>FAMI_EDUCACIONMADRE</code>, <code>FAMI_EDUCACIONPADRE</code> <code>FAMI_OCUPACIONMADRE</code> y <code>FAMI_OCUPACIONPADRE</code>se usan como ilustrativas ya que tienen muchas (más) categorías que las otras variables, por lo que el análisis puede verse afectado. La variable cuantitativa <code>PUNT_GLOBAL</code> es también ilustrativa.</p>
+<p>Los individuos de “Desconocido” se incluyeron en las siguientes categorías:</p>
+<ul>
+<li><code>ESTU_GENERO</code>: “Desconocido” (5) se incluyen en “F” (74554)</li>
+<li><code>ESTU_TIENEETNIA</code>: “Desconocido” (775) se incluyen en “No” (116123)</li>
+<li><code>ESTU_RESIDE_DEPTO</code>: “Desconocido” (10) se incluyen en “OTRO” (94839)</li>
+<li><code>ESTU_ESTADOCICIL</code>: “Desconocido” (580) se incluyen en “S” (106848)</li>
+<li><code>ESTU_HORASSEMANATRABAJA</code>: “Desconocido” (6867) se incluyen en “Más de 30 horas” (44626)</li>
+</ul>
 <section id="dimensiones-para-el-acm-3" class="level3" data-number="5.1.1">
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="dimensiones-para-el-acm-3"><span class="header-section-number">5.1.1</span> Dimensiones para el ACM</h3>
 <div class="cell">
@@ -3405,7 +3384,7 @@ Nota
 <p><img src="ACM_files/figure-html/unnamed-chunk-85-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Podemos ver que las que más contribuyen al primer eje son las categorías “desconocido” de las distintas variables, veremos a qué nos lleva esto más adelante.</p>
+<p>Podemos ver que las que más contribuyen al primer eje son las categorías “0” y “Más de 30 horas” de la variable Horas que trabaja a la semana, y “UL”, “C” y “S” de la variable Estado civil del estudiante.</p>
 </section>
 <section id="contribución-de-las-variables-al-eje-2-3" class="level3" data-number="5.1.3">
 <h3 data-number="5.1.3" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-2-3"><span class="header-section-number">5.1.3</span> Contribución de las variables al eje 2</h3>
@@ -3414,7 +3393,7 @@ Nota
 <p><img src="ACM_files/figure-html/unnamed-chunk-86-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>La mayor contribución en este eje también es dado por categorías “desconocido”, por lo que la variabilidad de estas categorías fue capturada en el primer y segundo eje, de ahí, ya empiezan a aparecer categorías distintas.</p>
+<p>La mayor contribución en este eje es dado por las categorías de la variable Departamento de residencia, la categoría “Si” de la variable Tiene etnia y “Más de 30 horas” y “Menos de 10 horas” de a variable Horas que trabaja a la semana.</p>
 </section>
 <section id="representación-de-las-variables-3" class="level3" data-number="5.1.4">
 <h3 data-number="5.1.4" class="anchored" data-anchor-id="representación-de-las-variables-3"><span class="header-section-number">5.1.4</span> Representación de las variables</h3>
@@ -3423,7 +3402,7 @@ Nota
 <p><img src="ACM_files/figure-html/unnamed-chunk-87-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Si bien se muestra que variables relacionadas con la ocupación de la madre y padre están muy correlacionadas con el eje 1, y variables relacionadas con la educación de madre y padre con el eje 2; esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ‘’Desconocido’’ con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Además, las variables de educación y ocupación de madre y padre tienen bastantes más categorías que las otras variables que se usaron para hacer este ACM.</p>
+<p>Las variables <code>ESTU_HORASSEMANATRABAJA</code> y <code>ESTU_ESTADOCIVIL</code> parecen ser mejor respresentadas por el eje 1 ya que tienen mayor correlación con este eje. Las variables <code>ESTU_DEPTO_RESIDE</code> y <code>ESTU_TIENEETNIA</code> presentar mayor correlación con el eje 2. La variable <code>ESTU_GENERO</code> no tiene una alta correlación con ninguno de los ejes.</p>
 </section>
 <section id="visualización-del-puntaje-global-3" class="level3" data-number="5.1.5">
 <h3 data-number="5.1.5" class="anchored" data-anchor-id="visualización-del-puntaje-global-3"><span class="header-section-number">5.1.5</span> Visualización del puntaje global</h3>
@@ -3442,7 +3421,7 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Para los siguientes ACMs, se graficaron los planos factoriales separando por variables y luego el plano factorial con todas las variables. En cada eje se acotó a un intervalo más pequeño para que se pueda apreciar de mejor manera la representación de las distintas variables, debido a que las categorías “desconocido” que hacen referencia a los valores faltantes en cada variable son las que más pesan, llevando a que tengan coordenadas que en proporción a las otras categorías son muy grandes, sin embargo, en el plano factorial con todas las variables se graficó tanto acotando como sin acotar, principalmente para apreciar esta diferencia. Además, para facilitar la visualización se recodificaron las variables con el fin de que las etiquetas de cada categoría sean más legibles. Se obviará la categoría desconocido en la mayoría de las variables ya que siempre estaba relacionada al primer eje y no parecía decir nada relevante.</p>
+<p>Para los siguientes ACMs, se graficaron los planos factoriales separando por variables y luego el plano factorial con todas las variables.</p>
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -3702,10 +3681,6 @@ Nota
 <div id="tabset-4-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-5-tab">
 <p>Las coordenadas son:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>coordenas_sup <span class="ot">&lt;-</span> res.mca<span class="sc">$</span>quali.sup<span class="sc">$</span>coord</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>coord_sup <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(coordenas_sup)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coord_sup[<span class="dv">14</span><span class="sc">:</span><span class="dv">26</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">digits =</span> <span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -4260,7 +4235,10 @@ Nota
 </div>
 </div>
 </div>
-<p>Teniendo en cuenta las coordenadas del puntaje global, encontrándose en el cuarto cuadrante de los planos plano, las conclusiones a las que se llegan son muy parecidas a las que se obtuvieron en el ACP. Los estudiantes con características como hombre, sin etnia, que viven en Bogotá, con estado civil soltero, con padres y madres con niveles de educación superior, mejores puestos laborales y menos horas de trabajo, tienen en promedio mejores puntajes que el resto. El primer eje no parece aportar información relevante, el segundo parece reafirmar las conclusiones halladas en el ACP y el tercer eje también parece reafirmar estas conclusiones.</p>
+</section>
+</section>
+<section id="visualización-conjunta" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="visualización-conjunta"><span class="header-section-number">5.2</span> Visualización conjunta</h2>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: ggrepel: 48 unlabeled data points (too many overlaps). Consider
@@ -4270,15 +4248,20 @@ increasing max.overlaps</code></pre>
 <p><img src="ACM_files/figure-html/unnamed-chunk-109-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Vemos que sin acotar en el primer y segundo eje, la mayoría de las categorías están muy cerca al centro, mientras que las categorías desconocido se encuentran por lo general muy alejadas de el centro, lo cual era esperable pues estos individuos son los que tenían valores faltantes, que por lo general eran una pequeña cantidad, por lo que su variabilidad es muy grande.</p>
-<p>Acotando en los ejes, podemos ver que las características relacionadas a un mejor nivel socioeconómico y a menos responsabilidades, como padres y madres en mejores cargos, padres y madres con mejores niveles educativos, estar soltero, no trabajar, se encuentran concentradas en el cuarto cuadrante del plano, en donde también se encuentran las coordenadas del puntaje global.</p>
-<p>En resumen, vemos que los datos parecen llevarnos a la misma conclusión que en el caso del ACP.</p>
+<p>Teniendo en cuenta las coordenadas del puntaje global, encontrándose en el cuarto cuadrante de los planos plano, las conclusiones a las que se llegan son muy parecidas a las que se obtuvieron en el ACP. Los estudiantes con características como no tener etnia, vivir en Bogotá, con estado civil soltero, con padres y madres con niveles de educación superior, mejores puestos laborales y menos horas de trabajo, tienen en promedio mejores puntajes que el resto. El primer eje no parece aportar información relevante excepto que marca una gran diferencia entre no trabajar o trabajar más de 30 horas, y entre estar soltero o cualquier otro estado civil. El segundo parece reafirmar las conclusiones halladas en el ACP.</p>
+<p>Por la cercanía de los puntos, parece que en general las mujeres trabajan entre 21 y 30 horas, y las personas que no residen en Bogotá trabajan entre 11 y 20 horas.</p>
 </section>
-</section>
-<section id="variables-relacionadas-con-la-información-académica-1" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-académica-1"><span class="header-section-number">5.2</span> Variables relacionadas con la información académica</h2>
-<section id="dimensiones-para-el-acm-4" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="dimensiones-para-el-acm-4"><span class="header-section-number">5.2.1</span> Dimensiones para el ACM</h3>
+<section id="variables-relacionadas-con-la-información-académica-1" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-académica-1"><span class="header-section-number">5.3</span> Variables relacionadas con la información académica</h2>
+<p>La variable cualitativa <code>GRUPOREFERENCIA</code> se usa como ilustrativa ya que tiene muchas (más) categorías que las otras variables, por lo que el análisis puede verse afectado. La variable cuantitativa <code>PUNT_GLOBAL</code> es también ilustrativa.</p>
+<p>Los individuos de “Desconocido” se incluyeron en las siguientes categorías:</p>
+<ul>
+<li><code>ESTU_COMOCAPACITOEXAMENSB11</code>: “Desconocido” (2069) se incluyen en “CuentaPropia” (85453)</li>
+<li><code>ESTU_SEMESTRECURSA</code>: “Desconocido” (2194) se incluyen en “09” (41470)</li>
+</ul>
+<p>Las variables <code>ESTU_METODO_PRGM</code> y <code>INST_CARACTER_ACADEMICO</code> no tienen la categoría “Desconocido”.</p>
+<section id="dimensiones-para-el-acm-4" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="dimensiones-para-el-acm-4"><span class="header-section-number">5.3.1</span> Dimensiones para el ACM</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-110-1.png" class="img-fluid" width="672"></p>
@@ -4331,35 +4314,35 @@ increasing max.overlaps</code></pre>
 </div>
 <p>Entonces, se realiza el análisis con 2 ejes para el ACM.</p>
 </section>
-<section id="contribución-de-las-variables-al-eje-1-4" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-1-4"><span class="header-section-number">5.2.2</span> Contribución de las variables al eje 1</h3>
+<section id="contribución-de-las-variables-al-eje-1-4" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-1-4"><span class="header-section-number">5.3.2</span> Contribución de las variables al eje 1</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-113-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>De nuevo las categorías que más contribuyen al primer eje son las de desconocido.</p>
+<p>Las categorías que contribuyen al primer eje son todas las de la variable Modalidad, y las categorías InstUni y Universidad de la variable Carácter académico.</p>
 </section>
-<section id="contribución-de-las-variables-al-eje-2-4" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-2-4"><span class="header-section-number">5.2.3</span> Contribución de las variables al eje 2</h3>
+<section id="contribución-de-las-variables-al-eje-2-4" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-2-4"><span class="header-section-number">5.3.3</span> Contribución de las variables al eje 2</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-114-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Las contribuciones al segundo eje se ven principalmente en la modalidad de estudio y el tipo de institución a la que el estudiante pertenece, y no se ve un aporte de las categorías desconocido.</p>
+<p>Las contribuciones al segundo eje se ven principalmente en las catgeorías TecProf e InstTec de la variable Carácter académico, la categoría Curso de la variable Modalidad, y 12M y 10 de la variable Semestre que cursa.</p>
 </section>
-<section id="representación-de-las-variables-4" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="representación-de-las-variables-4"><span class="header-section-number">5.2.4</span> Representación de las variables</h3>
+<section id="representación-de-las-variables-4" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="representación-de-las-variables-4"><span class="header-section-number">5.3.4</span> Representación de las variables</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-115-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Nuevamente, si bien se muestra que la variable Cómo capacitó el exámen está muy correlacionada con el eje 1, y las variables Método del programa y el Carácter acdémico de la institución se relacionan con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ‘’Desconocido’’ con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable.</p>
+<p>Se muestra que la variable Programa académico esta muy correlacionada con el eje 1, el Carácter académico de la institución está igual correlacionado con el eje 1 y el eje 2, el Semestre que cursa y Cómo capacitó el examen están más correlacionadas con el eje 2.</p>
 </section>
-<section id="visualización-del-puntaje-global-4" class="level3" data-number="5.2.5">
-<h3 data-number="5.2.5" class="anchored" data-anchor-id="visualización-del-puntaje-global-4"><span class="header-section-number">5.2.5</span> Visualización del puntaje global</h3>
+<section id="visualización-del-puntaje-global-4" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="visualización-del-puntaje-global-4"><span class="header-section-number">5.3.5</span> Visualización del puntaje global</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-116-1.png" class="img-fluid" width="672"></p>
@@ -4945,19 +4928,35 @@ increasing max.overlaps</code></pre>
 </div>
 </div>
 </div>
-<p>De la misma manera que con el ACP, ya que, obviando el primer eje que parece tomar toda la inercia de las categorías desconocido, el segundo eje parece indicar que las personas con características como estudiar de manera presencial, en una universidad y cursando los últimos semestres obtienen mejores puntajes que el promedio, pues el puntaje global en ese eje apunta a la misma dirección. Además de esto, aunque se uso como variable suplementaria el grupo de referencia, se puede apreciar que también parece seguir las conclusiones del ACP, personas que hacen parte a grupos de referencia como Medicina, Econ.,admin.,contad. y afines Univer, obtienen mejores puntajes que el promedio.</p>
+</section>
+</section>
+<section id="visualización-conjunta-1" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="visualización-conjunta-1"><span class="header-section-number">5.4</span> Visualización conjunta</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-129-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Se ve que las únicas dos categorías desconocido están muy lejos del centro respecto al primer eje como en el ACM anterior, y acotando se puede apreciar mejor de nuevo el cómo se agrupan las categorías, estando cerca categorías como estar en 12 Semestre o más y medicina, además de mostrar que los individuos que pertenecen a las categorías que están más abajo del gráfico son los que obtienen mejores puntajes respecto al promedio, reafirmando lo concluído en el ACP.</p>
+<p>De la misma manera que con el ACP, parece que las personas con características como estudiar de manera presencial, en una universidad y cursando los últimos semestres obtienen mejores puntajes que el promedio, pues el puntaje global en ese eje apunta a la misma dirección. Además de esto, aunque se uso como variable suplementaria el grupo de referencia, se puede apreciar que también parece seguir las conclusiones del ACP, personas que hacen parte a grupos de referencia como Medicina, Econ.,admin.,contad. y afines Univer, obtienen mejores puntajes que el promedio.</p>
 </section>
-</section>
-<section id="variables-relacionadas-con-la-información-socioeconómica-1" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-socioeconómica-1"><span class="header-section-number">5.3</span> Variables relacionadas con la información socioeconómica</h2>
-<section id="dimensiones-para-el-acm-5" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="dimensiones-para-el-acm-5"><span class="header-section-number">5.3.1</span> Dimensiones para el ACM</h3>
+<section id="variables-relacionadas-con-la-información-socioeconómica-1" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="variables-relacionadas-con-la-información-socioeconómica-1"><span class="header-section-number">5.5</span> Variables relacionadas con la información socioeconómica</h2>
+<p>Para este ACP no se utiliza ninguna variable ilustrativa. La variable cuantitativa <code>PUNT_GLOBAL</code> es también ilustrativa.</p>
+<p>Los individuos de “Desconocido” se incluyeron en las siguientes categorías:</p>
+<ul>
+<li><code>ESTU_VALORMATRICULAUNIVERSIDAD</code>: “Desconocido” (2194) se incluyen en “e1m2.5” (28748)</li>
+<li><code>FAMI_ESTRATOVIVIENDA</code>: “Desconocido” (5531) se incluyen en “Estrato 2” (41867)</li>
+<li><code>FAMI_TIENEINTERNET</code>: “Desconocido” (5697) se incluyen en “Si” (107459)</li>
+<li><code>FAMI_TIENECOMPUTADOR</code>: “Desconocido” (6163) se incluyen en “Si” (106495)</li>
+<li><code>FAMI_TIENELAVADORA</code>: “Desconocido” (6354) se incluyen en “Si” (102610)</li>
+<li><code>FAMI_TIENEHORNOMICROOGAS</code>: “Desconocido” (7019) se dejó como una categoría ya que la diferencia entre “Si” y “No” no es muy significativa, pues “Si” (106495) y “No” (63132)</li>
+<li><code>FAMI_TIENESERVICIOTV</code>: “Desconocido” (5801) se incluyen en “Si” (88947)</li>
+<li><code>FAMI_TIENEAUTOMOVIL</code>: “Desconocido” (7187) se incluyen en “No” (78202)</li>
+<li><code>FAMI_TIENEMOTOCICLETA</code>: “Desconocido” (7525) se incluyen en “No” (77509)</li>
+<li><code>FAMI_TIENECONSOLAVIDEOJUEGOS</code>: “Desconocido” (7993) se incluyen en “No” (95964)</li>
+</ul>
+<section id="dimensiones-para-el-acm-5" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="dimensiones-para-el-acm-5"><span class="header-section-number">5.5.1</span> Dimensiones para el ACM</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-130-1.png" class="img-fluid" width="672"></p>
@@ -5018,42 +5017,42 @@ increasing max.overlaps</code></pre>
 </div>
 <p>Entonces, se realiza el análisis con 2 ejes para el ACM.</p>
 </section>
-<section id="contribución-de-las-variables-al-eje-1-5" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-1-5"><span class="header-section-number">5.3.2</span> Contribución de las variables al eje 1</h3>
+<section id="contribución-de-las-variables-al-eje-1-5" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-1-5"><span class="header-section-number">5.5.2</span> Contribución de las variables al eje 1</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-133-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Las categorías que más aportan al primer eje son las de desconocido.</p>
+<p>Las categorías que más aportan al primer eje son las referentes a tener o no tener cierto bien o servicio.</p>
 </section>
-<section id="contribución-de-las-variables-al-eje-2-5" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-2-5"><span class="header-section-number">5.3.3</span> Contribución de las variables al eje 2</h3>
+<section id="contribución-de-las-variables-al-eje-2-5" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="contribución-de-las-variables-al-eje-2-5"><span class="header-section-number">5.5.3</span> Contribución de las variables al eje 2</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-134-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Las categorías que más aportan al segundo eje son si tiene o no algún bien o servicio.</p>
+<p>Nuevamente, las categorías que más aportan al primer eje son las referentes a tener o no tener cierto bien o servicio, así como también las categorías de la variable Estrato.</p>
 </section>
-<section id="representación-de-las-variables-5" class="level3" data-number="5.3.4">
-<h3 data-number="5.3.4" class="anchored" data-anchor-id="representación-de-las-variables-5"><span class="header-section-number">5.3.4</span> Representación de las variables</h3>
+<section id="representación-de-las-variables-5" class="level3" data-number="5.5.4">
+<h3 data-number="5.5.4" class="anchored" data-anchor-id="representación-de-las-variables-5"><span class="header-section-number">5.5.4</span> Representación de las variables</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-135-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Tal como en los puntos anteriores, si bien se muestra que las variables relacionadas con tener o no cierto bien están correlacionadas con el eje 1, y la variable Valor matrícula de la universidad se relaciona con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ‘’Desconocido’’ con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Se ve también que en el eje 1 las categpría que más contribuyen son las ‘’Desconocido’’.</p>
+<p>Las variables referentes a tener o no un bien o servicio y el valor de la matrícula de la universidad están más correlacionadas con el eje 1, la variable Estrato tiene igual correlación con el eje 1 y 2.</p>
 </section>
-<section id="visualización-del-puntaje-global-5" class="level3" data-number="5.3.5">
-<h3 data-number="5.3.5" class="anchored" data-anchor-id="visualización-del-puntaje-global-5"><span class="header-section-number">5.3.5</span> Visualización del puntaje global</h3>
+<section id="visualización-del-puntaje-global-5" class="level3" data-number="5.5.5">
+<h3 data-number="5.5.5" class="anchored" data-anchor-id="visualización-del-puntaje-global-5"><span class="header-section-number">5.5.5</span> Visualización del puntaje global</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-136-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">1. Valor matrícula</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">2. Estrato</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">3. Internet</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" role="tab" aria-controls="tabset-6-4" aria-selected="false">4. Computador</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-5" role="tab" aria-controls="tabset-6-5" aria-selected="false">5.Lavadora</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-6" role="tab" aria-controls="tabset-6-6" aria-selected="false">6. Horno microogas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-7" role="tab" aria-controls="tabset-6-7" aria-selected="false">7. TV</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-8" role="tab" aria-controls="tabset-6-8" aria-selected="false">8. Automóvil</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-9" role="tab" aria-controls="tabset-6-9" aria-selected="false">9. Motocicleta</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-10" role="tab" aria-controls="tabset-6-10" aria-selected="false">10. Consola de videojuegos</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">1. Valor matrícula</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">2. Estrato</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">3. Internet</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" role="tab" aria-controls="tabset-6-4" aria-selected="false">4. Computador</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-5" role="tab" aria-controls="tabset-6-5" aria-selected="false">5. Lavadora</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-6" role="tab" aria-controls="tabset-6-6" aria-selected="false">6. Horno microogas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-7" role="tab" aria-controls="tabset-6-7" aria-selected="false">7. TV</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-8" role="tab" aria-controls="tabset-6-8" aria-selected="false">8. Automóvil</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-9" role="tab" aria-controls="tabset-6-9" aria-selected="false">9. Motocicleta</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-10" role="tab" aria-controls="tabset-6-10" aria-selected="false">10. Consola de videojuegos</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <p>Las coordenadas son:</p>
@@ -5473,6 +5472,11 @@ increasing max.overlaps</code></pre>
 <td style="text-align: right;">0.6739</td>
 <td style="text-align: right;">0.0209</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEHORNOMICROOGAS_Si</td>
+<td style="text-align: right;">-0.7491</td>
+<td style="text-align: right;">0.2565</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -5499,6 +5503,11 @@ increasing max.overlaps</code></pre>
 <td style="text-align: right;">238.456</td>
 <td style="text-align: right;">7.385</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">FAMI_TIENEHORNOMICROOGAS_Si</td>
+<td style="text-align: right;">-241.379</td>
+<td style="text-align: right;">82.659</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -5521,14 +5530,14 @@ increasing max.overlaps</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">FAMI_TIENEHORNOMICROOGAS_Si</td>
-<td style="text-align: right;">-0.7491</td>
-<td style="text-align: right;">0.2565</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">FAMI_TIENESERVICIOTV_No</td>
 <td style="text-align: right;">0.9485</td>
 <td style="text-align: right;">0.4654</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENESERVICIOTV_Si</td>
+<td style="text-align: right;">-0.3263</td>
+<td style="text-align: right;">-0.1601</td>
 </tr>
 </tbody>
 </table>
@@ -5547,14 +5556,14 @@ increasing max.overlaps</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">FAMI_TIENEHORNOMICROOGAS_Si</td>
-<td style="text-align: right;">-241.4</td>
-<td style="text-align: right;">82.66</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">FAMI_TIENESERVICIOTV_No</td>
 <td style="text-align: right;">198.5</td>
 <td style="text-align: right;">97.41</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENESERVICIOTV_Si</td>
+<td style="text-align: right;">-198.5</td>
+<td style="text-align: right;">-97.41</td>
 </tr>
 </tbody>
 </table>
@@ -5578,14 +5587,14 @@ increasing max.overlaps</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">FAMI_TIENESERVICIOTV_Si</td>
-<td style="text-align: right;">-0.3263</td>
-<td style="text-align: right;">-0.1601</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">FAMI_TIENEAUTOMOVIL_No</td>
 <td style="text-align: right;">0.4512</td>
 <td style="text-align: right;">-0.2428</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEAUTOMOVIL_Si</td>
+<td style="text-align: right;">-0.9183</td>
+<td style="text-align: right;">0.4942</td>
 </tr>
 </tbody>
 </table>
@@ -5604,14 +5613,14 @@ increasing max.overlaps</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">FAMI_TIENESERVICIOTV_Si</td>
-<td style="text-align: right;">-198.5</td>
-<td style="text-align: right;">-97.41</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">FAMI_TIENEAUTOMOVIL_No</td>
 <td style="text-align: right;">229.7</td>
-<td style="text-align: right;">-123.62</td>
+<td style="text-align: right;">-123.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEAUTOMOVIL_Si</td>
+<td style="text-align: right;">-229.7</td>
+<td style="text-align: right;">123.6</td>
 </tr>
 </tbody>
 </table>
@@ -5635,14 +5644,14 @@ increasing max.overlaps</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">FAMI_TIENEAUTOMOVIL_Si</td>
-<td style="text-align: right;">-0.9183</td>
-<td style="text-align: right;">0.4942</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">FAMI_TIENEMOTOCICLETA_No</td>
 <td style="text-align: right;">-0.0759</td>
 <td style="text-align: right;">-0.0106</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEMOTOCICLETA_Si</td>
+<td style="text-align: right;">0.1526</td>
+<td style="text-align: right;">0.0214</td>
 </tr>
 </tbody>
 </table>
@@ -5661,14 +5670,14 @@ increasing max.overlaps</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">FAMI_TIENEAUTOMOVIL_Si</td>
-<td style="text-align: right;">-229.7</td>
-<td style="text-align: right;">123.623</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">FAMI_TIENEMOTOCICLETA_No</td>
 <td style="text-align: right;">-38.4</td>
 <td style="text-align: right;">-5.388</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENEMOTOCICLETA_Si</td>
+<td style="text-align: right;">38.4</td>
+<td style="text-align: right;">5.388</td>
 </tr>
 </tbody>
 </table>
@@ -5692,14 +5701,14 @@ increasing max.overlaps</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">FAMI_TIENEMOTOCICLETA_Si</td>
-<td style="text-align: right;">0.1526</td>
-<td style="text-align: right;">0.0214</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">FAMI_TIENECONSOLAVIDEOJUEGOS_No</td>
 <td style="text-align: right;">0.2508</td>
 <td style="text-align: right;">-0.1575</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENECONSOLAVIDEOJUEGOS_Si</td>
+<td style="text-align: right;">-1.1150</td>
+<td style="text-align: right;">0.7000</td>
 </tr>
 </tbody>
 </table>
@@ -5718,14 +5727,14 @@ increasing max.overlaps</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">FAMI_TIENEMOTOCICLETA_Si</td>
-<td style="text-align: right;">38.4</td>
-<td style="text-align: right;">5.388</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">FAMI_TIENECONSOLAVIDEOJUEGOS_No</td>
 <td style="text-align: right;">188.7</td>
-<td style="text-align: right;">-118.475</td>
+<td style="text-align: right;">-118.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAMI_TIENECONSOLAVIDEOJUEGOS_Si</td>
+<td style="text-align: right;">-188.7</td>
+<td style="text-align: right;">118.5</td>
 </tr>
 </tbody>
 </table>
@@ -5737,16 +5746,18 @@ increasing max.overlaps</code></pre>
 </div>
 </div>
 </div>
-<p>Individualmente se encontraron los mismos patrones que con el ACP, tomando en cuenta las coordenadas del puntaje global, las categorías se encuentran organizadas respecto a si representan un nivel socioeconómico alto o no, por lo que las categorías que representan un mejor nivel socioeconómico se encuentran en la misma dirección que el puntaje global.</p>
+</section>
+</section>
+<section id="visualización-conjunta-2" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="visualización-conjunta-2"><span class="header-section-number">5.6</span> Visualización conjunta</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="ACM_files/figure-html/unnamed-chunk-158-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>El plano factorial sin acotar muestra que las únicas categorías que realmente están muy bien representadas en el primer eje son las de desconocido. Acotando, vemos que realmente el segundo eje captura la información como si fuera un índice, reafirmando las conclusiones halladas en el ACP. Las categorías que representan un mayor nivel socioeconómico parecen tener mejores puntajes al promedio mientras que las categorías que representan un nivel socioeconómico más bajo parecen tener puntajes peores al promedio, exceptuando de nuevo, el poseer o no motocicleta, en cuyo caso pasa lo contrario.</p>
+<p>El primer eje “ordena” el valor de la matrícula y el estrato, a la derecha se ubican los que pagan menor valor de matrícula y son de estrato más bajo, en el lado izquierdo queda lo contrario. Además, el eje 1 ubica a los que tienen o no algun bien o servicio al lado derecho. Vemos entonces que realmente el primer eje captura la información como si fuera un índice, reafirmando las conclusiones halladas en el ACP. Las categorías que representan un mayor nivel socioeconómico parecen tener mejores puntajes al promedio mientras que las categorías que representan un nivel socioeconómico más bajo parecen tener puntajes peores al promedio, exceptuando de nuevo, el poseer o no motocicleta, en cuyo caso pasa lo contrario.</p>
 
 
-</section>
 </section>
 </section>
 

@@ -231,7 +231,11 @@ kable(reco)
 
 ### Paso 1
 
-Realización del ACS entre las variables *ESTU_DEPTO_RESIDE* y *gobalCAT*
+Realización del ACS entre las variables `ESTU_DEPTO_RESIDE` y `gobalCAT`
+
+::: callout-note
+Para que este ACS no se viera afectado por la poca frecuencia que tiene la categoría "Desconocido" de la variable `ESTU_DEPTO_RESIDE`, se incluyeron los individuos pertenecientes a esta categoría dentro de la categoría `BOGOTÁ`
+:::
 
 ```{r}
 #| echo: false
@@ -548,6 +552,8 @@ Aunque no sea una representación uno a uno de las regiones geográficas, se pue
 
 # Agrupamiento exploratorio
 
+Dado que ya se cumplieron los objetivos del proyecto, se realiza un "agrupamiento exploratorio" de los individuos teniendo en cuenta las variables: Sexo, Departamento de residencia, Estado civil, Valor matrícula universidad, Semestre que cursa, Estrato socioeconómico, Cantidad de horas que trabaja a la semana, la Modalidad de estudio y el Carácter académico de la institución. La razón por la que se seleccionan esas 9 variables para el agrupamiento es porque representan diferentes dimensiones de la vida académica, socioeconómica y personal de los individuos, lo que puede influir de manera significativa en su experiencia y desempeño en la educación.
+
 ```{r}
 #| echo: false
 #| results: hide
@@ -738,7 +744,11 @@ names(data)[29:33]<-c("cuanti","lec","ciu","ing","esc")
 
 ### Paso 1
 
-Realización del ACM entre las variables *ESTU_DEPTO_RESIDE* y *gobalCAT*
+Realización del ACM entre las variables `ESTU_GENERO`, `ESTU_DEPTO_RESIDE`, `ESTU_ESTADOCIVIL`, `ESTU_VALORMATRICULAUNIVERSIDAD`, `ESTU_SEMESTRECURSA`, `FAMI_ESTRATOVIVIENDA`, `ESTU_HORASSEMANATRABAJA`, `ESTU_METODO_PRGM` y `INST_CARACTER_ACADEMICO`.
+
+::: callout-note
+Para que este ACS no se viera afectado por la poca frecuencia que tiene la categoría "Desconocido" en la mayoría de las variables, se incluyeron los individuos pertenecientes a esta categoría dentro de la categoría que tuviese mayor frecuencia, tal como se hizo en los ACM de la sección de ACM sin "Desconocidos" @sec-sinDesconocido .
+:::
 
 ```{r}
 #| echo: false
@@ -813,9 +823,11 @@ fviz_screeplot(acm, addlabels = TRUE, ylim = c(0, 20))
 
 ### Paso 2
 
-Conservaremos 5 ejes para no perder información y formaremos 10 grupos de forma netamente exploratoria.
+Conservaremos 10 ejes para no perder información para formar los grupos.
 
 ### Paso 3
+
+Fue necesario realizar un K-means de pre-agrupamiento ya que se tienen 127342 individuos. Con el k-means se obtuvieron 5000 grupos de individuos que pasarán ahora a un agrupamiento jerárquico.
 
 ```{r}
 #| echo: false
@@ -828,7 +840,9 @@ pregroup<- kmeans(Y, centers = 5000)  #Agrupamos los datos en 5000 grupos
 
 ### Paso 4
 
-Los indices de agrupación jerárquica de los departamentos utilizando el método de Wald se muestran a continuación.
+Se realiza un agrupamiento jerárquico utilizando el método de Ward que busca una inercia mínima dentro de los grupos y mayor inercia entre grupos (en este caso, grupo de grupos).
+
+El dendograma de la agrupación jerárquica es:
 
 ```{r}
 #| echo: false
@@ -837,11 +851,12 @@ plot(hclCafe, las=1, col="darkblue", main="", sub="", xlab="")
 abline(h=seq(0, 7, 0.5), col="gray90", lty=3)
 ```
 
+Gracias al dendograma, los posibles candidatos para número de grupos son: 7, 5, 4, 3 y 2.
+
 ### Paso 5
 
-Como se mencionó previamente, el corte se hizo para 5 grupos, de modo que se obtienen los valores inciales para el K-means.
+Con la agrupación jerárquica se obtienen los valores inciales para el k-means. Se probaron con todas las distintas opciones de número de grupos, al realizar 4 grupos se ve una "clara" diferencia entre los grupos al menos en una de las 9 variables. Al intentar con las otras opciones ningún grupo se diferenciaba mucho del otro.
 
-El dendograma de la agrupación jerárquica es:
 
 ```{r}
 #| echo: false
@@ -850,7 +865,7 @@ grupos_jerarquicos <- cutree(hclCafe, k=4)
 
 ### Paso 6
 
-A continuación, se muestran los cambios en tamaño y en la inercia luego del K-means
+Caracterización y visualización de los grupos:
 
 ```{r}
 #| echo: false
@@ -879,20 +894,18 @@ library(kableExtra)
 
 grups <- as.data.frame(table(Ys$GrupoFinal)/nrow(Ys)*100)
 colnames(grups) <- c("Grupo", "Porcentaje")
-kable(grups)
+#kable(grups)
 ```
 
-En general, ni los tamaños de los grupos ni la inercia dentro-grupo se modificaron demasiado. El agrupamiento jerárquico dio una buena partición incial.
 
-### Paso 7
-
-Caracterización y visualización de los grupos:
 
 ::: panel-tabset
 
 #### Grupo 1
 
-En el grupo 1 se tiene:
+Dado que los valores test son muy muy grandes ($\infty$), en este grupo se encuentran personas que viven en Bogotá, son solteras, pagan entre 4 millones y hasta más de 7 millones de matrícula, pertenecen a estrato 3, 4, 5 y 6, no trabajan, y estudian en una Universidad de forma presencial.
+
+Si bien los valores test no son muy muy grandes, sí son altos, por lo que en este grupo también se caracteriza por individuos que cursan el semestre número 7, 11 o más de 12 y de sexo femenino.
 
 ```{r}
 #| echo: false
@@ -902,7 +915,9 @@ kable(valores_test[["1"]]) %>% kable_styling("striped", full_width = T) %>%
 
 #### Grupo 2
 
-En el grupo 1 se tiene:
+Dado que los valores test son muy muy grandes ($\infty$), en este segundo grupo se encuentran personas que pagan entre 2.5 y 4 millones de matrícula, cursan el 10 semestre, trabajan más de 30 horas a la semana, estudian de forma presencial en un Instituto Técnico o en un Técnico Profesional.
+
+Si bien los valores test no son muy muy grandes, sí son altos, por lo que en este grupo también se caracteriza por individuos de sexo masculino, de estrato 2, viven en unión libre o son casados, estudian en un instituto universitario y no viven en Bogotá.
 
 ```{r}
 #| echo: false
@@ -913,7 +928,9 @@ kable(valores_test[["2"]]) %>% kable_styling("striped", full_width = T) %>%
 
 #### Grupo 3
 
-En el grupo 1 se tiene:
+Dado que los valores test son muy muy grandes ($\infty$), en este tercer grupo se encuentran personas que NO viven en Bogotá, no pagan o pagan entre 500 mil y 1 millón de matrícula, cursan el semestre 9, pertenecen al estrato 1, estudia en una universidad a distancia.
+
+Si bien los valores test no son muy muy grandes, sí son altos, por lo que en este grupo también se caracteriza por individuos que trabajan menos de 10 horas a la semana o máximo 30 horas a la semana, son de estrato 2, viven en unión libre y son de sexo masculino.
 
 ```{r}
 #| echo: false
@@ -924,7 +941,9 @@ kable(valores_test[["3"]]) %>% kable_styling("striped", full_width = T) %>%
 
 #### Grupo 4
 
-En el grupo 1 se tiene:
+Dado que los valores test son muy muy grandes ($\infty$), en este cuarto grupo se encuentran personas casadas o en unión libre, pagan entre 1 y 2.5 millones de matrícula, trabajan más de 30 horas a la semana y estudian en un Instituto Universitario a distancia o virtual.
+
+Si bien los valores test no son muy muy grandes, sí son altos, por lo que en este grupo también se caracteriza por individuos de sexo femenino, cursan el semestre 7, 6 o menos, son de estrato 2 o 3, son separados y/o viudos, y viven en Bogotá.
 
 ```{r}
 #| echo: false
@@ -935,6 +954,17 @@ kable(valores_test[["4"]]) %>% kable_styling("striped", full_width = T) %>%
 
 :::
 
+La segmentación de los individuos en los cuatro grupos muestra una clara diferenciación socioeconómica, académica y geográfica, lo que permite identificar perfiles distintos en función de sus condiciones de vida y estudios.
+
+-   **Grupo 1:** Agrupa principalmente a estudiantes de alto estrato socioeconómico (3-6), residentes en Bogotá, que estudian de forma presencial en universidades, no trabajan, y pagan matrículas elevadas. Este grupo también se caracteriza por tener mayor presencia de mujeres cursando semestres avanzados. Estos resultados sugieren que son estudiantes con menos cargas laborales y con acceso a universidades más costosas, lo que podría estar asociado con una mayor disponibilidad de recursos familiares y económicos.
+
+-   **Grupo 2:** Está compuesto por estudiantes que pagan matrículas intermedias, estudian en Institutos Técnicos o Técnicos Profesionales, trabajan más de 30 horas a la semana y no residen en Bogotá. Se destacan los hombres casados o en unión libre de estrato bajo (2) que están cursando el último semestre de sus estudios. Este grupo parece estar conformado por estudiantes que combinan estudio y trabajo intensivamente, posiblemente debido a la necesidad de generar ingresos mientras continúan sus estudios en instituciones más accesibles económicamente.
+
+-   **Grupo 3:** Incluye a estudiantes de bajo estrato (1-2), que no pagan o pagan muy poco por su matrícula, y cursan estudios a distancia, lo cual puede estar relacionado con la necesidad de trabajar mientras estudian o con la falta de acceso a universidades presenciales en sus lugares de residencia. Este grupo está conformado mayoritariamente por hombres de fuera de Bogotá, que trabajan menos de 30 horas a la semana y viven en unión libre. Se trata de estudiantes con menos recursos que eligen modalidades más flexibles para equilibrar sus responsabilidades laborales y académicas.
+
+-   **Grupo 4:** Agrupa a personas casadas o en unión libre que estudian de forma virtual en Institutos Universitarios, trabajan más de 30 horas a la semana y pagan matrículas moderadas. Son mayormente mujeres de estratos 2 y 3 que viven en Bogotá y están cursando semestres intermedios o bajos. Este grupo parece estar conformado por estudiantes con responsabilidades familiares y laborales que eligen modalidades de estudio a distancia para compatibilizar sus distintas actividades.
+
+En general, cada grupo refleja las diferentes formas en que las circunstancias personales y socioeconómicas impactan la experiencia educativa. Los grupos con estudiantes que no trabajan y pagan matrículas elevadas (Grupo 1) contrastan claramente con aquellos que estudian y trabajan simultáneamente para sostenerse (Grupos 2, 3 y 4). Además, el lugar de residencia y la modalidad de estudio juegan un rol clave en la diferenciación de los grupos, con los estudiantes fuera de Bogotá y en modalidades a distancia mostrando perfiles económicos y académicos menos privilegiados. Estos resultados podrían utilizarse para diseñar políticas de apoyo dirigidas a estudiantes con mayores cargas laborales o de menores ingresos.
 
 ```{r}
 #| echo: false

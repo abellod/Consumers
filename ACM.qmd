@@ -1774,14 +1774,26 @@ fviz_mca_var(acm, axes = c(1,2), col.var = "cos2", repel = TRUE,
 El plano factorial sin acotar muestra que las únicas categorías que realmente están muy bien representadas en el primer eje son las de desconocido. Acotando, vemos que realmente el segundo eje captura la información como si fuera un índice, reafirmando las conclusiones halladas en el ACP. Las categorías que representan un mayor nivel socioeconómico parecen tener mejores puntajes al promedio mientras que las categorías que representan un nivel socioeconómico más bajo parecen tener puntajes peores al promedio, exceptuando de nuevo, el poseer o no motocicleta, en cuyo caso pasa lo contrario.
 
 
-# Análisis de Correspondencias Múltiples sin considerar "Desconocido"
+# Análisis de Correspondencias Múltiples sin considerar "Desconocido" {#sec-sinDesconocido}
 
-A continuación se muestra el Análisis de Correspondencias Múltiples (ACM) de los datos SaberPro 2022-2.
+El análisis anterior se ve muy afectado por la categoría "Desconocido" de todas las variables en cada uno de los ACM, por lo tanto, a contnuación se realizan nuevamente los ACM pero sin considerar la categoría Desconocido en las distintas variaables. 
 
-Se realiza un ACM para cada una de los distintos tipos de variables que cuenta la base de datos (Variables relacionadas con la información personal, Variables relacionadas con la información académica y Variables relacionadas con la información socioeconómica). En cada uno de los ACM se muestra la variable cuantitativa correspondiente al puntaje global como variable suplementaria.
+Para no tener en cuenta la categoría Desconocido, esta categoría se "sumó" a la categoría que tuviese más individuos en la variable correspondiente, por ejemplo, en el caso de `ESTU_DEPTO_RESIDE` que cuenta con tres categorías: "BOGOTÁ" (32493 individuos), "OTRO" (94839 individuos) y "Desconocido" (10 individuos), entonces se suman los 10 individuos de "Desconocido" a la categoría "OTRO" que tiene más individuos y no resulta afectada al sumar 10 más.
+
+La razón por la que se utiliza este método para no afectar el análisis por los "Desconocido", es porque en algunos casos, esta categoría representa un porcentaje de los individuos similar al de otras categorías de la variable, por lo que no se puede "ventilar" ya que no solo se imputarían datos a los individuos de la categoría "Desconocido" sino también a estas categorías, lo que resulta en utilizar información falsa para el análisis.
 
 
 ## Variables relacionadas con la información personal
+
+Las variables cualitativas `FAMI_EDUCACIONMADRE`, `FAMI_EDUCACIONPADRE` `FAMI_OCUPACIONMADRE` y `FAMI_OCUPACIONPADRE`se usan como ilustrativas ya que tienen muchas (más) categorías que las otras variables, por lo que el análisis puede verse afectado. La variable cuantitativa `PUNT_GLOBAL` es también ilustrativa. 
+
+Los individuos de "Desconocido" se incluyeron en las siguientes categorías:
+
+-   `ESTU_GENERO`: "Desconocido" (5) se incluyen en "F" (74554)
+-   `ESTU_TIENEETNIA`: "Desconocido" (775) se incluyen en "No" (116123)
+-   `ESTU_RESIDE_DEPTO`: "Desconocido" (10) se incluyen en "OTRO" (94839)
+-   `ESTU_ESTADOCICIL`: "Desconocido" (580) se incluyen en "S" (106848)
+-   `ESTU_HORASSEMANATRABAJA`: "Desconocido" (6867) se incluyen en "Más de 30 horas" (44626)
 
 ### Dimensiones para el ACM
 
@@ -1876,7 +1888,7 @@ Entonces, se realiza el análisis con 2 ejes para el ACM.
 fviz_contrib(res.mca, choice = "var", axes = 1, top=7) # top=6 para que muestre quienes contribuyen más
 ```
 
-Podemos ver que las que más contribuyen al primer eje son las categorías "desconocido" de las distintas variables, veremos a qué nos lleva esto más adelante.
+Podemos ver que las que más contribuyen al primer eje son las categorías "0" y "Más de 30 horas" de la variable Horas que trabaja a la semana, y "UL", "C" y "S" de la variable Estado civil del estudiante.
 
 ### Contribución de las variables al eje 2
 
@@ -1885,8 +1897,7 @@ Podemos ver que las que más contribuyen al primer eje son las categorías "desc
 fviz_contrib(res.mca, choice = "var", axes = 2, top=6) # top=6 para que muestre quienes contribuyen más
 ```
 
-La mayor contribución en este eje también es dado por categorías "desconocido", por lo que la variabilidad de estas categorías fue capturada en el primer y segundo eje, de ahí, ya empiezan a aparecer categorías distintas.
-
+La mayor contribución en este eje es dado por las categorías de la variable Departamento de residencia, la categoría "Si" de la variable Tiene etnia y "Más de 30 horas" y "Menos de 10 horas" de a variable Horas que trabaja a la semana.
 
 ### Representación de las variables
 
@@ -1910,7 +1921,7 @@ fviz_mca_var(res.mca, axes = c(1,2),
 
 ```
 
-Si bien se muestra que variables relacionadas con la ocupación de la madre y padre están muy correlacionadas con el eje 1, y variables relacionadas con la educación de madre y padre con el eje 2; esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Además, las variables de educación y ocupación de madre y padre tienen bastantes más categorías que las otras variables que se usaron para hacer este ACM.
+Las variables `ESTU_HORASSEMANATRABAJA` y `ESTU_ESTADOCIVIL` parecen ser mejor respresentadas por el eje 1 ya que tienen mayor correlación con este eje. Las variables `ESTU_DEPTO_RESIDE` y `ESTU_TIENEETNIA` presentar mayor correlación con el eje 2. La variable `ESTU_GENERO` no tiene una alta correlación con ninguno de los ejes.
 
 ### Visualización del puntaje global
 
@@ -1954,7 +1965,7 @@ rownames(acm_ventil$var$v.test) <- nombres_originales
 ```
 
 ::: callout-note
-Para los siguientes ACMs, se graficaron los planos factoriales separando por variables y luego el plano factorial con todas las variables. En cada eje se acotó a un intervalo más pequeño para que se pueda apreciar de mejor manera la representación de las distintas variables, debido a que las categorías "desconocido" que hacen referencia a los valores faltantes en cada variable son las que más pesan, llevando a que tengan coordenadas que en proporción a las otras categorías son muy grandes, sin embargo, en el plano factorial con todas las variables se graficó tanto acotando como sin acotar, principalmente para apreciar esta diferencia. Además, para facilitar la visualización se recodificaron las variables con el fin de que las etiquetas de cada categoría sean más legibles. Se obviará la categoría desconocido en la mayoría de las variables ya que siempre estaba relacionada al primer eje y no parecía decir nada relevante.
+Para los siguientes ACMs, se graficaron los planos factoriales separando por variables y luego el plano factorial con todas las variables. 
 :::
 
 ::: panel-tabset
@@ -2028,7 +2039,7 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
              select.var = list(name=c("Si",
                                       "No")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-2, 2))
 
 # fviz_mca_var(res.mca, axes = c(3,2), col.var = "cos2", repel = TRUE, 
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -2094,7 +2105,7 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "SyoV",
                                       "UL")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.25, 0.5), ylim = c(-1, 1))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-2, 2))
 
 # fviz_mca_var(res.mca, axes = c(3,2), col.var = "cos2", repel = TRUE, 
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -2111,6 +2122,7 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
 Las coordenadas son:
 
 ```{r}
+#| echo: false
 coordenas_sup <- res.mca$quali.sup$coord
 
 coord_sup <- data.frame(coordenas_sup)
@@ -2290,7 +2302,7 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
 ```
 :::
 
-Teniendo en cuenta las coordenadas del puntaje global, encontrándose en el cuarto cuadrante de los planos plano, las conclusiones a las que se llegan son muy parecidas a las que se obtuvieron en el ACP. Los estudiantes con características como hombre, sin etnia, que viven en Bogotá, con estado civil soltero, con padres y madres con niveles de educación superior, mejores puestos laborales y menos horas de trabajo, tienen en promedio mejores puntajes que el resto. El primer eje no parece aportar información relevante, el segundo parece reafirmar las conclusiones halladas en el ACP y el tercer eje también parece reafirmar estas conclusiones.
+## Visualización conjunta 
 
 ```{r}
 #| echo: false
@@ -2305,13 +2317,20 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ```
 
-Vemos que sin acotar en el primer y segundo eje, la mayoría de las categorías están muy cerca al centro, mientras que las categorías desconocido se encuentran por lo general muy alejadas de el centro, lo cual era esperable pues estos individuos son los que tenían valores faltantes, que por lo general eran una pequeña cantidad, por lo que su variabilidad es muy grande.
+Teniendo en cuenta las coordenadas del puntaje global, encontrándose en el cuarto cuadrante de los planos plano, las conclusiones a las que se llegan son muy parecidas a las que se obtuvieron en el ACP. Los estudiantes con características como no tener etnia, vivir en Bogotá, con estado civil soltero, con padres y madres con niveles de educación superior, mejores puestos laborales y menos horas de trabajo, tienen en promedio mejores puntajes que el resto. El primer eje no parece aportar información relevante excepto que marca una gran diferencia entre no trabajar o trabajar más de 30 horas, y entre estar soltero o cualquier otro estado civil. El segundo parece reafirmar las conclusiones halladas en el ACP.
 
-Acotando en los ejes, podemos ver que las características relacionadas a un mejor nivel socioeconómico y a menos responsabilidades, como padres y madres en mejores cargos, padres y madres con mejores niveles educativos, estar soltero, no trabajar, se encuentran concentradas en el cuarto cuadrante del plano, en donde también se encuentran las coordenadas del puntaje global.
-
-En resumen, vemos que los datos parecen llevarnos a la misma conclusión que en el caso del ACP.
+Por la cercanía de los puntos, parece que en general las mujeres trabajan entre 21 y 30 horas, y las personas que no residen en Bogotá trabajan entre 11 y 20 horas.
 
 ## Variables relacionadas con la información académica
+
+La variable cualitativa `GRUPOREFERENCIA` se usa como ilustrativa ya que tiene muchas (más) categorías que las otras variables, por lo que el análisis puede verse afectado. La variable cuantitativa `PUNT_GLOBAL` es también ilustrativa. 
+
+Los individuos de "Desconocido" se incluyeron en las siguientes categorías:
+
+-   `ESTU_COMOCAPACITOEXAMENSB11`: "Desconocido" (2069) se incluyen en "CuentaPropia" (85453)
+-   `ESTU_SEMESTRECURSA`: "Desconocido" (2194) se incluyen en "09" (41470)
+
+Las variables `ESTU_METODO_PRGM` y `INST_CARACTER_ACADEMICO` no tienen la categoría "Desconocido".
 
 ### Dimensiones para el ACM
 
@@ -2392,7 +2411,7 @@ Entonces, se realiza el análisis con 2 ejes para el ACM.
 fviz_contrib(res.mca, choice = "var", axes = 1, top=6) # top=6 para que muestre quienes contribuyen más
 ```
 
-De nuevo las categorías que más contribuyen al primer eje son las de desconocido.
+Las categorías que contribuyen al primer eje son todas las de la variable Modalidad, y las categorías InstUni y Universidad de la variable Carácter académico.
 
 ### Contribución de las variables al eje 2
 
@@ -2401,7 +2420,7 @@ De nuevo las categorías que más contribuyen al primer eje son las de desconoci
 fviz_contrib(res.mca, choice = "var", axes = 2, top=11) # top=6 para que muestre quienes contribuyen más
 ```
 
-Las contribuciones al segundo eje se ven principalmente en la modalidad de estudio y el tipo de institución a la que el estudiante pertenece, y no se ve un aporte de las categorías desconocido.
+Las contribuciones al segundo eje se ven principalmente en las catgeorías TecProf e InstTec de la variable Carácter académico, la categoría Curso de la variable Modalidad, y 12M y 10 de la variable Semestre que cursa.
 
 ### Representación de las variables
 
@@ -2423,7 +2442,7 @@ fviz_mca_var(res.mca, axes = c(1,2),
 
 ```
 
-Nuevamente, si bien se muestra que la variable Cómo capacitó el exámen está muy correlacionada con el eje 1, y las variables Método del programa y el Carácter acdémico de la institución se relacionan con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable.
+Se muestra que la variable Programa académico esta muy correlacionada con el eje 1, el Carácter académico de la institución está igual correlacionado con el eje 1 y el eje 2, el Semestre que cursa y Cómo capacitó el examen están más correlacionadas con el eje 2.
 
 ### Visualización del puntaje global
 
@@ -2729,7 +2748,7 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
 ```
 :::
 
-De la misma manera que con el ACP, ya que, obviando el primer eje que parece tomar toda la inercia de las categorías desconocido, el segundo eje parece indicar que las personas con características como estudiar de manera presencial, en una universidad y cursando los últimos semestres obtienen mejores puntajes que el promedio, pues el puntaje global en ese eje apunta a la misma dirección. Además de esto, aunque se uso como variable suplementaria el grupo de referencia, se puede apreciar que también parece seguir las conclusiones del ACP, personas que hacen parte a grupos de referencia como Medicina, Econ.,admin.,contad. y afines Univer, obtienen mejores puntajes que el promedio.
+## Visualización conjunta 
 
 ```{r}
 #| echo: false
@@ -2746,9 +2765,24 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ```
 
-Se ve que las únicas dos categorías desconocido están muy lejos del centro respecto al primer eje como en el ACM anterior, y acotando se puede apreciar mejor de nuevo el cómo se agrupan las categorías, estando cerca categorías como estar en 12 Semestre o más y medicina, además de mostrar que los individuos que pertenecen a las categorías que están más abajo del gráfico son los que obtienen mejores puntajes respecto al promedio, reafirmando lo concluído en el ACP.
+De la misma manera que con el ACP, parece que las personas con características como estudiar de manera presencial, en una universidad y cursando los últimos semestres obtienen mejores puntajes que el promedio, pues el puntaje global en ese eje apunta a la misma dirección. Además de esto, aunque se uso como variable suplementaria el grupo de referencia, se puede apreciar que también parece seguir las conclusiones del ACP, personas que hacen parte a grupos de referencia como Medicina, Econ.,admin.,contad. y afines Univer, obtienen mejores puntajes que el promedio.
 
 ## Variables relacionadas con la información socioeconómica
+
+Para este ACP no se utiliza ninguna variable ilustrativa. La variable cuantitativa `PUNT_GLOBAL` es también ilustrativa. 
+
+Los individuos de "Desconocido" se incluyeron en las siguientes categorías:
+
+-   `ESTU_VALORMATRICULAUNIVERSIDAD`: "Desconocido" (2194) se incluyen en "e1m2.5" (28748)
+-   `FAMI_ESTRATOVIVIENDA`: "Desconocido" (5531) se incluyen en "Estrato 2" (41867)
+-   `FAMI_TIENEINTERNET`: "Desconocido" (5697) se incluyen en "Si" (107459)
+-   `FAMI_TIENECOMPUTADOR`: "Desconocido" (6163) se incluyen en "Si" (106495)
+-   `FAMI_TIENELAVADORA`: "Desconocido" (6354) se incluyen en "Si" (102610)
+-   `FAMI_TIENEHORNOMICROOGAS`: "Desconocido" (7019) se dejó como una categoría ya que la diferencia entre "Si" y "No" no es muy significativa, pues "Si" (106495) y "No" (63132)
+-   `FAMI_TIENESERVICIOTV`: "Desconocido" (5801) se incluyen en "Si" (88947)
+-   `FAMI_TIENEAUTOMOVIL`: "Desconocido" (7187) se incluyen en "No" (78202)
+-   `FAMI_TIENEMOTOCICLETA`: "Desconocido" (7525) se incluyen en "No" (77509)
+-   `FAMI_TIENECONSOLAVIDEOJUEGOS`: "Desconocido" (7993) se incluyen en "No" (95964)
 
 ### Dimensiones para el ACM
 
@@ -2876,16 +2910,15 @@ Entonces, se realiza el análisis con 2 ejes para el ACM.
 fviz_contrib(res.mca, choice = "var", axes = 1, top = 15) # top=6 para que muestre quienes contribuyen más
 ```
 
-Las categorías que más aportan al primer eje son las de desconocido.
+Las categorías que más aportan al primer eje son las referentes a tener o no tener cierto bien o servicio.
 
 ### Contribución de las variables al eje 2
 
 ```{r}
 #| echo: false
-fviz_contrib(res.mca, choice = "var", axes = 2, top = 4) # top=6 para que muestre quienes contribuyen más
+fviz_contrib(res.mca, choice = "var", axes = 2, top = 15) # top=6 para que muestre quienes contribuyen más
 ```
-
-Las categorías que más aportan al segundo eje son si tiene o no algún bien o servicio.
+Nuevamente, las categorías que más aportan al primer eje son las referentes a tener o no tener cierto bien o servicio, así como también las categorías de la variable Estrato.
 
 ### Representación de las variables
 
@@ -2907,7 +2940,7 @@ fviz_mca_var(res.mca, axes = c(1,2),
 
 ```
 
-Tal como en los puntos anteriores, si bien se muestra que las variables relacionadas con tener o no cierto bien están correlacionadas con el eje 1, y la variable Valor matrícula de la universidad se relaciona con el eje 2, esta representación no es muy fiable ya que la mayoría de las variables tienen la categoría ''Desconocido'' con muy pocos individuos, lo que hace que estas categorías pesen demasiado y afecten la razón de correlaciones de cada variable. Se ve también que en el eje 1 las categpría que más contribuyen son las ''Desconocido''.
+Las variables referentes a tener o no un bien o servicio y el valor de la matrícula de la universidad están más correlacionadas con el eje 1, la variable Estrato tiene igual correlación con el eje 1 y 2.
 
 ### Visualización del puntaje global
 
@@ -3018,7 +3051,7 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
                                       "Estrato 6",
                                       "Sin Estrato")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-2, 2))
 
 # fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -3052,10 +3085,10 @@ kable(val_test[16:17,1:2], digits = 4)
 
 fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("No",
-                                      "Si")),
+             select.var = list(name=c("FAMI_TIENEINTERNET_No",
+                                      "FAMI_TIENEINTERNET_Si")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-2, 2))
 
 # fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -3084,10 +3117,10 @@ kable(val_test[18:19,1:2], digits = 4)
 
 fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("No",
-                                      "Si")),
+             select.var = list(name=c("FAMI_TIENECOMPUTADOR_No",
+                                      "FAMI_TIENECOMPUTADOR_Si")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-2, 2))
 
 # fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -3097,7 +3130,7 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
 #              ggtheme = theme_minimal())
 ```
 
-### 5.Lavadora
+### 5. Lavadora
 
 Las coordenadas son:
 
@@ -3116,10 +3149,10 @@ kable(val_test[20:21,1:2], digits = 4)
 
 fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("Si",
-                                      "No")),
+             select.var = list(name=c("FAMI_TIENELAVADORA_No",
+                                      "FAMI_TIENELAVADORA_Si")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-2, 2))
 
 # fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -3136,7 +3169,7 @@ Las coordenadas son:
 ```{r}
 #| echo: false
 
-kable(coord[22:23,1:2], digits = 4)
+kable(coord[22:24,1:2], digits = 4)
 ```
 
 Los valores test son:
@@ -3144,14 +3177,15 @@ Los valores test son:
 ```{r}
 #| echo: false
 
-kable(val_test[22:23,1:2], digits = 4)
+kable(val_test[22:24,1:2], digits = 4)
 
 fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("Si",
-                                      "No")),
+             select.var = list(name=c("FAMI_TIENEHORNOMICROOGAS_Desconocido",
+                                      "FAMI_TIENEHORNOMICROOGAS_Si",
+                                      "FAMI_TIENEHORNOMICROOGAS_No")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-3, 2))
 
 # fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE,
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
@@ -3168,7 +3202,7 @@ Las coordenadas son:
 ```{r}
 #| echo: false
 
-kable(coord[24:25,1:2], digits = 4)
+kable(coord[25:26,1:2], digits = 4)
 ```
 
 Los valores test son:
@@ -3176,14 +3210,14 @@ Los valores test son:
 ```{r}
 #| echo: false
 
-kable(val_test[24:25,1:2], digits = 4)
+kable(val_test[25:26,1:2], digits = 4)
 
 fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("Si",
-                                      "No")),
+             select.var = list(name=c("FAMI_TIENESERVICIOTV_No",
+                                      "FAMI_TIENESERVICIOTV_Si")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-2, 2))
 
 # fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -3200,7 +3234,7 @@ Las coordenadas son:
 ```{r}
 #| echo: false
 
-kable(coord[26:27,1:2], digits = 4)
+kable(coord[27:28,1:2], digits = 4)
 ```
 
 Los valores test son:
@@ -3208,14 +3242,14 @@ Los valores test son:
 ```{r}
 #| echo: false
 
-kable(val_test[26:27,1:2], digits = 4)
+kable(val_test[27:28,1:2], digits = 4)
 
 fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("Si",
-                                      "No")),
+             select.var = list(name=c("FAMI_TIENEAUTOMOVIL_No",
+                                      "FAMI_TIENEAUTOMOVIL_Si")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-2, 2))
 
 # fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -3232,7 +3266,7 @@ Las coordenadas son:
 ```{r}
 #| echo: false
 
-kable(coord[28:29,1:2], digits = 4)
+kable(coord[29:30,1:2], digits = 4)
 ```
 
 Los valores test son:
@@ -3240,14 +3274,14 @@ Los valores test son:
 ```{r}
 #| echo: false
 
-kable(val_test[28:29,1:2], digits = 4)
+kable(val_test[29:30,1:2], digits = 4)
 
 fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("No",
-                                      "Si")),
+             select.var = list(name=c("FAMI_TIENEMOTOCICLETA_No",
+                                      "FAMI_TIENEMOTOCICLETA_Si")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-2, 2))
 
 # fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -3264,7 +3298,7 @@ Las coordenadas son:
 ```{r}
 #| echo: false
 
-kable(coord[30:31,1:2], digits = 4)
+kable(coord[31:32,1:2], digits = 4)
 ```
 
 Los valores test son:
@@ -3272,14 +3306,14 @@ Los valores test son:
 ```{r}
 #| echo: false
 
-kable(val_test[30:31,1:2], digits = 4)
+kable(val_test[31:32,1:2], digits = 4)
 
 fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE, 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-             select.var = list(name=c("Si",
-                                      "No")),
+             select.var = list(name=c("FAMI_TIENECONSOLAVIDEOJUEGOS_No",
+                                      "FAMI_TIENECONSOLAVIDEOJUEGOS_Si")),
              ggtheme = theme_minimal()) +
-  coord_cartesian(xlim = c(-0.4, 0.2), ylim = c(-2, 2))
+  coord_cartesian(xlim = c(-2, 2), ylim = c(-2, 2))
 # 
 # fviz_mca_var(acm, axes = c(3,2), col.var = "cos2", repel = TRUE, 
 #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
@@ -3290,7 +3324,7 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
 ```
 :::
 
-Individualmente se encontraron los mismos patrones que con el ACP, tomando en cuenta las coordenadas del puntaje global, las categorías se encuentran organizadas respecto a si representan un nivel socioeconómico alto o no, por lo que las categorías que representan un mejor nivel socioeconómico se encuentran en la misma dirección que el puntaje global.
+## Visualización conjunta 
 
 ```{r}
 #| echo: false
@@ -3307,4 +3341,4 @@ fviz_mca_var(res.mca, axes = c(1,2), col.var = "cos2", repel = TRUE,
 
 ```
 
-El plano factorial sin acotar muestra que las únicas categorías que realmente están muy bien representadas en el primer eje son las de desconocido. Acotando, vemos que realmente el segundo eje captura la información como si fuera un índice, reafirmando las conclusiones halladas en el ACP. Las categorías que representan un mayor nivel socioeconómico parecen tener mejores puntajes al promedio mientras que las categorías que representan un nivel socioeconómico más bajo parecen tener puntajes peores al promedio, exceptuando de nuevo, el poseer o no motocicleta, en cuyo caso pasa lo contrario.
+El primer eje "ordena" el valor de la matrícula y el estrato, a la derecha se ubican los que pagan menor valor de matrícula y son de estrato más bajo, en el lado izquierdo queda lo contrario. Además, el eje 1 ubica a los que tienen o no algun bien o servicio al lado derecho. Vemos entonces que realmente el primer eje captura la información como si fuera un índice, reafirmando las conclusiones halladas en el ACP. Las categorías que representan un mayor nivel socioeconómico parecen tener mejores puntajes al promedio mientras que las categorías que representan un nivel socioeconómico más bajo parecen tener puntajes peores al promedio, exceptuando de nuevo, el poseer o no motocicleta, en cuyo caso pasa lo contrario.
