@@ -851,7 +851,18 @@ plot(hclCafe, las=1, col="darkblue", main="", sub="", xlab="")
 abline(h=seq(0, 7, 0.5), col="gray90", lty=3)
 ```
 
-Gracias al dendograma, los posibles candidatos para número de grupos son: 7, 5, 4, 3 y 2.
+Los indices de agrupación jerárquica son:
+
+```{r}
+#| echo: false
+# no compila, no se pq
+indices <- ward.cluster(dista=dist(pregroup$centers), h.clust=2)
+barplot(rev(tail(indices$Indice,25)), horiz=TRUE, col="darkblue")
+```
+
+![](index_group2.png)
+
+Gracias al dendograma y al gráfico con los índices, los posibles candidatos para número de grupos son: 7, 5, 4, 3 y 2.
 
 ### Paso 5
 
